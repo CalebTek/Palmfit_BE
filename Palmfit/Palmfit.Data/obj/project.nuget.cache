@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "xRX5Uk/WiKGKcx7xgtU/cUt/6ehTovhQj301vAicF+xTs6eQMMoY9Zu/iN5fJ02exHu9mm6m/25RK+vre7iSyw==",
+  "dgSpecHash": "ANmg/iUTLJWq7hjTDrcHPVXsUesB/F6tUbz2RKQM5rmb4I1ha95xds1HEyA7U4/n/qT6Hlh/CvoiuZFuvGqiLQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.9\\microsoft.aspnetcore.cryptography.internal.7.0.9.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.9\\microsoft.aspnetcore.cryptography.keyderivation.7.0.9.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.9\\microsoft.entityframeworkcore.7.0.9.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.9\\microsoft.entityframeworkcore.abstractions.7.0.9.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.9\\microsoft.entityframeworkcore.analyzers.7.0.9.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.identity.core\\7.0.9\\microsoft.extensions.identity.core.7.0.9.nupkg.sha512",

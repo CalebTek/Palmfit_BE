@@ -1,6 +1,6 @@
 ﻿namespace Palmfit.Data.Entities
 {
-    public class Reviews
+    public class Review : BaseEntity
     {
         public DateTime Date { get; set; }
         public string Comment { get; set; }

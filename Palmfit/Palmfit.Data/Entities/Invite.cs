@@ -1,6 +1,6 @@
 ﻿namespace Palmfit.Data.Entities
 {
-    public class Invites : BaseEntity
+    public class Invite : BaseEntity
     {
         public DateTime Date { get; set; }
         public string Name { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Metrics;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Data.Entities
 {
@@ -14,7 +15,7 @@ namespace Palmfit.Data.Entities
         public string Address { get; set; }
         public string Area { get; set; }
         public string State { get; set; }
-        public string Sex { get; set; }
+        public Sex Sex { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Country { get; set; }
         public bool IsLockedOut { get; set; }

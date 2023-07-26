@@ -1,6 +1,6 @@
 ﻿namespace Palmfit.Data.Entities
 {
-    public class Notifications
+    public class Notification : BaseEntity
     {
         public DateTime Date { get; set; }
         public bool IsRead { get; set; }
