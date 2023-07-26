@@ -32,6 +32,6 @@ namespace Palmfit.Data.Entities
         public ICollection<Notification> Notifications { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public ICollection<Subscription> Subscriptions { get; set; }
-        public ICollection<Transactions> Transactions { get; set; }
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }
