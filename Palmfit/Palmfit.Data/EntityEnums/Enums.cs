@@ -30,4 +30,12 @@ namespace Palmfit.Data.EntityEnums
     {
 
     }
+    public enum TransactionType
+    {
+
+    }
+    public enum TransactionChannel
+    {
+
+    }
 }
