@@ -12,5 +12,6 @@ namespace Palmfit.Data.Entities
         public BloodGroup BloodGroup { get; set; }
         public GenoType GenoType { get; set; }
         public AppUser AppUser { get; set; }
+        public ICollection<WalletHistory> Histories { get; set; }
     }
 }
