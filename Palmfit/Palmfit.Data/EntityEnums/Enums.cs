@@ -20,8 +20,13 @@ namespace Palmfit.Data.EntityEnums
     {
 
     }
-    
+
     public enum BloodGroup
+    {
+
+    }
+
+    public enum SubscriptionType
     {
 
     }

@@ -28,10 +28,10 @@ namespace Palmfit.Data.Entities
         public Setting Setting { get; set; }
         public Wallet Wallet { get; set; }
 
-        public ICollection<Invites> Invities { get; set; }
-        public ICollection<Notifications> Notifications { get; set; }
-        public ICollection<Reviews> Reviews { get; set; }
-        public ICollection<Subscriptions> Subscriptions { get; set; }
+        public ICollection<Invite> Invities { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Subscription> Subscriptions { get; set; }
         public ICollection<Transactions> Transactions { get; set; }
     }
 }
