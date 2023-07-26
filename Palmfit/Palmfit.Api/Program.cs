@@ -1,8 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Palmfit.Data.AppDbContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<PalmfitDbContext>(opts =>
+{
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -2,7 +2,7 @@
 {
     public class Wallet : BaseEntity
     {
-        public int AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+        //public int AppUserId { get; set; }
+        //public AppUser AppUser { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Palmfit.Data.Entities
 {
-    public class Setting
+    public class Setting : BaseEntity
     {
-        public int AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+        //public int AppUserId { get; set; }
+        //public AppUser AppUser { get; set; }
     }
 }
