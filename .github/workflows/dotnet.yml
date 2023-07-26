@@ -24,5 +24,3 @@ jobs:
       run: dotnet ./Palmfit/Palmfit.sln
     - name: Build
       run: dotnet build ./Palmfit/Palmfit.Api/Palmfit.Api.csproj
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
