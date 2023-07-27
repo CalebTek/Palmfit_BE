@@ -7,9 +7,9 @@ namespace Palmfit.Api.Controllers
     public class HealthController : ControllerBase
     {
         [HttpGet("ping")]
-        public async Task<IActionResult> Ping()
+        public Task<IActionResult> Ping()
         {
-            return Ok("pong");
+            return Task.FromResult<IActionResult>(Ok("pong"));
         }
     }
 }

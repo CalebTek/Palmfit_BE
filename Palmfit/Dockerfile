@@ -6,12 +6,8 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /Palmfit
+WORKDIR "/Palmfit"
 COPY ["Palmfit.Api/Palmfit.Api.csproj", "Palmfit.Api/"]
-COPY ["Palmfit.Core/Palmfit.Core.csproj", "Palmfit.Core/"]
-COPY ["Palmfit.Data/Palmfit.Data.csproj", "Palmfit.Data/"]
-COPY ["Palmfit.Infrastructure/Palmfit.Infrastructure.csproj", "Palmfit.Infrastructure/"]
-
 RUN dotnet restore "Palmfit.Api/Palmfit.Api.csproj"
 COPY . .
 WORKDIR "/Palmfit/Palmfit.Api"
