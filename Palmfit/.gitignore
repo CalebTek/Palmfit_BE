@@ -362,3 +362,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Palmfit/Palmfit.Core/obj/Debug/net7.0/Palmfit.Core.assets.cache
+
+/.vs
+/.obj
+bin/
+obj/
+/main/**/bin/

@@ -14,7 +14,7 @@ namespace Palmfit.Data.Entities
         public string IpAddress { get; set; }
         public string Currency { get; set; }
         public string Vendor { get; set; }
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }
 }

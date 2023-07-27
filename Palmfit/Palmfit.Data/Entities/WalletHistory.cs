@@ -9,7 +9,7 @@ namespace Palmfit.Data.Entities
         public DateTime Date { get; set; }
         public string Reference { get; set; }
         public string Details { get; set; }
-        public int WalletAppUserId { get; set; }
+        public string WalletAppUserId { get; set; }
         public Wallet Wallet { get; set; }
     }
 }

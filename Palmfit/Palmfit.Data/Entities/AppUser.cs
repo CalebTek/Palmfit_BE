@@ -7,7 +7,6 @@ namespace Palmfit.Data.Entities
 {
     public class AppUser : IdentityUser
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -16,7 +15,7 @@ namespace Palmfit.Data.Entities
         public string Address { get; set; }
         public string Area { get; set; }
         public string State { get; set; }
-        public Sex Sex { get; set; }
+        public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Country { get; set; }
         public bool IsLockedOut { get; set; }

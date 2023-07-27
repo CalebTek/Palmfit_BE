@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Data.EntityEnums
 {
-    
-    public enum Sex
+    public enum Gender
     {
         Male,
         Female
     }
+
     public enum HeightUnit
     {
         cm,
@@ -19,7 +19,7 @@ namespace Palmfit.Data.EntityEnums
         ft,
     }
 
-    public enum WeightUnit 
+    public enum WeightUnit
     {
         Kg,
         Lbs
@@ -47,17 +47,16 @@ namespace Palmfit.Data.EntityEnums
         Standard,
         Premium
     }
+
     public enum TransactionType
     {
-
     }
+
     public enum TransactionChannel
     {
-
     }
 
     public enum WalletType
     {
-
     }
 }
