@@ -361,14 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Palmfit/.vs/Palmfit/v17/.suo
-/Palmfit/Palmfit.Api/Palmfit.Api.csproj.user
-/Palmfit/Palmfit.Api/obj/Palmfit.Api.csproj.nuget.dgspec.json
-/Palmfit/Palmfit.Api/obj/Palmfit.Api.csproj.nuget.g.props
-/Palmfit/Palmfit.Api/obj/Palmfit.Api.csproj.nuget.g.targets
-/Palmfit/Palmfit.Api/obj/project.assets.json
-/Palmfit/Palmfit.Api/obj/project.nuget.cache
-/Palmfit/Palmfit.Api/obj/Debug/net7.0/Palmfit.Api.AssemblyInfo.cs
-/Palmfit/Palmfit.Api/obj/Debug/net7.0/Palmfit.Api.AssemblyInfoInputs.cache
-/Palmfit/Palmfit.Api/obj/Debug/net7.0/Palmfit.Api.assets.cache
-/Palmfit/Palmfit.Api/obj/Debug/net7.0/Palmfit.Api.csproj.AssemblyReference.cache
