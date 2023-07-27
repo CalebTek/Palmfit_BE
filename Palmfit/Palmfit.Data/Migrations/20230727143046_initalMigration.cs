@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Palmfit.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDb : Migration
+    public partial class initalMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,6 +53,8 @@ namespace Palmfit.Data.Migrations
                     WeightUnit = table.Column<int>(type: "int", nullable: false),
                     BloodGroup = table.Column<int>(type: "int", nullable: false),
                     GenoType = table.Column<int>(type: "int", nullable: false),
+                    Balance = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Reference = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -332,7 +334,7 @@ namespace Palmfit.Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -344,7 +346,8 @@ namespace Palmfit.Data.Migrations
                         name: "FK_Invites_AspNetUsers_AppUserId1",
                         column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -357,7 +360,7 @@ namespace Palmfit.Data.Migrations
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -369,7 +372,8 @@ namespace Palmfit.Data.Migrations
                         name: "FK_Notifications_AspNetUsers_AppUserId1",
                         column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -382,7 +386,7 @@ namespace Palmfit.Data.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Verdict = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -394,7 +398,8 @@ namespace Palmfit.Data.Migrations
                         name: "FK_Reviews_AspNetUsers_AppUserId1",
                         column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -407,7 +412,7 @@ namespace Palmfit.Data.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsExpired = table.Column<bool>(type: "bit", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -419,7 +424,8 @@ namespace Palmfit.Data.Migrations
                         name: "FK_Subscriptions_AspNetUsers_AppUserId1",
                         column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -438,7 +444,7 @@ namespace Palmfit.Data.Migrations
                     Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Vendor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -450,7 +456,8 @@ namespace Palmfit.Data.Migrations
                         name: "FK_Transactions_AspNetUsers_AppUserId1",
                         column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

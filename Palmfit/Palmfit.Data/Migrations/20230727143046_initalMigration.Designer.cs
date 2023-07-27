@@ -12,8 +12,8 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230726233055_initialDb")]
-    partial class initialDb
+    [Migration("20230727143046_initalMigration")]
+    partial class initalMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -396,6 +396,10 @@ namespace Palmfit.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Balance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("BloodGroup")
                         .HasColumnType("int");
 
@@ -413,6 +417,10 @@ namespace Palmfit.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -438,6 +446,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -481,6 +490,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -523,6 +533,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Comment")
@@ -585,6 +596,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -628,6 +640,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Channel")
@@ -841,7 +854,9 @@ namespace Palmfit.Data.Migrations
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Invities")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });
@@ -850,7 +865,9 @@ namespace Palmfit.Data.Migrations
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Notifications")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });
@@ -859,7 +876,9 @@ namespace Palmfit.Data.Migrations
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Reviews")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });
@@ -868,7 +887,9 @@ namespace Palmfit.Data.Migrations
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Subscriptions")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });
@@ -877,7 +898,9 @@ namespace Palmfit.Data.Migrations
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Transactions")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });

@@ -7,6 +7,7 @@ namespace Palmfit.Data.Entities
 {
     public class AppUser : IdentityUser
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
