@@ -1,0 +1,14 @@
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\bin\Debug\net7.0\Palmfit.Data.deps.json
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\bin\Debug\net7.0\Palmfit.Data.runtimeconfig.json
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\bin\Debug\net7.0\Palmfit.Data.dll
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\bin\Debug\net7.0\Palmfit.Data.pdb
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.csproj.AssemblyReference.cache
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.AssemblyInfoInputs.cache
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.AssemblyInfo.cs
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.csproj.CoreCompileInputs.cache
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.dll
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\refint\Palmfit.Data.dll
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.pdb
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\Palmfit.Data.genruntimeconfig.cache
+C:\Users\kehin\source\repos\live-project-sq015-net-palmfit\Palmfit\Palmfit.Data\obj\Debug\net7.0\ref\Palmfit.Data.dll
