@@ -367,3 +367,4 @@ FodyWeavers.xsd
 *.obj
 *.binlog
 *.[Dd]ebug
+/Palmfit/.vs/Palmfit/v17/.suo
