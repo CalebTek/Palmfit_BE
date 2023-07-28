@@ -5,6 +5,22 @@ using Palmfit.Data.AppDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+    .AddEnvironmentVariables()
+    .Build();
+
+var maxUserWatches = configuration.GetValue<int>("MaxUserWatches");
+if (maxUserWatches > 0)
+{
+    var fileSystemWatcher = new FileSystemWatcher("/")
+    {
+        EnableRaisingEvents = true
+    };
+    var maxFiles = maxUserWatches / 2;
+    fileSystemWatcher.InternalBufferSize = maxFiles * 4096;
+}
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -17,15 +33,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Add appsettings.json configuration
-var config = app.Services.GetRequiredService<IConfiguration>();
-var env = app.Environment;
-var configBuilder = new ConfigurationBuilder()
-    .SetBasePath(env.ContentRootPath)
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-    //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
-    .AddEnvironmentVariables();
-config = configBuilder.Build();
+//// Add appsettings.json configuration
+//var config = app.Services.GetRequiredService<IConfiguration>();
+//var env = app.Environment;
+//var configBuilder = new ConfigurationBuilder()
+//    .SetBasePath(env.ContentRootPath)
+//    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+//    //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
+//    .AddEnvironmentVariables();
+//config = configBuilder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
