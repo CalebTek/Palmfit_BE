@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Palmfit.Api.Extensions;
 using Palmfit.Data.AppDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,11 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+DBRegistryExtension.AddDbContextAndConfigurations(builder.Services, builder.Configuration);
 
-builder.Services.AddDbContext<PalmfitDbContext>(opts =>
-{
-    opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,5 +28,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
