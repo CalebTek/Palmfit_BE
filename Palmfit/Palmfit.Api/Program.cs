@@ -5,6 +5,21 @@ using Palmfit.Data.AppDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
+    .Build();
+
+var maxUserWatches = configuration.GetValue<int>("MaxUserWatches");
+if (maxUserWatches > 0)
+{
+    var fileSystemWatcher = new FileSystemWatcher("/")
+    {
+        EnableRaisingEvents = true
+    };
+    var maxFiles = maxUserWatches / 2;
+    fileSystemWatcher.InternalBufferSize = maxFiles * 4096;
+}
+
 // Add services to the container.
 
 builder.Services.AddControllers();
