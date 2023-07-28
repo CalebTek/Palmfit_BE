@@ -14,7 +14,18 @@ builder.Services.AddDbContextAndConfigurations(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+// Add appsettings.json configuration
+var config = app.Services.GetRequiredService<IConfiguration>();
+var env = app.Environment;
+var configBuilder = new ConfigurationBuilder()
+    .SetBasePath(env.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+    //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
+    .AddEnvironmentVariables();
+config = configBuilder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
