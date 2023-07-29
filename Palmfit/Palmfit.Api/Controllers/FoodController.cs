@@ -10,18 +10,22 @@ namespace Palmfit.Api.Controllers
     public class FoodController : ControllerBase
     {
         
-        private readonly PalmfitDbContext _palmfitDb;
+        private readonly Food _food;
 
-        public FoodController(PalmfitDbContext palmfitDb)
+        public FoodController(Food food)
         {
-            _palmfitDb = palmfitDb;
+            _food = food;
         }
 
         [HttpGet("Get All Meals")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<Food>> GetAllMeals()
-        {      
-            return Ok(_palmfitDb.Foods.ToList());
+        public IActionResult GetAllMeals()
+        {   
+            if(_food == null)
+            {
+                throw new Exception("There are no food in the database");
+            }
+            return Ok(_food);
         }
 
     }
