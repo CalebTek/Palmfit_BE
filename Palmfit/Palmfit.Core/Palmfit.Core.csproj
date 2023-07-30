@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
+  </ItemGroup>
+
 </Project>

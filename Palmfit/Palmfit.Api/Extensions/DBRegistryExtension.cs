@@ -1,5 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Interfaces;
 using Palmfit.Data.AppDbContext;
+using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Extensions
 {
@@ -9,8 +14,24 @@ namespace Palmfit.Api.Extensions
         {
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+           
             });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+            });
+
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddIdentity<AppUser, IdentityRole>()
+            .AddEntityFrameworkStores<PalmfitDbContext>()
+            .AddDefaultTokenProviders();
+
         }
     }
 }
