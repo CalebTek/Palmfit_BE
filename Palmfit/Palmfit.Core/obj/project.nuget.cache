@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "k7YbMY2t6gn4joqkbrQhBF3GKeQISsZwXWPsUXnN1NKpxr0dUj0hg+dCTo8Go8bt5yAIXnPg1Gp/bXpzGjf1Ng==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
@@ -25,5 +26,11 @@
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "a8Pts1MD/CdVI7CGrryFwIpSpHLP5Ig1OEwpmA7SKZv4n6fYEZfzbDpKppg0hS2mXGgJwoVQiR3QoZKqcWdrbg==",
+  "success": true,
+  "projectFilePath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
   "logs": []
 }
