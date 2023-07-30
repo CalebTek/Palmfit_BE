@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "8jDFRVftY/bg009wcw/LTbKUA7DXdRZWRkseEa3UCgs3VqBCpxuMWedT70SLRlou8chlOobHeQ6rJLwy7bngig==",
+  "dgSpecHash": "85/gVmCvj75+5BpVaZYTJEmzELV9k53uEgKStUuiMC+ElEit7Jybnss9IKn934Ak8jNxDHrYFgtANOn8OlLNfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

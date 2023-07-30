@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kehin\\.nuget\\packages\\": {},
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\kehin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
+      "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kehin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -34,8 +34,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/PremiumDigitalDev/_packaging/PremiumBankNugets/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
@@ -68,8 +67,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
