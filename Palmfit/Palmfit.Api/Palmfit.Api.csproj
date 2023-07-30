@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Palmfit.Core\Palmfit.Core.csproj" />
     <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
   </ItemGroup>
 
