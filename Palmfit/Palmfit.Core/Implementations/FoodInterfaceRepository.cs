@@ -1,4 +1,5 @@
 ﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    public class FoodInterfaceRepository
+    public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
         //prop  
         private readonly PalmfitDbContext _dbContext;

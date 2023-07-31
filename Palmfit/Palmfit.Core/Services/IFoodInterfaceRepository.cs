@@ -9,6 +9,6 @@ namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
     {
-        Task<FoodDto> GetFoodByCategory(string id);
+        Task<ICollection<FoodDto>> GetFoodByCategory(string id);
     }
 }
