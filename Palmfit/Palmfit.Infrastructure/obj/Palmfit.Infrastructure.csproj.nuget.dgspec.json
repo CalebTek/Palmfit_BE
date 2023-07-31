@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
   },
   "projects": {
@@ -12,9 +13,30 @@
         "projectPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Decagon L\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+=======
+    "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+        "projectName": "Palmfit.Infrastructure",
+        "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+>>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +44,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< HEAD
+=======
+          "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +81,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+>>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
         }
       }
     }

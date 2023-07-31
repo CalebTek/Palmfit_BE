@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "0YwSbA25bhDYUmy7j/GACQzB+2NmsmYmj9vfnNxPxPeUxo7dKGRcD51Q2JVIQOxSBjT+e3SPT5Y85NX5T48q3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+=======
+  "dgSpecHash": "0HveHIysq1VbE8QIBzTVP1S6NSz7XUUZFcunjKHQ3Nq6JxA8WMAPiIX1PamOavyZU5pLZ/G/iJaM5kXFG1mXRQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+>>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
   "expectedPackageFiles": [],
   "logs": []
 }
