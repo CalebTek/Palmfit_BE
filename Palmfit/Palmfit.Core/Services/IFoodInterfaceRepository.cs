@@ -1,5 +1,6 @@
 ﻿using Palmfit.Core.Implementations;
 using Palmfit.Data.Entities;
+using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,6 @@ namespace Palmfit.Core.Services
         Task<decimal> CalculateTotalCalorieAsync(Dictionary<string, (UnitType unit, decimal amount)> foodIdAmountMap);
         Task<IEnumerable<Food>> GetFoodsByNameAsync(string foodName);
         Task<IEnumerable<Food>> GetFoodsByIdAsync(string foodId);
-
-        //Task<IEnumerable<FoodClass>> GetAllFoodClassesAsync();
-        //Task<FoodClass> GetFoodClassByIdAsync(string foodClassId);
 
         /* < End----- required methods to Calculate Calorie -----End > */
 
