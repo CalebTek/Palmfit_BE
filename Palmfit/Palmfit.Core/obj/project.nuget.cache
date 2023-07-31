@@ -27,15 +27,14 @@
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512"
-=======
-  "dgSpecHash": "0RmwXUtqJTWGgG/wGxoFam43HFNup+iuXsMi5nCjMrpOasUGBqW0xbN7XPogBl9YO1TEHvaDnhH+tHu9mxZDvQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
->>>>>>> Stashed changes
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: =. Path 'expectedPackageFiles[22]', line 30, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
