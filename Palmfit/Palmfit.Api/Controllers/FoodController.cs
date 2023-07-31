@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 
@@ -9,23 +13,33 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        
-        private readonly Food _food;
+        private readonly IFoodInterfaceRepository _food;
 
-        public FoodController(Food food)
+        public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
         {
-            _food = food;
+            _food = foodInterfaceRepository;
         }
 
-        [HttpGet("Get All Meals")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetAllMeals()
-        {   
-            if(_food == null)
+
+
+        [HttpGet("get-all-meals")]
+
+        public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
+        {
+            var foods = await _food.GetAllFoodAsync();
+
+            if(foods == null)
             {
-                throw new Exception("There are no food in the database");
+                var res = await _food.GetAllFoodAsync();
+                return NotFound(ApiResponse.Failed(res));
             }
-            return Ok(_food);
+            else
+            {
+                var result = await _food.GetAllFoodAsync();
+
+                return (Ok(ApiResponse.Success(result)));
+            }
+            
         }
 
     }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 
@@ -13,7 +15,9 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddSingleton<Food>();
+            
+
+            
         }
     }
 }

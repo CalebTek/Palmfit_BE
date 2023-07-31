@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Palmfit.Api.Extensions;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,7 @@ if (maxUserWatches > 0)
 
 builder.Services.AddControllers();
 builder.Services.AddDbContextAndConfigurations(builder.Configuration);
+builder.Services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
