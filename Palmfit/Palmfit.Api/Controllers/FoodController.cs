@@ -29,7 +29,7 @@ namespace Palmfit.Api.Controllers
             //Getting all food from database
             var foods = await _food.GetAllFoodAsync();
 
-            if(foods == null)
+            if(foods.Count() <= 0)
             {
                 var res = await _food.GetAllFoodAsync();
                 return NotFound(ApiResponse.Failed(res));
