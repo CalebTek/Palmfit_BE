@@ -2,6 +2,7 @@
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Metrics;
 using Palmfit.Data.EntityEnums;
+//using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Palmfit.Data.Entities
 {

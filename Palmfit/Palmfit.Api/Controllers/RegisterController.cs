@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Palmfit.Core.Interfaces;
-using Palmfit.Data.Common.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using Palmfit.Core.Services;
+using Palmfit.Core.Dtos;
 
 namespace Palmfit.Api.Controllers
 {
@@ -19,7 +18,13 @@ namespace Palmfit.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> CreateUser([FromBody] SignUpDto userRequest)
         {
-            return Ok(await _userRepository.CreateUser(userRequest));
+            var res = await _userRepository.CreateUser(userRequest);
+            if (res)
+            {
+                return Ok(ApiResponse.Success(res));
+            }
+            return BadRequest(ApiResponse.Failed(res));
+            
         }
     }
 }

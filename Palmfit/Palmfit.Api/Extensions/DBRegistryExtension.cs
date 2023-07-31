@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Implementations;
-using Palmfit.Core.Interfaces;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 

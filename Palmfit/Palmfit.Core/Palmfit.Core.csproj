@@ -7,17 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
-=======
-    <Folder Include="Implementations\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
   </ItemGroup>
 
 </Project>

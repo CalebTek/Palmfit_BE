@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Palmfit.Core.Interfaces;
-using Palmfit.Data.Common.Dtos;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
