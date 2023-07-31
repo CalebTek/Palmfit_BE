@@ -1203,56 +1203,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "C:\\Users\\Decagon\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
-=======
-    "C:\\Users\\JAIMZ\\.nuget\\packages\\": {}
->>>>>>> 158f968f3566d97358e6dba061607a70daf7b53b
-=======
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
->>>>>>> e14d1f948db58c3a26c39404c557fff8209c15b5
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectName": "Palmfit.Data",
       "projectPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "projectName": "Palmfit.Data",
-      "projectPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "packagesPath": "C:\\Users\\JAIMZ\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\obj\\",
->>>>>>> 158f968f3566d97358e6dba061607a70daf7b53b
-=======
-      "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "projectName": "Palmfit.Data",
-      "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
->>>>>>> e14d1f948db58c3a26c39404c557fff8209c15b5
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
         "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
-        "C:\\Users\\JAIMZ\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 158f968f3566d97358e6dba061607a70daf7b53b
-=======
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> e14d1f948db58c3a26c39404c557fff8209c15b5
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1260,10 +1228,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
         "C:\\Program Files\\dotnet\\library-packs": {},
-=======
->>>>>>> 158f968f3566d97358e6dba061607a70daf7b53b
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1327,15 +1292,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
->>>>>>> 158f968f3566d97358e6dba061607a70daf7b53b
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
->>>>>>> e14d1f948db58c3a26c39404c557fff8209c15b5
       }
     }
   },

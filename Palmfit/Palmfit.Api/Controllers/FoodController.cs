@@ -42,5 +42,35 @@ namespace Palmfit.Api.Controllers
             }
             
         }
+
+        [HttpGet("SearchByName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<Food>>> SearchFoodByName(string name)
+        {
+            var food = await _food.SearchFoodByName(name);
+
+            if (food == null || food.Count == 0)
+            {
+                return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
+            }
+
+            return Ok(ApiResponse.Success(food));
+        }
+
+        [HttpGet("SearchByCategory")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<FoodClass>>> SearchFoodByCategory(string category)
+        {
+            var searchResults = await _food.SearchFoodByCategory(category);
+            if (searchResults == null || searchResults.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(searchResults);
+        }
     }
 }
