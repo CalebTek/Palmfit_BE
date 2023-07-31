@@ -17,13 +17,40 @@ namespace Palmfit.Core.Implementations
 
         public FoodInterfaceRepository(PalmfitDbContext db)
         {
-           _db = db;
+            _db = db;
         }
 
-        public async Task<List<Food>> GetAllFoodAsync() 
+        public async Task<List<Food>> GetAllFoodAsync()
         {
             return await _db.Foods.ToListAsync();
         }
 
+        public async Task<bool> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
+        {
+            var food = await _db.Foods.FindAsync(id);
+
+            if (food == null)
+                return false;
+
+            food.Name = foodDto.Name;
+            food.Description = foodDto.Description;
+            food.Details = foodDto.Details;
+            food.Origin = foodDto.Origin;
+            food.Image = foodDto.Image;
+            food.Calorie = foodDto.Calorie;
+            food.Unit = foodDto.Unit;
+            food.FoodClassId = foodDto.FoodClassId;
+
+            try
+            {
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }
