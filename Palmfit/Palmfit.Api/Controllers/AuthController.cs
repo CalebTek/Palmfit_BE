@@ -6,6 +6,8 @@ using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _authRepo;
@@ -13,6 +15,7 @@ namespace Palmfit.Api.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _configuration;
 
+       
         public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo)
         {
             _userManager = userManager;
