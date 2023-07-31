@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\": {}
+    "C:\\Users\\JAIMZ\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectName": "Palmfit.Infrastructure",
-      "projectPath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\JAIMZ\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\chukwuma.onuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JAIMZ\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,9 +28,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/Zedcrest/MoneyPal/_packaging/Zedvance/nuget/v3/index.json": {},
-        "https://pkgs.dev.azure.com/Zedcrest/_packaging/Zedcrest/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
@@ -63,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
