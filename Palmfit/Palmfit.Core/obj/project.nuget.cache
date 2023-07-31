@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "a8Pts1MD/CdVI7CGrryFwIpSpHLP5Ig1OEwpmA7SKZv4n6fYEZfzbDpKppg0hS2mXGgJwoVQiR3QoZKqcWdrbg==",
+  "dgSpecHash": "4aHDHcdwsk630irK1j5ADrXfbip/UlhYIcGiQOLBYezIFElbKIFatw6fF9VKy6678iyw2AqlCbv+lSOjaPrYAA==",
   "success": true,
-  "projectFilePath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\emman\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\emman\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
