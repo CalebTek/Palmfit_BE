@@ -1,4 +1,5 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using System;
@@ -24,8 +25,8 @@ namespace Palmfit.Core.Implementations
         public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
         {
 
-            var getFoodData = _dbContext.Foods.Where(x => x.FoodClassId == id);
-            if (getFoodData == null)
+            var getFoodData = await _dbContext.Foods.Where(x => x.FoodClassId == id).ToListAsync();
+            if (getFoodData.Count() == 0 )
                 return null;
 
             List<FoodDto> result = null;

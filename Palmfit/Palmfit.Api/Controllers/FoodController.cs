@@ -21,7 +21,7 @@ namespace Palmfit.Api.Controllers
         [HttpGet("foods-based-on-class")]
         public async Task<IActionResult> GetFoodsBasedOnClass(string id)
         {
-            if (id == null) throw new ArgumentNullException("id");
+            if (id == null) return BadRequest(ApiResponse.Failed(null, "Invalid id"));
 
             var result = await _foodRepository.GetFoodByCategory(id);
 
