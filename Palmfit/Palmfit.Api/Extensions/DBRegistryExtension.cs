@@ -15,9 +15,8 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
-            
         }
     }
 }

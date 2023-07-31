@@ -27,7 +27,6 @@ if (maxUserWatches > 0)
 
 builder.Services.AddControllers();
 builder.Services.AddDbContextAndConfigurations(builder.Configuration);
-builder.Services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
