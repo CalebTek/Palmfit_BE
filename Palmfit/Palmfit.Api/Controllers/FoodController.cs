@@ -26,6 +26,7 @@ namespace Palmfit.Api.Controllers
 
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
+            //Getting all food from database
             var foods = await _food.GetAllFoodAsync();
 
             if(foods == null)
