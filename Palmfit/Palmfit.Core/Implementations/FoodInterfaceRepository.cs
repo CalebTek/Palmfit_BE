@@ -22,7 +22,6 @@ namespace Palmfit.Core.Implementations
 
         public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
         {
-            if (id == null) throw new ArgumentNullException("id");
 
             var getFoodData = _dbContext.Foods.Where(x => x.FoodClassId == id);
             if (getFoodData == null)
