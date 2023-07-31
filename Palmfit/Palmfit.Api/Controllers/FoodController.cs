@@ -67,10 +67,10 @@ namespace Palmfit.Api.Controllers
             var searchResults = await _food.SearchFoodByCategory(category);
             if (searchResults == null || searchResults.Count == 0)
             {
-                return NotFound();
+                return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
             }
 
-            return Ok(searchResults);
+            return Ok(ApiResponse.Success(searchResults));
         }
     }
 }
