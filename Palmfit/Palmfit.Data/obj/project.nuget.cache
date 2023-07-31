@@ -1,7 +1,11 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   "dgSpecHash": "Nqb9/0HAlA9z/I20dnv3LXcIQs8kknkWjsGtpTzlIKw7tLTTD/5nAlnSMzvnPmc2ul6blHMiQOWqhOs0jMm2Kg==",
+=======
+  "dgSpecHash": "euscLAA+NT5chWgeTDUK65NmMm+u1XhrNHcj8wO0+WMqTaU1KYQ9hT1B7NT5ukRPlTQLS6eMl0MNvGiBMMhpFA==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
   "expectedPackageFiles": [
@@ -33,6 +37,7 @@
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
+<<<<<<< Updated upstream
 =======
   "dgSpecHash": "563lzzn/qlb3Me2SQ5DGStaKReAikFT17Tbefcv0ylClE0KCoVSRAswRl3S1/1saXzsbjaPmJDnIKtFdNelr8w==",
   "success": true,
@@ -67,6 +72,8 @@
     "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
 >>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
+=======
+>>>>>>> Stashed changes
   ],
   "logs": []
 }

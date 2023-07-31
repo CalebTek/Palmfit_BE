@@ -866,24 +866,36 @@
     ]
   },
   "packageFolders": {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {}
 =======
     "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\": {}
 >>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
+=======
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> Stashed changes
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
       "projectUniqueName": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+<<<<<<< Updated upstream
 =======
       "projectUniqueName": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
@@ -894,6 +906,9 @@
       "configFilePaths": [
         "C:\\Users\\chukwuma.onuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
+=======
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> Stashed changes
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -901,7 +916,11 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+        "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> Stashed changes
         "https://api.nuget.org/v3/index.json": {}
 =======
         "https://api.nuget.org/v3/index.json": {},
@@ -944,11 +963,15 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
 =======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
 >>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
       }
     }
   }
