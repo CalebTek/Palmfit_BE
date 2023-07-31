@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    internal class IFoodInterfaceRepository
+    internal interface IFoodInterfaceRepository
     {
     }
 }
