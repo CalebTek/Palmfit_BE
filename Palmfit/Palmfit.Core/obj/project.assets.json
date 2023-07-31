@@ -55,37 +55,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\Decagon\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
-=======
-    "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\": {}
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
-=======
-      "projectUniqueName": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\chukwuma.onuh\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
-        "C:\\Users\\chukwuma.onuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -93,14 +80,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
-=======
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/Zedcrest/MoneyPal/_packaging/Zedvance/nuget/v3/index.json": {},
-        "https://pkgs.dev.azure.com/Zedcrest/_packaging/Zedcrest/nuget/v3/index.json": {}
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
       },
       "frameworks": {
         "net7.0": {
@@ -139,11 +120,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
->>>>>>> a1851854eb3296b5f61eaed3c8d289f9d1a15d0e
       }
     }
   },
