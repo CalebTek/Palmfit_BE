@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "zMtMj70pto/E+dH37D//mwuyZpeDfY0UvCDNUQIe1koB5+ZJYtf0VykKAY70nWhydwYkAB8czO4AtOEYB3Eakw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-=======
-  "dgSpecHash": "l+Zn26LruF5682KLV2K6KflTd9iOR96vKNW4zxTro0PL01Gqh2dweaNpk6fcyCjyazNhHqakPkPjQuf6VWDjog==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
   "expectedPackageFiles": [
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.9\\microsoft.aspnetcore.cryptography.internal.7.0.9.nupkg.sha512",
