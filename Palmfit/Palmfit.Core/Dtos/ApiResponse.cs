@@ -19,7 +19,7 @@ namespace Palmfit.Core.Dtos
             Message = message;
         }
 
-        public static ApiResponse Success(object data)
+        public static ApiResponse Success(object data, string v)
         {
             return new ApiResponse { Message = "Success", Data = data };
         }
