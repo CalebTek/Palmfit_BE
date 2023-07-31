@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Palmfit.Core.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
     {
-
+        Task<FoodDto> GetFoodByCategory(string id);
     }
 }
