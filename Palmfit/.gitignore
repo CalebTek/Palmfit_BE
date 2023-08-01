@@ -370,3 +370,4 @@ obj/
 /main/**/bin/
 *.dep *.aps *.vbw *.suo *.obj *.ncb *.plg *.bsc *.ilk 
 *.exp *.sbr *.opt *.pdb *.idb *.pch *.res *.user
+/Palmfit.Core/obj
