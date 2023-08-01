@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -62,6 +63,31 @@ namespace Palmfit.Api.Controllers
                 }
             }
         }
+
+
+        [HttpPost("sendotp")]
+        public async Task<IActionResult> SendOTP([FromBody] EmailDto emailDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse<string>("Invalid email format" ));
+            }
+            else
+            {
+                var user = await _userManager.FindByEmailAsync(emailDto.Email);
+                if (user == null)
+                {
+                    return NotFound(new ApiResponse<string>("User not Found. Please check your email and try again" ));
+                }
+                else
+                {               
+                    var feedBack = _authRepo.SendOTPByEmail(emailDto.Email);
+                    return Ok(feedBack);
+                }
+
+            }
+        }
+        
 
 
     }

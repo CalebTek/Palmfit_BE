@@ -10,5 +10,6 @@ namespace Palmfit.Core.Services
     public interface IAuthRepository
     {
         string GenerateJwtToken(AppUser user);
+        string SendOTPByEmail(string email);
     }
 }

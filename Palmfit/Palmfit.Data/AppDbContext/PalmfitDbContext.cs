@@ -23,6 +23,7 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<Invite> Invites { get; set; }
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
+        public DbSet<UserOTP> UserOTPs { get; set; }
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
