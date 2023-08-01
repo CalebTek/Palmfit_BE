@@ -6,6 +6,7 @@
   "expectedPackageFiles": [
     "C:\\Users\\JOSEPH\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
+<<<<<<< Updated upstream
   "logs": [
     {
       "code": "Undefined",
@@ -14,4 +15,7 @@
       "message": "Problem reading the cache file C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
+=======
+  "logs": []
+>>>>>>> Stashed changes
 }
