@@ -42,5 +42,27 @@ namespace Palmfit.Api.Controllers
             }
             
         }
+
+        [HttpGet("get-meal-Id")]
+
+        public async Task<IActionResult> GetFoodById(string Id)
+        {
+            try
+            {
+                var meal = await _food.GetFoodById(Id);
+
+                if (meal == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(meal);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }

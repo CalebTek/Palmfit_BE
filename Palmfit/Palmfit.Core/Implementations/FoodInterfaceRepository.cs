@@ -25,5 +25,10 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.ToListAsync();
         }
 
+        public async Task<List<Food>> GetFoodById(string id)
+        {
+            return await _db.Foods.ToListAsync();
+        }
+
     }
 }
