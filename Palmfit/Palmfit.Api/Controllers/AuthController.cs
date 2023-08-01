@@ -63,6 +63,109 @@ namespace Palmfit.Api.Controllers
             }
         }
 
+     
 
+            // Endpoint to create a new role
+            [HttpPost("create-role")]
+            public async Task<IActionResult> CreateRole(AppUserRole role)
+            {
+                var result = await _authRepo.CreateRoleAsync(role);
+                if (result.Succeeded)
+                {
+                    return Ok("Role created successfully.");
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+         
+
+
+            // Endpoint to update an existing role
+            [HttpPut("update-role")]
+            public async Task<IActionResult> UpdateRole(AppUserRole role)
+            {
+                var result = await _authRepo.UpdateRoleAsync(role);
+                if (result.Succeeded)
+                {
+                    return Ok("Role updated successfully.");
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+
+
+
+            // Endpoint to delete a role by role ID
+            [HttpDelete("delete-role/{roleId}")]
+            public async Task<IActionResult> DeleteRole(string roleId)
+            {
+                var result = await _authRepo.DeleteRoleAsync(roleId);
+                if (result.Succeeded)
+                {
+                    return Ok("Role deleted successfully.");
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+
+
+
+            // Endpoint to get all permissions
+            [HttpGet("get-all-permissions")]
+            public async Task<IActionResult> GetAllPermissions()
+            {
+                var permissions = await _authRepo.GetAllPermissionsAsync();
+                return Ok(permissions);
+            }
+
+
+            // Endpoint to get permissions by role ID
+            [HttpGet("get-permissions-by-role/{roleId}")]
+            public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
+            {
+                var permissions = await _authRepo.GetPermissionsByRoleIdAsync(roleId);
+                return Ok(permissions);
+            }
+
+
+            // Endpoint to assign a permission to a role
+            [HttpPost("assign-permission")]
+            public async Task<IActionResult> AssignPermissionToRole(string roleId, string permissionId)
+            {
+                var result = await _authRepo.AddPermissionToRoleAsync(roleId, permissionId);
+                if (result.Succeeded)
+                {
+                    return Ok("Permission assigned to role successfully.");
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+
+
+            // Endpoint to remove a permission from a role
+            [HttpDelete("remove-permission")]
+            public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
+            {
+                var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
+                if (result.Succeeded)
+                {
+                    return Ok("Permission removed from role successfully.");
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+
+        }
     }
-}
+
+
