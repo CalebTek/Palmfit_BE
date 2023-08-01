@@ -60,16 +60,16 @@ namespace Palmfit.Api.Controllers
         }
 
         [HttpGet("calculate-total-calorie")]
-        public async Task<ActionResult<ApiResponse<decimal>>> CalculateTotalCalorieForSelectedFoods([FromQuery] Dictionary<string, (UnitType unit, decimal amount)> foodIdAmountMap)
+        public async Task<ActionResult<ApiResponse<decimal>>> CalculateTotalCalorieForSelectedFoods([FromQuery] Dictionary<string, (UnitType unit, decimal amount)> foodNameAmountMap)
         {
-            if (foodIdAmountMap == null || !foodIdAmountMap.Any())
+            if (foodNameAmountMap == null || !foodNameAmountMap.Any())
             {
                 return ApiResponse<decimal>.Failed(0, "Food IDs and units dictionary cannot be empty.");
             }
 
             try
             {
-                decimal totalCalorie = await _food.CalculateTotalCalorieAsync(foodIdAmountMap);
+                decimal totalCalorie = await _food.CalculateTotalCalorieAsync(foodNameAmountMap);
                 return ApiResponse<decimal>.Success(totalCalorie, "Total calorie calculation successful");
             }
             catch (ArgumentException ex)

@@ -66,15 +66,15 @@ namespace Palmfit.Core.Implementations
             return food.Calorie * convertedAmount;
         }
 
-        public async Task<decimal> CalculateTotalCalorieAsync(Dictionary<string, (UnitType unit, decimal amount)> foodIdAmountMap)
+        public async Task<decimal> CalculateTotalCalorieAsync(Dictionary<string, (UnitType unit, decimal amount)> foodNameAmountMap)
         {
             decimal totalCalorie = 0;
 
-            foreach (var kvp in foodIdAmountMap)
+            foreach (var kvp in foodNameAmountMap)
             {
-                var food = await _db.Foods.FirstOrDefaultAsync(f => f.Id == kvp.Key);
+                var food = await _db.Foods.FirstOrDefaultAsync(f => f.Name == kvp.Key);
                 if (food == null)
-                    throw new ArgumentException($"Food not found with the specified ID: {kvp.Key}", nameof(foodIdAmountMap));
+                    throw new ArgumentException($"Food not found with the specified Name: {kvp.Key}", nameof(foodNameAmountMap));
 
                 decimal convertedAmount = ConvertToGrams(kvp.Value.amount, kvp.Value.unit);
                 totalCalorie += food.Calorie * convertedAmount;
