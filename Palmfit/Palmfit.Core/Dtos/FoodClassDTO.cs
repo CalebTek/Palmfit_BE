@@ -13,6 +13,6 @@ namespace Palmfit.Core.Dtos
         public string Description { get; set; }
         public string Details { get; set; }
         public string Day { get; set; }
-        public ICollection<FoodDTO> Foods { get; set; }
+        public ICollection<FoodDto> Foods { get; set; }
     }
 }

@@ -1203,20 +1203,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
     "C:\\Users\\tibel\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectUniqueName": "C:\\Users\\tibel\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectName": "Palmfit.Data",
-      "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
       "projectPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "packagesPath": "C:\\Users\\tibel\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
@@ -1225,8 +1219,6 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Users\\tibel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1236,8 +1228,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1301,7 +1291,6 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
