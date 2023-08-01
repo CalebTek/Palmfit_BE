@@ -2,6 +2,7 @@
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
+using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,27 @@ namespace Palmfit.Core.Implementations
 {
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
-        //prop  
-        private readonly PalmfitDbContext _dbContext;
+       
 
-        //ctor
-        public FoodInterfaceRepository(PalmfitDbContext dbContext)
+
+       
+        private readonly PalmfitDbContext _db;
+
+        public FoodInterfaceRepository(PalmfitDbContext db)
         {
-            _dbContext = dbContext;
+           _db = db;
         }
 
+        public async Task<List<Food>> GetAllFoodAsync() 
+        {
+            return await _db.Foods.ToListAsync();
+        }
 
+        //get food list by category
         public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
         {
 
-            var getFoodData = await _dbContext.Foods.Where(x => x.FoodClassId == id).ToListAsync();
+            var getFoodData = await _db.Foods.Where(x => x.FoodClassId == id).ToListAsync();
             if (getFoodData.Count() == 0 )
                 return null;
 
@@ -50,5 +58,6 @@ namespace Palmfit.Core.Implementations
 
             return result;
         }
+
     }
 }

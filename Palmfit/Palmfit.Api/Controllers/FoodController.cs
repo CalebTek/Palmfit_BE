@@ -2,6 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
+using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
+using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Controllers
 {
@@ -9,13 +15,39 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        //prop
-        private readonly IFoodInterfaceRepository _foodRepository;
+       
 
-        //ctor
-        public FoodController(IFoodInterfaceRepository foodRepository)
+      
+
+
+        private readonly IFoodInterfaceRepository _food;
+
+        public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
         {
-            _foodRepository = foodRepository;
+            _food = foodInterfaceRepository;
+        }
+
+
+
+        [HttpGet("get-all-meals")]
+
+        public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
+        {
+            //Getting all food from database
+            var foods = await _food.GetAllFoodAsync();
+
+            if(foods.Count() <= 0)
+            {
+                var res = await _food.GetAllFoodAsync();
+                return NotFound(ApiResponse.Failed(res));
+            }
+            else
+            {
+                var result = await _food.GetAllFoodAsync();
+
+                return (Ok(ApiResponse.Success(result)));
+            }
+            
         }
 
         [HttpGet("foods-based-on-class")]
@@ -23,14 +55,12 @@ namespace Palmfit.Api.Controllers
         {
             if (id == null) return BadRequest(ApiResponse.Failed(null, "Invalid id"));
 
-            var result = await _foodRepository.GetFoodByCategory(id);
+            var result = await _food.GetFoodByCategory(id);
 
             if(result == null)
                 return NotFound(ApiResponse.Failed(result));
 
             return Ok(ApiResponse.Success(result));
-
-
         }
     }
 }
