@@ -72,7 +72,7 @@ namespace Palmfit.Api.Controllers
             {
                 return BadRequest(new ApiResponse<string>("Invalid email format" ));
             }
-            else
+            else 
             {
                 var user = await _userManager.FindByEmailAsync(emailDto.Email);
                 if (user == null)
