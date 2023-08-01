@@ -2,8 +2,6 @@
   "version": 3,
   "targets": {
     "net7.0": {
-<<<<<<< HEAD
-=======
       "Microsoft.AspNetCore.Cryptography.Internal/7.0.9": {
         "type": "package",
         "compile": {
@@ -411,7 +409,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -424,8 +421,6 @@
             "related": ".xml"
           }
         }
-<<<<<<< HEAD
-=======
       },
       "Npgsql/7.0.4": {
         "type": "package",
@@ -562,13 +557,10 @@
         "runtime": {
           "bin/placeholder/Palmfit.Data.dll": {}
         }
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
       }
     }
   },
   "libraries": {
-<<<<<<< HEAD
-=======
     "Microsoft.AspNetCore.Cryptography.Internal/7.0.9": {
       "sha512": "KLuY2N0SOEFEU0B9AgM0Idgn08mu2/4nk2biW9uG9TiYC7Pm2Z6AfxHbTV+dQnYK34lEt27A+EhwI6NzQVhvxg==",
       "type": "package",
@@ -1201,7 +1193,6 @@
         "runtime.json"
       ]
     },
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -1231,8 +1222,6 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
-<<<<<<< HEAD
-=======
     },
     "Npgsql/7.0.4": {
       "sha512": "7UVPYy2RP0ci04PED1tc9ZCaTw/DfSdSkLiGEFCAvwMwsgA/bAluj1liNzP1IpN0MFofnOF0cm1zJfmbEuCehg==",
@@ -1572,54 +1561,33 @@
       "type": "project",
       "path": "../Palmfit.Data/Palmfit.Data.csproj",
       "msbuildProject": "../Palmfit.Data/Palmfit.Data.csproj"
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-<<<<<<< HEAD
-      "Newtonsoft.Json >= 13.0.3"
-    ]
-  },
-  "packageFolders": {
-    "C:\\Users\\JOSEPH\\.nuget\\packages\\": {},
-=======
       "Newtonsoft.Json >= 13.0.3",
       "Palmfit.Data >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.32.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
+    "C:\\Users\\JOSEPH\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\JOSEPH\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\JOSEPH\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1635,8 +1603,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
+            "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
+              "projectPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
           }
         }
@@ -1654,13 +1622,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
-<<<<<<< HEAD
-=======
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[6.32.1, )"
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
           }
         },
         "imports": [
@@ -1679,11 +1644,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c
       }
     }
   },
