@@ -40,7 +40,13 @@ namespace Palmfit.Api.Controllers
 
                 return (Ok(ApiResponse.Success(result)));
             }
-            
+        }
+
+        [HttpPut("{foodClassId}/update-foodclass")]
+        public async Task<ActionResult<ApiResponse<FoodClassDto>>> UpdateFoodClass(string foodClassId, [FromBody] FoodClassDto updatedFoodClassDto)
+        {
+            var response = await _food.UpdateFoodClass(foodClassId, updatedFoodClassDto);
+            return Ok(ApiResponse.Success(response));
         }
     }
 }
