@@ -19,13 +19,15 @@ namespace Palmfit.Core.Implementations
     public class AuthRepository : IAuthRepository
     {
         private readonly IConfiguration _configuration;
-        private readonly RoleManager<AppUserRole> _roleManager;
-        private readonly PalmfitDbContext _palmfitDbContext; 
-        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDbContext)  
+        RoleManager<AppUserRole> _roleManager;
+        private readonly PalmfitDbContext _palmfitDbContext;
+        private readonly UserManager<AppUser> _userManager;
+        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDbContext,UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
             _roleManager = roleManager;
             _palmfitDbContext = palmfitDbContext;
+            _userManager = userManager;
 
         }
 
@@ -58,29 +60,25 @@ namespace Palmfit.Core.Implementations
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+         
 
-        public async Task<IdentityResult> CreateRoleAsync(AppUserRole role) 
-        { 
-            return await _roleManager.CreateAsync(role); 
-        }
-
-        public async Task<IdentityResult> UpdateRoleAsync(AppUserRole role) 
-        { 
-            return await _roleManager.UpdateAsync(role); 
-        }
-
-        public async Task<IdentityResult> DeleteRoleAsync(string roleId)
+        public async Task<IdentityResult> CreatePermissionAsync(string name)
         {
-            var role = await _roleManager.FindByIdAsync(roleId);
-            if (role == null)
+            var permission = new AppUserPermission { Name = name };
+            _palmfitDbContext.AppUserPermissions.Add(permission);
+
+            try
             {
-                return IdentityResult.Failed(new IdentityError { Description = "Role not found." });
+                await _palmfitDbContext.SaveChangesAsync();
+                return IdentityResult.Success;
             }
-            else
+            catch (Exception ex)
             {
-                return await _roleManager.DeleteAsync(role);
+                // Handle any exceptions that may occur while saving to the database
+                return IdentityResult.Failed(new IdentityError { Description = $"Failed to create permission: {ex.Message}" });
             }
         }
+
 
 
         public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
@@ -90,9 +88,9 @@ namespace Palmfit.Core.Implementations
 
 
 
-        public async Task<IEnumerable<AppUserPermission>> GetPermissionsByRoleIdAsync(string roleId)
+        public async Task<IEnumerable<AppUserPermission>> GetPermissionsByRoleNameAsync(string roleName)
         {
-            var role = await _roleManager.FindByIdAsync(roleId);
+            var role = await _roleManager.FindByNameAsync(roleName);
             if (role == null)
             {
                 return Enumerable.Empty<AppUserPermission>();
@@ -111,40 +109,38 @@ namespace Palmfit.Core.Implementations
 
 
 
-        public async Task<IdentityResult> AddPermissionToRoleAsync(string roleId, string permissionId)
-        {
-            // Validate the input GUIDs
-            if (!Guid.TryParse(roleId, out var roleIdGuid) || !Guid.TryParse(permissionId, out var permissionIdGuid))
-            {
-                return IdentityResult.Failed(new IdentityError { Description = "Invalid role or permission ID format." });
-            }
 
-            var role = await _roleManager.FindByIdAsync(roleIdGuid.ToString());
+        public async Task AssignPermissionToRoleAsync(string roleName, string permissionName)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
             if (role == null)
             {
-                return IdentityResult.Failed(new IdentityError { Description = "Role not found." });
+                throw new InvalidOperationException("Role not found.");
             }
-
-            var permission = await _palmfitDbContext.AppUserPermissions.FindAsync(permissionIdGuid.ToString());
-            if (permission == null)
+            else
             {
-                return IdentityResult.Failed(new IdentityError { Description = "Permission not found." });
+                var permission = await _palmfitDbContext.AppUserPermissions.FirstOrDefaultAsync(p => p.Name == permissionName);
+                if (permission == null)
+                {
+                    throw new InvalidOperationException("Permission not found.");
+                }
+                else
+                {
+                    // Add the new IdentityRoleClaim
+                    var claim = new Claim("Permission", permission.Name);
+                    var result = await _roleManager.AddClaimAsync(role, claim);
+
+                    if (!result.Succeeded)
+                    {
+                        throw new InvalidOperationException("Failed to add permission claim to role.");
+                    }
+                }
             }
-
-            // Check if the permission is already associated with the role
-            var existingClaim = (await _roleManager.GetClaimsAsync(role)).FirstOrDefault(c => c.Type == "Permission" && c.Value == permission.Name);
-            if (existingClaim != null)
-            {
-                return IdentityResult.Failed(new IdentityError { Description = "Permission already assigned to role." });
-            }
-
-            // Add the new IdentityRoleClaim
-            var claim = new Claim("Permission", permission.Name);
-            var result = await _roleManager.AddClaimAsync(role, claim);
-
-            // Update the role in the database
-            return result;
+            
         }
+
+
+
 
 
         public async Task<IdentityResult> RemovePermissionFromRoleAsync(string roleId, string permissionId)

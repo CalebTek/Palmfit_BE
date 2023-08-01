@@ -10,5 +10,6 @@ namespace Palmfit.Data.Entities
 {
     public class AppUserRole : IdentityRole<string>
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
     }
 }

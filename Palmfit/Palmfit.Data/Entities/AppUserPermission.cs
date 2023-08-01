@@ -9,7 +9,7 @@ namespace Palmfit.Data.Entities
 {
     public class AppUserPermission
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }= Guid.NewGuid();
         public string Name { get; set; }
     }
 }

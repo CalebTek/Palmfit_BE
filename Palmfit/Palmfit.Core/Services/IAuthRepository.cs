@@ -11,12 +11,12 @@ namespace Palmfit.Core.Services
     public interface IAuthRepository
     {
         string GenerateJwtToken(AppUser user);
-        Task<IdentityResult> CreateRoleAsync(AppUserRole role);
-        Task<IdentityResult> UpdateRoleAsync(AppUserRole role);
-        Task<IdentityResult> DeleteRoleAsync(string roleId);
+        
+         
+        Task<IdentityResult> CreatePermissionAsync(string name);
         Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync(); 
-        Task<IEnumerable<AppUserPermission>> GetPermissionsByRoleIdAsync(string roleId);
-        Task<IdentityResult> AddPermissionToRoleAsync(string roleId, string permissionId);
+        Task<IEnumerable<AppUserPermission>> GetPermissionsByRoleNameAsync(string roleId);
+        Task AssignPermissionToRoleAsync(string roleName, string permissionName);
         Task<IdentityResult> RemovePermissionFromRoleAsync(string roleId, string permissionId);
     }
 }

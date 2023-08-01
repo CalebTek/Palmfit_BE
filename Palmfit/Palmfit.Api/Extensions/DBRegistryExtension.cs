@@ -47,10 +47,13 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
 
+
             // Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
+
+       
         }
     }
 }
