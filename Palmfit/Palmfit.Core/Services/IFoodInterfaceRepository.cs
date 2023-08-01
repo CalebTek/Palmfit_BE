@@ -11,6 +11,8 @@ namespace Palmfit.Core.Services
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
-       
+
+        Task<Food?> DeleteAsync(string id);
+
     }
 }
