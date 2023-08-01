@@ -42,6 +42,7 @@ namespace Palmfit.Core.Implementations
                     Image = food.Image,
                     Calorie = food.Calorie,
                     Unit = food.Unit,
+                    FoodClassId = food.FoodClassId,
                 };
 
                 result.Add(newEntry);
