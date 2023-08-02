@@ -77,7 +77,7 @@ namespace Palmfit.Api.Controllers
                 var user = await _userManager.FindByEmailAsync(emailDto.Email);
                 if (user == null)
                 {
-                    return NotFound(new ApiResponse<string>("User not Found. Please check your email and try again" ));
+                    return NotFound(new ApiResponse<string>("User not Found" ));
                 }
                 else
                 {               
