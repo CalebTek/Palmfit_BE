@@ -15,19 +15,12 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-       
-
-      
-
-
         private readonly IFoodInterfaceRepository _food;
 
         public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
         {
             _food = foodInterfaceRepository;
         }
-
-
 
         [HttpGet("get-all-meals")]
 
@@ -47,7 +40,6 @@ namespace Palmfit.Api.Controllers
 
                 return (Ok(ApiResponse.Success(result)));
             }
-            
         }
 
         [HttpGet("foods-based-on-class")]
