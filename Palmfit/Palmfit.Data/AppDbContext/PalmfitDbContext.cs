@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Data.AppDbContext
 {
-    public class PalmfitDbContext : IdentityDbContext<AppUser>
+    public class PalmfitDbContext :IdentityDbContext<AppUser>
     {
         public DbSet<Health> Healths { get; set; }
         public DbSet<Setting> Settings { get; set; }

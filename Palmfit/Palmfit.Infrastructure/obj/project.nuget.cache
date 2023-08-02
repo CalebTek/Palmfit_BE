@@ -1,6 +1,5 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "ADGt2QcjCwmlskp3Isuy9rVTFW/efijenXmyKmBnLhvtC6Ak1tyfGCk2IBWWWgS++nY25LKwjAXytEFFeIkL+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
@@ -67,11 +66,12 @@
     "C:\\Users\\Decagon L\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Decagon L\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-=======
-  "dgSpecHash": "EBkeXdLptT909ngsHZK9l5y9KQ7KqQQOJaqCzZJ5a+W+t2ABHpPJGWaeimL1GL3uyzjgxN2/TsMqV7yq1JY/+A==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-  "expectedPackageFiles": [],
->>>>>>> 4bcf4cce36febd1109153c0f7fdc45d11fc69b8d
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
