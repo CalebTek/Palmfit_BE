@@ -6,6 +6,7 @@ using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using System.Data.Entity;
 using System.Text;
 
 namespace Palmfit.Api.Extensions
@@ -54,6 +55,21 @@ namespace Palmfit.Api.Extensions
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
+
+
+            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
+
+            services.AddScoped<SeedData>();
+
+            // Call the seed method after the DbContext is created
+            services.AddScoped<IServiceProvider>(provider =>
+            {
+                var dbContext = provider.GetRequiredService<PalmfitDbContext>();
+                SeedData.Initialize(dbContext);
+                return provider;
+            });
+
+            /* <-------End-------- Seed the database using DbContext ------- End------>*/
 
         }
     }

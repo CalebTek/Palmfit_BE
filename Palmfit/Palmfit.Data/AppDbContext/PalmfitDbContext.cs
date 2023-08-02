@@ -146,7 +146,7 @@ namespace Palmfit.Data.AppDbContext
 
     /* <-------Start-------- Seed Data ------- Start------>*/
     // Seed FoodClass data
-    public static class SeedData
+    public class SeedData
     {
         public static void Initialize(PalmfitDbContext context)
         {
