@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Palmfit.Data.AppDbContext;
@@ -11,9 +12,11 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    partial class PalmfitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230802132400_LV1")]
+    partial class LV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,6 +205,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("MiddleName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
