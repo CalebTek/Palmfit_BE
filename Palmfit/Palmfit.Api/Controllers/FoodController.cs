@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
@@ -14,6 +16,11 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
+       
+
+      
+
+
         private readonly IFoodInterfaceRepository _food;
 
         public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
@@ -79,5 +86,17 @@ namespace Palmfit.Api.Controllers
         }
 
         /* < End----- required methods to Calculate Calorie -----End > */
+        [HttpGet("foods-based-on-class")]
+        public async Task<IActionResult> GetFoodsBasedOnClass(string id)
+        {
+            if (id == null) return BadRequest(ApiResponse.Failed(null, "Invalid id"));
+
+            var result = await _food.GetFoodByCategory(id);
+
+            if(result == null)
+                return NotFound(ApiResponse.Failed(result));
+
+            return Ok(ApiResponse.Success(result));
+        }
     }
 }

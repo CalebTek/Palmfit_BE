@@ -1,4 +1,5 @@
-﻿using Palmfit.Core.Implementations;
+﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
+     
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
@@ -24,5 +26,7 @@ namespace Palmfit.Core.Services
 
 
 
+        Task<ICollection<FoodDto>> GetFoodByCategory(string id);
+       
     }
 }
