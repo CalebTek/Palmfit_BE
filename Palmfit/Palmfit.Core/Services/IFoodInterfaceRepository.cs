@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace Palmfit.Core.Services
 {
      
-    public interface IFoodInterfaceRepository 
-    internal interface IFoodInterfaceRepository
+    public interface IFoodInterfaceRepository
     {
         Task<List<Food>> GetAllFoodAsync();
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
