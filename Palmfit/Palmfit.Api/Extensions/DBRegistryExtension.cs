@@ -19,6 +19,7 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
             // Configure JWT authentication options-----------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
