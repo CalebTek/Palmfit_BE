@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
@@ -13,6 +15,11 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
+       
+
+      
+
+
         private readonly IFoodInterfaceRepository _food;
         private readonly PalmfitDbContext _db;
 
@@ -91,29 +98,17 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("FoodAdded")]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //[ProducesResponseType(StatusCodes.Status409Conflict)]
-        //public async Task<IActionResult> AddFood([FromBody]FoodDto food)//Argument
-        //{
-        //    if (food==null)
-        //        return BadRequest(ApiResponse.Failed(food));
+        [HttpGet("foods-based-on-class")]
+        public async Task<IActionResult> GetFoodsBasedOnClass(string id)
+        {
+            if (id == null) return BadRequest(ApiResponse.Failed(null, "Invalid id"));
 
+            var result = await _food.GetFoodByCategory(id);
 
-        //    var result = await _food.AddFood(food);
+            if(result == null)
+                return NotFound(ApiResponse.Failed(result));
 
-        //    if (result == null)
-        //        return BadRequest(ApiResponse.Failed(result));
-
-        //    return Ok(ApiResponse.Success(result));
-
-
-
-        //}
+            return Ok(ApiResponse.Success(result));
+        }
     }
 }

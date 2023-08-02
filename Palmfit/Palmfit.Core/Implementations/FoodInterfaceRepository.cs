@@ -14,6 +14,10 @@ namespace Palmfit.Core.Implementations
 {
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
+       
+
+
+       
         private readonly PalmfitDbContext _db;
 
         public FoodInterfaceRepository(PalmfitDbContext db)
@@ -47,35 +51,37 @@ namespace Palmfit.Core.Implementations
             await _db.SaveChangesAsync();
         }
 
-        //public async Task<FoodDto> AddFood(FoodDto food)//Argument
-        //{
 
-        //    bool doesFoodExist = await _db.Foods.AnyAsync(x => x.Name == food.Name && x.Description == food.Description && x.Origin == food.Origin && x.FoodClassId == food.FoodClass);
 
-        //    if (doesFoodExist)
-        //        return null;
+        //get food list by category
+        public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
+        {
 
-        //    Food data = new()
-        //    {
-        //        Name = food.Name,
-        //        Description = food.Description, 
-        //        Origin = food.Origin,   
-        //        Details = food.Details,
-        //        Image = food.Image,
-        //        Calorie = food.Calorie,
-        //        Unit = food.Unit,
-        //        FoodClassId = food.FoodClass,
-        //        CreatedAt = DateTime.Now
-        //    };
+            var getFoodData = await _db.Foods.Where(x => x.FoodClassId == id).ToListAsync();
+            if (getFoodData.Count() == 0 )
+                return null;
 
-        //    var addToDb = await _db.AddAsync(data);
-        //    var result = _db.SaveChanges();
-        //    if (result < 1)
-        //        return null;
+            List<FoodDto> result = null;
 
-        //    return food;
+            foreach (var food in getFoodData)
+            {
+                FoodDto newEntry = new()
+                {
+                    Name = food.Name,
+                    Description = food.Description,
+                    Details = food.Details,
+                    Origin = food.Origin,
+                    Image = food.Image,
+                    Calorie = food.Calorie,
+                    Unit = food.Unit,
+                    FoodClassId = food.FoodClassId,
+                };
 
-        //}
+                result.Add(newEntry);
+            }
+
+            return result;
+        }
 
     }
 }

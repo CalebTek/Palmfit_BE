@@ -3820,11 +3820,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Decagon L\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\JAIMZ\\.nuget\\packages\\": {}
+>>>>>>> 4bcf4cce36febd1109153c0f7fdc45d11fc69b8d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectName": "Palmfit.Data",
       "projectPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
@@ -3833,6 +3838,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
+      "projectName": "Palmfit.Data",
+      "projectPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
+      "packagesPath": "C:\\Users\\JAIMZ\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project\\Palmfit\\Palmfit.Data\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\JAIMZ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 4bcf4cce36febd1109153c0f7fdc45d11fc69b8d
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3911,7 +3926,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+>>>>>>> 4bcf4cce36febd1109153c0f7fdc45d11fc69b8d
       }
     }
   }

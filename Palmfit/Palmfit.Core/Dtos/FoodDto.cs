@@ -20,5 +20,7 @@ namespace Palmfit.Core.Dtos
         public string Unit { get; set; }
         public FoodClassDto FoodClass { get; set; }
       
+        public string FoodClassId { get; set; }
+
     }
 }

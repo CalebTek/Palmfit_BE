@@ -31,6 +31,7 @@ namespace Palmfit.Api.Extensions
 
             // ...
 
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
             // Configure JWT authentication options-----------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
