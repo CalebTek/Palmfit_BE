@@ -135,6 +135,8 @@ namespace Palmfit.Data.AppDbContext
                 .HasOne(f => f.FoodClass)
                 .WithMany(fc => fc.Foods)
                 .HasForeignKey(f => f.FoodClassId);
+
+
         }
     }
 }
