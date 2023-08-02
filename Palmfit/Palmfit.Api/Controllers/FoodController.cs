@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 
 namespace Palmfit.Api.Controllers
 {
@@ -44,7 +47,6 @@ namespace Palmfit.Api.Controllers
         }
 
         [HttpGet("get-meal-Id")]
-
         public async Task<IActionResult> GetFoodById(string Id)
         {
             try
@@ -53,14 +55,21 @@ namespace Palmfit.Api.Controllers
 
                 if (meal == null)
                 {
-                    return NotFound();
+                    return NotFound(new { message = "Meal not found" });
                 }
 
-                return Ok(meal);
+                var mealDto = new FoodDto
+                {
+                    Name = meal.Name,
+                    Description = meal.Description,
+                    Image = meal.Image
+                };
+
+                return Ok(mealDto);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new { message = ex.Message });
             }
         }
 

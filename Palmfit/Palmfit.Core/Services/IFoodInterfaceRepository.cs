@@ -12,7 +12,7 @@ namespace Palmfit.Core.Services
     {
         Task<List<Food>> GetAllFoodAsync();
 
-        Task<List<Food>> GetFoodById(string id);
+        Task<Food> GetFoodById(string id);
         
     }
 }
