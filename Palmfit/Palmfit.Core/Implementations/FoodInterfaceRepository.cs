@@ -27,54 +27,29 @@ namespace Palmfit.Core.Implementations
 
         public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
-            List<Food> data = new()
-            {
-                new Food()
-                {
-                    Id = "1",
-                    Name = "rice",
-                    Description = "may be white in color",
-                },
-                new Food()
-                {
-                    Id = "2",
-                    Name = "beans",
-                    Description = "may cause farts"
-                }
-            };
+            var food = await _db.Foods.FindAsync(id);
 
-            var food =  data.Find(  x => x.Id == id);
-            if (food == null) return "Food not found.";
+            if (food == null)
+                return "Food not found.";
 
             food.Name = foodDto.Name;
             food.Description = foodDto.Description;
-            return food.Name;
+            food.Details = foodDto.Details;
+            food.Origin = foodDto.Origin;
+            food.Image = foodDto.Image;
+            food.Calorie = foodDto.Calorie;
+            food.Unit = foodDto.Unit;
+            food.FoodClassId = foodDto.FoodClassId;
 
-
-
-            //var food = await _db.Foods.FindAsync(id);
-
-                //if (food == null)
-                //    return "Food not found.";
-
-                //food.Name = foodDto.Name;
-                //food.Description = foodDto.Description;
-                //food.Details = foodDto.Details;
-                //food.Origin = foodDto.Origin;
-                //food.Image = foodDto.Image;
-                //food.Calorie = foodDto.Calorie;
-                //food.Unit = foodDto.Unit;
-                //food.FoodClassId = foodDto.FoodClassId;
-
-                //try
-                //{
-                //    await _db.SaveChangesAsync();
-                //    return "Food updated successfully.";
-                //}
-                //catch (Exception)
-                //{
-                //    return "Food failed to update.";
-                //}
+            try
+            {
+                await _db.SaveChangesAsync();
+                return "Food updated successfully.";
+            }
+            catch (Exception)
+            {
+                return "Food failed to update.";
+            }
 
         }
     }
