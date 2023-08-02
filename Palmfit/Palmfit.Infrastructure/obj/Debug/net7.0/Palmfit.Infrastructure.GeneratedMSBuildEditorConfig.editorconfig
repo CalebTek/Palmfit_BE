@@ -8,8 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Palmfit.Infrastructure
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Decagon L\OneDrive\Desktop\Palmfit-Live-Project\live-project-sq015-net-palmfit\Palmfit\Palmfit.Infrastructure\
-=======
-build_property.ProjectDir = C:\Users\Decagon Laptop\OneDrive\Desktop\Live\live-project-sq015-net-palmfit\Palmfit\Palmfit.Infrastructure\
->>>>>>> f045935cb5b8d39aded28377ab00e38e272c4f9c

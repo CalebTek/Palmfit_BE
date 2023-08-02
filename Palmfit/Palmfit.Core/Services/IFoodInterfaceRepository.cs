@@ -1,4 +1,5 @@
-﻿using Palmfit.Core.Implementations;
+﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace Palmfit.Core.Services
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
-       
+
+        Task AddFoodAsync(Food food);
+        Task AddFoodClassAsync(FoodClass foodClass);
+
+
+
     }
 }
