@@ -49,11 +49,14 @@ namespace Palmfit.Api.Controllers
         public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
         {
             var updatedfood = await _food.UpdateFoodAsync(id, foodDto);
-            if (updatedfood)
+            if (updatedfood == "Food not found.")
+                return NotFound(ApiResponse.Failed(updatedfood));
+            else if(updatedfood == "Food failed to update.")
             {
-                return (Ok(ApiResponse.Success(updatedfood)));
+                return BadRequest(ApiResponse.Failed(updatedfood));
             }
-            return NotFound((ApiResponse.Failed(updatedfood)));
+
+            return Ok(ApiResponse.Success(updatedfood));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Palmfit.Core.Services
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
-        Task<bool> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
+        Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
 
 
     }

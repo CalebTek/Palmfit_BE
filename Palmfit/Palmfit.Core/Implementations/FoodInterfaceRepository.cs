@@ -25,31 +25,56 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.ToListAsync();
         }
 
-        public async Task<bool> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
+        public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
-            var food = await _db.Foods.FindAsync(id);
+            List<Food> data = new()
+            {
+                new Food()
+                {
+                    Id = "1",
+                    Name = "rice",
+                    Description = "may be white in color",
+                },
+                new Food()
+                {
+                    Id = "2",
+                    Name = "beans",
+                    Description = "may cause farts"
+                }
+            };
 
-            if (food == null)
-                return false;
+            var food =  data.Find(  x => x.Id == id);
+            if (food == null) return "Food not found.";
 
             food.Name = foodDto.Name;
             food.Description = foodDto.Description;
-            food.Details = foodDto.Details;
-            food.Origin = foodDto.Origin;
-            food.Image = foodDto.Image;
-            food.Calorie = foodDto.Calorie;
-            food.Unit = foodDto.Unit;
-            food.FoodClassId = foodDto.FoodClassId;
+            return food.Name;
 
-            try
-            {
-                await _db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+
+
+            //var food = await _db.Foods.FindAsync(id);
+
+                //if (food == null)
+                //    return "Food not found.";
+
+                //food.Name = foodDto.Name;
+                //food.Description = foodDto.Description;
+                //food.Details = foodDto.Details;
+                //food.Origin = foodDto.Origin;
+                //food.Image = foodDto.Image;
+                //food.Calorie = foodDto.Calorie;
+                //food.Unit = foodDto.Unit;
+                //food.FoodClassId = foodDto.FoodClassId;
+
+                //try
+                //{
+                //    await _db.SaveChangesAsync();
+                //    return "Food updated successfully.";
+                //}
+                //catch (Exception)
+                //{
+                //    return "Food failed to update.";
+                //}
 
         }
     }
