@@ -86,6 +86,7 @@ namespace Palmfit.Api.Controllers
         }
 
         /* < End----- required methods to Calculate Calorie -----End > */
+
         [HttpGet("foods-based-on-class")]
         public async Task<IActionResult> GetFoodsBasedOnClass(string id)
         {

@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Palmfit.Data.AppDbContext
 {
@@ -136,7 +132,12 @@ namespace Palmfit.Data.AppDbContext
                 .WithMany(fc => fc.Foods)
                 .HasForeignKey(f => f.FoodClassId);
 
+            /* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
+            modelBuilder.Entity<Food>()
+                .Property(f => f.Unit)
+                .HasConversion<string>();
 
+            /* <-------End-------- Configure Enum Mapping in DbContext ------- End------>*/
         }
     }
 }
