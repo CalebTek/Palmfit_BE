@@ -15,7 +15,6 @@ namespace Palmfit.Core.Services
         Task<List<Food>> GetAllFoodAsync();
         Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
 
-
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
        
     }
