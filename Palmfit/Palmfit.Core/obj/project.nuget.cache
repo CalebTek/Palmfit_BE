@@ -1,10 +1,8 @@
 {
   "version": 2,
   "dgSpecHash": "Trdfu4sBNadp/bmCU/DwdIGy17SazUPccpxyaxTf9DIykJ4fv4lWlIfF5rogSbs3gTtdmKgHFNHbIcJZX/Znyg==",
-  "dgSpecHash": "B+zLH7rF8S+UWq0b8PCcNK6JJOQZOTjRWQdn02dLU8ZrjQsZumqA7Vv8egJ0tNLqCagDz3yxyASAS5+vL/Huyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-  "projectFilePath": "C:\\Users\\Decagon Laptop\\Desktop\\PalmfitProj\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.9\\microsoft.aspnetcore.cryptography.internal.7.0.9.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.9\\microsoft.aspnetcore.cryptography.keyderivation.7.0.9.nupkg.sha512",
@@ -41,12 +39,5 @@
     "C:\\Users\\user\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'expectedPackageFiles[20]', line 30, position 4."
-    }
-  ]
+  "logs": []
 }
