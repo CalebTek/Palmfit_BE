@@ -59,4 +59,23 @@ namespace Palmfit.Data.EntityEnums
     public enum WalletType
     {
     }
+
+    public enum DaysOfWeek
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+    }
+    public enum MealOfDay
+    {
+        Breakfast,
+        Lunch,
+        Dinner
+    }
+
+
 }

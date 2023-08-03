@@ -1,7 +1,9 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,25 +21,35 @@ namespace Palmfit.Core.Implementations
             _palmfitDbContext = palmfitDbContext;
         }
 
-        public string AddMealPlan(FoodClassDTO foodClassDTO)
+        public async Task<string> AddMealPlan(PostMealDto postMealDto, string foodId, string userId)
         {
-            //Automapper
-            var MealToAdd = new FoodClass
+            var result = await _palmfitDbContext.Foods.AnyAsync(row => row.Id == foodId);
+            var user = await _palmfitDbContext.Users.AnyAsync(row => row.Id == userId);
+
+            if (!result)
+                return "not found";
+            if (!user)
             {
-                Name = foodClassDTO.Name,
-                Description = foodClassDTO.Description,
-                Details = foodClassDTO.Details,
-                Day = foodClassDTO.Day,
-                Foods = (ICollection<Food>)foodClassDTO.Foods,
-                //Foods = foodClassDTO.Foods
+                return "user does not exit";
+            }
+           
+
+            var MealToAdd = new Meal
+            {
+                Id = Guid.NewGuid().ToString(),
+                MealOfDay = (MealOfDay)postMealDto.MealOfDay,
+                DaysOfWeek = postMealDto.DaysOfWeek,
+                FoodId = foodId,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                IsDeleted = false,
+                AppUserId = userId
+
             };
-            var addToDb = _palmfitDbContext.FoodClasses.Add(MealToAdd);
-            var result = _palmfitDbContext.SaveChanges();
+            await _palmfitDbContext.AddAsync(MealToAdd);
+            _palmfitDbContext.SaveChanges();
 
-            if (result > 0)
-                return "Operation completed";
-
-            return "Operation failed";
+            return "Food successfully added to Meal Plan!";
 
         }
     }

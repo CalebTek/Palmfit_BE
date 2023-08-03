@@ -9,6 +9,7 @@ namespace Palmfit.Core.Services
 {
     public interface IMealPlanRepository
     {
-        public string AddMealPlan(FoodClassDTO foodClassDTO);
+        //public string AddMealPlan(PostMealDto postMealDto, string foodId, string userId);
+        Task<string> AddMealPlan(PostMealDto postMealDto, string foodId, string userId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -19,18 +20,21 @@ namespace Palmfit.Api.Controllers
         [HttpPost("Add-MealPlan")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddMealPlan([FromBody]FoodClassDTO foodClassDTO)
+        public async Task<IActionResult> AddMealPlan([FromBody] PostMealDto postMealDto, string foodId, string userId)
         {
-            var createMealResponse = _repository.AddMealPlan(foodClassDTO);
+            var createMealResponse = _repository.AddMealPlan(postMealDto,foodId,userId);
 
-            if (foodClassDTO == null)
+            if (postMealDto == null || foodId == null || userId == null)
             {
-                return BadRequest(ApiResponse.Failed(foodClassDTO));
+                return BadRequest(ApiResponse.Failed(postMealDto));
             }
 
-            //return Ok();
-            //return CreatedAtAction("GetMealPlan", foodClassDTO);
-            return Ok(ApiResponse.Success(foodClassDTO));
+            var result = await _repository.AddMealPlan(postMealDto,foodId, userId);
+
+            if (result == "not found")
+                return NotFound();
+
+            return Ok(ApiResponse.Success(postMealDto));
         }
     }
 }
