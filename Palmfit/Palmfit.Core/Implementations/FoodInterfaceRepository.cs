@@ -20,7 +20,7 @@ namespace Palmfit.Core.Implementations
             _context = context;
         }
 
-        public async Task<ApiResponse<FoodClassDto>> CreateFoodClass(FoodClassDto foodClassDto)
+        public async Task<string> CreateFoodClass(FoodClassDto foodClassDto)
         {
             try
             {
@@ -35,97 +35,12 @@ namespace Palmfit.Core.Implementations
                 _context.FoodClasses.Add(foodClassEntity);
                 await _context.SaveChangesAsync();
 
-                var createdFoodClassDto = new FoodClassDto
-                {
-                    Name = foodClassEntity.Name,
-                    Description = foodClassEntity.Description,
-                    Details = foodClassEntity.Details,
-                };
-
-                return ApiResponse<FoodClassDto>.Success(createdFoodClassDto, "Food class created successfully.");
+                return "FoodClass Created Successfully";
             }
             catch (Exception ex)
             {
-                return ApiResponse<FoodClassDto>.Failed(null!, "Failed to create food class.", new List<string> { ex.Message });
+                return "Failed To Create Foodclass";
             }
         }
-
-        public async Task<ApiResponse<List<FoodClassDto>>> GetAllFoodClasses()
-        {
-            try
-            {
-                var foodClasses = await _context.FoodClasses.ToListAsync();
-
-                var foodClassDtos = foodClasses.Select(foodClass => new FoodClassDto
-                {
-                    Name = foodClass.Name,
-                    Description = foodClass.Description,
-                    Details = foodClass.Details,
-                }).ToList();
-
-                return ApiResponse<List<FoodClassDto>>.Success(foodClassDtos, "Successfully retrieved all food classes.");
-            }
-            catch (Exception ex)
-            {
-                return ApiResponse<List<FoodClassDto>>.Failed(null!, "Failed to retrieve food classes.", new List<string> { ex.Message });
-            }
-        }
-
-
-        public async Task<ApiResponse<string>> DeleteFoodClass(string foodClassId)
-        {
-            try
-            {
-                var foodClassEntity = await _context.FoodClasses.FindAsync(foodClassId);
-
-                if (foodClassEntity == null)
-                {
-                    return ApiResponse<string>.Failed(null!, "Food class not found.", new List<string> { "Food class with the specified ID does not exist." });
-                }
-
-                _context.FoodClasses.Remove(foodClassEntity);
-                await _context.SaveChangesAsync();
-
-                return (ApiResponse<string>)ApiResponse<string>.Success(null, "Food class deleted successfully.");
-            }
-            catch (Exception ex)
-            {
-                return ApiResponse<string>.Failed(null!, "Failed to delete food class.", new List<string> { ex.Message });
-            }
-        }
-
-
-        public async Task<ApiResponse<FoodClassDto>> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto)
-        {
-            try
-            {
-                var foodClassEntity = await _context.FoodClasses.FindAsync(foodClassId);
-
-                if (foodClassEntity == null)
-                {
-                    return ApiResponse<FoodClassDto>.Failed(null!, "Food class not found.", new List<string> { "Food class with the specified ID does not exist." });
-                }
-
-                foodClassEntity.Name = updatedFoodClassDto.Name;
-                foodClassEntity.Description = updatedFoodClassDto.Description;
-                foodClassEntity.Details = updatedFoodClassDto.Details;
-
-                await _context.SaveChangesAsync();
-
-                var updatedFoodClassDtoResponse = new FoodClassDto
-                {
-                    Name = foodClassEntity.Name,
-                    Description = foodClassEntity.Description,
-                    Details = foodClassEntity.Details,
-                };
-
-                return ApiResponse<FoodClassDto>.Success(updatedFoodClassDtoResponse, "Food class updated successfully.");
-            }
-            catch (Exception ex)
-            {
-                return ApiResponse<FoodClassDto>.Failed(null!, "Failed to update food class.", new List<string> { ex.Message });
-            }
-        }
-
     }
 }

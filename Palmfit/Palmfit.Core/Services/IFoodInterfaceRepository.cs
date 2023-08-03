@@ -9,9 +9,6 @@ namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
     {
-        Task<ApiResponse<FoodClassDto>> CreateFoodClass(FoodClassDto foodClassDto);
-        Task<ApiResponse<List<FoodClassDto>>> GetAllFoodClasses();
-        Task<ApiResponse<string>> DeleteFoodClass(string foodClassId);
-        Task<ApiResponse<FoodClassDto>> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto);
+        Task<string> CreateFoodClass(FoodClassDto foodClassDto);
     }
 }
