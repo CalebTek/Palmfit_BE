@@ -24,14 +24,14 @@ namespace Palmfit.Core.Implementations
         {
             return await _db.Foods.ToListAsync();
         }
-        public async Task<ApiResponse<FoodClassDto>> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto)
+        public async Task<String> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto)
         {
             try
             {
                 var foodClassEntity = await _db.FoodClasses.FindAsync(foodClassId);
                 if (foodClassEntity == null)
                 {
-                    return ApiResponse<FoodClassDto>.Failed(null!, "Food class not found.", new List<string> { "Food class with the specified ID does not exist." });
+                    return "Food with ID does not exist";
                 }
                 foodClassEntity.Name = updatedFoodClassDto.Name;
                 foodClassEntity.Description = updatedFoodClassDto.Description;
@@ -44,11 +44,11 @@ namespace Palmfit.Core.Implementations
                     Description = foodClassEntity.Description,
                     Details = foodClassEntity.Details,
                 };
-                return ApiResponse<FoodClassDto>.Success(updatedFoodClassDtoResponse, "Food class updated successfully.");
+                return "Food class updated successfully.";
             }
             catch (Exception ex)
             {
-                return ApiResponse<FoodClassDto>.Failed(null!, "Failed to update food class.", new List<string> { ex.Message });
+                return "Failed to update food class.";
             }
         }
     }

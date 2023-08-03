@@ -46,6 +46,10 @@ namespace Palmfit.Api.Controllers
         public async Task<ActionResult<ApiResponse<FoodClassDto>>> UpdateFoodClass(string foodClassId, [FromBody] FoodClassDto updatedFoodClassDto)
         {
             var response = await _food.UpdateFoodClass(foodClassId, updatedFoodClassDto);
+            if(response == null)
+            {
+                return BadRequest(ApiResponse.Failed(response));
+            }
             return Ok(ApiResponse.Success(response));
         }
     }

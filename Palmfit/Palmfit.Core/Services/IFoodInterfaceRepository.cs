@@ -12,6 +12,6 @@ namespace Palmfit.Core.Services
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
-        Task<ApiResponse<FoodClassDto>> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto);
+        Task<String> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto);
     }
 }
