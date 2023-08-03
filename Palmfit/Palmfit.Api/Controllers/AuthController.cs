@@ -25,9 +25,6 @@ namespace Palmfit.Api.Controllers
         }
 
 
-
-
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
@@ -64,5 +61,22 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [HttpPost("Validate-OTP")]
+        public async Task<IActionResult> ValidateOTP([FromBody] OtpDto otpFromUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+            }
+            var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
+            if (userOTP == null)
+            {
+                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+            }
+
+            await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
+
+            return Ok(new ApiResponse<string>("Validation Successfully."));
+        }
     }
 }
