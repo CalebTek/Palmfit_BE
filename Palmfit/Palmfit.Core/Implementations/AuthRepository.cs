@@ -1,6 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,10 +20,14 @@ namespace Palmfit.Core.Implementations
     public class AuthRepository : IAuthRepository
     {
         private readonly IConfiguration _configuration;
+        private readonly PalmfitDbContext _palmfitDb;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AuthRepository(IConfiguration configuration)
+        public AuthRepository(UserManager<AppUser> userManager, IConfiguration configuration, PalmfitDbContext palmfitDb)
         {
             _configuration = configuration;
+            _palmfitDb = palmfitDb;
+            _userManager = userManager;
         }
 
         public string GenerateJwtToken(AppUser user)
@@ -50,8 +59,40 @@ namespace Palmfit.Core.Implementations
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
+        {
+            await RemoveAllExpiredOTP(); // Call the RemoveExpiredOTP method before validation
 
+            var now = DateTime.UtcNow;
+            return await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && otp.Expiration > now);
+        }
 
+        public async Task<ApiResponse<string>> UpdateVerifiedStatus(string email)
+        {
+            var verifiedUser = await _userManager.FindByEmailAsync(email);
+
+            if (verifiedUser == null)
+            {
+                return new ApiResponse<string>($"{email} Not Found!");
+            }
+            verifiedUser.IsVerified = true;
+
+            // Save changes to the database
+            var identityResult = await _userManager.UpdateAsync(verifiedUser);
+            if (!identityResult.Succeeded)
+            {
+                return new ApiResponse<string>("Verification Failed.");
+            }
+            return new ApiResponse<string>("Verified successfully.");
+        }
+
+        public async Task RemoveAllExpiredOTP()
+        {
+            var now = DateTime.UtcNow;
+            var expiredOTPs = await _palmfitDb.UserOTPs.Where(otp => otp.Expiration <= now).ToListAsync();
+            _palmfitDb.UserOTPs.RemoveRange(expiredOTPs);
+            await _palmfitDb.SaveChangesAsync();
+        }
 
     }
 }
