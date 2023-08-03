@@ -19,6 +19,7 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
             // Configure JWT authentication options-----------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
@@ -41,12 +42,21 @@ namespace Palmfit.Api.Extensions
                 };
             });
             //jwt configuration ends-------------
+            //Password configuration
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+            });
 
 
 
             //Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
 
 
             //Identity role registration with Stores and default token provider
