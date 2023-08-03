@@ -45,22 +45,22 @@ namespace Palmfit.Api.Controllers
         }
 
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<IEnumerable<FoodDto>>> DeleteAsync([FromRoute] string id)
+        [HttpDelete("{id}/Delete-Food-byId")]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
         {
 
-            var deletedFood = await _food.DeleteAsync(id);
+            var targetedFood = await _food.GetFoodByIdAsync(id);
 
-            if (deletedFood == null)
+            if (targetedFood == null)
             {
-                var res = await _food.DeleteAsync(id);
-                return NotFound(ApiResponse.Failed(res));   // Provide a response indicating Failed deletion if food does not exist
+           
+                return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
             }
 
             else
             {
-                var result = await _food.DeleteAsync(id);
-                return Ok(ApiResponse.Success(result));     // Provide a response indicating successful deletion
+                await _food.DeleteAsync(id);
+                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
             }
         }
 

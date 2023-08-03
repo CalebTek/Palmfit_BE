@@ -12,7 +12,8 @@ namespace Palmfit.Core.Services
     {
         Task<List<Food>> GetAllFoodAsync();
 
-        Task<Food?> DeleteAsync(string id);
+        Task<Food> GetFoodByIdAsync(string id);
+        Task<string> DeleteAsync(string id);
 
     }
 }
