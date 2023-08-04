@@ -25,10 +25,26 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.ToListAsync();
         }
 
+        public async Task<IEnumerable<Food>> SearchFood(params string[] searchTerms)
+        {
+            IQueryable<Food> query = _db.Foods;
+            if (searchTerms != null && searchTerms.Length > 0)
+            {
+                foreach (string term in searchTerms)
+                {
+                    if (!string.IsNullOrEmpty(term))
+                    {
+                        query = query.Where(x => searchTerms.Any(term => x.Name.Contains(term)));
+                        //query = query.Where(x => x.Name.Contains(term));
+                    }
+                }
+            }
+            return await query.ToListAsync();
+        }
+
         public async Task<List<FoodClass>> SearchFoodByCategory(string category)
         {
             IQueryable<FoodClass> query = _db.FoodClasses;
-
             if (!string.IsNullOrEmpty(category))
             {
                 query = query.Where(food => EF.Functions.Like(food.Name, $"%{category}%"));
@@ -48,6 +64,20 @@ namespace Palmfit.Core.Implementations
 
             return await query.ToListAsync();
         }
+
+
+        //public async Task<List<Food>> SearchFood(params string[] searchTerms)
+        //{
+        //    IQueryable<Food> query = _db.Foods;
+
+        //    if (searchTerms != null && searchTerms.Length > 0)
+        //    {
+        //        query = query.Where(food => searchTerms.Any(term =>
+        //            food.Name.Contains(term)));
+        //    }
+
+        //    return await query.ToListAsync();
+        //}
 
     }
 }

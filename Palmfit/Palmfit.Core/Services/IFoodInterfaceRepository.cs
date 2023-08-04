@@ -13,6 +13,7 @@ namespace Palmfit.Core.Services
         Task<List<Food>> GetAllFoodAsync();
         Task<List<Food>> SearchFoodByName(string name);
         Task<List<FoodClass>> SearchFoodByCategory(string category);
+        Task<IEnumerable<Food>> SearchFood(params string[] searchTerms);
 
     }
 }

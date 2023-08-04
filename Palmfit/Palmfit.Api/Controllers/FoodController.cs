@@ -42,10 +42,29 @@ namespace Palmfit.Api.Controllers
             }
             
         }
+        [HttpGet("{SearchFood}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Food>>> SearchFood([FromQuery]params string[] searchTerms)
+        {
+            try
+            {
+               var result = await _food.SearchFood(searchTerms);
+                if (result.Any())
+                {
+                    return Ok(ApiResponse.Success(result));
+                }
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Food not found."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet("SearchByName")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<Food>>> SearchFoodByName(string name)
         {
@@ -53,7 +72,7 @@ namespace Palmfit.Api.Controllers
 
             if (food == null || food.Count == 0)
             {
-                return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Food not found."));
             }
 
             return Ok(ApiResponse.Success(food));
@@ -67,10 +86,29 @@ namespace Palmfit.Api.Controllers
             var searchResults = await _food.SearchFoodByCategory(category);
             if (searchResults == null || searchResults.Count == 0)
             {
-                return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Not found."));
             }
 
             return Ok(ApiResponse.Success(searchResults));
         }
+        //[HttpGet("SearchForFood")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<ActionResult<List<Food>>> SearchFood(params string[] searchTerms)
+        //{
+        //    if (searchTerms == null || searchTerms.Length == 0)
+        //    {
+        //        return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
+        //    }
+
+        //    var food = await _food.SearchFood(searchTerms);
+
+        //    if (food == null || food.Count == 0)
+        //    {
+        //        return NotFound(ApiResponse.Failed(new List<Food>(), "No matching food items found."));
+        //    }
+
+        //    return Ok(ApiResponse.Success(food));
+        //}
     }
 }
