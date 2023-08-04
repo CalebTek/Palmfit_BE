@@ -25,20 +25,17 @@ namespace Palmfit.Core.Implementations
         private readonly IConfiguration _configuration;
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppUserRole> _roleManager;
 
-        public AuthRepository(UserManager<AppUser> userManager, IConfiguration configuration, PalmfitDbContext palmfitDb)
-        RoleManager<AppUserRole> _roleManager;
-        private readonly PalmfitDbContext _palmfitDbContext;
-        private readonly UserManager<AppUser> _userManager;
-        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDbContext,UserManager<AppUser> userManager)  
+
+        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
             _roleManager = roleManager;
-            _palmfitDbContext = palmfitDbContext;
+            _palmfitDb = palmfitDb;
             _userManager = userManager;
-
         }
 
         public string GenerateJwtToken(AppUser user)
@@ -70,19 +67,28 @@ namespace Palmfit.Core.Implementations
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+
         public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
         {
             await RemoveAllExpiredOTP(); // Call the RemoveExpiredOTP method before validation
-         
+
+            var now = DateTime.UtcNow;
+            return await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && otp.Expiration > now);
+        }
+
+
+
+
+
 
         public async Task<IdentityResult> CreatePermissionAsync(string name)
         {
             var permission = new AppUserPermission { Name = name };
-            _palmfitDbContext.AppUserPermissions.Add(permission);
+            _palmfitDb.AppUserPermissions.Add(permission);
 
             try
             {
-                await _palmfitDbContext.SaveChangesAsync();
+                await _palmfitDb.SaveChangesAsync();
                 return IdentityResult.Success;
             }
             catch (Exception ex)
@@ -92,10 +98,6 @@ namespace Palmfit.Core.Implementations
             }
         }
 
-
-            var now = DateTime.UtcNow;
-            return await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && otp.Expiration > now);
-        }
 
         public async Task<ApiResponse<string>> UpdateVerifiedStatus(string email)
         {
@@ -123,9 +125,10 @@ namespace Palmfit.Core.Implementations
             _palmfitDb.UserOTPs.RemoveRange(expiredOTPs);
             await _palmfitDb.SaveChangesAsync();
         }
+
         public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
         { 
-            return await _palmfitDbContext.AppUserPermissions.ToListAsync(); 
+            return await _palmfitDb.AppUserPermissions.ToListAsync(); 
         }
 
 
@@ -144,7 +147,7 @@ namespace Palmfit.Core.Implementations
                 var permissionNames = claims.Where(c => c.Type == "Permission").Select(c => c.Value).ToList();
 
                 // Find the permissions with matching names
-                var permissions = _palmfitDbContext.AppUserPermissions.Where(p => permissionNames.Contains(p.Name));
+                var permissions = _palmfitDb.AppUserPermissions.Where(p => permissionNames.Contains(p.Name));
                 return permissions;
             }
         }
@@ -161,7 +164,7 @@ namespace Palmfit.Core.Implementations
             }
             else
             {
-                var permission = await _palmfitDbContext.AppUserPermissions.FirstOrDefaultAsync(p => p.Name == permissionName);
+                var permission = await _palmfitDb.AppUserPermissions.FirstOrDefaultAsync(p => p.Name == permissionName);
                 if (permission == null)
                 {
                     throw new InvalidOperationException("Permission not found.");
@@ -193,7 +196,7 @@ namespace Palmfit.Core.Implementations
                 return IdentityResult.Failed(new IdentityError { Description = "Role not found." });
             }
 
-            var permission = await _palmfitDbContext.AppUserPermissions.FindAsync(permissionId);
+            var permission = await _palmfitDb.AppUserPermissions.FindAsync(permissionId);
             if (permission == null)
             {
                 return IdentityResult.Failed(new IdentityError { Description = "Permission not found." });

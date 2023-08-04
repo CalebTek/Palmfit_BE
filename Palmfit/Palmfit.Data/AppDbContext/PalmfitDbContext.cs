@@ -27,6 +27,7 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<UserOTP> UserOTPs { get; set; }
         public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
+        
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {

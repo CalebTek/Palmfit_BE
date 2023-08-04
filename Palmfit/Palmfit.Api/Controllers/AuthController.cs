@@ -16,7 +16,7 @@ namespace Palmfit.Api.Controllers
         private readonly IConfiguration _configuration;
         private readonly RoleManager<AppUserRole> _roleManager;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo, RoleManager<AppUserRole> roleManager) 
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo, RoleManager<AppUserRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -61,41 +61,41 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-     
 
-            // Endpoint to create a new role
-            [HttpPost("create-role")]
-            public async Task<IActionResult> CreateRole(AppUserRole role)
-            {
-                
-            var result =await _roleManager.CreateAsync(role);
+
+        // Endpoint to create a new role
+        [HttpPost("create-role")]
+        public async Task<IActionResult> CreateRole(AppUserRole role)
+        {
+
+            var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
-                {
-                    return Ok(new ApiResponse<string>("Role created successfully."));
-                }
-                else
-                {
-                    return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
-                }
-            }
-
-
-
-            // Endpoint to update an existing role
-            [HttpPut("update-role")]
-            public async Task<IActionResult> UpdateRole(AppUserRole role)
             {
+                return Ok(new ApiResponse<string>("Role created successfully."));
+            }
+            else
+            {
+                return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
+            }
+        }
+
+
+
+        // Endpoint to update an existing role
+        [HttpPut("update-role")]
+        public async Task<IActionResult> UpdateRole(AppUserRole role)
+        {
             var result = await _roleManager.UpdateAsync(role);
             if (result.Succeeded)
-                {
-                    return Ok(ApiResponse.Success("Role updated successfully."));
-                }
-                else
-                {
-                    return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
-                }
+            {
+                return Ok(ApiResponse.Success("Role updated successfully."));
             }
+            else
+            {
+                return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
+            }
+        }
 
 
 
@@ -120,8 +120,8 @@ namespace Palmfit.Api.Controllers
             {
                 return NotFound(new ApiResponse<string>("Role does not exist!"));
             }
-        } 
-        
+        }
+
 
 
 
@@ -160,67 +160,68 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
             }
 
-            await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
-
-
-
-        // Endpoint to get all permissions
-        [HttpGet("get-all-permissions")]
-        public async Task<IActionResult> GetAllPermissions()
-        {
-            var permissions = await _authRepo.GetAllPermissionsAsync();
-            return Ok(ApiResponse.Success(permissions));
+             await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
+            return Ok(new ApiResponse<string>("Validation Successfully."));
         }
 
 
 
-
-        // Endpoint to get permissions by role ID
-        [HttpGet("get-permissions-by-role/{roleId}")]
-         public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
-         {
-             var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
-            return Ok(ApiResponse.Success(permissions));
-        }
-
-
-
-
-        // Endpoint to assign a permission to a role
-        [HttpPost("assign-permission")]
-        public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
-        {
-            try
+            // Endpoint to get all permissions
+            [HttpGet("get-all-permissions")]
+            public async Task<IActionResult> GetAllPermissions()
             {
-                await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
-                return Ok(ApiResponse.Success("Permission assigned to role successfully."));
+                var permissions = await _authRepo.GetAllPermissionsAsync();
+                return Ok(ApiResponse.Success(permissions));
             }
-            catch (InvalidOperationException ex)
+
+
+
+
+            // Endpoint to get permissions by role ID
+            [HttpGet("get-permissions-by-role/{roleId}")]
+            public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
             {
-                return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
+                var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
+                return Ok(ApiResponse.Success(permissions));
             }
-        }
 
 
 
 
-        // Endpoint to remove a permission from a role
-        [HttpDelete("remove-permission")]
+            // Endpoint to assign a permission to a role
+            [HttpPost("assign-permission")]
+            public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
+            {
+                try
+                {
+                    await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
+                    return Ok(ApiResponse.Success("Permission assigned to role successfully."));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
+                }
+            }
+
+
+
+
+            // Endpoint to remove a permission from a role
+            [HttpDelete("remove-permission")]
             public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
             {
-            
+
                 var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
                 if (result.Succeeded)
-                {           
+                {
                     return Ok(ApiResponse.Success("Permission removed from role successfully."));
                 }
                 else
                 {
-                return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
+                    return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
                 }
             }
 
         }
     }
-
 
