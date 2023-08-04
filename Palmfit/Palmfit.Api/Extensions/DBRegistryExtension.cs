@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
@@ -16,11 +18,13 @@ namespace Palmfit.Api.Extensions
         {
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
 
-            // Configure JWT authentication options-----------------------
+
+            // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
@@ -40,20 +44,21 @@ namespace Palmfit.Api.Extensions
                     ValidateAudience = false
                 };
             });
-            //jwt configuration ends-------------
+            //JWT registration ends here----------------------------------------------------
 
 
 
-            //Repo Registration
+
+            // Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
 
 
-            //Identity role registration with Stores and default token provider
-            services.AddIdentity<AppUser, IdentityRole>()
+            // Identity role registration with Stores and default token provider
+            services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
-
+       
         }
     }
 }
