@@ -3598,14 +3598,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
+    "C:\\Users\\ogwuc\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+      "projectUniqueName": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectUniqueName": "C:\\Users\\imade\\OneDrive\\Desktop\\ewemade-project\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
+      "projectPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "packagesPath": "C:\\Users\\ogwuc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectPath": "C:\\Users\\imade\\OneDrive\\Desktop\\ewemade-project\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\imade\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\imade\\OneDrive\\Desktop\\ewemade-project\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
@@ -3614,7 +3618,7 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ogwuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3630,6 +3634,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
+              "projectPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             "C:\\Users\\imade\\OneDrive\\Desktop\\ewemade-project\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
               "projectPath": "C:\\Users\\imade\\OneDrive\\Desktop\\ewemade-project\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
@@ -3675,7 +3681,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
