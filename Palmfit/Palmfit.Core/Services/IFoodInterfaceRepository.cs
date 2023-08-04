@@ -11,8 +11,6 @@ namespace Palmfit.Core.Services
     public interface IFoodInterfaceRepository 
     {
         Task<List<Food>> GetAllFoodAsync();
-        Task<List<Food>> SearchFoodByName(string name);
-        Task<List<FoodClass>> SearchFoodByCategory(string category);
         Task<IEnumerable<Food>> SearchFood(params string[] searchTerms);
 
     }
