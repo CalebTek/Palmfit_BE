@@ -73,6 +73,7 @@ namespace Palmfit.Api.Controllers
             {
                 await _food.DeleteAsync(id);
                 return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
+
             }
         }
 
