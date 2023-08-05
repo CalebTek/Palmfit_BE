@@ -3,6 +3,7 @@
   "dgSpecHash": "dPIq5h3XmjyQkF0THnFqiq9pG/QVxTWd1L3wuFjQTg+WVZUBOCANP1Ef1RpO7hRDvlRqLvYHnVOmb6fx0REsKQ==",
   "dgSpecHash": "PMjKWQNZT8CqrHC40RkFJr7f5dSeqRZEBhgJy6KvMlDFeBizpt0j6uAhxKvz9+cOiG+4EsmW823Xxb8zyiG3Xg==",
   "dgSpecHash": "ey5nflgkGQrRT+yDNyXdBWnVRSM4yBSpATqqekqKtDTZDgQAR6aur2VjHLj5I/k7ACRLkFULNoHdtKbRCN5P2w==",
+  "dgSpecHash": "PMjKWQNZT8CqrHC40RkFJr7f5dSeqRZEBhgJy6KvMlDFeBizpt0j6uAhxKvz9+cOiG+4EsmW823Xxb8zyiG3Xg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "projectFilePath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
@@ -89,4 +90,6 @@
       ]
     }
   ]
+  "expectedPackageFiles": [],
+  "logs": []
 }
