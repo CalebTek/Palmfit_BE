@@ -12,6 +12,7 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="C:\Users\HP\.nuget\packages\" />
+    <SourceRoot Include="C:\Users\HP\.nuget\packages\" />
     <SourceRoot Include="C:\Users\emman\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
