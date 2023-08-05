@@ -1573,29 +1573,21 @@
   "packageFolders": {
     "C:\\Users\\user\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
-    "C:\\Users\\ogwuc\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "projectUniqueName": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
-      "projectPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\ogwuc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Users\\ogwuc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1613,8 +1605,6 @@
           "projectReferences": {
             "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
               "projectPath": "C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
-            "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
           }
         }
@@ -1655,8 +1645,15 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\user\\Desktop\\SQ15 Live Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'expectedPackageFiles[33]', line 43, position 4."
+    }
+  ]
 }
