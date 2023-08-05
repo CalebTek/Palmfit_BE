@@ -105,12 +105,6 @@
   ],
   "logs": [
     {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\old\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'expectedPackageFiles[97]', line 106, position 4."
-    },
-    {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
