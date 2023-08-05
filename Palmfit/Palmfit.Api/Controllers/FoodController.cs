@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Microsoft.EntityFrameworkCore;
-using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
-using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 
