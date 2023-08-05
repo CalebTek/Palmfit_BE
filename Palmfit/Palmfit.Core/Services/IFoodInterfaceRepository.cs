@@ -1,4 +1,7 @@
 ﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
+using Palmfit.Data.Entities;
+using Palmfit.Core.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,11 @@ namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
     {
+        Task<List<Food>> GetAllFoodAsync();
+        Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
+
+        Task<ICollection<FoodDto>> GetFoodByCategory(string id);
+       
         Task<string> CreateFoodClass(FoodClassDto foodClassDto);
     }
 }
