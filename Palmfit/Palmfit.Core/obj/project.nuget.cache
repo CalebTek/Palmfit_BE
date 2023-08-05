@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "dgSpecHash": "egnByN10nKhZyhMNHLbOtrHFwBOq+qi4BqMj3qruyyaiPwxfyJAn07KshFAVMrKrokiCx05Gh0ptC/DgD2kmpw==",
   "dgSpecHash": "Tx1wk0Y+XPv4Q0yyq+MwEYugyDr/JeWCQvFx0IgS9YVuzlqR2kERUhEvHl72niFNdn7kCx+xEbrLAs+k+1PXgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
@@ -99,6 +100,12 @@
     "C:\\Users\\ogwuc\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\ogwuc\\Desktop\\Decagon Task\\Palm_Fit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'expectedPackageFiles[92]', line 102, position 4."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
