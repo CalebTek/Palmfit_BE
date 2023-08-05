@@ -15,9 +15,9 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        private readonly IFoodInterfaceRepository _food;
+        private readonly IFoodRepository _food;
 
-        public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
+        public FoodController(IFoodRepository foodInterfaceRepository)
         {
             _food = foodInterfaceRepository;
         }
@@ -54,5 +54,53 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(result));
         }
-    }
+
+		[HttpGet("{foodClassId}/Get-FoodClass-By-Id")]
+		public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
+		{
+			try
+			{
+				var existingFoodClass = await _food.GetFoodClassesByIdAsync(foodClassId);
+
+				if (existingFoodClass.Id == null)
+				{
+					// Food class not found, return an error response
+					return ApiResponse<FoodClass>.Failed(data: null, message: "Food class not found");
+				}
+
+				// Return the food class as a success response
+				return ApiResponse<FoodClass>.Success(existingFoodClass, message: "Food class retrieved successfully");
+			}
+			catch (Exception ex)
+			{
+				// If an exception occurs during the retrieval process, return an error response
+				return ApiResponse<FoodClass>.Failed(data: null, message: "An error occurred while retrieving the food class.", errors: new List<string> { ex.Message });
+			}
+		}
+
+		[HttpDelete("{foodClassId}/delete-foodclass")]
+		public async Task<ActionResult<ApiResponse<string>>> DeleteFoodClass(string foodClassId)
+		{
+			try
+			{
+				var existingFoodClass = _food.DeleteFoodClass(foodClassId);
+
+				if (existingFoodClass == "Food class does not exist")
+				{
+					// Food class not found, return an error response
+					return ApiResponse<string>.Failed(data: null, message: "Food class not found");
+				}
+
+				_food.DeleteFoodClass(foodClassId);
+
+				// Return a success response
+				return ApiResponse<string>.Success(data: null, message: "Food class deleted successfully");
+			}
+			catch (Exception ex)
+			{
+				// If an exception occurs during the deletion process, return an error response
+				return ApiResponse<string>.Failed(data: null, message: "An error occurred during food class deletion.", errors: new List<string> { ex.Message });
+			}
+		}
+	}
 }
