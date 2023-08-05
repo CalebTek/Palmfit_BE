@@ -56,33 +56,6 @@ namespace Palmfit.Core.Implementations
             }
 
         }
-        public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
-        {
-            var food = await _db.Foods.FindAsync(id);
-
-            if (food == null)
-                return "Food not found.";
-
-            food.Name = foodDto.Name;
-            food.Description = foodDto.Description;
-            food.Details = foodDto.Details;
-            food.Origin = foodDto.Origin;
-            food.Image = foodDto.Image;
-            food.Calorie = foodDto.Calorie;
-            food.Unit = foodDto.Unit;
-            food.FoodClassId = foodDto.FoodClassId;
-
-            try
-            {
-                await _db.SaveChangesAsync();
-                return "Food updated successfully.";
-            }
-            catch (Exception)
-            {
-                return "Food failed to update.";
-            }
-
-        }
 
 
         //get food list by category

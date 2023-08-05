@@ -55,5 +55,20 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(result));
         }
+
+        //api-to-updatefood
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
+        {
+            var updatedfood = await _food.UpdateFoodAsync(id, foodDto);
+            if (updatedfood == "Food not found.")
+                return NotFound(ApiResponse.Failed(updatedfood));
+            else if (updatedfood == "Food failed to update.")
+            {
+                return BadRequest(ApiResponse.Failed(updatedfood));
+            }
+
+            return Ok(ApiResponse.Success(updatedfood));
+        }
     }
 }
