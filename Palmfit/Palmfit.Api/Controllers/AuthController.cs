@@ -186,8 +186,7 @@ namespace Palmfit.Api.Controllers
             }
 
 
-            return Ok(new ApiResponse<string>("Validation Successfully."));
-        }
+       
 
         [HttpPost("Sign-Out")]
         public async Task<IActionResult> SignOut()
@@ -195,8 +194,8 @@ namespace Palmfit.Api.Controllers
             await _signInManager.SignOutAsync();
             return Ok(ApiResponse.Success("Sign out successful"));
         }
-    }
-}
+    
+
 
 
             // Endpoint to assign a permission to a role
@@ -232,6 +231,9 @@ namespace Palmfit.Api.Controllers
                     return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
                 }
             }
+
+
+
 
         }
     }
