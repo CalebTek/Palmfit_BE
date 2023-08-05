@@ -10,5 +10,7 @@ namespace Palmfit.Core.Services
     public interface ISubscriptionRepository
     {
         Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId);
+        Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId);
+        Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName);
     }
 }
