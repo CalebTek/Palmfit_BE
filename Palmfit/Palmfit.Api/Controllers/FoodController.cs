@@ -54,7 +54,6 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(result));
         }
 
-
         [HttpDelete("{id}/Delete-Food-byId")]
         public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
         {
@@ -74,9 +73,6 @@ namespace Palmfit.Api.Controllers
 
             }
         }
-
-
-    }
 
         //api-to-updatefood
         [HttpPut("{id}")]
