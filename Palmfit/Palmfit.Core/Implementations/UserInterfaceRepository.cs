@@ -1,4 +1,5 @@
 ﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    public class UserInterfaceRepository
+    public class UserInterfaceRepository : IUserInterfaceRepository
     {
+
         private readonly PalmfitDbContext _db;
 
         public UserInterfaceRepository(PalmfitDbContext db)
