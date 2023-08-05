@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -21,7 +22,7 @@ namespace Palmfit.Api.Controllers
         public async Task<ActionResult<IEnumerable<Transaction>>> GetAllWalletTransactionHistory(int page, int pageSize)
         {
             var transactions = await _transaction.GetWalletTransactionsAsync(page, pageSize);
-            return Ok(transactions);
+            return Ok(ApiResponse.Success(transactions));
         }
     }
 }
