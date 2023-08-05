@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    internal class IUserInterfaceRepository
+    public interface IUserInterfaceRepository
     {
+        Task<string> UpdateUserAsync(string id, UserDto userDto);
     }
 }
