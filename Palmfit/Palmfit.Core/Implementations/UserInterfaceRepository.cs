@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    internal class UserInterfaceRepository
+    public class UserInterfaceRepository
     {
     }
 }
