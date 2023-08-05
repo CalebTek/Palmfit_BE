@@ -17,5 +17,6 @@ namespace Palmfit.Data.Entities
         public string Unit { get; set; }
         public string FoodClassId { get; set; }
         public FoodClass FoodClass { get; set; }
+        //public IFormFile ImageFile { get; set; }
     }
 }
