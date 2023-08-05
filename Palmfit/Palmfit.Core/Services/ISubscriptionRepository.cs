@@ -11,5 +11,6 @@ namespace Palmfit.Core.Services
     public interface ISubscriptionRepository
     {
         Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto);
+
     }
 }
