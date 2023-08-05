@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Data.AppDbContext
 {
-    public class PalmfitDbContext : IdentityDbContext<AppUser>
+    public class PalmfitDbContext : IdentityDbContext<AppUser, AppUserRole, string>
     {
         public DbSet<Health> Healths { get; set; }
         public DbSet<Setting> Settings { get; set; }
@@ -25,6 +25,9 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
+        public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
+        public DbSet<AppUserRole> AppUserRoles { get; set; }
+        
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {

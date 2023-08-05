@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Microsoft.EntityFrameworkCore;
-using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
-using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 
@@ -29,7 +28,7 @@ namespace Palmfit.Api.Controllers
             //Getting all food from database
             var foods = await _food.GetAllFoodAsync();
 
-            if(foods.Count() <= 0)
+            if (foods.Count() <= 0)
             {
                 var res = await _food.GetAllFoodAsync();
                 return NotFound(ApiResponse.Failed(res));
@@ -54,6 +53,22 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(result));
         }
+
+        //api-to-updatefood
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
+        {
+            var updatedfood = await _food.UpdateFoodAsync(id, foodDto);
+            if (updatedfood == "Food not found.")
+                return NotFound(ApiResponse.Failed(updatedfood));
+            else if (updatedfood == "Food failed to update.")
+            {
+                return BadRequest(ApiResponse.Failed(updatedfood));
+            }
+
+            return Ok(ApiResponse.Success(updatedfood));
+        }
+    }
 
 		[HttpGet("{foodClassId}/Get-FoodClass-By-Id")]
 		public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
