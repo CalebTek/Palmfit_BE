@@ -35,9 +35,9 @@ namespace Palmfit.Api.Controllers
 
             if (createdFoodClass == null)
             {
-                return NotFound(createdFoodClass);
+                return NotFound(ApiResponse.Failed(createdFoodClass));
             }
-            return Ok(createdFoodClass);
+            return Ok(ApiResponse.Success(createdFoodClass));
         }
 
         [HttpGet("get-all-meals")]
@@ -83,7 +83,6 @@ namespace Palmfit.Api.Controllers
             {
                 return BadRequest(ApiResponse.Failed(updatedfood));
             }
-
             return Ok(ApiResponse.Success(updatedfood));
         }
     }
