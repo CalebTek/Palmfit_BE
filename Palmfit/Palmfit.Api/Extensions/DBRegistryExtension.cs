@@ -22,7 +22,7 @@ namespace Palmfit.Api.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<IFoodRepository, FoodRepository>();
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
 
 
             // Configure JWT authentication options-------------------------------------------

@@ -11,21 +11,16 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    public class FoodRepository : IFoodRepository
+    public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
        
-
-
-       
+ 
         private readonly PalmfitDbContext _dbContext;
 
-        public FoodRepository(PalmfitDbContext dbContext)
+        public FoodInterfaceRepository(PalmfitDbContext dbContext)
         {
-            _db = db;
            _dbContext = dbContext;
         }
-
-        public async Task<List<Food>> GetAllFoodAsync()
 		
 		public async Task<List<Food>> GetAllFoodAsync() 
         {
@@ -34,7 +29,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
-            var food = await _db.Foods.FindAsync(id);
+            var food = await _dbContext.Foods.FindAsync(id);
 
             if (food == null)
                 return "Food not found.";
@@ -50,7 +45,7 @@ namespace Palmfit.Core.Implementations
 
             try
             {
-                await _db.SaveChangesAsync();
+				await _dbContext.SaveChangesAsync();
                 return "Food updated successfully.";
             }
             catch (Exception)
@@ -118,6 +113,8 @@ namespace Palmfit.Core.Implementations
 
 			return "Food class does not exist";
 		}
+
+
 	}
 }
 
