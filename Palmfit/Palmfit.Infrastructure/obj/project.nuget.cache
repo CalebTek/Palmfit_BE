@@ -1,7 +1,10 @@
 {
   "version": 2,
+  "dgSpecHash": "Vio9dI/zqoKKYM0zzAUFQZzu1bytMZUYClWYYCqy7AfBILT9P++mpLWBOA9SEgcpXpKjnok2xRzKI2OOI4lbmA==",
   "dgSpecHash": "NWtr0SQBp0uXeLgEuxLyk5EXvHJjkyp+SrX4PwHx2bUDcfamM2TEFtRPACf0qYcYDbqxjjKXD+5k7vK1cScsYA==",
   "success": true,
+  "projectFilePath": "C:\\Users\\HP\\Source\\Repos\\decadevs\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "expectedPackageFiles": [],
   "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
