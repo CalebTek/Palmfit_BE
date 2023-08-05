@@ -15,11 +15,11 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        private readonly IFoodInterfaceRepository _food;
+        private readonly IFoodInterfaceRepository _foodRepo;
 
         public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
         {
-            _food = foodInterfaceRepository;
+            _foodRepo = foodInterfaceRepository;
         }
 
         [HttpGet("get-all-meals")]
@@ -27,16 +27,16 @@ namespace Palmfit.Api.Controllers
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
-            var foods = await _food.GetAllFoodAsync();
+            var foods = await _foodRepo.GetAllFoodAsync();
 
             if (foods.Count() <= 0)
             {
-                var res = await _food.GetAllFoodAsync();
+                var res = await _foodRepo.GetAllFoodAsync();
                 return NotFound(ApiResponse.Failed(res));
             }
             else
             {
-                var result = await _food.GetAllFoodAsync();
+                var result = await _foodRepo.GetAllFoodAsync();
 
                 return (Ok(ApiResponse.Success(result)));
             }
@@ -49,7 +49,7 @@ namespace Palmfit.Api.Controllers
         {
             try
             {
-                decimal calorie = await _food.GetCalorieByNameAsync(foodName, unit, amount);
+                decimal calorie = await _foodRepo.GetCalorieByNameAsync(foodName, unit, amount);
                 return ApiResponse<decimal>.Success(calorie, "Calorie calculation successful");
             }
             catch (ArgumentException ex)
@@ -68,7 +68,7 @@ namespace Palmfit.Api.Controllers
 
             try
             {
-                decimal totalCalorie = await _food.CalculateTotalCalorieAsync(foodNameAmountMap);
+                decimal totalCalorie = await _foodRepo.CalculateTotalCalorieAsync(foodNameAmountMap);
                 return ApiResponse<decimal>.Success(totalCalorie, "Total calorie calculation successful");
             }
             catch (ArgumentException ex)
@@ -84,7 +84,7 @@ namespace Palmfit.Api.Controllers
         {
             if (id == null) return BadRequest(ApiResponse.Failed(null, "Invalid id"));
 
-            var result = await _food.GetFoodByCategory(id);
+            var result = await _foodRepo.GetFoodByCategory(id);
 
             if(result == null)
                 return NotFound(ApiResponse.Failed(result));
@@ -96,7 +96,7 @@ namespace Palmfit.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
         {
-            var updatedfood = await _food.UpdateFoodAsync(id, foodDto);
+            var updatedfood = await _foodRepo.UpdateFoodAsync(id, foodDto);
             if (updatedfood == "Food not found.")
                 return NotFound(ApiResponse.Failed(updatedfood));
             else if (updatedfood == "Food failed to update.")
