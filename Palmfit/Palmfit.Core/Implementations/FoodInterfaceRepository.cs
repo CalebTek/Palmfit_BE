@@ -14,9 +14,6 @@ namespace Palmfit.Core.Implementations
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
        
-
-
-       
         private readonly PalmfitDbContext _db;
 
         public FoodInterfaceRepository(PalmfitDbContext db)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
@@ -52,6 +53,10 @@ namespace Palmfit.Core.Implementations
 
             return "There was a problem registring user";
         }
+
+
+
+
     }
 }
 
