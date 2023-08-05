@@ -29,6 +29,7 @@ namespace Palmfit.Api.Controllers
             }
 
             return Ok(ApiResponse.Success(updateUser));
+
         }
     }
 }
