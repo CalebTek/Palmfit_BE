@@ -1,4 +1,5 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
@@ -19,6 +20,7 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
         }
 
+
         public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto)
         {
             var subscription = new Subscription
@@ -35,6 +37,15 @@ namespace Palmfit.Core.Implementations
 
             return subscription;
         }
+
+
+        public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
+        {
+            return await _palmfitDb.Subscriptions.Where(sub => sub.AppUserId == userId).OrderByDescending(sub => sub.StartDate).FirstOrDefaultAsync();
+        }
+
+
+
     }
 
 }

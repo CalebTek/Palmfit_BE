@@ -52,7 +52,35 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        
+
+
+
+        [HttpGet("get-subscription-status")]
+        public async Task<IActionResult> GetSubscriptionStatus(string userId)
+        {
+            try
+            {
+                var subscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
+
+                if (subscription != null)
+                {
+                    return Ok(ApiResponse.Success(subscription));
+                }
+                else
+                {
+                    return NotFound(ApiResponse.Failed(null, "Subscription not found."));
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "An error occurred while fetching subscription status.", new List<string> { ex.Message }));
+            }
+        }
+
+
+
+
+
 
 
 

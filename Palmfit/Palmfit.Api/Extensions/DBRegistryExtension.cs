@@ -16,7 +16,8 @@ namespace Palmfit.Api.Extensions
         {
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
@@ -42,6 +43,8 @@ namespace Palmfit.Api.Extensions
                 };
             });
             //jwt configuration ends-------------
+
+
             //Password configuration
             services.Configure<IdentityOptions>(options =>
             {
@@ -57,6 +60,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
             //Identity role registration with Stores and default token provider
