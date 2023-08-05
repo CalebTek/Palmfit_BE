@@ -21,10 +21,10 @@ namespace Palmfit.Core.Implementations
 
         public FoodInterfaceRepository(PalmfitDbContext db)
         {
-           _db = db;
+            _db = db;
         }
 
-        public async Task<List<Food>> GetAllFoodAsync() 
+        public async Task<List<Food>> GetAllFoodAsync()
         {
             return await _db.Foods.ToListAsync();
         }
@@ -79,6 +79,7 @@ namespace Palmfit.Core.Implementations
                     Image = food.Image,
                     Calorie = food.Calorie,
                     Unit = food.Unit,
+
                     FoodClassId = food.FoodClassId,
                 };
 
