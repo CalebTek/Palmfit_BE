@@ -43,6 +43,8 @@ namespace Palmfit.Api.Extensions
                 };
             });
             //jwt configuration ends-------------
+
+
             //Password configuration
             services.Configure<IdentityOptions>(options =>
             {
