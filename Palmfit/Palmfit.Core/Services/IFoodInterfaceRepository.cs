@@ -4,8 +4,7 @@ using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Core.Services
 {
-     
-    public interface IFoodInterfaceRepository 
+    public interface IFoodInterfaceRepository
     {
         Task<List<Food>> GetAllFoodAsync();
 
@@ -19,6 +18,7 @@ namespace Palmfit.Core.Services
         /* < End----- required methods to Calculate Calorie -----End > */
 
 
+        Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
 
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
        
