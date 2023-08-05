@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ey5nflgkGQrRT+yDNyXdBWnVRSM4yBSpATqqekqKtDTZDgQAR6aur2VjHLj5I/k7ACRLkFULNoHdtKbRCN5P2w==",
+  "dgSpecHash": "d7osa9tW7LP1SH1lUnTXfmampITM2GiE6LXLKQvxNZYbqSCjHjsghE0dJHBTix9247kJ7kJ+YKi/cPWhHyCtFw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\old\\ewemade-project\\live-project-sq015-net-palmfit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.4\\microsoft.aspnet.identity.core.2.2.4.nupkg.sha512",
@@ -52,6 +52,12 @@
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
