@@ -68,7 +68,7 @@ namespace Palmfit.Api.Extensions
 
 
             // Identity role registration with Stores and default token provider
-            services.AddIdentity<AppUser, AppUserRole>()
+            services.AddIdentity<AppUser, AppUserRole>();
 
             //Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, IdentityRole>()
