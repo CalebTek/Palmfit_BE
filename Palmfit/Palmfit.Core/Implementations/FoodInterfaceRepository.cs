@@ -50,7 +50,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
         {
-            var food = await _db.Foods.FirstOrDefaultAsync(f => f.Name == foodName);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name == foodName);
             if (food == null)
                 throw new ArgumentException("Food not found with the specified name.", nameof(foodName));
 
@@ -60,7 +60,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
         {
-            var food = await _db.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
             if (food == null)
                 throw new ArgumentException("Food not found with the specified ID.", nameof(foodId));
 
@@ -74,7 +74,7 @@ namespace Palmfit.Core.Implementations
 
             foreach (var kvp in foodNameAmountMap)
             {
-                var food = await _db.Foods.FirstOrDefaultAsync(f => f.Name == kvp.Key);
+                var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name == kvp.Key);
                 if (food == null)
                     throw new ArgumentException($"Food not found with the specified Name: {kvp.Key}", nameof(foodNameAmountMap));
 
@@ -87,12 +87,12 @@ namespace Palmfit.Core.Implementations
 
         public async Task<IEnumerable<Food>> GetFoodsByNameAsync(string foodName)
         {
-            return await _db.Foods.Where(f => f.Name == foodName).ToListAsync();
+            return await _dbContext.Foods.Where(f => f.Name == foodName).ToListAsync();
         }
 
         public async Task<IEnumerable<Food>> GetFoodsByIdAsync(string foodId)
         {
-            return await _db.Foods.Where(f => f.Id == foodId).ToListAsync();
+            return await _dbContext.Foods.Where(f => f.Id == foodId).ToListAsync();
         }
 
         /* < End----- required methods to Calculate Calorie -----End > */

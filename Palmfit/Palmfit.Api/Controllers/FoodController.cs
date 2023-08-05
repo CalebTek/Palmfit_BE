@@ -100,7 +100,7 @@ namespace Palmfit.Api.Controllers
 
 
         //api-to-updatefood
-        [HttpPut("{id}")]
+        [HttpPut("update-food")]
         public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
         {
             var updatedfood = await _foodRepo.UpdateFoodAsync(id, foodDto);
@@ -117,7 +117,7 @@ namespace Palmfit.Api.Controllers
 
 
 
-        [HttpGet("{foodClassId}/Get-FoodClass-By-Id")]
+        [HttpGet("Get-FoodClass-By-Id")]
         public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
         {
             try
@@ -143,7 +143,7 @@ namespace Palmfit.Api.Controllers
 
 
 
-		[HttpDelete("{foodClassId}/delete-foodclass")]
+		[HttpDelete("delete-foodclass")]
 		public async Task<ActionResult<ApiResponse<string>>> DeleteFoodClass(string foodClassId)
 		{
 			try
