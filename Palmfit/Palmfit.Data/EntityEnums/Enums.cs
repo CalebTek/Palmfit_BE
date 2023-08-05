@@ -59,4 +59,13 @@ namespace Palmfit.Data.EntityEnums
     public enum WalletType
     {
     }
+
+    public enum UnitType
+    {
+        Tablespoon,
+        Ounce,
+        Cup,
+        Pound,
+        // Add other unit types as needed
+    }
 }
