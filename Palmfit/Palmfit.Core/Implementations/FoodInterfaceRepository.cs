@@ -98,7 +98,7 @@ namespace Palmfit.Core.Implementations
         }
 
         /* < End----- required methods to Calculate Calorie -----End > */
-        
+
         public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
             var food = await _db.Foods.FindAsync(id);
@@ -112,7 +112,17 @@ namespace Palmfit.Core.Implementations
             food.Origin = foodDto.Origin;
             food.Image = foodDto.Image;
             food.Calorie = foodDto.Calorie;
-            food.Unit = foodDto.Unit;
+
+            // Convert the string value to UnitType enum
+            if (Enum.TryParse(foodDto.Unit, out UnitType unitType))
+            {
+                food.Unit = unitType;
+            }
+            else
+            {
+                return "Invalid unit type.";
+            }
+
             food.FoodClassId = foodDto.FoodClassId;
 
             try
@@ -124,7 +134,6 @@ namespace Palmfit.Core.Implementations
             {
                 return "Food failed to update.";
             }
-
         }
 
 
