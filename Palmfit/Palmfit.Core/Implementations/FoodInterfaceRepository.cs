@@ -145,7 +145,7 @@ namespace Palmfit.Core.Implementations
             if (getFoodData.Count() == 0 )
                 return null;
 
-            List<FoodDto> result = null;
+            List<FoodDto> result = new();
 
             foreach (var food in getFoodData)
             {
