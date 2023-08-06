@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using System.Data.Entity;
 using System.Text;
 
 namespace Palmfit.Api.Extensions
@@ -21,8 +24,10 @@ namespace Palmfit.Api.Extensions
             });
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
 
-            // Configure JWT authentication options-----------------------
+
+            // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
@@ -53,20 +58,38 @@ namespace Palmfit.Api.Extensions
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
             });
+            //JWT registration ends here----------------------------------------------------
 
 
 
-            //Repo Registration
+
+            // Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
-            //Identity role registration with Stores and default token provider
-            services.AddIdentity<AppUser, IdentityRole>()
+            // Identity role registration with Stores and default token provider
+            services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
+
+
+            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
+
+            services.AddScoped<SeedData>();
+
+            // Call the seed method after the DbContext is created
+            services.AddScoped<IServiceProvider>(provider =>
+            {
+                var dbContext = provider.GetRequiredService<PalmfitDbContext>();
+                SeedData.Initialize(dbContext);
+                return provider;
+            });
+
+            /* <-------End-------- Seed the database using DbContext ------- End------>*/
 
         }
     }
