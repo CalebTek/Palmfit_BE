@@ -1688,18 +1688,24 @@
     ]
   },
   "packageFolders": {
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
     "C:\\Users\\ubong\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+      "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectUniqueName": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectName": "Palmfit.Infrastructure",
+      "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\ubong\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Users\\ubong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
