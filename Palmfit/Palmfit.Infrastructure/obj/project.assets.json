@@ -1688,15 +1688,20 @@
     ]
   },
   "packageFolders": {
+    "C:\\Users\\Decagon L\\.nuget\\packages\\": {}
     "C:\\Users\\HP\\.nuget\\packages\\": {}
     "C:\\Users\\Decagon L\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+      "projectUniqueName": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectUniqueName": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectName": "Palmfit.Infrastructure",
+      "projectPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Decagon L\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
@@ -1705,6 +1710,7 @@
       "outputPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

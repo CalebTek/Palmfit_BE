@@ -1,17 +1,23 @@
 {
   "format": 1,
   "restore": {
+    "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {}
     "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {}
     "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
     "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
     "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
       "version": "1.0.0",
       "restore": {
+        "projectUniqueName": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
         "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
         "projectUniqueName": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
         "projectName": "Palmfit.Data",
+        "projectPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
+        "packagesPath": "C:\\Users\\Decagon L\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
         "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
@@ -20,6 +26,7 @@
         "outputPath": "C:\\Users\\Decagon L\\OneDrive\\Desktop\\Palmfit-Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Users\\Decagon L\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
