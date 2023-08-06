@@ -23,7 +23,8 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<UserOTP> UserOTPs { get; set; }
         public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
-        
+        public DbSet<Referral> Referrals { get; set; }
+
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
@@ -136,6 +137,11 @@ namespace Palmfit.Data.AppDbContext
                 .HasOne(f => f.FoodClass)
                 .WithMany(fc => fc.Foods)
                 .HasForeignKey(f => f.FoodClassId);
+
+            modelBuilder.Entity<AppUser>()
+               .HasMany(r => r.Referrals)
+               .WithOne(u => u.InvitedUser)
+               .HasForeignKey(i => i.InvitedUserid);
 
             /* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
             modelBuilder.Entity<Food>()
