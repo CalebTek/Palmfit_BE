@@ -12,8 +12,8 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230802134214_LV2")]
-    partial class LV2
+    [Migration("20230802140130_V3-Seed-Data")]
+    partial class V3SeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,22 +145,25 @@ namespace Palmfit.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Area")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("text");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -173,29 +176,31 @@ namespace Palmfit.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("Gender")
+                    b.Property<int>("Gender")
                         .HasColumnType("integer");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("InviteCode")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool?>("IsArchived")
+                    b.Property<bool>("IsArchived")
                         .HasColumnType("boolean");
 
-                    b.Property<bool?>("IsLockedOut")
+                    b.Property<bool>("IsLockedOut")
                         .HasColumnType("boolean");
 
-                    b.Property<bool?>("IsVerified")
+                    b.Property<bool>("IsVerified")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("LastOnline")
+                    b.Property<DateTime>("LastOnline")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("LockoutEnabled")
@@ -205,6 +210,7 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("MiddleName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
@@ -223,15 +229,18 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("ReferralCode")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -811,7 +820,8 @@ namespace Palmfit.Data.Migrations
 
             modelBuilder.Entity("Palmfit.Data.Entities.AppUser", b =>
                 {
-                    b.Navigation("Health");
+                    b.Navigation("Health")
+                        .IsRequired();
 
                     b.Navigation("Invities");
 
@@ -819,13 +829,15 @@ namespace Palmfit.Data.Migrations
 
                     b.Navigation("Reviews");
 
-                    b.Navigation("Setting");
+                    b.Navigation("Setting")
+                        .IsRequired();
 
                     b.Navigation("Subscriptions");
 
                     b.Navigation("Transactions");
 
-                    b.Navigation("Wallet");
+                    b.Navigation("Wallet")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.FoodClass", b =>
