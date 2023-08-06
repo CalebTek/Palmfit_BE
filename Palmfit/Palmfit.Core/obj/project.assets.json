@@ -4295,24 +4295,18 @@
   },
   "packageFolders": {
     "C:\\Users\\ubong\\.nuget\\packages\\": {}
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\ubong\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
-      "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ubong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4328,8 +4322,6 @@
           "projectReferences": {
             "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
               "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
-            "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
           }
         }
@@ -4394,12 +4386,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'dgSpecHash', line 4, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
