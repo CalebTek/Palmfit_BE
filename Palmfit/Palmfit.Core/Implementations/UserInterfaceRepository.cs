@@ -54,13 +54,12 @@ namespace Palmfit.Core.Implementations
 
         public async Task<UserDto> GetUserByIdAsync(string id)
         {
-            AppUser user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return null;
             }
 
-            // Map the User entity to UserDto before returning it
             return new UserDto
             {
                 Title = user.Title,

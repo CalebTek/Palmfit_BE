@@ -11,6 +11,6 @@ namespace Palmfit.Core.Services
     public interface IUserInterfaceRepository
     {
         Task<string> UpdateUserAsync(string id, UserDto userDto);
-        Task<UserDto> GetUserByIdAsync(int id);
+        Task<UserDto> GetUserByIdAsync(string id);
     }
 }
