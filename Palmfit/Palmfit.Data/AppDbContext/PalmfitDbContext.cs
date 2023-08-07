@@ -22,6 +22,7 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Invite> Invites { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
