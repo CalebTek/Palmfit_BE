@@ -35,7 +35,13 @@ namespace Palmfit.Api.Controllers
         [HttpGet("Get-User-status/{id}")]
         public async Task<IActionResult> GetUserStatus(string id)
         {
-            return Ok();
+            if (id == null) return BadRequest(ApiResponse.Failed(id, "Invalid Id"));
+
+            var result = await _user.GetUserStatus(id);
+
+            if(result == null) return NotFound(ApiResponse.Failed(result));
+
+            return Ok(ApiResponse.Success(result));
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Palmfit.Core.Dtos
 {
     public class UserInfoDto
     {
-        public string Id { get; set; }
         public DateTime? LastOnline { get; set; }
         public bool? IsVerified { get; set; }
         public bool? Active { get; set; }
