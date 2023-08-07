@@ -7,5 +7,13 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class InviteController : ControllerBase
     {
+
+        [HttpDelete("Delete-Invite/{id}")]
+        public async Task<IActionResult> DeleteInvite(string id)
+        {
+
+
+            return Ok();
+        }
     }
 }

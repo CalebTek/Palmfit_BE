@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    internal interface IInviteServices
+    public interface IInviteServices
     {
+        Task<bool> 
     }
 }
