@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -22,6 +23,7 @@ namespace Palmfit.Api.Controllers
         }
 
         [HttpGet("get-referral-link/{userId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetReferralLink(string userId)
         {
             string ReferralCode = _referralRepository.GenerateReferralCode(8);
