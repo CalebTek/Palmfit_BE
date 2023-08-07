@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Dtos
 {
-    public class UserInfo
+    public class UserInfoDto
     {
-       string
-        public bool? IsLockedOut { get; set; }
+        public string Id { get; set; }
         public DateTime? LastOnline { get; set; }
         public bool? IsVerified { get; set; }
-        public bool? IsArchived { get; set; }
         public bool? Active { get; set; }
         public string? ReferralCode { get; set; }
         public string? InviteCode { get; set; }
-        public Health? Health { get; set; }
-        public Setting? Setting { get; set; }
-        public Wallet? Wallet { get; set; }
-
+        public SubscriptionType Type { get; set; }
+        public bool IsExpired { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

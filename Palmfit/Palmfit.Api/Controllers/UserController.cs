@@ -31,5 +31,11 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(updateUser));
 
         }
+
+        [HttpGet("Get-User-status/{id}")]
+        public async Task<IActionResult> GetUserStatus(string id)
+        {
+            return Ok();
+        }
     }
 }
