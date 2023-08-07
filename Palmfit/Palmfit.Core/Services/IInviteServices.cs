@@ -8,6 +8,6 @@ namespace Palmfit.Core.Services
 {
     public interface IInviteServices
     {
-        Task<bool> 
+        Task<bool> Deleteinvite(string id);
     }
 }
