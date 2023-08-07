@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X7qjISJWjSJg5EGUelzXOCUc4KmI667nvgughVYsFlkarl2GdLyvHSadEOat3NhK5DvKT8uFZSUauN6c7sJYLg==",
-  "dgSpecHash": "dtc3lVbf8sZKqP2qOJiTtoist1TzCC0eGamAXwY+zV9tW6S5jrR8s/1dBX+YR1OaSUZcy6SWreg1eeO21uy0lQ==",
+  "dgSpecHash": "ED1pHv6mZ6iEBKONz6CTdDRQ4UupF5zIPa7xkDikWeqqdU17rgz2X15lqdgZVuW4RlISK4QvvqZXW+9Nm0HkkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Documents\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.4\\microsoft.aspnet.identity.core.2.2.4.nupkg.sha512",
@@ -54,6 +53,12 @@
   ],
   "logs": [
     {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\HP\\Documents\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'logs', line 87, position 2."
+    },
+    {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
@@ -84,7 +89,4 @@
       ]
     }
   ]
-  "projectFilePath": "C:\\Users\\HP\\Documents\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
 }
