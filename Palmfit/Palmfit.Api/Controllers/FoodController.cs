@@ -49,13 +49,13 @@ namespace Palmfit.Api.Controllers
         [HttpGet("get-meal-Id")]
         public async Task<IActionResult> GetFoodById(string Id)
         {
-            try
+            
             {
                 var meal = await _food.GetFoodById(Id);
 
                 if (meal == null)
                 {
-                    return NotFound(new { message = "Meal not found" });
+                    return NotFound(ApiResponse.Failed("Meal not found"));
                 }
 
                 var mealDto = new FoodDto
@@ -65,12 +65,10 @@ namespace Palmfit.Api.Controllers
                     Image = meal.Image
                 };
 
-                return Ok(mealDto);
+                return Ok(ApiResponse.Success( mealDto));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
-            }
+            
+            
         }
 
     }
