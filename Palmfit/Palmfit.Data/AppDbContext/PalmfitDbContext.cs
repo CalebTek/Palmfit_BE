@@ -124,7 +124,15 @@ namespace Palmfit.Data.AppDbContext
             modelBuilder.Entity<Invite>()
                 .HasOne(i => i.AppUser)
                 .WithMany(a => a.Invities)
-                .HasForeignKey(i => i.AppUserId);
+                .HasForeignKey(i => i.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // AppUser and Referral (One-to-Many)
+            modelBuilder.Entity<AppUser>()
+                .HasMany(u => u.Referrals)
+                .WithOne(r => r.AppUser)
+                .HasForeignKey(r => r.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Configure One FoodClass to Many Relationship
             modelBuilder.Entity<FoodClass>()
