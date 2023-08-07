@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -79,6 +80,10 @@ namespace Palmfit.Api.Controllers
             try
             {
                 var reviews = await _reviewRepo.GetAllReviewsAsync();
+                if (reviews == null)
+                {
+                    return NotFound(ApiResponse.Failed("Review not found."));
+                }
                 return Ok(ApiResponse.Success(reviews));
             }
             catch (Exception ex)

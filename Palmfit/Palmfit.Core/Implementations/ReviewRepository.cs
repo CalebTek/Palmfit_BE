@@ -79,11 +79,9 @@ namespace Palmfit.Core.Implementations
 
         public async Task<List<Review>> GetAllReviewsAsync()
         {
-            return await _palmfitDb.Reviews.ToListAsync();
+            return await _palmfitDb.Reviews.Where(review => review.IsDeleted ).ToListAsync();
         }
-
-
-
+         
 
     }
 }
