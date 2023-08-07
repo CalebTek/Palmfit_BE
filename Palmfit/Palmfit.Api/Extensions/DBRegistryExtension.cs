@@ -16,7 +16,10 @@ namespace Palmfit.Api.Extensions
         {
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+
             });
 
              
@@ -58,6 +61,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
 

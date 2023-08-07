@@ -30,6 +30,7 @@ namespace Palmfit.Core.Implementations
             _userManager = userManager;
         }
 
+
         public string GenerateJwtToken(AppUser user)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
@@ -59,6 +60,10 @@ namespace Palmfit.Core.Implementations
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+
+
+
+
         public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
         {
             await RemoveAllExpiredOTP(); // Call the RemoveExpiredOTP method before validation
@@ -66,6 +71,8 @@ namespace Palmfit.Core.Implementations
             var now = DateTime.UtcNow;
             return await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && otp.Expiration > now);
         }
+
+
 
         public async Task<ApiResponse<string>> UpdateVerifiedStatus(string email)
         {
@@ -86,6 +93,8 @@ namespace Palmfit.Core.Implementations
             return new ApiResponse<string>("Verified successfully.");
         }
 
+
+
         public async Task RemoveAllExpiredOTP()
         {
             var now = DateTime.UtcNow;
@@ -93,6 +102,10 @@ namespace Palmfit.Core.Implementations
             _palmfitDb.UserOTPs.RemoveRange(expiredOTPs);
             await _palmfitDb.SaveChangesAsync();
         }
+
+
+
+
 
     }
 }
