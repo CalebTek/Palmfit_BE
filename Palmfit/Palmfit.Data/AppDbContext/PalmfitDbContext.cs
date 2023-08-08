@@ -25,6 +25,7 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
+        public DbSet<FileUploadModel> fileUploadmodels { get; set; }
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
