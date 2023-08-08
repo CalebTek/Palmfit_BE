@@ -8,7 +8,6 @@ using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using System.Data.Entity;
 using System.Text;
 
 namespace Palmfit.Api.Extensions
