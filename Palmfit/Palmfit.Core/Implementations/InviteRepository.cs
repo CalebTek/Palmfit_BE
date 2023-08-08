@@ -24,7 +24,7 @@ namespace Palmfit.Core.Implementations
         {
             var getData = await _dbContext.Invites.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (getData != null) return false;
+            if (getData == null) return false;
 
             getData.IsDeleted = true;   
             var result = _dbContext.SaveChanges();
