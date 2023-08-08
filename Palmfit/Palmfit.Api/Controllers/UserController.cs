@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
+using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Controllers
 {
@@ -14,6 +15,25 @@ namespace Palmfit.Api.Controllers
         public UserController(IUserInterfaceRepository userInterfaceRepository)
         {
             _user = userInterfaceRepository;
+        }
+        [HttpGet("get-all-User")]
+
+        public async Task<ActionResult<List<UserDto>>> GetAllUsers()
+        {
+         
+            var usersDto = await _user.GetAllUsersAsync();
+
+            if (usersDto.Count() <= 0)
+            {
+                var res = await _user.GetAllUsersAsync();
+                return NotFound(ApiResponse.Failed(res));
+            }
+            else
+            { 
+                var result = await _user.GetAllUsersAsync();
+
+                return Ok(ApiResponse.Success(result));
+            }
         }
 
 
