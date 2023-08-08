@@ -16,27 +16,33 @@ namespace Palmfit.Core.Implementations
 
         public MockReferralRepository()
         {
-
-
             _appUsers = new List<AppUser>
+{
+    new AppUser
+    {
+        Id = "1",
+        ReferralCode = "ABC123", // Assign a referral code
+        Referrals = new List<Referral> // Initialize Referrals collection
+        {
+            new Referral
             {
-                new AppUser
-                {
-                    Id = "1",
-                    ReferralCode = "ABC123", 
-                    Invities = new List<Invite>
-                    {
-                        new Invite
-                        {
-                            Id = "1",
-                            Name = "John Doe",
-                            Email = "john@example.com",
-                            Phone = "1234567890",
-                            Date = DateTime.UtcNow
-                        }
-                    }
-                }
-            };
+                Id = "1",
+                ReferralCode = "XYZ789" // Assign a referral code
+            }
+        },
+        Invities = new List<Invite>
+        {
+            new Invite
+            {
+                Id = "1",
+                Name = "John Doe",
+                Email = "john@example.com",
+                Phone = "1234567890",
+                Date = DateTime.UtcNow
+            }
+        }
+    }
+};
 
             _invites = _appUsers.SelectMany(u => u.Invities).ToList();
         }
