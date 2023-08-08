@@ -11,7 +11,6 @@ namespace Palmfit.Core.Services
 {
     public interface IReviewRepository
     {
-        Task<Review> AddReviewAsync(AddReviewDto reviewDto, ClaimsPrincipal user);
         Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId);
     }
 }

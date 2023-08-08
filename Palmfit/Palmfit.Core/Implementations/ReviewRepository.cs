@@ -25,28 +25,6 @@ namespace Palmfit.Core.Implementations
         }
 
 
-
-        public async Task<Review> AddReviewAsync(AddReviewDto reviewDto, ClaimsPrincipal loggedInUser)
-        {
-            var review = new Review
-            {
-                Id = Guid.NewGuid().ToString(),
-                AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value,
-                Date = DateTime.Now,
-                Comment = reviewDto.Comment,
-                Rating = reviewDto.Rating,
-                Verdict = reviewDto.Verdict,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-            };
-
-            _palmfitDb.Reviews.Add(review);
-            await _palmfitDb.SaveChangesAsync();
-
-            return review;
-        }
-
-
         public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
             var user = loggedInUser.FindFirst(ClaimTypes.NameIdentifier);       
