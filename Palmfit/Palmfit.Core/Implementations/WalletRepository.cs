@@ -21,7 +21,9 @@ namespace Palmfit.Core.Implementations
 
         public async Task<Wallet> GetWalletByUserIdAsync(string appUserId)
         {
-            return await _context.Wallets.Include(w => w.Transaction).FirstOrDefaultAsync(w => w.AppUserId == appUserId); //Include(w => w.Transaction).
+            return await _context.Wallets.FirstOrDefaultAsync(w => w.AppUserId == appUserId);
+
+            //return await _context.Wallets.Include(w => w.Transaction).FirstOrDefaultAsync(w => w.AppUserId == appUserId);
         }
     }
 }

@@ -17,10 +17,18 @@ namespace Palmfit.Api.Controllers
             _wallet = wallet;
         }
         [HttpGet("{appUserId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Wallet>> GetWallet(string appUserId)
         {
             try
             {
+                if (string.IsNullOrEmpty(appUserId))
+                {
+                    return BadRequest(ApiResponse.Failed("Invalid user ID."));
+                }
+
                 var wallet = await _wallet.GetWalletByUserIdAsync(appUserId);
 
                 if (wallet == null)
@@ -32,8 +40,8 @@ namespace Palmfit.Api.Controllers
             }
             catch (Exception ex)
             {
+                return StatusCode(500, ApiResponse.Failed($"An error occurred: {ex.Message}"));
 
-                return StatusCode(500, ApiResponse.Failed(ex.ToString()));//"An error occurred while processing your request."
             }
         }
     }
