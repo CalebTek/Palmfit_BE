@@ -63,6 +63,7 @@ namespace Palmfit.Api.Controllers
 
 
 
+
         // Endpoint to create a new role
         [HttpPost("create-role")]
         public async Task<IActionResult> CreateRole(AppUserRole role)
@@ -125,6 +126,7 @@ namespace Palmfit.Api.Controllers
 
 
 
+
         [HttpPost("createPermission")]
         public async Task<IActionResult> CreatePermission([FromBody] PermissionDto permissionDto)
         {
@@ -145,6 +147,8 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
             }
         }
+
+
 
 
         [HttpPost("Validate-OTP")]
@@ -228,7 +232,7 @@ namespace Palmfit.Api.Controllers
                 }
                 else
                 {
-                    return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
+                    return BadRequest(ApiResponse.Failed("Permission removal failed."));
                 }
             }
 

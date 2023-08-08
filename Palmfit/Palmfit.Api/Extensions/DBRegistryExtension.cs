@@ -8,7 +8,6 @@ using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using System.Data.Entity;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -23,9 +22,7 @@ namespace Palmfit.Api.Extensions
                 //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-                //  options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer(configuration.GetConnectionString("Default"));
-            });
+           
 
             // ...
 

@@ -31,8 +31,6 @@ namespace Palmfit.Api.Controllers
         {
             //Getting all food from database
             var foods = await _food.GetAllFoodAsync();
-
-            if (foods.Count() <= 0)
             if (!foods.Any())
             {
                 var res = await _food.GetAllFoodAsync();
@@ -130,6 +128,8 @@ namespace Palmfit.Api.Controllers
 
         /* < End----- required methods to Calculate Calorie -----End > */
 
+
+
         [HttpGet("foods-based-on-class")]
         public async Task<IActionResult> GetFoodsBasedOnClass(string id)
         {
@@ -142,6 +142,11 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(result));
         }
+
+
+
+
+
 
         //api-to-updatefood
         [HttpPut("{id}")]
@@ -157,5 +162,10 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(updatedfood));
         }
+
+
+
+
+
     }
 }

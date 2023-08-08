@@ -1,5 +1,4 @@
 ﻿using Data.Entities;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,6 @@ using Palmfit.Data.EntityEnums;
 namespace Palmfit.Data.AppDbContext
 {
     public class PalmfitDbContext : IdentityDbContext<AppUser, AppUserRole, string>
-    public class PalmfitDbContext :IdentityDbContext<AppUser>
     {
         public DbSet<Health> Healths { get; set; }
         public DbSet<Setting> Settings { get; set; }

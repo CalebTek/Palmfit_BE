@@ -19,7 +19,6 @@ namespace Palmfit.Core.Dtos
         public string Image { get; set; }
         public decimal Calorie { get; set; }
         public UnitType Unit { get; set; }
-        public string Unit { get; set; }
         public FoodClassDto FoodClass { get; set; }
       
         public string FoodClassId { get; set; }
