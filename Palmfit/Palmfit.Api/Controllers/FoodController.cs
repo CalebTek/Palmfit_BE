@@ -70,7 +70,7 @@ namespace Palmfit.Api.Controllers
             
         }
 
-        }
+        
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
 

@@ -49,5 +49,18 @@ namespace Palmfit.Core.Implementations
             }
 
         }
+        public async Task<bool> DeleteUserAsync(string userId)
+        {
+            var user = await _db.Users.FindAsync(userId);
+
+            if (user != null)
+            {
+                _db.Users.Remove(user);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

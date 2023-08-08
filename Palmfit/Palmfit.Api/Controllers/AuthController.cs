@@ -160,33 +160,33 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
             }
 
-             await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
+            await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
             return Ok(new ApiResponse<string>("Validation Successfully."));
         }
 
 
 
-            // Endpoint to get all permissions
-            [HttpGet("get-all-permissions")]
-            public async Task<IActionResult> GetAllPermissions()
-            {
-                var permissions = await _authRepo.GetAllPermissionsAsync();
-                return Ok(ApiResponse.Success(permissions));
-            }
+        // Endpoint to get all permissions
+        [HttpGet("get-all-permissions")]
+        public async Task<IActionResult> GetAllPermissions()
+        {
+            var permissions = await _authRepo.GetAllPermissionsAsync();
+            return Ok(ApiResponse.Success(permissions));
+        }
 
 
 
 
-            // Endpoint to get permissions by role ID
-            [HttpGet("get-permissions-by-role/{roleId}")]
-            public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
-            {
-                var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
-                return Ok(ApiResponse.Success(permissions));
-            }
+        // Endpoint to get permissions by role ID
+        [HttpGet("get-permissions-by-role/{roleId}")]
+        public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
+        {
+            var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
+            return Ok(ApiResponse.Success(permissions));
+        }
 
 
-       
+
 
         [HttpPost("Sign-Out")]
         public async Task<IActionResult> SignOut()
@@ -194,47 +194,68 @@ namespace Palmfit.Api.Controllers
             await _signInManager.SignOutAsync();
             return Ok(ApiResponse.Success("Sign out successful"));
         }
-    
 
 
 
-            // Endpoint to assign a permission to a role
-            [HttpPost("assign-permission")]
-            public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
+
+        // Endpoint to assign a permission to a role
+        [HttpPost("assign-permission")]
+        public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
+        {
+            try
             {
-                try
-                {
-                    await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
-                    return Ok(ApiResponse.Success("Permission assigned to role successfully."));
-                }
-                catch (InvalidOperationException ex)
-                {
-                    return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
-                }
+                await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
+                return Ok(ApiResponse.Success("Permission assigned to role successfully."));
             }
-
-
-
-
-            // Endpoint to remove a permission from a role
-            [HttpDelete("remove-permission")]
-            public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
+            catch (InvalidOperationException ex)
             {
-
-                var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
-                if (result.Succeeded)
-                {
-                    return Ok(ApiResponse.Success("Permission removed from role successfully."));
-                }
-                else
-                {
-                    return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
-                }
+                return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
             }
-
-
-
-
         }
+
+
+
+
+        // Endpoint to remove a permission from a role
+        [HttpDelete("remove-permission")]
+        public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
+        {
+
+            var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
+            if (result.Succeeded)
+            {
+                return Ok(ApiResponse.Success("Permission removed from role successfully."));
+            }
+            else
+            {
+                return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
+            }
+        }
+
+        [HttpDelete("delete-user/{userId}")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var deletionResult = await _authRepo.DeleteUserAsync(userId);
+
+            if (deletionResult)
+            {
+                return Ok(new ApiResponse<string>("User deleted successfully."));
+            }
+            else
+            {
+                return BadRequest(new ApiResponse<string>("User deletion failed."));
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
+}
 
