@@ -19,14 +19,29 @@ namespace Palmfit.Core.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task<ICollection<ReviewsDto>> GetReviewsByUserId(string userId)
+        public async Task<ICollection<Review>> GetReviewsByUserIdAsync(string userId)
         {
-            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            var reviewsDto = new ReviewsDto();
+            var reviews = new Review
+            {
+                Date = reviewsDto.Date,
+                Comment = reviewsDto.Comment,
+                Rating = reviewsDto.Rating,
+                Verdict = reviewsDto.Verdict,
+                AppUserId = reviewsDto.AppUserId
+            };
+            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId ==  userId).ToListAsync();
+            if (!ReviewResult.Any())
+            {
+                return new List<Review>();
+            }
+            return ReviewResult;
+            /*var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
             if (!ReviewResult.Any())
             {
                 return new List<ReviewsDto>();
             }
-            return (ICollection<ReviewsDto>)ReviewResult;
+            return (ICollection<ReviewsDto>)ReviewResult;*/
         }
     }
     

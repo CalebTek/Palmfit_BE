@@ -10,6 +10,6 @@ namespace Palmfit.Core.Services
 {
     public interface IReviewsRepository
     {
-        Task<ICollection<ReviewsDto>> GetReviewsByUserId(string userId);
+        Task<ICollection<Review>> GetReviewsByUserIdAsync(string userId);
     }
 }

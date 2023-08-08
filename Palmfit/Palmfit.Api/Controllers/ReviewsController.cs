@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -15,6 +16,12 @@ namespace Palmfit.Api.Controllers
         {
             _reviewsRepository = reviewsRepository;
         }
-        
+        [HttpGet("get-review-by-user/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ICollection<ReviewsDto>>> GetReviewsByUserId(string userId)
+        {
+            var result = await _reviewsRepository.GetReviewsByUserIdAsync(userId);
+            return Ok(ApiResponse.Success(result));
+        }
     }
 }
