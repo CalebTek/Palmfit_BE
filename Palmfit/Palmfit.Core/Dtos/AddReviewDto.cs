@@ -19,8 +19,5 @@ namespace Palmfit.Core.Dtos
 
         [MaxLength(100)]
         public string Verdict { get; set; }
-
-        [Required]
-        public string AppUserId { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,19 +26,18 @@ namespace Palmfit.Core.Implementations
 
 
 
-        public async Task<Review> AddReviewAsync(AddReviewDto reviewDto)
+        public async Task<Review> AddReviewAsync(AddReviewDto reviewDto, ClaimsPrincipal loggedInUser)
         {
             var review = new Review
             {
                 Id = Guid.NewGuid().ToString(),
-                AppUserId = reviewDto.AppUserId,
+                AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value,
                 Date = DateTime.Now,
                 Comment = reviewDto.Comment,
                 Rating = reviewDto.Rating,
                 Verdict = reviewDto.Verdict,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-               
             };
 
             _palmfitDb.Reviews.Add(review);
@@ -47,17 +47,17 @@ namespace Palmfit.Core.Implementations
         }
 
 
-
-        public async Task<string> DeleteReviewAsync(string userId, string reviewId)
+        public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = loggedInUser.FindFirst(ClaimTypes.NameIdentifier);       
             var review = await _palmfitDb.Reviews.FindAsync(reviewId);
+
             string message = "";
             if (user == null)
             {
                 message= "User not found";
             } 
-            else if(review.AppUserId != userId)
+            else if(review.AppUserId != user.Value)
             {
                 message = "You are not authorized to delete this review";
             }
@@ -73,10 +73,6 @@ namespace Palmfit.Core.Implementations
             }
             return message;
         }
-
-
-
-
 
 
 

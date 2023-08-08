@@ -30,14 +30,10 @@ namespace Palmfit.Api.Controllers
                     return BadRequest(ApiResponse.Failed("Invalid review data."));
                 }
 
-                // Ensuring the user exists
-                var user = await _userManager.FindByIdAsync(reviewDto.AppUserId);
-                if (user == null)
-                {
-                    return NotFound(ApiResponse.Failed("User not found."));
-                }
+                var loggedInUser = HttpContext.User;
 
-                var createdReview = await _reviewRepo.AddReviewAsync(reviewDto);
+                // Ensuring the user exists
+                var createdReview = await _reviewRepo.AddReviewAsync(reviewDto, loggedInUser);
                 if (createdReview != null)
                 {
                     return Ok(ApiResponse.Success("Review added successfully."));
@@ -56,11 +52,12 @@ namespace Palmfit.Api.Controllers
 
 
         [HttpDelete("delete-review")]
-        public async Task<IActionResult> DeleteReview(string userId, string reviewId)
+        public async Task<IActionResult> DeleteReview(string reviewId)
         {
             try
             {
-                var message = await _reviewRepo.DeleteReviewAsync(userId, reviewId);
+                var loggedInUser = HttpContext.User;
+                var message = await _reviewRepo.DeleteReviewAsync(loggedInUser, reviewId);
 
                 return Ok(ApiResponse.Success(message));
             }
