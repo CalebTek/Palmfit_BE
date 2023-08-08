@@ -2,22 +2,16 @@
   "format": 1,
   "restore": {
     "C:\\Users\\Decagon\\Desktop\\PALMFIT SQ15\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
-    "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
   },
   "projects": {
     "C:\\Users\\Decagon\\Desktop\\PALMFIT SQ15\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
-    "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Decagon\\Desktop\\PALMFIT SQ15\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-        "projectUniqueName": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
         "projectName": "Palmfit.Infrastructure",
         "projectPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT SQ15\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Decagon\\Desktop\\PALMFIT SQ15\\Palmfit\\Palmfit.Infrastructure\\obj\\",
-        "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ubong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -25,7 +19,6 @@
         "configFilePaths": [
           "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Users\\ubong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
