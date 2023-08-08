@@ -12,8 +12,8 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230728000633_V1")]
-    partial class V1
+    [Migration("20230802120739_V2-addUnitType-EnumMappings")]
+    partial class V2addUnitTypeEnumMappings
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
