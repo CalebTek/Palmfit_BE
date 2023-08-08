@@ -21,13 +21,13 @@ namespace Palmfit.Core.Implementations
     new AppUser
     {
         Id = "1",
-        ReferralCode = "ABC123", // Assign a referral code
-        Referrals = new List<Referral> // Initialize Referrals collection
+        ReferralCode = "ABC123", 
+        Referrals = new List<Referral> 
         {
             new Referral
             {
                 Id = "1",
-                ReferralCode = "XYZ789" // Assign a referral code
+                ReferralCode = "ABC123"
             }
         },
         Invities = new List<Invite>
@@ -43,7 +43,6 @@ namespace Palmfit.Core.Implementations
         }
     }
 };
-
             _invites = _appUsers.SelectMany(u => u.Invities).ToList();
         }
 
