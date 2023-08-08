@@ -31,17 +31,14 @@ namespace Palmfit.Core.Implementations
         private readonly RoleManager<AppUserRole> _roleManager;
         private readonly PalmfitDbContext _palmfitDbContext;
 
-
-        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
-        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDbContext)
+        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
         {
             _configuration = configuration;
-            _palmfitDb = palmfitDb;
-            _userManager = userManager;
+           // _palmfitDb = palmfitDb;
+            //_userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
-            _palmfitDbContext = palmfitDbContext;
         }
 
         public string GenerateJwtToken(AppUser user)
@@ -81,7 +78,7 @@ namespace Palmfit.Core.Implementations
             {
                 //generating otp
                 var generateRan = new RandomNumberGenerator();
-                var otp = generateRan.GenerateOTP();
+                var otp = generateRan.GenerateOTP().ToString();
 
 
                 using (MailMessage mailMessage = new MailMessage())
