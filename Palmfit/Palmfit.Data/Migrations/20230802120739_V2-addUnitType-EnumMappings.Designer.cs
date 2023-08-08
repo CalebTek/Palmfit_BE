@@ -2,7 +2,11 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+<<<<<<< HEAD:Palmfit/Palmfit.Data/Migrations/PalmfitDbContextModelSnapshot.cs
 using Microsoft.EntityFrameworkCore.Metadata;
+=======
+using Microsoft.EntityFrameworkCore.Migrations;
+>>>>>>> 13d5464d7669ae5ab09a132a25b1112cafaa82d8:Palmfit/Palmfit.Data/Migrations/20230802120739_V2-addUnitType-EnumMappings.Designer.cs
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Palmfit.Data.AppDbContext;
 
@@ -11,9 +15,11 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    partial class PalmfitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230802120739_V2-addUnitType-EnumMappings")]
+    partial class V2addUnitTypeEnumMappings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
