@@ -1,4 +1,6 @@
-﻿using Palmfit.Core.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using System;
 using System.Collections.Generic;
@@ -15,5 +17,22 @@ namespace Palmfit.Core.Implementations
         {
             _dbContext = dbContext;
         }
+
+        public async Task<IEnumerable<InviteDto>> GetInvitesByReferralCodeAsync(string referralCode)
+        {
+            var invites = await _dbContext.Invites
+                .Where(invite => invite.AppUser.ReferralCode == referralCode)
+                .Select(invite => new InviteDto
+                {
+                    Name = invite.Name,
+                    Email = invite.Email,
+                    Phone = invite.Phone,
+                    Date = invite.Date,
+                })
+                .ToListAsync();
+
+            return invites;
+        }
+
     }
 }
