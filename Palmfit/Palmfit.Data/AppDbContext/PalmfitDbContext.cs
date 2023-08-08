@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,8 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<UserOTP> UserOTPs { get; set; }
         public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
-        
+        public DbSet<AppUser> users { get; set; }
+
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
