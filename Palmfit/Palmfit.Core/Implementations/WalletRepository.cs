@@ -14,7 +14,6 @@ namespace Palmfit.Core.Implementations
     public class WalletRepository :IWalletRepository
     {
 
-        private readonly List<Wallet> _wallets = new List<Wallet>();
         private readonly PalmfitDbContext _db;
 
         public WalletRepository(PalmfitDbContext db)
@@ -22,11 +21,10 @@ namespace Palmfit.Core.Implementations
             _db = db;
         }
 
-        public Wallet GetWalletByUserId(string userId)
+        public async Task<Wallet> GetWalletByUserId(string userId)
         {
-            return _wallets.SingleOrDefault(w => w.AppUserId == userId);
+            return await _db.Wallets.FirstOrDefaultAsync(w => w.AppUserId == userId);
         }
-
         public async Task<string> RemoveFundFromWallet(string walletId, decimal amount)
         {
             var wallet = await _db.Wallets.FirstOrDefaultAsync(w => w.Id == walletId);
@@ -43,6 +41,11 @@ namespace Palmfit.Core.Implementations
 
             wallet.Balance -= amount;
             return "Successfully removed fund"; // Successfully removed funds
+        }
+
+        Task<List<Wallet>> IWalletRepository.GetWalletByUserId(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
