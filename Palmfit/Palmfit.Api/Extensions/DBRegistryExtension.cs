@@ -8,7 +8,6 @@ using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using System.Data.Entity;
 using System.Text;
 
 namespace Palmfit.Api.Extensions
@@ -72,7 +71,6 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
-            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
