@@ -31,14 +31,13 @@ namespace Palmfit.Core.Implementations
                 return "Invalid file data.";
             }
 
-            // Check file size (300KB limit)
-            const int maxFileSizeInBytes = 300 * 1024; // 300KB in bytes
+            const int maxFileSizeInBytes = 300 * 1024;
             if (file.Length > maxFileSizeInBytes)
             {
                 return "File size exceeds the maximum limit (300KB).";
             }
 
-            // Check file extension (allow only jpg and png files)
+            
             var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
             var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
             if (!allowedExtensions.Contains(fileExtension))
@@ -46,7 +45,7 @@ namespace Palmfit.Core.Implementations
                 return "Only jpg and png files are allowed.";
             }
 
-            // Upload image to Cloudinary
+           //save file or image to cloudinary
             var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(file.FileName, file.OpenReadStream())
@@ -64,8 +63,8 @@ namespace Palmfit.Core.Implementations
             {
                 Id = Guid.NewGuid().ToString(),
                 ImageName = file.FileName,
-                CloudinaryPublicId = uploadResult.PublicId, // Store Cloudinary public ID
-                CloudinaryUrl = uploadResult.Uri.ToString() // Store Cloudinary URL
+                CloudinaryPublicId = uploadResult.PublicId, 
+                CloudinaryUrl = uploadResult.Uri.ToString()
             };
 
             _palmfitDb.fileUploadmodels.Add(fileUploadModel);
