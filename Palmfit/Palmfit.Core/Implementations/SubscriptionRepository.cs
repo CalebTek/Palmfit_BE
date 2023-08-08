@@ -1,10 +1,12 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Newtonsoft.Json.Linq;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +21,7 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
         }
 
-        public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto)
+        public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
         {
             var subscription = new Subscription
             {
@@ -27,7 +29,7 @@ namespace Palmfit.Core.Implementations
                 Type = subscriptionDto.Type,
                 StartDate = subscriptionDto.StartDate,
                 EndDate = subscriptionDto.EndDate,
-                AppUserId = subscriptionDto.AppUserId
+                AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value
             };
 
             _palmfitDb.Subscriptions.Add(subscription);

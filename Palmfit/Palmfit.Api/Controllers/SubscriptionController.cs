@@ -25,23 +25,23 @@ namespace Palmfit.Api.Controllers
 
 
 
-        [HttpPost("create")]
+        [HttpPost("create-subscription")]
         public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionDto subscriptionDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ApiResponse.Failed("Invalid subscription data."));
             }
-             
+            var loggedInUser = User.FindFirst(ClaimTypes.NameIdentifier);
+
             // Ensuring the user exists
-            var user = await _userManager.FindByIdAsync(subscriptionDto.AppUserId);
+            var user = await _userManager.FindByIdAsync(loggedInUser.Value);
             if (user == null)
             {
-                return NotFound(ApiResponse.Failed("User not found."));
-                
+                return NotFound(ApiResponse.Failed("User not found."));  
             }
 
-            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto);
+            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User );
             if (createdSubscription != null)
             {
                 return Ok(ApiResponse.Success("Subscription created successfully."));

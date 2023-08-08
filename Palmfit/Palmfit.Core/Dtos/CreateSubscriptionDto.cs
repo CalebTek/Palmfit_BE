@@ -18,8 +18,5 @@ namespace Palmfit.Core.Dtos
 
         [Required]
         public DateTime EndDate { get; set; }
-
-        [Required]
-        public string AppUserId { get; set; }
     }
 }
