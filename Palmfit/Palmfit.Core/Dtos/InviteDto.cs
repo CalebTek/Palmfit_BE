@@ -12,5 +12,6 @@ namespace Palmfit.Core.Dtos
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime Date { get; set; }
+        public string ReferralCode { get; set; }
     }
 }
