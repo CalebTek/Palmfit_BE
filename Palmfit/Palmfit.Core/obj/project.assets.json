@@ -4294,19 +4294,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ubong\\.nuget\\packages\\": {}
+    "C:\\Users\\JAIMZ\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "projectUniqueName": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\ubong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
+      "projectPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "packagesPath": "C:\\Users\\JAIMZ\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ubong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JAIMZ\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4320,8 +4320,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
+            "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
+              "projectPath": "C:\\Users\\JAIMZ\\Desktop\\DECAGON_CODE\\Project_Week\\project palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
           }
         }
