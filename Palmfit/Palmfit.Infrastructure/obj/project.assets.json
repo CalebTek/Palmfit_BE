@@ -1688,24 +1688,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ubong\\.nuget\\packages\\": {}
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectUniqueName": "C:\\Users\\Decagon Laptop\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectName": "Palmfit.Infrastructure",
-      "projectPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\ubong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ubong\\OneDrive\\Desktop\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectPath": "C:\\Users\\Decagon Laptop\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Decagon Laptop\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ubong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1757,12 +1751,17 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Decagon Laptop\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'logs', line 87, position 2."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
