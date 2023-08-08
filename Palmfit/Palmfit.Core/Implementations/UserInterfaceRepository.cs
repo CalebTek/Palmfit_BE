@@ -1,4 +1,6 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
@@ -20,7 +22,25 @@ namespace Palmfit.Core.Implementations
         {
             _db = db;
         }
+        public async Task<List<UserDto>> GetAllUsersAsync()
+        {
+            var users = await _db.Users.ToListAsync();
 
+            return users.Select(user => new UserDto
+            {
+                Title = user.Title,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                Image = user.Image,
+                Address = user.Address,
+                Area = user.Area,
+                State = user.State,
+                Gender = user.Gender,
+                DateOfBirth = user.DateOfBirth,
+                Country = user.Country,
+            }).ToList();
+        }
         public async Task<string> UpdateUserAsync(string id, UserDto userDto)
         {
             var user = await _db.Users.FindAsync(id);
