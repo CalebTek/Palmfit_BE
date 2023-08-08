@@ -23,7 +23,7 @@ namespace Palmfit.Core.Implementations
                 new AppUser
                 {
                     Id = "1",
-                    ReferralCode = "ABC123", // Assign a referral code
+                    ReferralCode = "ABC123", 
                     Invities = new List<Invite>
                     {
                         new Invite
