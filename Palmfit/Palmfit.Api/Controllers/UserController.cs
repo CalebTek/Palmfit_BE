@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
+using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Controllers
 {
@@ -14,6 +15,25 @@ namespace Palmfit.Api.Controllers
         public UserController(IUserInterfaceRepository userInterfaceRepository)
         {
             _user = userInterfaceRepository;
+        }
+        [HttpGet("get-all-User")]
+
+        public async Task<ActionResult<List<UserDto>>> GetAllUsers()
+        {
+         
+            var usersDto = await _user.GetAllUsersAsync();
+
+            if (usersDto.Count() <= 0)
+            {
+                var res = await _user.GetAllUsersAsync();
+                return NotFound(ApiResponse.Failed(res));
+            }
+            else
+            { 
+                var result = await _user.GetAllUsersAsync();
+
+                return Ok(ApiResponse.Success(result));
+            }
         }
 
 
@@ -30,6 +50,30 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(updateUser));
 
+        }
+
+        [HttpGet("{id}/get-a-user")]
+        public async Task<ActionResult<UserDto>> GetUserById(string id)
+        {
+            UserDto userDto = await _user.GetUserByIdAsync(id);
+            if (userDto == null)
+            {
+                return NotFound(ApiResponse.Failed("User does not exist."));
+            }
+
+            return Ok(ApiResponse.Success(userDto));
+        }
+
+        [HttpGet("Get-User-status/{id}")]
+        public async Task<IActionResult> GetUserStatus(string id)
+        {
+            if (id == null) return BadRequest(ApiResponse.Failed(id, "Invalid Id"));
+
+            var result = await _user.GetUserStatus(id);
+
+            if(result == null) return NotFound(ApiResponse.Failed(result));
+
+            return Ok(ApiResponse.Success(result));
         }
     }
 }
