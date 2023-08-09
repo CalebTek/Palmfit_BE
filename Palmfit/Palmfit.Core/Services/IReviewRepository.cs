@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    public interface ISubscriptionRepository
+    public interface IReviewRepository
     {
-        Task<Subscription> GetUserSubscriptionStatusAsync(string userId);
+        Task<Review> AddReviewAsync(AddReviewDto reviewDto);
+        Task<string> DeleteReviewAsync(string userId, string reviewId);
+        Task<List<Review>> GetAllReviewsAsync();
     }
 }

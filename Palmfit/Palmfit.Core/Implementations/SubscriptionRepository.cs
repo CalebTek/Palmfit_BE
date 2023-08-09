@@ -21,27 +21,10 @@ namespace Palmfit.Core.Implementations
         }
 
 
-        public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto)
-        {
-            var subscription = new Subscription
-            {
-                Id = Guid.NewGuid().ToString(),
-                Type = subscriptionDto.Type,
-                StartDate = subscriptionDto.StartDate,
-                EndDate = subscriptionDto.EndDate,
-                AppUserId = subscriptionDto.AppUserId
-            };
-
-            _palmfitDb.Subscriptions.Add(subscription);
-            await _palmfitDb.SaveChangesAsync();
-
-            return subscription;
-        }
-
 
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
-            return await _palmfitDb.Subscriptions.Where(sub => sub.AppUserId == userId).OrderByDescending(sub => sub.StartDate).FirstOrDefaultAsync();
+            return await _palmfitDb.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
         }
 
 

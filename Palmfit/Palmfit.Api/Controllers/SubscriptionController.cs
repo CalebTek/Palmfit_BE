@@ -25,50 +25,28 @@ namespace Palmfit.Api.Controllers
 
 
 
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionDto subscriptionDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ApiResponse.Failed("Invalid subscription data."));
-            }
-             
-            // Ensuring the user exists
-            var user = await _userManager.FindByIdAsync(subscriptionDto.AppUserId);
-            if (user == null)
-            {
-                return NotFound(ApiResponse.Failed("User not found."));
-                
-            }
-
-            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto);
-            if (createdSubscription != null)
-            {
-                return Ok(ApiResponse.Success("Subscription created successfully."));
-            }
-            else
-            {
-                return BadRequest(ApiResponse.Failed("Subscription creation failed."));
-            }
-        }
-
-
-
-
-        [HttpGet("get-subscription-status")]
-        public async Task<IActionResult> GetSubscriptionStatus(string userId)
+       
+        [HttpGet("subscription-status")]
+        public async Task<IActionResult> GetSubscriptionStatus()
         {
             try
             {
-                var subscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user =  await _userManager.FindByIdAsync(userId);
+                var availableSubscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
 
-                if (subscription != null)
+                if(user == null)
                 {
-                    return Ok(ApiResponse.Success(subscription));
+                    return NotFound(ApiResponse.Success("User not found."));
+                }
+
+                if (availableSubscription != null)
+                {
+                    return Ok(ApiResponse.Success(availableSubscription));
                 }
                 else
                 {
-                    return NotFound(ApiResponse.Failed(null, "Subscription not found."));
+                    return NotFound(ApiResponse.Success("User has no Subscription."));
                 }
             }
             catch (Exception ex)
