@@ -1,17 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
 namespace Palmfit.Api.Controllers
 {
+
+    [Route("api/[controller]")]
+    [ApiController]
     public class SubscriptionController : ControllerBase
     {
         private readonly ISubscriptionRepository _subscriptionRepository;
+        private readonly UserManager<AppUser> _userManager;
 
-        public SubscriptionController(ISubscriptionRepository subscriptionRepository)
+        public SubscriptionController(ISubscriptionRepository subscriptionRepository, UserManager<AppUser> userManager)
         {
             _subscriptionRepository = subscriptionRepository;
+            _userManager = userManager;
         }
 
         [HttpGet("get-subscription-by-id")]
@@ -65,6 +70,34 @@ namespace Palmfit.Api.Controllers
             catch (Exception ex)
             {
                 return ApiResponse<IEnumerable<Subscription>>.Failed(null, ex.Message);
+            }
+        }
+
+
+        [HttpPost("create-subscription")]
+        public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionDto subscriptionDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ApiResponse.Failed("Invalid subscription data."));
+            }
+            var loggedInUser = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            // Ensuring the user exists
+            var user = await _userManager.FindByIdAsync(loggedInUser.Value);
+            if (user == null)
+            {
+                return NotFound(ApiResponse.Failed("User not found."));
+            }
+
+            var createdSubscription = await _subscriptionRepository.CreateSubscriptionAsync(subscriptionDto, HttpContext.User);
+            if (createdSubscription != null)
+            {
+                return Ok(ApiResponse.Success("Subscription created successfully."));
+            }
+            else
+            {
+                return BadRequest(ApiResponse.Failed("Subscription creation failed."));
             }
         }
     }
