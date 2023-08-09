@@ -10,5 +10,6 @@ namespace Palmfit.Core.Services
     public interface IInviteRepository
     {
         Task<List<InviteDto>> GetInvitesByUserId(string userId);
+        Task<bool> Deleteinvite(string id);
     }
 }

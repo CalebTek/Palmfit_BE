@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -10,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    public class InviteRepository : IInviteServices
     public class InviteRepository : IInviteRepository
     {
         //props
@@ -23,14 +23,20 @@ namespace Palmfit.Core.Implementations
         }
         //delete an invite
         public async Task<bool> Deleteinvite(string id)
-        public async Task<List<InviteDto>> GetInvitesByUserId(string userId)
         {
             var getData = await _dbContext.Invites.FirstOrDefaultAsync(x => x.Id == id);
 
             if (getData == null) return false;
 
-            getData.IsDeleted = true;   
+            getData.IsDeleted = true;
             var result = _dbContext.SaveChanges();
+            
+            if (result > 0) return true;
+
+            return false;
+        }
+        public async Task<List<InviteDto>> GetInvitesByUserId(string userId)
+        {
             var invites = await _dbContext.Invites
                 .Where(invite => invite.AppUserId == userId)
                 .Select(invite => new InviteDto
@@ -42,8 +48,6 @@ namespace Palmfit.Core.Implementations
                 })
                 .ToListAsync();
 
-            if (result > 0) return true;
-            return false;
             return invites;
 
         }
