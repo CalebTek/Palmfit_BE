@@ -2,6 +2,7 @@
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
+using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,15 @@ namespace Palmfit.Core.Implementations
 
         public async Task<IEnumerable<InviteDto>> GetInvitesByReferralCodeAsync(string referralCode)
         {
-            var validReferral = await _dbContext.Referrals.FirstOrDefaultAsync(r => r.ReferralCode == referralCode);
+            var appUser = _dbContext.Users.FirstOrDefault(user => user.ReferralCode == referralCode);
 
-            if (validReferral == null)
+            if (appUser == null)
             {
-                return new List<InviteDto>(); 
+                return new List<InviteDto>();
             }
 
             var invites = await _dbContext.Invites
-                .Where(invite => invite.AppUser.ReferralCode == referralCode)
+                .Where(user => user.AppUserId == appUser.Id)
                 .Select(invite => new InviteDto
                 {
                     Name = invite.Name,
