@@ -23,4 +23,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./Palmfit/Palmfit.sln
     - name: Build
-      run: dotnet build Palmfit/Palmfit.Api/Palmfit.Api.csproj"
+      run: dotnet build Palmfit/Palmfit.Api/Palmfit.Api.csproj
