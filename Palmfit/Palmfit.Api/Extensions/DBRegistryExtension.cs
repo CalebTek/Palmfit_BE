@@ -20,28 +20,33 @@ namespace Palmfit.Api.Extensions
             });
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
 
-            // Configure JWT authentication options-----------------------
+
+
+            // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
             //jwt configuration ends-------------
+
+
             //Password configuration
             services.Configure<IdentityOptions>(options =>
             {
@@ -50,21 +55,40 @@ namespace Palmfit.Api.Extensions
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
             });
+            //JWT registration ends here----------------------------------------------------
 
 
-
-            //Repo Registration
+            // Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
-            services.AddScoped<IReferralRepository, MockReferralRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
+            services.AddScoped<InviteRepository, InviteRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
-            //Identity role registration with Stores and default token provider
-            services.AddIdentity<AppUser, IdentityRole>()
+
+
+            // Identity role registration with Stores and default token provider
+            services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
 
+
+            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
+
+            services.AddScoped<SeedData>();
+
+            // Call the seed method after the DbContext is created
+            services.AddScoped<IServiceProvider>(provider =>
+            {
+                var dbContext = provider.GetRequiredService<PalmfitDbContext>();
+                SeedData.Initialize(dbContext);
+                return provider;
+            });
+
+            /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
     }
 }

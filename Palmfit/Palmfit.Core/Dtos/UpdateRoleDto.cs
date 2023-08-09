@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Dtos
 {
-    public class InviteDto
+    public class UpdateRoleDto
     {
-        public DateTime Date { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
     }
 }
