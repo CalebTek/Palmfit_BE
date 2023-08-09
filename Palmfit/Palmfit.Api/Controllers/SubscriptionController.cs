@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
+using System.Security.Claims;
 
 namespace Palmfit.Api.Controllers
 {

@@ -1,9 +1,11 @@
-﻿using Palmfit.Core.Services;
+﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,5 +62,9 @@ namespace Palmfit.Core.Implementations
             return await Task.FromResult(_subscriptions.Where(s => s.AppUser.UserName == userName).ToList());
         }
 
+        Task<Subscription> ISubscriptionRepository.CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
