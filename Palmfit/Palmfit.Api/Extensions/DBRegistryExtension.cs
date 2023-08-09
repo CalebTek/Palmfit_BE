@@ -62,10 +62,9 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
-            services.AddScoped<ISubscriptionRepository, MockSubscriptionRepository>();
             services.AddScoped<InviteRepository, InviteRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
-            //services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
 
