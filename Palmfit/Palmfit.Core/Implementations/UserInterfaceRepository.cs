@@ -68,7 +68,30 @@ namespace Palmfit.Core.Implementations
             {
                 return "User failed to update.";
             }
+        }
 
+        public async Task<UserDto> GetUserByIdAsync(string id)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new UserDto
+            {
+                Title = user.Title,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                Image = user.Image,
+                Address = user.Address,
+                Area = user.Area,
+                State = user.State,
+                Gender = user.Gender,
+                DateOfBirth = user.DateOfBirth,
+                Country = user.Country
+            };
         }
     }
 }
