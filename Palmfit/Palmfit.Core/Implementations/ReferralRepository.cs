@@ -20,15 +20,22 @@ namespace Palmfit.Core.Implementations
 
         public async Task<IEnumerable<InviteDto>> GetInvitesByReferralCodeAsync(string referralCode)
         {
+            var validReferral = await _dbContext.Referrals.FirstOrDefaultAsync(r => r.ReferralCode == referralCode);
+
+            if (validReferral == null)
+            {
+                return new List<InviteDto>(); 
+            }
+
             var invites = await _dbContext.Invites
-                .Where(invite => invite.AppUser.Referrals.Any(r => r.ReferralCode == referralCode))
+                .Where(invite => invite.AppUser.ReferralCode == referralCode)
                 .Select(invite => new InviteDto
                 {
                     Name = invite.Name,
                     Email = invite.Email,
                     Phone = invite.Phone,
                     Date = invite.Date,
-                    ReferralCode = referralCode
+                    ReferralCode = invite.AppUser.ReferralCode
                 })
                 .ToListAsync();
 
