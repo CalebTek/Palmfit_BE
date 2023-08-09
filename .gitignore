@@ -389,3 +389,4 @@ Palmfit/**/*.csproj.nuget.g.props
 Palmfit/**/*.project.assets.json
 Palmfit/**/*.project.nuget.cache
 
+/Palmfit/Palmfit.Core/obj/Debug/net7.0/Palmfit.Core.csproj.AssemblyReference.cache
