@@ -1,5 +1,4 @@
 ﻿using Data.Entities;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +21,7 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
-        public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
+        public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUser> users { get; set; }
 
@@ -163,21 +162,21 @@ namespace Palmfit.Data.AppDbContext
             {
                 new FoodClass {
                     Id = "1",
-                    Name = "Grains", 
-                    Description = "Foods from grains", 
-                    Details = "Foods derived from various grains", 
+                    Name = "Grains",
+                    Description = "Foods from grains",
+                    Details = "Foods derived from various grains",
                     IsDeleted = false },
                 new FoodClass {
                     Id = "2",
-                    Name = "Vegetables", 
-                    Description = "Various types of vegetables", 
-                    Details = "Different vegetables with unique nutritional profiles", 
+                    Name = "Vegetables",
+                    Description = "Various types of vegetables",
+                    Details = "Different vegetables with unique nutritional profiles",
                     IsDeleted = false },
                 new FoodClass {
                     Id = "3",
-                    Name = "Fruits", 
-                    Description = "Assorted fruits", 
-                    Details = "Fresh and juicy fruits from around the world", 
+                    Name = "Fruits",
+                    Description = "Assorted fruits",
+                    Details = "Fresh and juicy fruits from around the world",
                     IsDeleted = false },
                 new FoodClass {
                     Id = "4",
