@@ -22,8 +22,9 @@ namespace Palmfit.Api.Controllers
             _food = foodInterfaceRepository;
         }
 
-        [HttpGet("get-all-meals")]
 
+
+        [HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database

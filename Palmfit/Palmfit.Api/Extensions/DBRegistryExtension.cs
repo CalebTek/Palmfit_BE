@@ -27,8 +27,10 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+             
 
              
+
 
 
             // Configure JWT authentication options-------------------------------------------
@@ -52,6 +54,8 @@ namespace Palmfit.Api.Extensions
                     };
                 });
             //jwt configuration ends-------------
+
+
             //Password configuration
             services.Configure<IdentityOptions>(options =>
             {
@@ -67,6 +71,10 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddScoped<InviteRepository, InviteRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
             services.AddScoped<InviteRepository, InviteRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
