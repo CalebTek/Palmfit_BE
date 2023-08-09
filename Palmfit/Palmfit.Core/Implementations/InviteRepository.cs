@@ -33,5 +33,31 @@ namespace Palmfit.Core.Implementations
             return invites;
 
         }
+
+        /* < Start ----- Get Invites by Referral Code ---- Start > */
+        public async Task<IEnumerable<InviteDto>> GetInvitesByReferralCodeAsync(string referralCode)
+        {
+            var appUser = _dbContext.Users.FirstOrDefault(user => user.ReferralCode == referralCode);
+
+            if (appUser == null)
+            {
+                return new List<InviteDto>();
+            }
+
+            var invites = await _dbContext.Invites
+                .Where(user => user.AppUserId == appUser.Id)
+                .Select(invite => new InviteDto
+                {
+                    Name = invite.Name,
+                    Email = invite.Email,
+                    Phone = invite.Phone,
+                    Date = invite.Date,
+                })
+                .ToListAsync();
+
+            return invites;
+        }
+
+        /* < End ----- Get Invites by Referral Code ---- End > */
     }
 }

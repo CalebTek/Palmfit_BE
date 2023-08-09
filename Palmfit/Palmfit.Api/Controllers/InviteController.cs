@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 
 namespace Palmfit.Api.Controllers
@@ -28,6 +29,19 @@ namespace Palmfit.Api.Controllers
             {
                 return NotFound(ApiResponse.Failed("Invite does not exist."));
             }
+        }
+
+        [HttpGet("{ReferralCode}/get-invites-by-referral-code")]
+        public async Task<ActionResult<IEnumerable<InviteDto>>> GetInvitesByReferralCode(string referralCode)
+        {
+            if (string.IsNullOrWhiteSpace(referralCode))
+            {
+                return BadRequest(ApiResponse.Failed("Referral code cannot be empty."));
+            }
+
+            var invites = await _inviteRepository.GetInvitesByReferralCodeAsync(referralCode);
+
+            return Ok(ApiResponse.Success(invites));
         }
     }
 }

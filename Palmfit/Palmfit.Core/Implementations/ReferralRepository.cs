@@ -36,7 +36,6 @@ namespace Palmfit.Core.Implementations
                     Email = invite.Email,
                     Phone = invite.Phone,
                     Date = invite.Date,
-                    ReferralCode = invite.AppUser.ReferralCode
                 })
                 .ToListAsync();
 
