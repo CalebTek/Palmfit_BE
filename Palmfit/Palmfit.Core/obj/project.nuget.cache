@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "tVcUA+g/e0UJ4iH9qa8zwEbskMDJW2U4tLAaqqytgeycgox2ok5pK6kogt2VYTfOGv75fjo8OirFnzAUu4aCFw==",
+=======
+  "dgSpecHash": "/o8gRrYrwQt/gTvtk62hkqvTipXKF+dPR2+ajHfXqYaSJ4RCdHEkoUSUUzIyWNu3nvU/TpbhzGIcZGnI5ssFgQ==",
+>>>>>>> develop
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
   "expectedPackageFiles": [
