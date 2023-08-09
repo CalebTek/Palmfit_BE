@@ -15,7 +15,7 @@ namespace Palmfit.Api.Controllers
             _subscriptionRepository = subscriptionRepository;
         }
 
-        [HttpDelete("delete-subscription")]
+        [HttpDelete("/subscription")]
         public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
         {
             try
