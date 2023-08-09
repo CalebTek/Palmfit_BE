@@ -232,20 +232,7 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        [HttpDelete("delete-user/{userId}")]
-        public async Task<IActionResult> DeleteUser(string userId)
-        {
-            var deletionResult = await _authRepo.DeleteUserAsync(userId);
-
-            if (deletionResult)
-            {
-                return Ok(new ApiResponse<string>("User deleted successfully."));
-            }
-            else
-            {
-                return BadRequest(new ApiResponse<string>("User deletion failed."));
-            }
-        }
+     
 
 
 

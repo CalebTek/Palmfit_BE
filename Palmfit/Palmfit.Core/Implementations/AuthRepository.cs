@@ -222,38 +222,7 @@ namespace Palmfit.Core.Implementations
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
         }
 
-        public async Task<bool> DeleteUserAsync(string userId)
-        {
-            try
-            {
-                var user = await _userManager.FindByIdAsync(userId);
-
-                if (user != null)
-                {
-                    var result = await _userManager.DeleteAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        
-                        foreach (var error in result.Errors)
-                        {
-                            
-                            Console.WriteLine($"Delete user failed: {error.Description}");
-                        }
-                    }
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while deleting the user: {ex.Message}");
-                return false;
-            }
-        }
+       
 
 
     }
