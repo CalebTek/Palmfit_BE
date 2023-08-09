@@ -53,9 +53,9 @@ namespace Palmfit.Api.Controllers
             var userInvites = await _inviteRepository.GetAllUserInvitesAsync(page, pageSize);
             if (userInvites.Data.Any())
             {
-                return NotFound(ApiResponse.Failed("No User Invite exists"));
+                return Ok(ApiResponse.Success(userInvites));
             }
-            return Ok(ApiResponse.Success(userInvites));
+            return NotFound(ApiResponse.Failed("No User Invite exists"));
         }
     }
 }
