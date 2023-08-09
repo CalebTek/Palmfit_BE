@@ -33,7 +33,7 @@ namespace Palmfit.Api.Controllers
 
 
         [HttpGet("get-all-wallet-histories")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllWalletHistories(int page, int pageSize)
         {
             var paginatedResponse = await _wallet.WalletHistories(page, pageSize);

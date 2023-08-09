@@ -1,4 +1,6 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Core.Helpers;
+using Palmfit.Core.Dtos;
+using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace Palmfit.Core.Services
 {
     public interface IInviteRepository
     {
+        Task<PaginParameter<Invite>> GetAllUserInvitesAsync(int page, int pageSize);
         Task<List<InviteDto>> GetInvitesByUserId(string userId);
         Task<bool> Deleteinvite(string id);
     }

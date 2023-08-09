@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -42,6 +43,19 @@ namespace Palmfit.Api.Controllers
                 return NotFound(ApiResponse.Failed(result, "Invite not found"));
 
             return Ok(ApiResponse.Success(result));
+        }
+
+
+        [HttpGet("retrieve-all-user-invites")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUserInvites(int page, int pageSize)
+        {
+            var userInvites = await _inviteRepository.GetAllUserInvitesAsync(page, pageSize);
+            if (userInvites.Data.Any())
+            {
+                return NotFound(ApiResponse.Failed("No User Invite exists"));
+            }
+            return Ok(ApiResponse.Success(userInvites));
         }
     }
 }
