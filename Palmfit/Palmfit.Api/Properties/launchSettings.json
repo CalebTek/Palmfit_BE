@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "https": {
+    "Palmfit.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

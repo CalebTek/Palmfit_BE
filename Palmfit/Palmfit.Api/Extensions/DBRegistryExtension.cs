@@ -21,7 +21,6 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
-             
 
 
             // Configure JWT authentication options-------------------------------------------
@@ -69,8 +68,6 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
-
-
             // Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
@@ -79,15 +76,13 @@ namespace Palmfit.Api.Extensions
 
             /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
 
-            services.AddScoped<SeedData>();
+            //services.AddScoped<SeedData>();
 
             // Call the seed method after the DbContext is created
-            services.AddScoped<IServiceProvider>(provider =>
-            {
-                var dbContext = provider.GetRequiredService<PalmfitDbContext>();
-                SeedData.Initialize(dbContext);
-                return provider;
-            });
+            //services.AddScoped<IServiceProvider>(provider =>
+            //{
+
+            //});
 
             /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
