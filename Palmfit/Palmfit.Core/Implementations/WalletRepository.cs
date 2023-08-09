@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -11,23 +12,24 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
-    public class WalletRepository :IWalletRepository
+    public class WalletRepository : IWalletRepository
     {
 
-        private readonly PalmfitDbContext _db;
+        private readonly PalmfitDbContext _palmfitDb;
 
-        public WalletRepository(PalmfitDbContext db)
+        public WalletRepository(PalmfitDbContext palmfitDb)
         {
-            _db = db;
+            _palmfitDb = palmfitDb;
         }
 
         public async Task<Wallet> GetWalletByUserId(string userId)
         {
-            return await _db.Wallets.FirstOrDefaultAsync(w => w.AppUserId == userId);
+            return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == userId);
         }
+
         public async Task<string> RemoveFundFromWallet(string walletId, decimal amount)
         {
-            var wallet = await _db.Wallets.FirstOrDefaultAsync(w => w.Id == walletId);
+            var wallet = await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.Id == walletId);
 
             if (wallet == null)
             {
@@ -43,9 +45,27 @@ namespace Palmfit.Core.Implementations
             return "Successfully removed fund"; // Successfully removed funds
         }
 
-        Task<List<Wallet>> IWalletRepository.GetWalletByUserId(string userId)
+        public async Task<PaginParameter<WalletHistory>> WalletHistories(int page, int pageSize)
         {
-            throw new NotImplementedException();
+
+            int totalCount = await _palmfitDb.WalletHistories.CountAsync();
+            int skip = (page - 1) * pageSize;
+
+            var histories = await _palmfitDb.WalletHistories
+                .Include(i => i.Wallet)
+                .OrderByDescending(t => t.Date)
+                .Skip(skip)
+                .ToListAsync();
+
+            var paginatedResponse = new PaginParameter<WalletHistory>
+            {
+                TotalCount = totalCount,
+                Page = page,
+                PageSize = pageSize,
+                Data = histories
+            };
+
+            return paginatedResponse;
         }
     }
 }
