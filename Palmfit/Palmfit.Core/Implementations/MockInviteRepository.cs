@@ -4,13 +4,13 @@ using Palmfit.Data.Entities;
 
 namespace Palmfit.Core.Implementations
 {
-    public class MockReferralRepository : IReferralRepository
+    public class MockInviteRepository : IInviteRepository
     {
         private readonly List<Referral> _referrals;
         private readonly List<Invite> _invites;
         private readonly List<AppUser> _appUsers;
 
-        public MockReferralRepository()
+        public MockInviteRepository()
         {
             _referrals = new List<Referral>
             {
@@ -55,8 +55,10 @@ namespace Palmfit.Core.Implementations
             return invites;
         }
 
-
-        
+        Task<List<InviteDto>> IInviteRepository.GetInvitesByUserId(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

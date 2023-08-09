@@ -31,7 +31,7 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        [HttpGet("{ReferralCode}/get-invites-by-referral-code")]
+        [HttpGet("get-invites-by-referral-code")]
         public async Task<ActionResult<IEnumerable<InviteDto>>> GetInvitesByReferralCode(string referralCode)
         {
             if (string.IsNullOrWhiteSpace(referralCode))
