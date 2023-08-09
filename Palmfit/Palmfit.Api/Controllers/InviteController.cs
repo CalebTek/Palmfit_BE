@@ -10,10 +10,11 @@ namespace Palmfit.Api.Controllers
     public class InviteController : ControllerBase
     {
         private readonly IInviteRepository _inviteRepository;
-
-        public InviteController(IInviteRepository inviteRepository)
+       
+        //ctor
+        public InviteController(IInviteRepository inviteServices)
         {   
-            _inviteRepository = inviteRepository;
+            _inviteRepository = inviteServices;
         }
 
         [HttpGet("{userId}/api-to-invites-of-user")]
@@ -28,6 +29,19 @@ namespace Palmfit.Api.Controllers
             {
                 return NotFound(ApiResponse.Failed("Invite does not exist."));
             }
+        }
+
+
+        [HttpDelete("Delete-Invite/{id}")]
+        public async Task<IActionResult> DeleteInvite(string id)
+        {
+
+            var result = await _inviteRepository.Deleteinvite(id);
+
+            if (!result)
+                return NotFound(ApiResponse.Failed(result, "Invite not found"));
+
+            return Ok(ApiResponse.Success(result));
         }
     }
 }
