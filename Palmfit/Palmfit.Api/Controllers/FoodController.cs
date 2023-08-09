@@ -16,15 +16,15 @@ namespace Palmfit.Api.Controllers
     public class FoodController : ControllerBase
     {
         private readonly IFoodInterfaceRepository _food;
+		private readonly IMealPlanRepository _mealPlanRepository;
 
-        public FoodController(IFoodInterfaceRepository foodInterfaceRepository)
-        {
-            _food = foodInterfaceRepository;
-        }
+		public FoodController(IFoodInterfaceRepository food, IMealPlanRepository mealPlanRepository)
+		{
+			_food = food;
+			_mealPlanRepository = mealPlanRepository;
+		}
 
-
-
-        [HttpGet("get-all-meals")]
+		[HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
@@ -107,5 +107,46 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(updatedfood));
         }
-    }
+
+
+		[HttpGet("daily-meal-plan")]
+		[ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+		public async Task<IActionResult> GetDailyMealPlan(int day, string appUserId)
+		{
+			if (day < 0 && day > 6 || appUserId == null)
+				return BadRequest("wrong parameter entry!");
+
+			var result = await _mealPlanRepository.GetDailyPlan(day, appUserId);
+
+			if (result == null)
+			{
+				return NotFound(new ApiResponse<string>("meal plan not found!"));
+			}
+			return Ok(ApiResponse.Success(result));
+		}
+
+
+		[HttpGet("weekly-meal-plan")]
+		[ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+		public async Task<IActionResult> GetWeeklyPlan(int week, string appUserId)
+		{
+
+			if (week < 1 || week > 53 || appUserId == null)
+			{
+				return BadRequest(new ApiResponse<string>("wrong parameter entry!"));
+			}
+
+			var result = await _mealPlanRepository.GetWeeklyPlan(week, appUserId);
+			if (result == null)
+			{
+				return NotFound(new ApiResponse<string>("meal plan not found!"));
+			}
+
+			return Ok(ApiResponse.Success(result));
+		}
+	}
 }
