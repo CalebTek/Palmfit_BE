@@ -92,5 +92,30 @@ namespace Palmfit.Core.Implementations
                 Country = user.Country
             };
         }
+
+        //get user status
+        public async Task<UserInfoDto> GetUserStatus(string id)
+        {
+            
+            var getData = await _db.Subscriptions.Include(u => u.AppUser).Where(x => x.AppUserId == id).OrderBy(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (getData == null) return null;
+
+            UserInfoDto userInfo = new()
+            {
+                LastOnline = getData.AppUser.LastOnline,
+                IsVerified = getData.AppUser.IsVerified,
+                Active = getData.AppUser.Active,
+                ReferralCode = getData.AppUser.ReferralCode,
+                InviteCode = getData.AppUser.InviteCode,
+                Type = getData.Type,
+                IsExpired = getData.IsExpired,
+                EndDate = getData.EndDate
+            };
+
+            return userInfo;
+
+        }
+
     }
 }
