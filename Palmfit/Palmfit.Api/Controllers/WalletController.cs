@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -28,6 +29,19 @@ namespace Palmfit.Api.Controllers
             }
             return Ok(ApiResponse.Success("Funds successfully removed"));
             
+        }
+
+
+        [HttpGet("get-all-wallet-histories")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllWalletHistories(int page, int pageSize)
+        {
+            var paginatedResponse = await _wallet.WalletHistories(page, pageSize);
+            if(paginatedResponse.TotalCount <= 0)
+            {
+                return BadRequest(ApiResponse.Failed("No wallet history found!"));
+            }
+            return Ok(ApiResponse.Success(paginatedResponse));
         }
     }
 }
