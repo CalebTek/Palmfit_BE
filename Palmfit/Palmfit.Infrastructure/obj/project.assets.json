@@ -4040,19 +4040,37 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\HP\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> d8d416944f7939cb84a068110f3fbfa9bb07aa62
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "projectName": "Palmfit.Infrastructure",
       "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "projectName": "Palmfit.Infrastructure",
+      "projectPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Decagon Laptop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Decagon Laptop\\OneDrive\\Desktop\\Live\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+>>>>>>> d8d416944f7939cb84a068110f3fbfa9bb07aa62
       "projectStyle": "PackageReference",
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Decagon Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> d8d416944f7939cb84a068110f3fbfa9bb07aa62
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4060,8 +4078,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< HEAD
         "https://api.nuget.org/v3/index.json": {},
         "https://pkgs.dev.azure.com/fusionng/Fusion_Community/_packaging/SterlingFusionSharedLibrary/nuget/v3/index.json": {}
+=======
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+>>>>>>> d8d416944f7939cb84a068110f3fbfa9bb07aa62
       },
       "frameworks": {
         "net7.0": {
@@ -4104,7 +4127,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
