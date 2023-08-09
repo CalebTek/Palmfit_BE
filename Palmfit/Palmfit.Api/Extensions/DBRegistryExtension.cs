@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CloudinaryDotNet;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -19,8 +21,22 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            // Cloudinary registration -------------------------------------
+            var cloudinarySettings = new CloudinarySettings();
+            configuration.GetSection("Cloudinary").Bind(cloudinarySettings);
+
+            var cloudinaryAccount = new CloudinaryDotNet.Account(
+                cloudinarySettings.CloudName,
+                cloudinarySettings.ApiKey,
+                cloudinarySettings.ApiSecret
+            );
+            var cloudinary = new Cloudinary(cloudinaryAccount);
+            services.AddSingleton(cloudinary);
+            // Cloudinary registration ends --------------------------------
+
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+
              
 
 
@@ -66,6 +82,8 @@ namespace Palmfit.Api.Extensions
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IWalletRepository, WalletRepository>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+
 
 
 
