@@ -363,8 +363,29 @@ MigrationBackup/
 FodyWeavers.xsd
 /Palmfit/Palmfit.Core/obj/Debug/net7.0/Palmfit.Core.assets.cache
 
-*.vs
-*.obj
-*.binlog
-*.[Dd]ebug
-/Palmfit/.vs/Palmfit/v17/.suo
+/.vs
+/.obj
+bin/
+obj/
+/main/**/bin/
+
+# Ignore Palmfit.Core obj files
+Palmfit/Palmfit.Core/obj/
+
+# Ignore Palmfit.Data obj files
+Palmfit/Palmfit.Data/obj/
+
+# Ignore Palmfit.Infrastructure obj files
+Palmfit/Palmfit.Infrastructure/obj/
+
+# Ignore specific files
+Palmfit/**/*.GeneratedMSBuildEditorConfig.editorconfig
+Palmfit/**/*.AssemblyInfo.cs
+Palmfit/**/*.AssemblyInfoInputs.cache
+Palmfit/**/*.assets.cache
+Palmfit/**/*.csproj.AssemblyReference.cache
+Palmfit/**/*.csproj.nuget.dgspec.json
+Palmfit/**/*.csproj.nuget.g.props
+Palmfit/**/*.project.assets.json
+Palmfit/**/*.project.nuget.cache
+

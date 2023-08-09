@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Palmfit.Data.Entities
+namespace Palmfit.Core.Dtos
 {
-    public class Food : BaseEntity
+    public class FoodDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,8 +15,8 @@ namespace Palmfit.Data.Entities
         public string Origin { get; set; }
         public string Image { get; set; }
         public decimal Calorie { get; set; }
-        public UnitType Unit { get; set; } // Use the UnitType enum
+        public UnitType Unit { get; set; }
         public string FoodClassId { get; set; }
-        public FoodClass FoodClass { get; set; }
+
     }
 }
