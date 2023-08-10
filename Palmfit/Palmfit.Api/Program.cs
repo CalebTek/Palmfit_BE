@@ -4,6 +4,7 @@ using Palmfit.Api.Extensions;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
+using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,22 +36,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-//// Add appsettings.json configuration
-//var config = app.Services.GetRequiredService<IConfiguration>();
-//var env = app.Environment;
-//var configBuilder = new ConfigurationBuilder()
-//    .SetBasePath(env.ContentRootPath)
-//    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-//    //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
-//    .AddEnvironmentVariables();
-//config = configBuilder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+Seeder.SeedData(app).Wait();
 
 app.UseHttpsRedirection();
 
