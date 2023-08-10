@@ -22,4 +22,5 @@ RUN dotnet publish "Palmfit.Api.csproj" -c Release -o /app/publish /p:UseAppHost
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Palmfit.Api.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Palmfit.Api.dll
+#ENTRYPOINT ["dotnet", "Palmfit.Api.dll"]
