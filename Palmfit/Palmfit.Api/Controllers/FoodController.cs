@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Implementations;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 using Palmfit.Data.EntityEnums;
 using Palmfit.Core.Services;
 
@@ -25,8 +27,9 @@ namespace Palmfit.Api.Controllers
             _db = db;
         }
 
-        [HttpGet("get-all-meals")]
 
+
+        [HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
@@ -42,7 +45,35 @@ namespace Palmfit.Api.Controllers
 
                 return (Ok(ApiResponse.Success(result)));
             }
+            
         }
+
+        [HttpGet("get-meal-Id")]
+        public async Task<IActionResult> GetFoodById(string Id)
+        {
+            
+            {
+                var meal = await _food.GetFoodById(Id);
+
+                if (meal == null)
+                {
+                    return NotFound(ApiResponse.Failed("Meal not found"));
+                }
+
+                var mealDto = new FoodDto
+                {
+                    Name = meal.Name,
+                    Description = meal.Description,
+                    Image = meal.Image
+                };
+
+                return Ok(ApiResponse.Success( mealDto));
+            }
+            
+            
+        }
+
+        
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
 
@@ -147,6 +178,25 @@ namespace Palmfit.Api.Controllers
 
 
 
+
+        [HttpDelete("{id}/Delete-Food-byId")]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
+        {
+
+            var targetedFood = await _food.GetFoodByIdAsync(id);
+
+            if (targetedFood == null)
+            {
+           
+                return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
+            }
+
+            else
+            {
+                await _food.DeleteAsync(id);
+                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
+            }
+        }
 
         //api-to-updatefood
         [HttpPut("{id}")]

@@ -31,6 +31,13 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.ToListAsync();
         }
 
+        
+        public async Task<Food> GetFoodById(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+
 
         public async Task AddFoodAsync(Food food)
         {
@@ -169,7 +176,7 @@ namespace Palmfit.Core.Implementations
             if (getFoodData.Count() == 0 )
                 return null;
 
-            List<FoodDto> result = null;
+            List<FoodDto> result = new();
 
             foreach (var food in getFoodData)
             {
@@ -192,5 +199,21 @@ namespace Palmfit.Core.Implementations
             return result;
         }
 
+        public async Task<Food> GetFoodByIdAsync(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task<string> DeleteAsync(string id)
+        {
+           
+            var existingFood = await GetFoodByIdAsync(id);
+            if (existingFood == null)
+            {
+                return $"Food with Id: {id} cannot be found";
+            }
+            _db.Foods.Remove(existingFood);
+            await _db.SaveChangesAsync();
+            return "Successfully deleted";
+        }
     }
-}
+ }
