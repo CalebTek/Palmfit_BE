@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Implementations;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Api.Controllers
 {
@@ -21,8 +24,9 @@ namespace Palmfit.Api.Controllers
             _food = foodInterfaceRepository;
         }
 
-        [HttpGet("get-all-meals")]
 
+
+        [HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
@@ -39,7 +43,72 @@ namespace Palmfit.Api.Controllers
 
                 return (Ok(ApiResponse.Success(result)));
             }
+            
         }
+
+        [HttpGet("get-meal-Id")]
+        public async Task<IActionResult> GetFoodById(string Id)
+        {
+            
+            {
+                var meal = await _food.GetFoodById(Id);
+
+                if (meal == null)
+                {
+                    return NotFound(ApiResponse.Failed("Meal not found"));
+                }
+
+                var mealDto = new FoodDto
+                {
+                    Name = meal.Name,
+                    Description = meal.Description,
+                    Image = meal.Image
+                };
+
+                return Ok(ApiResponse.Success( mealDto));
+            }
+            
+            
+        }
+
+        
+
+        /* < Start----- required methods to Calculate Calorie -----Start > */
+
+        [HttpGet("calculate-calorie-by-name")]
+        public async Task<ActionResult<ApiResponse<decimal>>> CalculateCalorieForFoodByName(string foodName, UnitType unit, decimal amount)
+        {
+            try
+            {
+                decimal calorie = await _food.GetCalorieByNameAsync(foodName, unit, amount);
+                return ApiResponse<decimal>.Success(calorie, "Calorie calculation successful");
+            }
+            catch (ArgumentException ex)
+            {
+                return ApiResponse<decimal>.Failed(0, ex.Message);
+            }
+        }
+
+        [HttpGet("calculate-total-calorie")]
+        public async Task<ActionResult<ApiResponse<decimal>>> CalculateTotalCalorieForSelectedFoods([FromQuery] Dictionary<string, (UnitType unit, decimal amount)> foodNameAmountMap)
+        {
+            if (foodNameAmountMap == null || !foodNameAmountMap.Any())
+            {
+                return ApiResponse<decimal>.Failed(0, "Food IDs and units dictionary cannot be empty.");
+            }
+
+            try
+            {
+                decimal totalCalorie = await _food.CalculateTotalCalorieAsync(foodNameAmountMap);
+                return ApiResponse<decimal>.Success(totalCalorie, "Total calorie calculation successful");
+            }
+            catch (ArgumentException ex)
+            {
+                return ApiResponse<decimal>.Failed(0, ex.Message);
+            }
+        }
+
+        /* < End----- required methods to Calculate Calorie -----End > */
 
         [HttpGet("foods-based-on-class")]
         public async Task<IActionResult> GetFoodsBasedOnClass(string id)
