@@ -23,6 +23,8 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
 
 
             // Configure JWT authentication options-------------------------------------------
