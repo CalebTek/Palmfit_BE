@@ -17,7 +17,6 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 using Palmfit.Core.Helpers;
 
 namespace Palmfit.Core.Implementations
