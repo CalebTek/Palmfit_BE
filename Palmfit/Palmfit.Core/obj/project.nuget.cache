@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ETQC/0wDMhwh1pZijbBHgnmzBhUb+TTGgyqMZDZPK5LXPznnbwAlnG3y6Jbw6/WDn41R3Rhx/dtsLbwjTiiopw==",
+  "dgSpecHash": "65ltBQfuNUrBC6+sz89HA3j3gPpoZSDQORAU/3nbhQTIFED0ZOfhuXqMEqekvuqnmbr3FQC9K5kQDLkdR4gPQg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Documents\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+  "projectFilePath": "C:\\Sterling\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

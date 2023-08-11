@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ED1pHv6mZ6iEBKONz6CTdDRQ4UupF5zIPa7xkDikWeqqdU17rgz2X15lqdgZVuW4RlISK4QvvqZXW+9Nm0HkkA==",
+  "dgSpecHash": "SQiSCa3606m8QbKcaog3xKX6OFv6w36XVjJ33H3t8aUMHa8So/G9z+BST7UM+SS4BzPaak9wFtJG/jUxWhlZwg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Documents\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "projectFilePath": "C:\\Sterling\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.4\\microsoft.aspnet.identity.core.2.2.4.nupkg.sha512",
