@@ -1,10 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Palmfit.Api.Extensions;
-using Palmfit.Core.Implementations;
-using Palmfit.Core.Services;
-using Palmfit.Data.AppDbContext;
-using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-Seeder.SeedData(app).Wait();
+//Seeder.SeedData(app).Wait();
 
 app.UseHttpsRedirection();
 

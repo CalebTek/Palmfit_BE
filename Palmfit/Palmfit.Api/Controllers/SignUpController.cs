@@ -27,5 +27,7 @@ namespace Palmfit.Api.Controllers
             return BadRequest(ApiResponse.Failed(res));
 
         }
+       
+
     }
 }

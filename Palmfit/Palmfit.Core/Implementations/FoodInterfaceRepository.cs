@@ -6,6 +6,7 @@ using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,24 @@ namespace Palmfit.Core.Implementations
 		public async Task<List<Food>> GetAllFoodAsync() 
         {
             return await _dbContext.Foods.ToListAsync();
+        }
+
+        
+        public async Task<Food> GetFoodById(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+
+
+        public async Task AddFoodAsync(Food food)
+        {
+            // Generate a new GUID for the Food entity
+            food.Id = Guid.NewGuid().ToString();
+
+            // Add the new food to the database
+            await _db.Foods.AddAsync(food);
+            await _db.SaveChangesAsync();
         }
 
 
@@ -135,6 +154,18 @@ namespace Palmfit.Core.Implementations
         }
 
 
+        public async Task AddFoodClassAsync(FoodClass foodClass)
+        {
+            // Generate a new GUID for the FoodClass entity
+            foodClass.Id = Guid.NewGuid().ToString();
+
+            // Add the new FoodClass to the database
+            await _db.FoodClasses.AddAsync(foodClass);
+            await _db.SaveChangesAsync();
+        }
+
+
+
         //get food list by category
         public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
         {
@@ -143,7 +174,7 @@ namespace Palmfit.Core.Implementations
             if (getFoodData.Count() == 0 )
                 return null;
 
-            List<FoodDto> result = null;
+            List<FoodDto> result = new();
 
             foreach (var food in getFoodData)
             {
@@ -197,3 +228,22 @@ namespace Palmfit.Core.Implementations
 	}
 }
 
+
+        public async Task<Food> GetFoodByIdAsync(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task<string> DeleteAsync(string id)
+        {
+           
+            var existingFood = await GetFoodByIdAsync(id);
+            if (existingFood == null)
+            {
+                return $"Food with Id: {id} cannot be found";
+            }
+            _db.Foods.Remove(existingFood);
+            await _db.SaveChangesAsync();
+            return "Successfully deleted";
+        }
+    }
+ }

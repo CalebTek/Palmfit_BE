@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    public interface ISubscriptionRepository
+    public interface IReviewRepository 
     {
-        Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser);
-        Task<bool> DeleteSubscriptionAsync(string subscriptionId);
+        Task<List<Review>> GetReviewsByUserIdAsync(string userId);
+        Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId);
     }
 }
