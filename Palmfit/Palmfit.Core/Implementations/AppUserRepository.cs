@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Palmfit.Core.Implementations
     public class AppUserRepository : IAppUserRepository
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly PalmfitDbContext _dbContext;
 
-        public AppUserRepository(UserManager<AppUser> userManager)
+        public AppUserRepository(UserManager<AppUser> userManager, PalmfitDbContext dbContext)
         {
             _userManager = userManager;
+            _dbContext = dbContext;
         }
 
         public async Task<string> CreateUser(SignUpDto userRequest)
@@ -33,7 +36,7 @@ namespace Palmfit.Core.Implementations
                     LastName = userRequest.Lastname,
                     Email = userRequest.Email,
                     UserName = userRequest.Email
-                    
+
 
 
                 };
@@ -53,10 +56,10 @@ namespace Palmfit.Core.Implementations
 
             return "There was a problem registring user";
         }
-
-
-
-
+        public async Task<AppUser> GetUserById(string userId)
+        {
+            return await _dbContext.Users.FindAsync(userId);
+        }
     }
 }
 
