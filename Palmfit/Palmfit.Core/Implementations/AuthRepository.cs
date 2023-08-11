@@ -216,6 +216,18 @@ namespace Palmfit.Core.Implementations
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
         }
 
+        public async Task<string> IsEmailVerifiedAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var isUserVerified = _palmfitDb.Users.Any(u => u.IsVerified == true);
+
+            string message = (user == null)
+                ? "User does not exist"
+                : (isUserVerified)
+                    ? "User is verified"
+                    : "The user has not been verified!";
+            return message;
+        }
 
 
     }

@@ -35,6 +35,5 @@ namespace Palmfit.Data.Entities
         public ICollection<Subscription> Subscriptions { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
         public ICollection<Referral> Referrals { get; set; }
-
     }
 }
