@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Implementations;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Api.Controllers
@@ -41,7 +43,35 @@ namespace Palmfit.Api.Controllers
 
                 return (Ok(ApiResponse.Success(result)));
             }
+            
         }
+
+        [HttpGet("get-meal-Id")]
+        public async Task<IActionResult> GetFoodById(string Id)
+        {
+            
+            {
+                var meal = await _food.GetFoodById(Id);
+
+                if (meal == null)
+                {
+                    return NotFound(ApiResponse.Failed("Meal not found"));
+                }
+
+                var mealDto = new FoodDto
+                {
+                    Name = meal.Name,
+                    Description = meal.Description,
+                    Image = meal.Image
+                };
+
+                return Ok(ApiResponse.Success( mealDto));
+            }
+            
+            
+        }
+
+        
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
 
