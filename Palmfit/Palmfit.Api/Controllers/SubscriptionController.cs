@@ -38,10 +38,10 @@ namespace Palmfit.Api.Controllers
             var user = await _userManager.FindByIdAsync(loggedInUser.Value);
             if (user == null)
             {
-                return NotFound(ApiResponse.Failed("User not found."));  
+                return NotFound(ApiResponse.Failed("User not found."));
             }
 
-            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User );
+            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User);
             if (createdSubscription != null)
             {
                 return Ok(ApiResponse.Success("Subscription created successfully."));
@@ -52,8 +52,23 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        
+        [HttpDelete("/subscription")]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
+        {
+            try
+            {
+                var result = await _subscriptionRepo.DeleteSubscriptionAsync(subscriptionId);
+
+                if (!result)
+                    return ApiResponse<bool>.Failed(false, "Subscription not found");
+
+                return ApiResponse<bool>.Success(true, "Subscription deleted");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<bool>.Failed(false, ex.Message);
+            }
+        }
 
     }
 }
-
