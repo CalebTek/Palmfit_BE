@@ -1,6 +1,7 @@
 ﻿using Core.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
@@ -67,5 +68,31 @@ namespace Palmfit.Core.Implementations
 
             return paginatedResponse;
         }
+
+
+        public async Task FundWalletAsync(FundWalletDto fundWalletDto, string userId)
+        {
+            var wallet = await _palmfitDb.Wallets.FirstOrDefaultAsync(x => x.AppUserId == userId);
+
+            if (wallet == null)
+            {
+                // Create a new wallet if it doesn't exist
+                wallet = new Wallet
+                {
+                    AppUserId = userId,
+                    Balance = fundWalletDto.Amount
+
+                };
+                _palmfitDb.Wallets.Add(wallet);
+            }
+            else
+            {
+                // Update the existing wallet balance
+                wallet.Balance += fundWalletDto.Amount;
+            }
+
+            await _palmfitDb.SaveChangesAsync();
+        }
+
     }
 }

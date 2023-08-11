@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    public interface IReviewRepository
+    public interface IReviewRepository 
     {
+        Task<List<Review>> GetReviewsByUserIdAsync(string userId);
         Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId);
     }
 }

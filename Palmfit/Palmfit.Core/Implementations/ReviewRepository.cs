@@ -15,18 +15,24 @@ namespace Palmfit.Core.Implementations
 {
     public class ReviewRepository : IReviewRepository
     {
+        private readonly PalmfitDbContext _dbContext;
+        public ReviewRepository(PalmfitDbContext dbContext)
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
 
         public ReviewRepository(PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
+            _dbContext = dbContext;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
         }
 
+        public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
 
         public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
+            var reviewsDto = new ReviewDto();
+            var reviews = new Review
             var user = loggedInUser.FindFirst(ClaimTypes.NameIdentifier);       
             var review = await _palmfitDb.Reviews.FindAsync(reviewId);
 
@@ -41,18 +47,29 @@ namespace Palmfit.Core.Implementations
             }
             else if(review == null)
             {
+                Date = reviewsDto.Date,
+                Comment = reviewsDto.Comment,
+                Rating = reviewsDto.Rating,
+                Verdict = reviewsDto.Verdict,
+                AppUserId = reviewsDto.AppUserId
+            };
+            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            if (!ReviewResult.Any())
                 message = "Review not found";
             }
             else
             {
+                return new List<Review>();
                 review.IsDeleted = true;
                 await _palmfitDb.SaveChangesAsync();
                 message = "Review deleted successful";
             }
             return message;
+            }
+            return ReviewResult;
+
+
+
         }
-
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core.Helpers;
+using Palmfit.Core.Dtos;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace Palmfit.Core.Services
         Task<Wallet> GetWalletByUserId(string userId);
         Task<string> RemoveFundFromWallet(string walletId, decimal amount);
         Task<PaginParameter<WalletHistory>> WalletHistories(int page, int pageSize);
+        Task FundWalletAsync(FundWalletDto fundWalletDto, string userId);
     }
 }
