@@ -123,6 +123,25 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(result));
         }
 
+        [HttpDelete("{id}/Delete-Food-byId")]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
+        {
+
+            var targetedFood = await _food.GetFoodByIdAsync(id);
+
+            if (targetedFood == null)
+            {
+           
+                return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
+            }
+
+            else
+            {
+                await _food.DeleteAsync(id);
+                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
+            }
+        }
+
         //api-to-updatefood
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)

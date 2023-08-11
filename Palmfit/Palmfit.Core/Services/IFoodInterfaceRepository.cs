@@ -25,5 +25,9 @@ namespace Palmfit.Core.Services
 
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
        
+
+        Task<Food> GetFoodByIdAsync(string id);
+        Task<string> DeleteAsync(string id);
+
     }
 }

@@ -175,5 +175,21 @@ namespace Palmfit.Core.Implementations
             return result;
         }
 
+        public async Task<Food> GetFoodByIdAsync(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task<string> DeleteAsync(string id)
+        {
+           
+            var existingFood = await GetFoodByIdAsync(id);
+            if (existingFood == null)
+            {
+                return $"Food with Id: {id} cannot be found";
+            }
+            _db.Foods.Remove(existingFood);
+            await _db.SaveChangesAsync();
+            return "Successfully deleted";
+        }
     }
-}
+ }
