@@ -1,9 +1,9 @@
-﻿using Palmfit.Core.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
