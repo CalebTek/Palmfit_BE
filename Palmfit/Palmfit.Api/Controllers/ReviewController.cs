@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -24,8 +25,8 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(result));
         }
 
-		[HttpPost("add-review")]
-		public async Task<IActionResult> AddReview([FromBody] ReviewDTO review, string userId)
+		[HttpPost("add-review/{userId}")]
+		public async Task<IActionResult> AddReview([FromBody] ReviewDto review, string userId)
 		{
 			//var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			if (userId == null)

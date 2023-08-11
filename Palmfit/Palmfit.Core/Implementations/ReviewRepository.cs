@@ -17,13 +17,13 @@ namespace Palmfit.Core.Implementations
 		private readonly PalmfitDbContext _dbContext;
 		private readonly UserManager<AppUser> _userManager;
 
-		public ReviewRepository(PalmfitDbContext palmfitcontext, UserManager<AppUser> userManager)
+		public ReviewRepository(PalmfitDbContext dbContext, UserManager<AppUser> userManager)
 		{
-			_dbContext = palmfitcontext;
+			_dbContext = dbContext;
 			_userManager = userManager;
 		}
 
-		public async Task<string> AddReview(ReviewDTO reviewDTO, string userId)
+		public async Task<string> AddReview(ReviewDto reviewDTO, string userId)
 		{
 			try
 			{
@@ -59,27 +59,29 @@ namespace Palmfit.Core.Implementations
 			
 		}
 
-	}
+
+		public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
+		{
+			var reviewsDto = new ReviewDto();
+			var reviews = new Review
+			{
+				Date = reviewsDto.Date,
+				Comment = reviewsDto.Comment,
+				Rating = reviewsDto.Rating,
+				Verdict = reviewsDto.Verdict,
+				AppUserId = reviewsDto.AppUserId
+			};
+
+			var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+			if (!ReviewResult.Any())
+			{
+				return new List<Review>();
+			}
+			return ReviewResult;
+
+		}
 
 
-        public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
-        {
-            var reviewsDto = new ReviewDto();
-            var reviews = new Review
-            {
-                Date = reviewsDto.Date,
-                Comment = reviewsDto.Comment,
-                Rating = reviewsDto.Rating,
-                Verdict = reviewsDto.Verdict,
-                AppUserId = reviewsDto.AppUserId
-            };
-            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
-            if (!ReviewResult.Any())
-            {
-                return new List<Review>();
-            }
-            return ReviewResult;
-
-    }
+	}    
 
 }
