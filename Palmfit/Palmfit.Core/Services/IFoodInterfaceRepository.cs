@@ -33,10 +33,6 @@ namespace Palmfit.Core.Services
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
 		Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId);
 		string DeleteFoodClass(string foodClassId);
-
-	}
-       
-
         Task<Food> GetFoodByIdAsync(string id);
         Task<string> DeleteAsync(string id);
 

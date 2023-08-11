@@ -38,20 +38,14 @@ namespace Palmfit.Api.Controllers
             //Getting all food from database
             var foods = await _food.GetAllFoodAsync();
             if (!foods.Any())
-            var foods = await _foodRepo.GetAllFoodAsync();
-
-            if (foods.Count() <= 0)
             {
-                var res = await _foodRepo.GetAllFoodAsync();
-                return NotFound(ApiResponse.Failed(res));
+                return NotFound(ApiResponse.Failed("Food does not exist"));
             }
-            else
-            {
-                var result = await _foodRepo.GetAllFoodAsync();
 
-                return (Ok(ApiResponse.Success(result)));
-            }
-            
+            var result = await _foodRepo.GetAllFoodAsync();
+
+            return (Ok(ApiResponse.Success(result)));
+
         }
 
         [HttpGet("get-meal-Id")]
@@ -222,16 +216,6 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(updatedfood));
         }
 
-
-
-
-
-    }
-}
-
-
-
-
         [HttpGet("Get-FoodClass-By-Id")]
         public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
         {
@@ -258,38 +242,33 @@ namespace Palmfit.Api.Controllers
 
 
 
-		[HttpDelete("delete-foodclass")]
-		public async Task<ActionResult<ApiResponse<string>>> DeleteFoodClass(string foodClassId)
-		{
-			try
-			{
-				var existingFoodClass = _foodRepo.DeleteFoodClass(foodClassId);
+        [HttpDelete("delete-foodclass")]
+        public async Task<ActionResult<ApiResponse<string>>> DeleteFoodClass(string foodClassId)
+        {
+            try
+            {
+                var existingFoodClass = _foodRepo.DeleteFoodClass(foodClassId);
 
-				if (existingFoodClass == "Food class does not exist")
-				{
-					// Food class not found, return an error response
-					return ApiResponse<string>.Failed(data: null, message: "Food class not found");
-				}
+                if (existingFoodClass == "Food class does not exist")
+                {
+                    // Food class not found, return an error response
+                    return ApiResponse<string>.Failed(data: null, message: "Food class not found");
+                }
 
-				_foodRepo.DeleteFoodClass(foodClassId);
+                _foodRepo.DeleteFoodClass(foodClassId);
 
-				// Return a success response
-				return ApiResponse<string>.Success(data: null, message: "Food class deleted successfully");
-			}
-			catch (Exception ex)
-			{
-				// If an exception occurs during the deletion process, return an error response
-				return ApiResponse<string>.Failed(data: null, message: "An error occurred during food class deletion.", errors: new List<string> { ex.Message });
-			}
-		}
-
-
+                // Return a success response
+                return ApiResponse<string>.Success(data: null, message: "Food class deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                // If an exception occurs during the deletion process, return an error response
+                return ApiResponse<string>.Failed(data: null, message: "An error occurred during food class deletion.", errors: new List<string> { ex.Message });
+            }
+        }
 
 
-
-	}
-
-
+    }
 }
  
 	 

@@ -32,7 +32,7 @@ namespace Palmfit.Core.Implementations
         
         public async Task<Food> GetFoodById(string id)
         {
-            return await _db.Foods.FirstOrDefaultAsync(f => f.Id == id);
+            return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
         }
 
 
@@ -43,8 +43,8 @@ namespace Palmfit.Core.Implementations
             food.Id = Guid.NewGuid().ToString();
 
             // Add the new food to the database
-            await _db.Foods.AddAsync(food);
-            await _db.SaveChangesAsync();
+            await _dbContext.Foods.AddAsync(food);
+            await _dbContext.SaveChangesAsync();
         }
 
 
@@ -160,8 +160,8 @@ namespace Palmfit.Core.Implementations
             foodClass.Id = Guid.NewGuid().ToString();
 
             // Add the new FoodClass to the database
-            await _db.FoodClasses.AddAsync(foodClass);
-            await _db.SaveChangesAsync();
+            await _dbContext.FoodClasses.AddAsync(foodClass);
+            await _dbContext.SaveChangesAsync();
         }
 
 
@@ -223,27 +223,25 @@ namespace Palmfit.Core.Implementations
 
 			return "Food class does not exist";
 		}
-
-
-	}
-}
-
-
-        public async Task<Food> GetFoodByIdAsync(string id)
-        {
-            return await _db.Foods.FirstOrDefaultAsync(x => x.Id == id);
-        }
+        
         public async Task<string> DeleteAsync(string id)
         {
-           
-            var existingFood = await GetFoodByIdAsync(id);
+            var existingFood = await _dbContext.Foods.FirstOrDefaultAsync(x => x.Id == id);
             if (existingFood == null)
             {
                 return $"Food with Id: {id} cannot be found";
             }
-            _db.Foods.Remove(existingFood);
-            await _db.SaveChangesAsync();
+            _dbContext.Foods.Remove(existingFood);
+            await _dbContext.SaveChangesAsync();
             return "Successfully deleted";
         }
+
+        public async Task<Food> GetFoodByIdAsync(string id)
+        {
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (food == null) return null;
+            return food;
+        }
     }
- }
+}
