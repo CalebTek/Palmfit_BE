@@ -96,7 +96,7 @@ namespace Palmfit.Core.Implementations
         {
             try
             {
-                var user = await _db.Users.FindAsync(userId);
+                var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == userId);
 
                 if (user != null)
                 {
