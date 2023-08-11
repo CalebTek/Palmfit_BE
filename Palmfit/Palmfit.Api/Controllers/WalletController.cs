@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -12,9 +14,11 @@ namespace Palmfit.Api.Controllers
     public class WalletController : ControllerBase
     {
         private readonly IWalletRepository _wallet;
-        public WalletController(IWalletRepository wallet)
+        private readonly UserManager<AppUser> _userManager;
+        public WalletController(IWalletRepository wallet, UserManager<AppUser> userManager)
         {
             _wallet = wallet;
+            _userManager = userManager;
         }
 
         [HttpPost("remove-funds")]
@@ -42,6 +46,33 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ApiResponse.Failed("No wallet history found!"));
             }
             return Ok(ApiResponse.Success(paginatedResponse));
+        }
+
+        [HttpPost("fund-wallet")]
+        public async Task<IActionResult> FundWallet([FromBody] FundWalletDto fundWalletDto, string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest(ApiResponse.Failed("User ID is required."));
+            }
+
+            // Check if the user exists
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+
+                return BadRequest(ApiResponse.Failed("User not logged in or does not exist."));
+            }
+
+            try
+            {
+                await _wallet.FundWalletAsync(fundWalletDto, userId);
+                return Ok(ApiResponse.Success("Wallet funded successfully."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "Failed to fund wallet.", new List<string> { ex.Message }));
+            }
         }
     }
 }
