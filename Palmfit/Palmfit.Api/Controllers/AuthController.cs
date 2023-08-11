@@ -63,7 +63,6 @@ namespace Palmfit.Api.Controllers
 
 
 
-
         // Endpoint to create a new role
         [HttpPost("create-role")]
         public async Task<IActionResult> CreateRole(AppUserRole role)
@@ -126,7 +125,6 @@ namespace Palmfit.Api.Controllers
 
 
 
-
         [HttpPost("createPermission")]
         public async Task<IActionResult> CreatePermission([FromBody] PermissionDto permissionDto)
         {
@@ -147,8 +145,6 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
             }
         }
-
-
 
 
         [HttpPost("Validate-OTP")]
@@ -242,16 +238,6 @@ namespace Palmfit.Api.Controllers
         public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
         {
 
-                var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
-                if (result.Succeeded)
-                {
-                    return Ok(ApiResponse.Success("Permission removed from role successfully."));
-                }
-                else
-                {
-                    return BadRequest(ApiResponse.Failed("Permission removal failed."));
-                }
-            }
             var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
             if (result.Succeeded)
             {
@@ -263,7 +249,7 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-     
+
 
         //api-to-get-email-verification-status
         [HttpGet("email-verification-status/{userId}")]
@@ -289,5 +275,4 @@ namespace Palmfit.Api.Controllers
 }
 
 
-    
 
