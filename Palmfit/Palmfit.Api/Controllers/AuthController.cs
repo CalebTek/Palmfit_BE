@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -174,6 +175,39 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(permissions));
         }
 
+        [HttpPost("sendotp")]
+        public async Task<IActionResult> SendOTP([FromBody] EmailDto emailDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse<string>("Invalid email format"));
+            }
+            else
+            {
+                var user = await _userManager.FindByEmailAsync(emailDto.Email);
+                if (user == null)
+                {
+                    return NotFound(new ApiResponse<string>("User not Found"));
+                }
+                else
+                {
+                    var feedBack = _authRepo.SendOTPByEmail(emailDto.Email);
+                    return Ok(feedBack);
+                }
+
+            }
+        }
+
+
+
+        // Endpoint to get all permissions
+        [HttpGet("get-all-permissions")]
+        public async Task<IActionResult> GetAllPermissions()
+        {
+            var permissions = await _authRepo.GetAllPermissionsAsync();
+            return Ok(ApiResponse.Success(permissions));
+        }
+
 
 
 
@@ -234,6 +268,26 @@ namespace Palmfit.Api.Controllers
 
      
 
+        //api-to-get-email-verification-status
+        [HttpGet("email-verification-status/{userId}")]
+        public async Task<IActionResult> IsEmailVerified(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                ModelState.AddModelError("userId", "User ID is required.");
+                return BadRequest(ApiResponse.Failed(null, "Invalid request."));
+            }
+
+            try
+            {
+                var isEmailVerified = await _authRepo.IsEmailVerifiedAsync(userId);
+                return Ok(ApiResponse.Success(isEmailVerified));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "An error occurred while checking email verification status.", new List<string> { ex.Message }));
+            }
+        }
 
 
 
@@ -245,4 +299,9 @@ namespace Palmfit.Api.Controllers
 
     }
 }
+    }
+}
+
+
+    
 
