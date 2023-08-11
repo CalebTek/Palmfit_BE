@@ -1540,6 +1540,10 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore": "7.0.9",
+<<<<<<< HEAD
+=======
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9",
+>>>>>>> develop
           "Microsoft.Extensions.Identity.Stores": "7.0.9",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.4"
         },
