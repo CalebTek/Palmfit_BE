@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +67,30 @@ namespace Palmfit.Core.Implementations
             {
                 return "User failed to update.";
             }
+        }
 
+        public async Task<UserDto> GetUserByIdAsync(string id)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new UserDto
+            {
+                Title = user.Title,
+                FirstName = user.FirstName,
+                MiddleName = user.MiddleName,
+                LastName = user.LastName,
+                Image = user.Image,
+                Address = user.Address,
+                Area = user.Area,
+                State = user.State,
+                Gender = user.Gender,
+                DateOfBirth = user.DateOfBirth,
+                Country = user.Country
+            };
         }
         public async Task<bool> DeleteUserAsync(string userId)
         {
@@ -96,6 +117,32 @@ namespace Palmfit.Core.Implementations
                 return false;
             }
         }
+
+
+        //get user status
+        public async Task<UserInfoDto> GetUserStatus(string id)
+        {
+            
+            var getData = await _db.Subscriptions.Include(u => u.AppUser).Where(x => x.AppUserId == id).OrderBy(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
+
+            if (getData == null) return null;
+
+            UserInfoDto userInfo = new()
+            {
+                LastOnline = getData.AppUser.LastOnline,
+                IsVerified = getData.AppUser.IsVerified,
+                Active = getData.AppUser.Active,
+                ReferralCode = getData.AppUser.ReferralCode,
+                InviteCode = getData.AppUser.InviteCode,
+                Type = getData.Type,
+                IsExpired = getData.IsExpired,
+                EndDate = getData.EndDate
+            };
+
+            return userInfo;
+
+        }
+     
 
     }
 }

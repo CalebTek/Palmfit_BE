@@ -30,6 +30,13 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.ToListAsync();
         }
 
+        
+        public async Task<Food> GetFoodById(string id)
+        {
+            return await _db.Foods.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
 

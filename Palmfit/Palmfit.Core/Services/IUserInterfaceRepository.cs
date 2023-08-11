@@ -14,5 +14,8 @@ namespace Palmfit.Core.Services
         Task<List<UserDto>> GetAllUsersAsync();
         Task<string> UpdateUserAsync(string id, UserDto userDto);
         Task<bool> DeleteUserAsync(string userId);
+       
+        Task<UserInfoDto> GetUserStatus(string id); 
+        Task<UserDto> GetUserByIdAsync(string id);
     }
 }

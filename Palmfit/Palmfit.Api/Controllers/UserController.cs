@@ -37,7 +37,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("update-user/{id}")]
         public async Task<IActionResult> UpdateUserAsync(string id, UserDto userDto)
         {
             var updateUser = await _user.UpdateUserAsync(id, userDto);
@@ -50,6 +50,30 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(updateUser));
 
+        }
+
+        [HttpGet("{id}/get-a-user")]
+        public async Task<ActionResult<UserDto>> GetUserById(string id)
+        {
+            UserDto userDto = await _user.GetUserByIdAsync(id);
+            if (userDto == null)
+            {
+                return NotFound(ApiResponse.Failed("User does not exist."));
+            }
+
+            return Ok(ApiResponse.Success(userDto));
+        }
+
+        [HttpGet("Get-User-status/{id}")]
+        public async Task<IActionResult> GetUserStatus(string id)
+        {
+            if (id == null) return BadRequest(ApiResponse.Failed(id, "Invalid Id"));
+
+            var result = await _user.GetUserStatus(id);
+
+            if(result == null) return NotFound(ApiResponse.Failed(result));
+
+            return Ok(ApiResponse.Success(result));
         }
 
         [HttpDelete("{userId}")]
