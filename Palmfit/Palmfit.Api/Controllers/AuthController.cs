@@ -249,7 +249,7 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-     
+
 
         //api-to-get-email-verification-status
         [HttpGet("email-verification-status/{userId}")]
@@ -275,5 +275,4 @@ namespace Palmfit.Api.Controllers
 }
 
 
-    
 

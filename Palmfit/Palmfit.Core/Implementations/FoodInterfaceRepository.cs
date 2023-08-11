@@ -6,6 +6,7 @@ using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,17 @@ namespace Palmfit.Core.Implementations
             return await _db.Foods.FirstOrDefaultAsync(f => f.Id == id);
         }
 
+
+
+        public async Task AddFoodAsync(Food food)
+        {
+            // Generate a new GUID for the Food entity
+            food.Id = Guid.NewGuid().ToString();
+
+            // Add the new food to the database
+            await _db.Foods.AddAsync(food);
+            await _db.SaveChangesAsync();
+        }
 
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
@@ -142,6 +154,18 @@ namespace Palmfit.Core.Implementations
                 return "Food failed to update.";
             }
         }
+
+
+        public async Task AddFoodClassAsync(FoodClass foodClass)
+        {
+            // Generate a new GUID for the FoodClass entity
+            foodClass.Id = Guid.NewGuid().ToString();
+
+            // Add the new FoodClass to the database
+            await _db.FoodClasses.AddAsync(foodClass);
+            await _db.SaveChangesAsync();
+        }
+
 
 
         //get food list by category

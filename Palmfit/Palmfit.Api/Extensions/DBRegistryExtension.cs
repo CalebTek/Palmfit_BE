@@ -7,6 +7,7 @@ using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Palmfit.Api.Extensions
 {
@@ -24,6 +25,17 @@ namespace Palmfit.Api.Extensions
 
 
             });
+           
+
+            // ...
+
+            services.AddControllers()
+                    .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                    });
+
+            // ...
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();

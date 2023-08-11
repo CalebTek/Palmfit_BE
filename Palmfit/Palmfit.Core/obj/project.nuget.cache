@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HlqZ6mEHzwnnc+ArvkVABSrhc3ectWrEZJZ5k4XFoAieuFxGlcRw2Tv3PADQJjAb256p6r1w7bM5OpPEXoPTow==",
+  "dgSpecHash": "1ObhfOaujSOh0ZsV9xpplD8L0h34hO3qoKA8biP2VtM5RVX9NsSQTrZY8S416Nddmws2vt6CeVenKekzdmHHiQ==",
   "success": true,
   "projectFilePath": "C:\\Sterling\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
   "expectedPackageFiles": [
@@ -65,6 +65,7 @@
     "C:\\Users\\HP\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
