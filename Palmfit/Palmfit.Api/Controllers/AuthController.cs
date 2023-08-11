@@ -233,8 +233,28 @@ namespace Palmfit.Api.Controllers
             }
 
 
+            //api-to-get-email-verification-status
+            [HttpGet("email-verification-status/{userId}")]
+            public async Task<IActionResult> IsEmailVerified(string userId)
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    ModelState.AddModelError("userId", "User ID is required.");
+                    return BadRequest(ApiResponse.Failed(null, "Invalid request."));
+                }
+
+                try
+                {
+                    var isEmailVerified = await _authRepo.IsEmailVerifiedAsync(userId);
+                    return Ok(ApiResponse.Success(isEmailVerified));
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ApiResponse.Failed(null, "An error occurred while checking email verification status.", new List<string> { ex.Message }));
+                }
+            }
 
 
-        }
     }
+}
 
