@@ -60,6 +60,23 @@ namespace Palmfit.Data.EntityEnums
     {
     }
 
+    public enum DaysOfWeek
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+    }
+    public enum MealOfDay
+    {
+        Breakfast,
+        Lunch,
+        Dinner
+    }
+
     public enum UnitType
     {
         Tablespoon,

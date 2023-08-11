@@ -65,6 +65,7 @@ namespace Palmfit.Api.Extensions
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IWalletRepository, WalletRepository>();
+            services.AddScoped<IMealPlanRepository, MealPlanRepository>();
 
 
             // Identity role registration with Stores and default token provider
