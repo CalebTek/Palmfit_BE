@@ -8,6 +8,9 @@ namespace Palmfit.Core.Services
     {
         Task<List<Food>> GetAllFoodAsync();
 
+        Task<Food> GetFoodById(string id);
+        
+
         /* < Start----- required methods to Calculate Calorie -----Start > */
         Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
         Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount);
