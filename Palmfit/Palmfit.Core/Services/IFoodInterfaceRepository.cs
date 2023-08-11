@@ -5,7 +5,8 @@ using Palmfit.Data.EntityEnums;
 namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
-    {
+    { 
+   
         Task<List<Food>> GetAllFoodAsync();
 
         Task<Food> GetFoodById(string id);
@@ -30,8 +31,8 @@ namespace Palmfit.Core.Services
 
 
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
-       
-
+		Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId);
+		string DeleteFoodClass(string foodClassId);
         Task<Food> GetFoodByIdAsync(string id);
         Task<string> DeleteAsync(string id);
 
