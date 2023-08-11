@@ -17,6 +17,12 @@ namespace Palmfit.Api.Extensions
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+
             });
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
@@ -24,6 +30,9 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IReferralRepository, ReferralRepository>();
             
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
+
+             
 
 
 
@@ -69,6 +78,10 @@ namespace Palmfit.Api.Extensions
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IWalletRepository, WalletRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+
+            services.AddScoped<InviteRepository, InviteRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
 
 

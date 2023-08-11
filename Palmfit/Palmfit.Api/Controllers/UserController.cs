@@ -37,7 +37,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("update-user/{id}")]
         public async Task<IActionResult> UpdateUserAsync(string id, UserDto userDto)
         {
             var updateUser = await _user.UpdateUserAsync(id, userDto);

@@ -39,6 +39,7 @@ namespace Palmfit.Core.Implementations
             _userManager = userManager;
         }
 
+
         public string GenerateJwtToken(AppUser user)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
@@ -164,6 +165,8 @@ namespace Palmfit.Core.Implementations
             }
             return new ApiResponse<string>("Verified successfully.");
         }
+
+
 
         public async Task RemoveAllExpiredOTP()
         {
