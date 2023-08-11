@@ -12,9 +12,12 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Palmfit.Core.Helpers;
 
 namespace Palmfit.Core.Implementations
 {
@@ -24,13 +27,13 @@ namespace Palmfit.Core.Implementations
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppUserRole> _roleManager;
+        private readonly PalmfitDbContext _palmfitDbContext;
 
-
-        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
+        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
         {
             _configuration = configuration;
-            _palmfitDb = palmfitDb;
-            _userManager = userManager;
+           // _palmfitDb = palmfitDb;
+            //_userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
@@ -64,6 +67,52 @@ namespace Palmfit.Core.Implementations
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+
+        public string SendOTPByEmail(string email)
+        {
+            try
+            {
+                //generating otp
+                var generateRan = new RandomNumberGenerator();
+                var otp = generateRan.GenerateOTP().ToString();
+
+
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress(EmailSettings.SmtpUsername);
+                    mailMessage.To.Add(email);
+                    mailMessage.Subject = "One Time Password(OTP)";
+                    mailMessage.Body = $"Your OTP:{otp}";
+
+                    using (SmtpClient smtpClient = new SmtpClient(EmailSettings.SmtpServer, EmailSettings.SmtpPort))
+                    {
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential(EmailSettings.SmtpUsername, EmailSettings.SmtpPassword);
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+
+                // saving otp
+                var userOTP = new UserOTP
+                {
+                    Email = email,
+                    OTP = otp,
+                    Expiration = DateTime.UtcNow.AddMinutes(10) // set an expiration time for OTP (e.g 5 minutes)
+                };
+                _palmfitDbContext.UserOTPs.Add(userOTP);
+                _palmfitDbContext.SaveChanges();
+
+                return $"OTP sent to {email}";
+            }
+            catch (Exception ex)
+            {
+                return $"Faild To Send OTP to {email}, Error, {ex.Message}";
+            }
+        }
+
 
 
         public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
