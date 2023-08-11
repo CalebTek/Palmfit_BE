@@ -16,6 +16,14 @@ namespace Palmfit.Api.Controllers
 			_reviewRepository = reviewRepository;
 		}
 
+		   [HttpGet("get-review-by-user/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<List<ReviewDto>>> GetReviewsByUserId(string userId)
+        {
+            var result = await _reviewRepository.GetReviewsByUserIdAsync(userId);
+            return Ok(ApiResponse.Success(result));
+        }
+
 		[HttpPost("add-review")]
 		public async Task<IActionResult> AddReview([FromBody] ReviewDTO review, string userId)
 		{

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -13,12 +14,12 @@ namespace Palmfit.Core.Implementations
 {
 	public class ReviewRepository : IReviewRepository
 	{
-		private readonly PalmfitDbContext _palmfitcontext;
+		private readonly PalmfitDbContext _dbContext;
 		private readonly UserManager<AppUser> _userManager;
 
 		public ReviewRepository(PalmfitDbContext palmfitcontext, UserManager<AppUser> userManager)
 		{
-			_palmfitcontext = palmfitcontext;
+			_dbContext = palmfitcontext;
 			_userManager = userManager;
 		}
 
@@ -46,8 +47,8 @@ namespace Palmfit.Core.Implementations
 					IsDeleted = false
 				};
 
-				_palmfitcontext.Reviews.Add(review);
-				_palmfitcontext.SaveChanges();
+				_dbContext.Reviews.Add(review);
+				_dbContext.SaveChanges();
 
 				return "Review Updated Sucessfully!";
 			}
@@ -59,4 +60,26 @@ namespace Palmfit.Core.Implementations
 		}
 
 	}
+
+
+        public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
+        {
+            var reviewsDto = new ReviewDto();
+            var reviews = new Review
+            {
+                Date = reviewsDto.Date,
+                Comment = reviewsDto.Comment,
+                Rating = reviewsDto.Rating,
+                Verdict = reviewsDto.Verdict,
+                AppUserId = reviewsDto.AppUserId
+            };
+            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            if (!ReviewResult.Any())
+            {
+                return new List<Review>();
+            }
+            return ReviewResult;
+
+    }
+
 }
