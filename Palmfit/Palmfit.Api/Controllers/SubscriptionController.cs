@@ -102,5 +102,24 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ApiResponse.Failed("Subscription creation failed."));
             }
         }
+
+        [HttpDelete("/subscription")]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
+        {
+            try
+            {
+                var result = await _subscriptionRepository.DeleteSubscriptionAsync(subscriptionId);
+
+                if (!result)
+                    return ApiResponse<bool>.Failed(false, "Subscription not found");
+
+                return ApiResponse<bool>.Success(true, "Subscription deleted");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<bool>.Failed(false, ex.Message);
+            }
+        }
+
     }
 }
