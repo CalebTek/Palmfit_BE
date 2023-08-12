@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TkEnzniyg8Mzll+zr/l4g/KsRddRu/8LgAhBdlhfnp4JRlBcJc9mn7kW/B9O45U8Nt7dmGFi/VRtEwRLlOcYYw==",
+  "dgSpecHash": "0G4YLVMldMUTtYEiN3WAPIgNzR+WxyZhBFJyPrGw3XN0vuX2TXtSRxdQ16ySilGlrsjFQyJkR757H2L4HOsirQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\imade\\Downloads\\EwemadeProjLive\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+  "projectFilePath": "C:\\Users\\imade\\Downloads\\project-live-OLD\\EwemadeProjLive\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\imade\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\imade\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
