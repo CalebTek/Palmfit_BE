@@ -25,17 +25,17 @@ namespace Palmfit.Core.Implementations
         }
         public async Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId)
         {
-            return await Task.FromResult(_dbContext.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
+            return await Task.FromResult(_palmfitDbContext.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId)
         {
-            return await _dbContext.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
+            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName)
         {
-            return await _dbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
+            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
         }
 
 
@@ -50,8 +50,8 @@ namespace Palmfit.Core.Implementations
                 AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value
             };
 
-            _dbContext.Subscriptions.Add(subscription);
-            await _dbContext.SaveChangesAsync();
+            _palmfitDbContext.Subscriptions.Add(subscription);
+            await _palmfitDbContext.SaveChangesAsync();
 
             return subscription;
         }
