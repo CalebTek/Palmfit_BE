@@ -52,7 +52,8 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        [HttpDelete("/subscription")]
+
+        [HttpDelete("delete-subscription")]
         public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
         {
             try
@@ -71,10 +72,34 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [HttpGet("subscription-status")]
+        public async Task<IActionResult> GetSubscriptionStatus()
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = await _userManager.FindByIdAsync(userId);
+                var availableSubscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
 
+                if (user == null)
+                {
+                    return NotFound(ApiResponse.Success("User not found."));
+                }
 
-
-
+                if (availableSubscription != null)
+                {
+                    return Ok(ApiResponse.Success(availableSubscription));
+                }
+                else
+                {
+                    return NotFound(ApiResponse.Success("User has no Subscription."));
+                }
+            }
+            catch
+            {
+                return BadRequest(ApiResponse.Failed("Could not retrieve subscription status"));
+            }
+         }
 
 
     }

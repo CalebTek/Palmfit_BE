@@ -24,40 +24,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
-        [HttpPost("add-review")]
-        public async Task<IActionResult> AddReview([FromBody] AddReviewDto reviewDto)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ApiResponse.Failed("Invalid review data."));
-                }
-
-                // Ensuring the user exists
-                var user = await _userManager.FindByIdAsync(reviewDto.AppUserId);
-                if (user == null)
-                {
-                    return NotFound(ApiResponse.Failed("User not found."));
-                }
-
-                var createdReview = await _reviewRepo.AddReviewAsync(reviewDto);
-                if (createdReview != null)
-                {
-                    return Ok(ApiResponse.Success("Review added successfully."));
-                }
-                else
-                {
-                    return BadRequest(ApiResponse.Failed("Failed to add review."));
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ApiResponse.Failed("An error occurred while adding the review.", errors: new List<string> { ex.Message }));
-            }
-        }
-
-
+        
 
         [HttpDelete("delete-review")]
         public async Task<IActionResult> DeleteReview(string reviewId)
