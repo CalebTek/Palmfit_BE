@@ -50,6 +50,28 @@ namespace Palmfit.Api.Controllers
                 return Ok(ApiResponse.Success(result));
         }
 
+
+        [HttpGet("get-all-reviews")]
+        public async Task<IActionResult> GetAllReviews()
+        {
+            try
+            {
+                var reviews = await _reviewRepo.GetAllReviewsAsync();
+                if (reviews == null)
+                {
+                    return NotFound(ApiResponse.Failed("Review not found."));
+                }
+                return Ok(ApiResponse.Success(reviews));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "An error occurred while fetching reviews.", errors: new List<string> { ex.Message }));
+            }
+        }
+
+
+
+
     }
 }
 
