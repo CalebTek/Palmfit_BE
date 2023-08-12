@@ -7,6 +7,7 @@ using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Palmfit.Api.Extensions
 {
@@ -17,11 +18,34 @@ namespace Palmfit.Api.Extensions
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+
             });
+           
+
+            // ...
+
+            services.AddControllers()
+                    .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                    });
+
+            // ...
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
+            
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
+
              
+
 
 
             // Configure JWT authentication options-------------------------------------------
@@ -66,8 +90,11 @@ namespace Palmfit.Api.Extensions
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IWalletRepository, WalletRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
-
+            services.AddScoped<InviteRepository, InviteRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
             // Identity role registration with Stores and default token provider
@@ -78,15 +105,13 @@ namespace Palmfit.Api.Extensions
 
             /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
 
-            services.AddScoped<SeedData>();
+            //services.AddScoped<SeedData>();
 
             // Call the seed method after the DbContext is created
-            services.AddScoped<IServiceProvider>(provider =>
-            {
-                var dbContext = provider.GetRequiredService<PalmfitDbContext>();
-                SeedData.Initialize(dbContext);
-                return provider;
-            });
+            //services.AddScoped<IServiceProvider>(provider =>
+            //{
+
+            //});
 
             /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
