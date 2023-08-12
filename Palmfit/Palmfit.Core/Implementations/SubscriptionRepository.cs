@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;

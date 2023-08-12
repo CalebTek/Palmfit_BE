@@ -45,7 +45,7 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
@@ -75,7 +75,7 @@
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
-              "version": "[7.0.9, )"
+              "version": "[7.0.10, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

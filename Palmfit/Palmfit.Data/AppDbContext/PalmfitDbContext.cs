@@ -25,8 +25,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUser> users { get; set; }
-        public DbSet<Referral> Referrals { get; set; }
-        //public DbSet<UserOTP> UserOTPs { get; set; }
 
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
@@ -133,8 +131,8 @@ namespace Palmfit.Data.AppDbContext
             // AppUser and Referral (One-to-Many)
             modelBuilder.Entity<AppUser>()
                 .HasMany(u => u.Referrals)
-                .WithOne(r => r.AppUser)
-                .HasForeignKey(r => r.AppUserId)
+                .WithOne(r => r.InvitedUser)
+                .HasForeignKey(r => r.InvitedUserid)
                 .OnDelete(DeleteBehavior.Restrict);
 
             //Configure One FoodClass to Many Relationship

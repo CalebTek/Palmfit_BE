@@ -9,6 +9,7 @@ using Palmfit.Data.Entities;
 using System.Text;
 using System.Text.Json.Serialization;
 
+
 namespace Palmfit.Api.Extensions
 {
     public static class DBRegistryExtension
