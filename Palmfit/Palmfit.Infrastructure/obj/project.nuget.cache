@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JDJdHqjDa9BMylogPYrA/FVfGlLiltgztLte3SdC0rgi78fWgCt7W/doW4D0qt1blKo9Iz+JsVCSGT8VQhFN5Q==",
+  "dgSpecHash": "ghOn7dS5jx4J9tNIP+kcDBsRrwVcLHqSor1CJXdkFAcKi1uGJNVAsItgnyj7OCfLQda8C3vi5pyVgce6U4/tCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -26,9 +26,9 @@
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.9\\microsoft.entityframeworkcore.7.0.9.nupkg.sha512",
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.9\\microsoft.entityframeworkcore.abstractions.7.0.9.nupkg.sha512",
-    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.9\\microsoft.entityframeworkcore.analyzers.7.0.9.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.10\\microsoft.entityframeworkcore.7.0.10.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.10\\microsoft.entityframeworkcore.abstractions.7.0.10.nupkg.sha512",
+    "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.10\\microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.9\\microsoft.entityframeworkcore.relational.7.0.9.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.9\\microsoft.entityframeworkcore.sqlserver.7.0.9.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",

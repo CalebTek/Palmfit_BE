@@ -5,8 +5,12 @@ using Palmfit.Data.EntityEnums;
 namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
-    {
+    { 
+   
         Task<List<Food>> GetAllFoodAsync();
+
+        Task<Food> GetFoodById(string id);
+        
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
         Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
@@ -20,7 +24,17 @@ namespace Palmfit.Core.Services
 
         Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
 
+
+        Task AddFoodAsync(Food food);
+        Task AddFoodClassAsync(FoodClass foodClass);
+
+
+
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
-       
+		Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId);
+		string DeleteFoodClass(string foodClassId);
+        Task<Food> GetFoodByIdAsync(string id);
+        Task<string> DeleteAsync(string id);
+
     }
 }
