@@ -25,33 +25,48 @@ namespace Palmfit.Api.Controllers
 
 
 
-       
-        [HttpGet("subscription-status")]
-        public async Task<IActionResult> GetSubscriptionStatus()
+        [HttpPost("create-subscription")]
+        public async Task<IActionResult> CreateSubscription([FromBody] CreateSubscriptionDto subscriptionDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ApiResponse.Failed("Invalid subscription data."));
+            }
+            var loggedInUser = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            // Ensuring the user exists
+            var user = await _userManager.FindByIdAsync(loggedInUser.Value);
+            if (user == null)
+            {
+                return NotFound(ApiResponse.Failed("User not found."));
+            }
+
+            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User);
+            if (createdSubscription != null)
+            {
+                return Ok(ApiResponse.Success("Subscription created successfully."));
+            }
+            else
+            {
+                return BadRequest(ApiResponse.Failed("Subscription creation failed."));
+            }
+        }
+
+        [HttpDelete("/subscription")]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
         {
             try
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user =  await _userManager.FindByIdAsync(userId);
-                var availableSubscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
+                var result = await _subscriptionRepo.DeleteSubscriptionAsync(subscriptionId);
 
-                if(user == null)
-                {
-                    return NotFound(ApiResponse.Success("User not found."));
-                }
+                if (!result)
+                    return ApiResponse<bool>.Failed(false, "Subscription not found");
 
-                if (availableSubscription != null)
-                {
-                    return Ok(ApiResponse.Success(availableSubscription));
-                }
-                else
-                {
-                    return NotFound(ApiResponse.Success("User has no Subscription."));
-                }
+                return ApiResponse<bool>.Success(true, "Subscription deleted");
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse.Failed(null, "An error occurred while fetching subscription status.", new List<string> { ex.Message }));
+                return ApiResponse<bool>.Failed(false, ex.Message);
             }
         }
 

@@ -7,6 +7,7 @@ using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Palmfit.Core.Implementations
 {
     public class ReviewRepository : IReviewRepository
     {
+        private readonly PalmfitDbContext _dbContext;
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
 
@@ -23,45 +25,41 @@ namespace Palmfit.Core.Implementations
             _userManager = userManager;
         }
 
-
-
-        public async Task<Review> AddReviewAsync(AddReviewDto reviewDto)
+        public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
         {
-            var review = new Review
+            var reviewsDto = new ReviewDto();
+            var reviews = new Review
             {
-                Id = Guid.NewGuid().ToString(),
-                AppUserId = reviewDto.AppUserId,
-                Date = DateTime.Now,
-                Comment = reviewDto.Comment,
-                Rating = reviewDto.Rating,
-                Verdict = reviewDto.Verdict,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-               
+                Date = reviewsDto.Date,
+                Comment = reviewsDto.Comment,
+                Rating = reviewsDto.Rating,
+                Verdict = reviewsDto.Verdict,
+                AppUserId = reviewsDto.AppUserId
             };
+            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            if (!ReviewResult.Any())
+            {
+                return new List<Review>();
+            }
+            return ReviewResult;
 
-            _palmfitDb.Reviews.Add(review);
-            await _palmfitDb.SaveChangesAsync();
-
-            return review;
         }
 
-
-
-        public async Task<string> DeleteReviewAsync(string userId, string reviewId)
+        public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = loggedInUser.FindFirst(ClaimTypes.NameIdentifier);
             var review = await _palmfitDb.Reviews.FindAsync(reviewId);
-            string message = "";
+
+            string message = string.Empty;
             if (user == null)
             {
-                message= "User not found";
-            } 
-            else if(review.AppUserId != userId)
+                message = "User not found";
+            }
+            else if (review.AppUserId != user.Value)
             {
                 message = "You are not authorized to delete this review";
             }
-            else if(review == null)
+            else if (review == null)
             {
                 message = "Review not found";
             }
