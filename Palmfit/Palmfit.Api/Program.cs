@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Palmfit.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://0.0.0.0:80");
+//builder.WebHost.UseUrls("http://0.0.0.0:80");
 
 //var configuration = new ConfigurationBuilder()
 //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
