@@ -41,7 +41,7 @@ builder.Services.AddSwaggerGen(c =>
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Palmfit",
-            Email = "learngoal@yopmail.com"
+            Email = "example@gmail.com" //TODO:Use an actual email
         }
     });
     // To Enable authorization using Swagger (JWT)
@@ -73,7 +73,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
+    options.AddPolicy("AllowedHosts",
         builder =>
         {
             builder.AllowAnyOrigin()
@@ -95,7 +95,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
 //Seeder.SeedData(app).Wait();
 
-app.UseCors("AllowAllOrigins");
+app.UseCors("AllowedHosts");
 
 app.UseHttpsRedirection();
 
