@@ -4,12 +4,12 @@ using Palmfit.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
-    .AddEnvironmentVariables()
-    .Build();
+//var configuration = new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+//    .AddEnvironmentVariables()
+//    .Build();
 
-var maxUserWatches = configuration.GetValue<int>("MaxUserWatches");
+var maxUserWatches = builder.Configuration.GetValue<int>("MaxUserWatches");
 if (maxUserWatches > 0)
 {
     var fileSystemWatcher = new FileSystemWatcher("/")
@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-
+app.UseHttpsRedirection();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -40,8 +40,6 @@ if (app.Environment.IsDevelopment())
 }
 
 //Seeder.SeedData(app).Wait();
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
