@@ -20,10 +20,7 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-
-
+         
             });
            
 
@@ -36,16 +33,6 @@ namespace Palmfit.Api.Extensions
                     });
 
             // ...
-
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
-            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
-            services.AddScoped<IReferralRepository, ReferralRepository>();
-            
-            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
-
-
-             
-
 
 
             // Configure JWT authentication options-------------------------------------------
@@ -92,9 +79,9 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IWalletRepository, WalletRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
 
-            services.AddScoped<InviteRepository, InviteRepository>();
-            services.AddTransient<IAuthRepository, AuthRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IMealPlanRepository, MealPlanRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
 
 
             // Identity role registration with Stores and default token provider
