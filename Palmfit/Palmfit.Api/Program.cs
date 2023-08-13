@@ -1,9 +1,15 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Palmfit.Api.Extensions;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://0.0.0.0:10000");
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Listen(IPAddress.Any, 80); // HTTP port
+    options.Listen(IPAddress.Any, 443, listenOptions =>
+    {
+        listenOptions.UseHttps(); // HTTPS port
+    });
+});
 
 //var configuration = new ConfigurationBuilder()
 //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
