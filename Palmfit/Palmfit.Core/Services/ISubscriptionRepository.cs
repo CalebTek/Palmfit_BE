@@ -13,7 +13,6 @@ namespace Palmfit.Core.Services
     {
         Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser);
         Task<bool> DeleteSubscriptionAsync(string subscriptionId);
-        Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto);
-
-	}
+        Task<Subscription> GetUserSubscriptionStatusAsync(string userId);
+    }
 }

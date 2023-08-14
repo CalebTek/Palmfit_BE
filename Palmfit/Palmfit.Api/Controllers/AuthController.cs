@@ -31,7 +31,7 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse<string>("Invalid request. Please provide a valid email and password."));
+                return BadRequest(ApiResponse.Failed("Invalid credentials. Please check your email or password and try again."));
             }
             else
             {
@@ -39,14 +39,14 @@ namespace Palmfit.Api.Controllers
 
                 if (user == null)
                 {
-                    return NotFound(new ApiResponse<string>("User not found. Please check your email and try again."));
+                    return NotFound(ApiResponse.Success("User not found. Please check your email and try again."));
                 }
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, login.Password, lockoutOnFailure: false);
 
                 if (!result.Succeeded)
                 {
-                    return Unauthorized(new ApiResponse<string>("Invalid credentials. Please check your email or password and try again."));
+                    return BadRequest(ApiResponse.Failed("Invalid credentials. Please check your email or password and try again."));
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace Palmfit.Api.Controllers
                     // Returning the token in the response headers
                     Response.Headers.Add("Authorization", "Bearer " + token);
 
-                    return Ok(new ApiResponse<string>("Login successful."));
+                    return Ok(ApiResponse.Success("Login successful."));
 
                 }
             }
@@ -72,11 +72,11 @@ namespace Palmfit.Api.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(new ApiResponse<string>("Role created successfully."));
+                return Ok(ApiResponse.Success("Role created successfully."));
             }
             else
             {
-                return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
+                return BadRequest(ApiResponse.Failed("Bad Request. A server error occured"));
             }
         }
 
@@ -93,7 +93,7 @@ namespace Palmfit.Api.Controllers
             }
             else
             {
-                return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
+                return BadRequest(ApiResponse.Failed("Bad Request. A server error occured"));
             }
         }
 
@@ -113,12 +113,12 @@ namespace Palmfit.Api.Controllers
                 }
                 else
                 {
-                    return BadRequest(new ApiResponse<string>("Oops.Something went wrong"));
+                    return BadRequest(ApiResponse.Failed("Oops.Something went wrong"));
                 }
             }
             else
             {
-                return NotFound(new ApiResponse<string>("Role does not exist!"));
+                return NotFound(ApiResponse.Success("Role does not exist!"));
             }
         }
 
@@ -130,19 +130,19 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse<string>("Invalid permission name format."));
+                return BadRequest(ApiResponse.Failed("Invalid permission name format."));
             }
 
             var result = await _authRepo.CreatePermissionAsync(permissionDto.Name);
 
             if (result.Succeeded)
             {
-                return Ok(new ApiResponse<string>("Permission created successfully."));
+                return Ok(ApiResponse.Success("Permission created successfully."));
             }
             else
             {
                 // Handle the case where creating the permission fails
-                return BadRequest(new ApiResponse<string>("Failed to create permission."));
+                return BadRequest(ApiResponse.Failed("Failed to create permission."));
             }
         }
 
@@ -152,12 +152,12 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+                return BadRequest(ApiResponse.Failed("Invalid OTP, check and try again"));
             }
             var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
             if (userOTP == null)
             {
-                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+                return  NotFound(ApiResponse.Failed("Invalid OTP, check and try again"));
             }
 
             await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
