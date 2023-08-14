@@ -6,7 +6,6 @@ using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -16,13 +15,13 @@ namespace Palmfit.Core.Implementations
 {
     public class ReviewRepository : IReviewRepository
     {
-        
-        private readonly PalmfitDbContext _palmfitDbContext;
+        private readonly PalmfitDbContext _dbContext;
+        private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
 
         public ReviewRepository(PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
-            _palmfitDbContext = palmfitDb;
+            _palmfitDb = palmfitDb;
             _userManager = userManager;
         }
 
@@ -37,7 +36,7 @@ namespace Palmfit.Core.Implementations
                 Verdict = reviewsDto.Verdict,
                 AppUserId = reviewsDto.AppUserId
             };
-            var ReviewResult = await _palmfitDbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
             if (!ReviewResult.Any())
             {
                 return new List<Review>();
@@ -49,7 +48,7 @@ namespace Palmfit.Core.Implementations
         public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
             var user = loggedInUser.FindFirst(ClaimTypes.NameIdentifier);
-            var review = await _palmfitDbContext.Reviews.FindAsync(reviewId);
+            var review = await _palmfitDb.Reviews.FindAsync(reviewId);
 
             string message = string.Empty;
             if (user == null)
@@ -67,21 +66,41 @@ namespace Palmfit.Core.Implementations
             else
             {
                 review.IsDeleted = true;
-                await _palmfitDbContext.SaveChangesAsync();
+                await _palmfitDb.SaveChangesAsync();
                 message = "Review deleted successful";
             }
             return message;
         }
 
-
-        public async Task<List<Review>> GetAllReviewsAsync()
+        public async Task<string> UpdateReviewAsync(string userId, ReviewDto review)
         {
-            return await _palmfitDbContext.Reviews.Where(review => review.IsDeleted == false).ToListAsync();
+            var reviewDto = new ReviewDto()
+            {
+                Date = review.Date,
+                Comment = review.Comment,
+                Verdict = review.Verdict,
+                AppUserId = review.AppUserId,
+            };
+
+            var existingReview = await _dbContext.Reviews.FindAsync(userId);
+
+            if (existingReview == null)
+            {
+                return "Review not found";
+            }
+
+            // Update properties from DTO
+            existingReview.Date = reviewDto.Date;
+            existingReview.Comment = reviewDto.Comment;
+            existingReview.Rating = reviewDto.Rating;
+            existingReview.Verdict = reviewDto.Verdict;
+
+            // Mark the entity as modified
+            _dbContext.Entry(existingReview).State = EntityState.Modified;
+
+
+            await _dbContext.SaveChangesAsync();
+            return "Review updated successfully";
         }
-
-
-
-
-
     }
 }
