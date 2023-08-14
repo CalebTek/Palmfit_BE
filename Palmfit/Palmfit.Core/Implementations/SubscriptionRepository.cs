@@ -16,7 +16,6 @@ namespace Palmfit.Core.Implementations
 {
     public class SubscriptionRepository : ISubscriptionRepository
     {
-        private readonly PalmfitDbContext _palmfitDb;
 
         private readonly PalmfitDbContext _palmfitDbContext;
         public SubscriptionRepository(PalmfitDbContext palmfitDbContext)
@@ -35,11 +34,12 @@ namespace Palmfit.Core.Implementations
                 AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value
             };
 
-            _palmfitDb.Subscriptions.Add(subscription);
-            await _palmfitDb.SaveChangesAsync();
+            _palmfitDbContext.Subscriptions.Add(subscription);
+            await _palmfitDbContext.SaveChangesAsync();
 
             return subscription;
         }
+
 
         public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
         {
@@ -49,13 +49,14 @@ namespace Palmfit.Core.Implementations
             if (subscription == null)
                 return await Task.FromResult(false);
 
-            _palmfitDb.Subscriptions.Add(subscription);
-            await _palmfitDb.SaveChangesAsync();
+            _palmfitDbContext.Subscriptions.Add(subscription);
+            await _palmfitDbContext.SaveChangesAsync();
             _palmfitDbContext.Remove(subscription);
             await _palmfitDbContext.SaveChangesAsync();
 
             return await Task.FromResult(true);
         }
+
 
 
     }
