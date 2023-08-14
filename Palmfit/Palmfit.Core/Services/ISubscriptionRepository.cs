@@ -20,5 +20,6 @@ namespace Palmfit.Core.Services
         Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName);
         Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser);
         Task<bool> DeleteSubscriptionAsync(string subscriptionId);
+        Task<Subscription> GetUserSubscriptionStatusAsync(string userId);
     }
 }
