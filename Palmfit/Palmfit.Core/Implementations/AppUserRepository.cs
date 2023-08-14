@@ -24,42 +24,30 @@ namespace Palmfit.Core.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task<string> CreateUser(SignUpDto userRequest)
+        public async Task<ApiResponse> CreateUser(SignUpDto userRequest)
         {
             var user = await _userManager.FindByEmailAsync(userRequest.Email);
-            if (user == null)
+            if (user != null) return ApiResponse.Failed("User already exist");
+            user = new AppUser()
             {
+                FirstName = userRequest.Firstname,
+                LastName = userRequest.Lastname,
+                Email = userRequest.Email,
+                UserName = userRequest.Email
+            };
 
-                user = new AppUser()
-                {
-                    FirstName = userRequest.Firstname,
-                    LastName = userRequest.Lastname,
-                    Email = userRequest.Email,
-                    UserName = userRequest.Email
-
-
-
-                };
-
-                TransactionManager.ImplicitDistributedTransactions = true;
-                using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    var createUser = await _userManager.CreateAsync(user, userRequest.Password);
-                    if (ApiResponse.Success(createUser) != null)
-                    {
-
-                        transaction.Complete();
-                        return "User added successfully";
-                    }
-                }
+            using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                var createUser = await _userManager.CreateAsync(user, userRequest.Password);
+                if (!createUser.Succeeded) return ApiResponse.Failed(createUser.Errors);
+                transaction.Complete();
+                return ApiResponse.Success("User added successfully");
             }
-
-            return "There was a problem registring user";
         }
+
         public async Task<AppUser> GetUserById(string userId)
         {
             return await _dbContext.Users.FindAsync(userId);
         }
     }
 }
-

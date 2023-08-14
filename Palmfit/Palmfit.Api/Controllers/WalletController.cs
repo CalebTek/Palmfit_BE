@@ -74,5 +74,26 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ApiResponse.Failed(null, "Failed to fund wallet.", new List<string> { ex.Message }));
             }
         }
+
+        [HttpPost("Get-User-Transaction-History")]
+        public async Task<IActionResult> UserTransaction(string UserId)
+        {
+            var result = await _wallet.GetUserTransactionHistory(UserId);
+
+            if (result == null) return NotFound(ApiResponse.Failed("No transaction performed"));
+
+            return Ok(ApiResponse.Success(result));
+        }
+
+        [HttpPost("Get-User-Wallet-History")]
+        public async Task<IActionResult> UserWallet(string walletId)
+        {
+            var result = await _wallet.GetUserWalletHistory(walletId);
+
+            if (result == null) return NotFound(ApiResponse.Failed("No transaction performed"));
+
+            return Ok(ApiResponse.Success(result));
+        }
+
     }
 }
