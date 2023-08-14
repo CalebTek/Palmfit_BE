@@ -49,7 +49,7 @@ namespace Palmfit.Api.Controllers
                 return Ok(ApiResponse.Success(result));
         }
 
-        [HttpPut]
+        [HttpPut("Update-review/{userId}")]
         public async Task<IActionResult> UpdateReview(string userId, [FromBody] ReviewDto reviewDto)
         {
             var result = await _reviewRepository.UpdateReviewAsync(userId, reviewDto);
