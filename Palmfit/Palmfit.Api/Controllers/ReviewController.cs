@@ -69,7 +69,7 @@ namespace Palmfit.Api.Controllers
             try
             {
                 var reviews = await _reviewRepo.GetAllReviewsAsync();
-                if (reviews == null)
+                if (!reviews.Any())
                 {
                     return NotFound(ApiResponse.Failed("Review not found."));
                 }
