@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T9mYgbmUtXZsJfoC4q36KiGTOOOjeuIKdMcD+sj4Ip4asM5x0UfFB1YIs2wxWWIkSbYgzeZ9F2KqiRXpP45N5g==",
+  "dgSpecHash": "bhTumUr+HXQdhhaffw6Ssuop5/iHycqp9/nkVqDI05V/uNqIcHDJy5O3EnUGeowKqWPDBNNlXPZy3KsxtaMzjw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\imade\\Downloads\\project-live-OLD\\EwemadeProjLive\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\imade\\Music\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\imade\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\imade\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
