@@ -19,7 +19,6 @@ namespace Palmfit.Api.Extensions
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
          
             });
 
