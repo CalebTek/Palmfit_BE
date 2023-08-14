@@ -58,16 +58,17 @@ namespace Palmfit.Core.Implementations
         }
 
 
-		public async Task<string> UpdateSubscriptionAsync(string subscriptionId, SubscriptionDto subscriptionDto)
+		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
 		{
 			string message = "";
-			var subscription = await _palmfitDb.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
+			var subscription = await _palmfitDb.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
 			if (subscription == null)
 			{
 				message = "Subscription not found.";
 			}
 			else
 			{
+				 
 				subscription.Type = subscriptionDto.Type;
 				subscription.StartDate = subscriptionDto.StartDate;
 				subscription.EndDate = subscriptionDto.EndDate;
@@ -80,10 +81,7 @@ namespace Palmfit.Core.Implementations
 			return message;
 		}
 
-		public Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
-		{
-			throw new NotImplementedException();
-		}
+		 
 	}
 
 }

@@ -70,5 +70,27 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-    }
+
+		[HttpPut("update-subscription")]
+		public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionDto subscriptionDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ApiResponse.Failed("Invalid subscription data."));
+			}
+			try
+			{ 
+				var message = await _subscriptionRepo.UpdateSubscriptionAsync(subscriptionDto);
+				return Ok(ApiResponse.Success(message));
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ApiResponse.Failed("An error occurred while updating the subscription.", errors: new List<string> { ex.Message }));
+			}
+		}
+
+
+
+
+	}
 }
