@@ -13,7 +13,7 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class ReviewController : ControllerBase
     {
-        
+        private readonly IReviewRepository _reviewRepository;
         private readonly IReviewRepository _reviewRepo; 
         private readonly UserManager<AppUser> _userManager;
 
@@ -24,7 +24,6 @@ namespace Palmfit.Api.Controllers
         }
 
 
-        
 
         [HttpDelete("delete-review")]
         public async Task<IActionResult> DeleteReview(string reviewId)
@@ -42,21 +41,24 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-
         [HttpGet("get-review-by-user/{userId}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<ReviewDto>>> GetReviewsByUserId(string userId)
         {
-                var result = await _reviewRepo.GetReviewsByUserIdAsync(userId);
+                var result = await _reviewRepository.GetReviewsByUserIdAsync(userId);
                 return Ok(ApiResponse.Success(result));
         }
 
+        [HttpPut("Update-review/{userId}")]
+        public async Task<IActionResult> UpdateReview(string userId, [FromBody] ReviewDto reviewDto)
+        {
+            var result = await _reviewRepository.UpdateReviewAsync(userId, reviewDto);
+            if (!result.Any()) return BadRequest(ApiResponse.Failed("Failed to update"));
 
 
+            return Ok(ApiResponse.Success(result));
 
-
-
-
+        }
     }
 }
 

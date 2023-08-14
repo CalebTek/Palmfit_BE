@@ -72,15 +72,35 @@ namespace Palmfit.Core.Implementations
             return message;
         }
 
-
-
-        public async Task<List<Review>> GetAllReviewsAsync()
+        public async Task<string> UpdateReviewAsync(string userId, ReviewDto review)
         {
-            return await _palmfitDb.Reviews.ToListAsync();
+            var reviewDto = new ReviewDto()
+            {
+                Date = review.Date,
+                Comment = review.Comment,
+                Verdict = review.Verdict,
+                AppUserId = review.AppUserId,
+            };
+
+            var existingReview = await _dbContext.Reviews.FindAsync(userId);
+
+            if (existingReview == null)
+            {
+                return "Review not found";
+            }
+
+            // Update properties from DTO
+            existingReview.Date = reviewDto.Date;
+            existingReview.Comment = reviewDto.Comment;
+            existingReview.Rating = reviewDto.Rating;
+            existingReview.Verdict = reviewDto.Verdict;
+
+            // Mark the entity as modified
+            _dbContext.Entry(existingReview).State = EntityState.Modified;
+
+
+            await _dbContext.SaveChangesAsync();
+            return "Review updated successfully";
         }
-
-
-
-
     }
 }
