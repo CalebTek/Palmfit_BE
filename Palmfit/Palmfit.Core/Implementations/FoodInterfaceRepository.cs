@@ -50,7 +50,7 @@ namespace Palmfit.Core.Implementations
         {
             try
             {
-                var foodClassEntity = await _db.FoodClasses.FindAsync(foodClassId);
+                var foodClassEntity = await _dbContext.FoodClasses.FindAsync(foodClassId);
                 if (foodClassEntity == null)
                 {
                     return "Food with ID does not exist";
@@ -59,7 +59,7 @@ namespace Palmfit.Core.Implementations
                 foodClassEntity.Description = updatedFoodClassDto.Description;
                 foodClassEntity.Details = updatedFoodClassDto.Details;
 
-                await _db.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
                 var updatedFoodClassDtoResponse = new FoodClassDto
                 {
                     Name = foodClassEntity.Name,
