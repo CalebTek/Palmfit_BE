@@ -1473,19 +1473,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\imade\\.nuget\\packages\\": {},
     "C:\\Users\\tibel\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\imade\\Music\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectUniqueName": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "projectName": "Palmfit.Data",
-      "projectPath": "C:\\Users\\imade\\Music\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-      "packagesPath": "C:\\Users\\imade\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\imade\\Music\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
       "projectPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
       "packagesPath": "C:\\Users\\tibel\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\obj\\",
@@ -1494,7 +1489,6 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\imade\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Users\\tibel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -1579,7 +1573,6 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
