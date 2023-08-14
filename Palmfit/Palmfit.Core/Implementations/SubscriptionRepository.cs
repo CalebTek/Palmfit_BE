@@ -57,7 +57,13 @@ namespace Palmfit.Core.Implementations
             return await Task.FromResult(true);
         }
 
+        public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
+        {
+            {
+                return await _palmfitDb.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
+            }
 
+        }
 
     }
 
