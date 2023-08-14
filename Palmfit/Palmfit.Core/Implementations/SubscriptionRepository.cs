@@ -16,7 +16,6 @@ namespace Palmfit.Core.Implementations
 {
     public class SubscriptionRepository : ISubscriptionRepository
     {
-        private readonly PalmfitDbContext _palmfitDb;
 
         private readonly PalmfitDbContext _palmfitDbContext;
         public SubscriptionRepository(PalmfitDbContext palmfitDbContext)
@@ -58,7 +57,6 @@ namespace Palmfit.Core.Implementations
             return await Task.FromResult(true);
         }
 
-
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
             {
@@ -66,10 +64,6 @@ namespace Palmfit.Core.Implementations
             }
 
         }
-
-
-
-
 
     }
 

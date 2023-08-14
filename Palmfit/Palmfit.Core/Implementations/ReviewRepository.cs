@@ -96,11 +96,17 @@ namespace Palmfit.Core.Implementations
             existingReview.Verdict = reviewDto.Verdict;
 
             // Mark the entity as modified
-            _dbContext.Entry(existingReview).State = EntityState.Modified;
+            _palmfitDb.Entry(existingReview).State = EntityState.Modified;
 
 
             await _dbContext.SaveChangesAsync();
             return "Review updated successfully";
         }
+
+        public async Task<List<Review>> GetAllReviewsAsync()
+        {
+            return await _palmfitDb.Reviews.Where(review => review.IsDeleted == false).ToListAsync();
+        }
+
     }
 }
