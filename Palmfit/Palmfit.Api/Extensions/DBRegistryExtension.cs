@@ -7,6 +7,7 @@ using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Palmfit.Api.Extensions
 {
@@ -19,8 +20,22 @@ namespace Palmfit.Api.Extensions
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
 
+
+            // ...
+
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
+
+            // ...
+
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
+
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
             // Configure JWT authentication options-------------------------------------------
@@ -66,6 +81,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IWalletRepository, WalletRepository>();
             services.AddScoped<IMealPlanRepository, MealPlanRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
 
             // Identity role registration with Stores and default token provider

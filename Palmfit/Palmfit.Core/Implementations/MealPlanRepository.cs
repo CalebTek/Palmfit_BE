@@ -59,7 +59,7 @@ namespace Palmfit.Core.Implementations
 			}
 			catch (Exception ex)
 			{
-			 throw new InvalidOperationException(ex.Message);
+			 throw new Exception(ex.Message);
 			}
 			
 		}
@@ -98,7 +98,7 @@ namespace Palmfit.Core.Implementations
 			}
 			catch (Exception ex)
 			{
-				throw new InvalidOperationException(ex.Message);
+				throw new Exception(ex.Message);
 			}
 			
 		}
