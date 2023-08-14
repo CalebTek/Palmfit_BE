@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
-using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -167,6 +166,13 @@ namespace Palmfit.Api.Controllers
 
 
 
+        // Endpoint to get all permissions
+        [HttpGet("get-all-permissions")]
+        public async Task<IActionResult> GetAllPermissions()
+        {
+            var permissions = await _authRepo.GetAllPermissionsAsync();
+            return Ok(ApiResponse.Success(permissions));
+        }
 
         [HttpPost("sendotp")]
         public async Task<IActionResult> SendOTP([FromBody] EmailDto emailDto)
@@ -191,19 +197,6 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-
-
-        // Endpoint to get all permissions
-        [HttpGet("get-all-permissions")]
-        public async Task<IActionResult> GetAllPermissions()
-        {
-            var permissions = await _authRepo.GetAllPermissionsAsync();
-            return Ok(ApiResponse.Success(permissions));
-        }
-
-
-
-
         // Endpoint to get permissions by role ID
         [HttpGet("get-permissions-by-role/{roleId}")]
         public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
@@ -211,9 +204,6 @@ namespace Palmfit.Api.Controllers
             var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
             return Ok(ApiResponse.Success(permissions));
         }
-
-
-
 
         [HttpPost("Sign-Out")]
         public async Task<IActionResult> SignOut()
@@ -260,6 +250,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
+
         //api-to-get-email-verification-status
         [HttpGet("email-verification-status/{userId}")]
         public async Task<IActionResult> IsEmailVerified(string userId)
@@ -280,10 +271,8 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ApiResponse.Failed(null, "An error occurred while checking email verification status.", new List<string> { ex.Message }));
             }
         }
-
     }
 }
 
 
-    
 

@@ -17,7 +17,7 @@ namespace Palmfit.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -25,6 +25,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Data.Entities.UserOTP", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
@@ -291,6 +292,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Calorie")
@@ -343,6 +345,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.FoodClass", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
@@ -374,6 +377,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Health", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -426,6 +430,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Invite", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -466,6 +471,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -502,9 +508,40 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Palmfit.Data.Entities.Referral", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("InvitedUserid")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ReferralCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvitedUserid");
+
+                    b.ToTable("Referrals");
+                });
+
             modelBuilder.Entity("Palmfit.Data.Entities.Review", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -544,6 +581,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -570,6 +608,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Subscription", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -607,6 +646,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Transaction", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Amount")
@@ -667,11 +707,15 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Wallet", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -693,6 +737,7 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.WalletHistory", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Amount")
@@ -784,6 +829,17 @@ namespace Palmfit.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Palmfit.Data.Entities.Referral", b =>
+                {
+                    b.HasOne("Palmfit.Data.Entities.AppUser", "InvitedUser")
+                        .WithMany("Referrals")
+                        .HasForeignKey("InvitedUserid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InvitedUser");
+                });
+
             modelBuilder.Entity("Palmfit.Data.Entities.Review", b =>
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
@@ -859,6 +915,8 @@ namespace Palmfit.Data.Migrations
                     b.Navigation("Invities");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("Referrals");
 
                     b.Navigation("Reviews");
 

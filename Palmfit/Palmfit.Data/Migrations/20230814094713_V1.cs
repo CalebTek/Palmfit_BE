@@ -262,6 +262,28 @@ namespace Palmfit.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Referrals",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    ReferralCode = table.Column<string>(type: "text", nullable: false),
+                    InvitedUserid = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Referrals", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Referrals_AppUser_InvitedUserid",
+                        column: x => x.InvitedUserid,
+                        principalTable: "AppUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
@@ -369,6 +391,7 @@ namespace Palmfit.Data.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     AppUserId = table.Column<string>(type: "text", nullable: false),
+                    Balance = table.Column<decimal>(type: "numeric", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
@@ -466,6 +489,11 @@ namespace Palmfit.Data.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Referrals_InvitedUserid",
+                table: "Referrals",
+                column: "InvitedUserid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_AppUserId",
                 table: "Reviews",
                 column: "AppUserId");
@@ -520,6 +548,9 @@ namespace Palmfit.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "Referrals");
 
             migrationBuilder.DropTable(
                 name: "Reviews");

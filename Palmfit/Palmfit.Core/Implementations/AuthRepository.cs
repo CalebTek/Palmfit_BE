@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -17,6 +18,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 using Palmfit.Core.Helpers;
 
 namespace Palmfit.Core.Implementations
@@ -38,6 +40,7 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
             _userManager = userManager;
         }
+
 
         public string GenerateJwtToken(AppUser user)
         {
@@ -165,6 +168,8 @@ namespace Palmfit.Core.Implementations
             return new ApiResponse<string>("Verified successfully.");
         }
 
+
+
         public async Task RemoveAllExpiredOTP()
         {
             var now = DateTime.UtcNow;
@@ -268,6 +273,7 @@ namespace Palmfit.Core.Implementations
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
         }
 
+       
         public async Task<string> IsEmailVerifiedAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -280,6 +286,7 @@ namespace Palmfit.Core.Implementations
                     : "The user has not been verified!";
             return message;
         }
+
 
 
     }
