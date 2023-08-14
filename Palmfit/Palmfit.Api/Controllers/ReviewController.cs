@@ -49,6 +49,16 @@ namespace Palmfit.Api.Controllers
                 return Ok(ApiResponse.Success(result));
         }
 
+        [HttpPut("Update-review/{userId}")]
+        public async Task<IActionResult> UpdateReview(string userId, [FromBody] ReviewDto reviewDto)
+        {
+            var result = await _reviewRepository.UpdateReviewAsync(userId, reviewDto);
+            if (!result.Any()) return BadRequest(ApiResponse.Failed("Failed to update"));
+
+
+            return Ok(ApiResponse.Success(result));
+
+        }
     }
 }
 

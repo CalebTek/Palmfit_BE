@@ -2,8 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 85
+#EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR "/Palmfit"
@@ -22,5 +22,5 @@ RUN dotnet publish "Palmfit.Api.csproj" -c Release -o /app/publish /p:UseAppHost
 FROM base AS final
 WORKDIR "/Palmfit/Palmfit.Api"
 COPY --from=publish /app/publish .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Palmfit.Api.dll
-#ENTRYPOINT ["dotnet", "Palmfit.Api.dll"]
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet Palmfit.Api.dll
+ENTRYPOINT ["dotnet", "Palmfit.Api.dll"]

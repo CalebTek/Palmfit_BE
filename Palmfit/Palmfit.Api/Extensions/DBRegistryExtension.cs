@@ -22,17 +22,24 @@ namespace Palmfit.Api.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
          
             });
-           
+
 
             // ...
 
             services.AddControllers()
-                    .AddJsonOptions(options =>
-                    {
-                        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                    });
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
 
             // ...
+
+            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
+
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
 
 
             // Configure JWT authentication options-------------------------------------------
