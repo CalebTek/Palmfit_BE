@@ -130,7 +130,7 @@ namespace Palmfit.Api.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = await _userManager.FindByIdAsync(userId);
-                var availableSubscription = await _subscriptionRepo.GetUserSubscriptionStatusAsync(userId);
+                var availableSubscription = await _subscriptionRepository.GetUserSubscriptionStatusAsync(userId);
 
                 if (user == null)
                 {

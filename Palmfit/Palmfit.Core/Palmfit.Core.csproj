@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
-  </ItemGroup>
-
 </Project>
