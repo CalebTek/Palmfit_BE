@@ -38,10 +38,10 @@ namespace Palmfit.Api.Controllers
             var user = await _userManager.FindByIdAsync(loggedInUser.Value);
             if (user == null)
             {
-                return NotFound(ApiResponse.Failed("User not found."));  
+                return NotFound(ApiResponse.Failed("User not found."));
             }
 
-            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User );
+            var createdSubscription = await _subscriptionRepo.CreateSubscriptionAsync(subscriptionDto, HttpContext.User);
             if (createdSubscription != null)
             {
                 return Ok(ApiResponse.Success("Subscription created successfully."));
@@ -52,27 +52,23 @@ namespace Palmfit.Api.Controllers
             }
         }
 
+        [HttpDelete("/subscription")]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteSubscription(string subscriptionId)
+        {
+            try
+            {
+                var result = await _subscriptionRepo.DeleteSubscriptionAsync(subscriptionId);
 
-		[HttpPut("update-subscription")]
-		public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionDto subscriptionDto)
-		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ApiResponse.Failed("Invalid subscription data."));
-			}
-			try
-			{
-				var message = await _subscriptionRepo.UpdateSubscriptionAsync(subscriptionDto);
-				return Ok(ApiResponse.Success(message));
-			}
-			catch (Exception ex)
-			{
-				return BadRequest(ApiResponse.Failed("An error occurred while updating the subscription.", errors: new List<string> { ex.Message }));
-			}
-		}
+                if (!result)
+                    return ApiResponse<bool>.Failed(false, "Subscription not found");
 
+                return ApiResponse<bool>.Success(true, "Subscription deleted");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<bool>.Failed(false, ex.Message);
+            }
+        }
 
-
-	}
+    }
 }
-

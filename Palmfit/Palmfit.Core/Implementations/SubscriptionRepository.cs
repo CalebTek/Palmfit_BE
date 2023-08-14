@@ -4,6 +4,7 @@ using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using Palmfit.Data.EntityEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,10 @@ namespace Palmfit.Core.Implementations
     {
         private readonly PalmfitDbContext _palmfitDb;
 
-        public SubscriptionRepository(PalmfitDbContext palmfitDb)
+        private readonly PalmfitDbContext _palmfitDbContext;
+        public SubscriptionRepository(PalmfitDbContext palmfitDbContext)
         {
-            _palmfitDb = palmfitDb;
+            _palmfitDbContext = palmfitDbContext;
         }
 
         public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
@@ -37,6 +39,22 @@ namespace Palmfit.Core.Implementations
             await _palmfitDb.SaveChangesAsync();
 
             return subscription;
+        }
+
+        public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
+        {
+            
+            var subscription =  await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
+            
+            if (subscription == null)
+                return await Task.FromResult(false);
+
+            _palmfitDb.Subscriptions.Add(subscription);
+            await _palmfitDb.SaveChangesAsync();
+            _palmfitDbContext.Remove(subscription);
+            await _palmfitDbContext.SaveChangesAsync();
+
+            return await Task.FromResult(true);
         }
 
 

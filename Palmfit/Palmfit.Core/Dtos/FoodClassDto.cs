@@ -1,11 +1,9 @@
-﻿namespace Palmfit.Data.Entities
+﻿namespace Palmfit.Core.Dtos
 {
-    public class FoodClass : BaseEntity
+    public class FoodClassDto
     {
-       
         public string Name { get; set; }
         public string Description { get; set; }
         public string Details { get; set; }
-        public ICollection<Food> Foods { get; set; }
     }
 }
