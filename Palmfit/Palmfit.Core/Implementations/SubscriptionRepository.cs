@@ -60,7 +60,7 @@ namespace Palmfit.Core.Implementations
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
             {
-                return await _palmfitDb.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
+                return await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
             }
 
         }
@@ -68,7 +68,7 @@ namespace Palmfit.Core.Implementations
 		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
 		{
 			string message = "";
-			var subscription = await _palmfitDb.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
+			var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
 			if (subscription == null)
 			{
 				message = "Subscription not found.";
@@ -82,7 +82,7 @@ namespace Palmfit.Core.Implementations
 				subscription.IsExpired = subscriptionDto.IsExpired;
 				subscription.UpdatedAt = DateTime.Now;
 
-				await _palmfitDb.SaveChangesAsync();
+				await _palmfitDbContext.SaveChangesAsync();
 				message = "Subscription updated successfully!";
 			}
 			return message;
