@@ -33,6 +33,17 @@ namespace Palmfit.Api.Extensions
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 });
 
+            var cloudinarySettings = configuration.GetSection("Cloudinary");
+
+            var account = new Account(
+                cloudinarySettings["CloudName"],
+                cloudinarySettings["ApiKey"],
+                cloudinarySettings["ApiSecret"]);
+
+            var cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
+
             // ...
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
@@ -85,6 +96,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IMealPlanRepository, MealPlanRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
 
 
             // Identity role registration with Stores and default token provider
