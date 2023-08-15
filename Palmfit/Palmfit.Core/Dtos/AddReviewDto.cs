@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Palmfit.Core.Dtos
 {
-    public class ReviewDto
+    public class AddReviewDto
     {
-        public DateTime Date { get; set; }
+        [Required]
+        [MaxLength(500)]
         public string Comment { get; set; }
+
+        [Required]
+        [Range(1, 5)]
         public int Rating { get; set; }
+
+        [MaxLength(100)]
         public string Verdict { get; set; }
+
+        [Required]
         public string AppUserId { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace Palmfit.Core.Services
 	{
 		Task<IEnumerable<MealPlanDto>> GetWeeklyPlan(int week, string appUserId);
 		Task<IEnumerable<MealPlanDto>> GetDailyPlan(int day, string appUserId);
+		Task<string> AddMealPlan(PostMealDto postMealDto, string foodId);
 	}
 }
