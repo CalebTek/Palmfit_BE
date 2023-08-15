@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -20,14 +20,11 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Palmfit.Core\Palmfit.Core.csproj" />
     <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
   </ItemGroup>
-
-
 
 </Project>

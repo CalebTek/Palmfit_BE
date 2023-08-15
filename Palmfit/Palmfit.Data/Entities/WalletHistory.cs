@@ -11,6 +11,5 @@ namespace Palmfit.Data.Entities
         public string Details { get; set; }
         public string WalletAppUserId { get; set; }
         public Wallet Wallet { get; set; }
-
     }
 }

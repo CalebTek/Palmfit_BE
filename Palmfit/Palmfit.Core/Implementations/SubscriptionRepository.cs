@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -15,6 +16,7 @@ namespace Palmfit.Core.Implementations
 {
     public class SubscriptionRepository : ISubscriptionRepository
     {
+        private readonly PalmfitDbContext _palmfitDb;
 
         private readonly PalmfitDbContext _palmfitDbContext;
         public SubscriptionRepository(PalmfitDbContext palmfitDbContext)
@@ -33,12 +35,11 @@ namespace Palmfit.Core.Implementations
                 AppUserId = loggedInUser.FindFirst(ClaimTypes.NameIdentifier).Value
             };
 
-            _palmfitDbContext.Subscriptions.Add(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
+            _palmfitDb.Subscriptions.Add(subscription);
+            await _palmfitDb.SaveChangesAsync();
 
             return subscription;
         }
-
 
         public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
         {
@@ -48,46 +49,15 @@ namespace Palmfit.Core.Implementations
             if (subscription == null)
                 return await Task.FromResult(false);
 
-            _palmfitDbContext.Subscriptions.Add(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
+            _palmfitDb.Subscriptions.Add(subscription);
+            await _palmfitDb.SaveChangesAsync();
             _palmfitDbContext.Remove(subscription);
             await _palmfitDbContext.SaveChangesAsync();
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
-        {
-            {
-                return await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
-            }
 
-        }
-
-		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
-		{
-			string message = "";
-			var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
-			if (subscription == null)
-			{
-				message = "Subscription not found.";
-			}
-			else
-			{
-				 
-				subscription.Type = subscriptionDto.Type;
-				subscription.StartDate = subscriptionDto.StartDate;
-				subscription.EndDate = subscriptionDto.EndDate;
-				subscription.IsExpired = subscriptionDto.IsExpired;
-				subscription.UpdatedAt = DateTime.Now;
-
-				await _palmfitDbContext.SaveChangesAsync();
-				message = "Subscription updated successfully!";
-			}
-			return message;
-		}
-
-		 
-	}
+    }
 
 }

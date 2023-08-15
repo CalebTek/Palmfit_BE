@@ -8,6 +8,8 @@ using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -32,7 +34,7 @@ namespace Palmfit.Core.Implementations
         public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
         {
             _configuration = configuration;
-            // _palmfitDb = palmfitDb;
+           // _palmfitDb = palmfitDb;
             //_userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
@@ -176,9 +178,9 @@ namespace Palmfit.Core.Implementations
             await _palmfitDb.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync()
-        {
-            return await _palmfitDb.AppUserPermissions.ToListAsync();
+        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
+        { 
+            return await _palmfitDb.AppUserPermissions.ToListAsync(); 
         }
 
 
@@ -231,7 +233,7 @@ namespace Palmfit.Core.Implementations
                     }
                 }
             }
-
+            
         }
 
 
@@ -271,7 +273,7 @@ namespace Palmfit.Core.Implementations
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
         }
 
-
+       
         public async Task<string> IsEmailVerifiedAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
