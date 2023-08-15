@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Palmfit.Core.Dtos;
-using Palmfit.Core.Services;
-using Palmfit.Data.AppDbContext;
-using Palmfit.Data.Entities;
-using Palmfit.Data.EntityEnums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Palmfit.Core.Dtos;
+using Palmfit.Data.Entities;
+using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Core.Implementations
 {
@@ -34,8 +34,6 @@ namespace Palmfit.Core.Implementations
         {
             return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
         }
-
-
 
         public async Task AddFoodAsync(Food food)
         {
@@ -79,7 +77,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
         {
-            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id== foodId);
             if (food == null)
                 throw new ArgumentException("Food not found with the specified ID.", nameof(foodId));
 
@@ -242,6 +240,29 @@ namespace Palmfit.Core.Implementations
 
             if (food == null) return null;
             return food;
+        }
+
+        public async Task<string> CreateFoodClass(FoodClassDto foodClassDto)
+        {
+            try
+            {
+                var foodClassEntity = new FoodClass
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = foodClassDto.Name,
+                    Description = foodClassDto.Description,
+                    Details = foodClassDto.Details,
+                };
+
+                _dbContext.FoodClasses.Add(foodClassEntity);
+                await _dbContext.SaveChangesAsync();
+
+                return "FoodClass Created Successfully";
+            }
+            catch (Exception ex)
+            {
+                return "Failed To Create Foodclass";
+            }
         }
     }
 }

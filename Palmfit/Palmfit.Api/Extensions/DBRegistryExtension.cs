@@ -19,7 +19,7 @@ namespace Palmfit.Api.Extensions
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-         
+
             });
 
             services.AddControllers()
@@ -36,15 +36,20 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
+<<<<<<< HEAD
+=======
+            // Configure JWT authentication options-------------------------------------------
+            var jwtSettings = configuration.GetSection("JwtSettings");
+>>>>>>> develop
 
             // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;

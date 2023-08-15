@@ -27,7 +27,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<Referral> Referrals { get; set; }
         //public DbSet<UserOTP> UserOTPs { get; set; }
 
-
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }
