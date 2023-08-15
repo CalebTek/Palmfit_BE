@@ -19,34 +19,35 @@ namespace Palmfit.Core.Implementations
         private readonly PalmfitDbContext _dbContext;
 
         public AppUserRepository(UserManager<AppUser> userManager, PalmfitDbContext dbContext)
-        public AppUserRepository(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
             _dbContext = dbContext;
         }
 
+        public async Task<ApiResponse> CreateUser(SignUpDto userRequest)
         {
             var user = await _userManager.FindByEmailAsync(userRequest.Email);
+            if (user != null) return ApiResponse.Failed("User already exist");
             user = new AppUser()
             {
                 FirstName = userRequest.Firstname,
                 LastName = userRequest.Lastname,
                 Email = userRequest.Email,
                 UserName = userRequest.Email
-                    
-
-
             };
 
-                TransactionManager.ImplicitDistributedTransactions = true;
             using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 var createUser = await _userManager.CreateAsync(user, userRequest.Password);
+                if (!createUser.Succeeded) return ApiResponse.Failed(createUser.Errors);
                 transaction.Complete();
+                return ApiResponse.Success("User added successfully");
             }
         }
 
+        public async Task<AppUser> GetUserById(string userId)
+        {
+            return await _dbContext.Users.FindAsync(userId);
         }
     }
 }
-

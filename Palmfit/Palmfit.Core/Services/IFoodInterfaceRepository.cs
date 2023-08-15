@@ -14,21 +14,11 @@ using System.Threading.Tasks;
 namespace Palmfit.Core.Services
 {
     public interface IFoodInterfaceRepository
-    {
-        Task<List<Food>> GetAllFoodAsync();
-        Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
-
-        Task<ICollection<FoodDto>> GetFoodByCategory(string id);
-       
-        Task<string> CreateFoodClass(FoodClassDto foodClassDto);
-    public interface IFoodInterfaceRepository
     { 
    
         Task<List<Food>> GetAllFoodAsync();
 
         Task<Food> GetFoodById(string id);
-        
-
         /* < Start----- required methods to Calculate Calorie -----Start > */
         Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
         Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount);
@@ -37,21 +27,14 @@ namespace Palmfit.Core.Services
         Task<IEnumerable<Food>> GetFoodsByIdAsync(string foodId);
 
         /* < End----- required methods to Calculate Calorie -----End > */
-
-
         Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto);
-
-
         Task AddFoodAsync(Food food);
         Task AddFoodClassAsync(FoodClass foodClass);
-
-
-
         Task<ICollection<FoodDto>> GetFoodByCategory(string id);
 		Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId);
 		string DeleteFoodClass(string foodClassId);
         Task<Food> GetFoodByIdAsync(string id);
         Task<string> DeleteAsync(string id);
-
+        Task<string> CreateFoodClass(FoodClassDto foodClassDto);
     }
 }

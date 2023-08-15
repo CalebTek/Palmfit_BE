@@ -5,104 +5,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Palmfit.Core.Dtos;
+using Palmfit.Data.Entities;
+using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Core.Implementations
 {
-    public class FoodInterfaceRepository : IFoodInterfaceRepository
-    {
-        private readonly PalmfitDbContext _db;
-
-        public FoodInterfaceRepository(PalmfitDbContext db)
-        {
-            _db = db;
-        }
-
-        public async Task<List<Food>> GetAllFoodAsync()
-        {
-            return await _db.Foods.ToListAsync();
-        }
-
-        public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
-        {
-            var food = await _db.Foods.FindAsync(id);
-
-            if (food == null)
-                return "Food not found.";
-
-            food.Name = foodDto.Name;
-            food.Description = foodDto.Description;
-            food.Details = foodDto.Details;
-            food.Origin = foodDto.Origin;
-            food.Image = foodDto.Image;
-            food.Calorie = foodDto.Calorie;
-            food.Unit = foodDto.Unit;
-            food.FoodClassId = foodDto.FoodClassId;
-
-            try
-            {
-                await _db.SaveChangesAsync();
-                return "Food updated successfully.";
-            }
-            catch (Exception)
-            {
-                return "Food failed to update.";
-            }
-
-        }
-
-
-        //get food list by category
-        public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
-        {
-
-            var getFoodData = await _db.Foods.Where(x => x.FoodClassId == id).ToListAsync();
-            if (getFoodData.Count() == 0 )
-                return null;
-
-            List<FoodDto> result = null;
-
-            foreach (var food in getFoodData)
-            {
-                FoodDto newEntry = new()
-                {
-                    Name = food.Name,
-                    Description = food.Description,
-                    Details = food.Details,
-                    Origin = food.Origin,
-                    Image = food.Image,
-                    Calorie = food.Calorie,
-                    Unit = food.Unit,
-
-                    FoodClassId = food.FoodClassId,
-                };
-
-                result.Add(newEntry);
-            }
-
-            return result;
-        }
-        public async Task<string> CreateFoodClass(FoodClassDto foodClassDto)
-        {
-            try
-            {
-                var foodClassEntity = new FoodClass
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = foodClassDto.Name,
-                    Description = foodClassDto.Description,
-                    Details = foodClassDto.Details,
-                };
-
-                _db.FoodClasses.Add(foodClassEntity);
-                await _db.SaveChangesAsync();
-
-                return "FoodClass Created Successfully";
-            }
-            catch (Exception ex)
-            {
-                return "Failed To Create Foodclass";
-            }
-        }
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
 
@@ -123,8 +33,6 @@ namespace Palmfit.Core.Implementations
         {
             return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
         }
-
-
 
         public async Task AddFoodAsync(Food food)
         {
@@ -168,7 +76,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
         {
-            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id== foodId);
             if (food == null)
                 throw new ArgumentException("Food not found with the specified ID.", nameof(foodId));
 
@@ -331,6 +239,29 @@ namespace Palmfit.Core.Implementations
 
             if (food == null) return null;
             return food;
+        }
+
+        public async Task<string> CreateFoodClass(FoodClassDto foodClassDto)
+        {
+            try
+            {
+                var foodClassEntity = new FoodClass
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = foodClassDto.Name,
+                    Description = foodClassDto.Description,
+                    Details = foodClassDto.Details,
+                };
+
+                _dbContext.FoodClasses.Add(foodClassEntity);
+                await _dbContext.SaveChangesAsync();
+
+                return "FoodClass Created Successfully";
+            }
+            catch (Exception ex)
+            {
+                return "Failed To Create Foodclass";
+            }
         }
     }
 }

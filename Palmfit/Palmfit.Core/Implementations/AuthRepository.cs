@@ -33,8 +33,6 @@ namespace Palmfit.Core.Implementations
         private readonly RoleManager<AppUserRole> _roleManager;
         private readonly PalmfitDbContext _palmfitDbContext;
 
-        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
-
         public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
