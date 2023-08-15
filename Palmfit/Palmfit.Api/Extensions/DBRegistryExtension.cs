@@ -9,6 +9,7 @@ using Palmfit.Data.Entities;
 using System.Text;
 using System.Text.Json.Serialization;
 
+
 namespace Palmfit.Api.Extensions
 {
     public static class DBRegistryExtension
@@ -40,6 +41,8 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 
+			// Configure JWT authentication options-------------------------------------------
+			var jwtSettings = configuration.GetSection("JwtSettings");
 
             // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");

@@ -1,6 +1,5 @@
-﻿//using Microsoft.AspNet.Identity;
-
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
