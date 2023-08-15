@@ -20,28 +20,14 @@ namespace Palmfit.Api.Extensions
     {
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            
+
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-         
+
             });
 
-<<<<<<< HEAD
-            // Cloudinary registration -------------------------------------
-            var cloudinarySettings = new CloudinarySettings();
-            configuration.GetSection("Cloudinary").Bind(cloudinarySettings);
-
-            var cloudinaryAccount = new CloudinaryDotNet.Account(
-                cloudinarySettings.CloudName,
-                cloudinarySettings.ApiKey,
-                cloudinarySettings.ApiSecret
-            );
-            var cloudinary = new Cloudinary(cloudinaryAccount);
-            services.AddSingleton(cloudinary);
-            // Cloudinary registration ends --------------------------------
-=======
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
@@ -49,7 +35,6 @@ namespace Palmfit.Api.Extensions
                 });
 
             // ...
->>>>>>> 3155de66307ede536232a2df1dd4ec7fbe1b5e35
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
@@ -57,8 +42,8 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
-			// Configure JWT authentication options-------------------------------------------
-			var jwtSettings = configuration.GetSection("JwtSettings");
+            // Configure JWT authentication options-------------------------------------------
+            var jwtSettings = configuration.GetSection("JwtSettings");
 
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
@@ -92,9 +77,6 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
-<<<<<<< HEAD
-            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
-=======
             services.AddScoped<IInviteRepository, InviteRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
@@ -104,7 +86,6 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IMealPlanRepository, MealPlanRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
->>>>>>> 3155de66307ede536232a2df1dd4ec7fbe1b5e35
 
 
             // Identity role registration with Stores and default token provider

@@ -10,7 +10,6 @@ using Palmfit.Data.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
 using Palmfit.Data.EntityEnums;
-using Palmfit.Core.Services;
 
 namespace Palmfit.Api.Controllers
 {
