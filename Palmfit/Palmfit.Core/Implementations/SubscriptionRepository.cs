@@ -105,6 +105,5 @@ namespace Palmfit.Core.Implementations
 
 		 
 	}
-    }
 }
 

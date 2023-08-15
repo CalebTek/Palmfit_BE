@@ -152,7 +152,6 @@ namespace Palmfit.Api.Controllers
             }
          }
 
-
 		[HttpPut("update-subscription")]
 		public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionDto subscriptionDto)
 		{
@@ -162,7 +161,7 @@ namespace Palmfit.Api.Controllers
 			}
 			try
 			{
-				var message = await _subscriptionRepo.UpdateSubscriptionAsync(subscriptionDto);
+				var message = await _subscriptionRepository.UpdateSubscriptionAsync(subscriptionDto);
 				return Ok(ApiResponse.Success(message));
 			}
 			catch (Exception ex)
