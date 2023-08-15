@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualStudio.Services.Client.AccountManagement;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Core.Dtos;
