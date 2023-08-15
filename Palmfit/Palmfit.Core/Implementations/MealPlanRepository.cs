@@ -117,7 +117,7 @@ namespace Palmfit.Core.Implementations
             {
                 Id = Guid.NewGuid().ToString(),
                 MealOfDay = (MealOfDay)postMealDto.MealOfDay,
-                DaysOfWeek = postMealDto.DaysOfWeek,
+                DayOfTheWeek = postMealDto.DaysOfWeek,
                 FoodId = foodId,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
