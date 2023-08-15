@@ -35,7 +35,7 @@ namespace Palmfit.Core.Implementations
             };
 
             _palmfitDbContext.Subscriptions.Add(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
+            await _palmfitDbContext;
 
             return subscription;
         }
@@ -49,8 +49,6 @@ namespace Palmfit.Core.Implementations
             if (subscription == null)
                 return await Task.FromResult(false);
 
-            _palmfitDbContext.Subscriptions.Add(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
             _palmfitDbContext.Remove(subscription);
             await _palmfitDbContext.SaveChangesAsync();
 
