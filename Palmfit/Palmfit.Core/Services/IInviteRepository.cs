@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    public interface IInviteRepository
-    {
-        Task<PaginParameter<Invite>> GetAllUserInvitesAsync(int page, int pageSize);
-        Task<List<InviteDto>> GetInvitesByUserId(string userId);
-        Task<bool> Deleteinvite(string id);
-    }
+        public interface IInviteRepository
+        {
+                Task<PaginParameter<Invite>> GetAllUserInvitesAsync(int page, int pageSize);
+                Task<List<InviteDto>> GetInvitesByUserId(string userId);
+                Task<IEnumerable<InviteDto>> GetInvitesByReferralCodeAsync(string referralCode);
+                Task<bool> Deleteinvite(string id);
+        }
 }

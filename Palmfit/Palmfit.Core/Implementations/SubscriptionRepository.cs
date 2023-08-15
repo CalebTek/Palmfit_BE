@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -60,7 +59,7 @@ namespace Palmfit.Core.Implementations
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
             {
-                return await _palmfitDb.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
+                return await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
             }
 
         }
