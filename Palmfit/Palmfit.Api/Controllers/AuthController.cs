@@ -31,6 +31,7 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
+                return BadRequest(ApiResponse.Failed("Invalid credentials. Please check your email or password and try again."));
                 return BadRequest(new ApiResponse<string>("Invalid request. Please provide a valid email and password."));
             }
             else
@@ -39,6 +40,7 @@ namespace Palmfit.Api.Controllers
 
                 if (user == null)
                 {
+                    return NotFound(ApiResponse.Success("User not found. Please check your email and try again."));
                     return NotFound(new ApiResponse<string>("User not found. Please check your email and try again."));
                 }
 
@@ -46,6 +48,7 @@ namespace Palmfit.Api.Controllers
 
                 if (!result.Succeeded)
                 {
+                    return BadRequest(ApiResponse.Failed("Invalid credentials. Please check your email or password and try again."));
                     return Unauthorized(new ApiResponse<string>("Invalid credentials. Please check your email or password and try again."));
                 }
                 else
@@ -55,6 +58,7 @@ namespace Palmfit.Api.Controllers
                     // Returning the token in the response headers
                     Response.Headers.Add("Authorization", "Bearer " + token);
 
+                    return Ok(ApiResponse.Success("Login successful."));
                     return Ok(new ApiResponse<string>("Login successful."));
 
                 }
@@ -72,10 +76,12 @@ namespace Palmfit.Api.Controllers
 
             if (result.Succeeded)
             {
+                return Ok(ApiResponse.Success("Role created successfully."));
                 return Ok(new ApiResponse<string>("Role created successfully."));
             }
             else
             {
+                return BadRequest(ApiResponse.Failed("Bad Request. A server error occured"));
                 return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
             }
         }
@@ -93,6 +99,7 @@ namespace Palmfit.Api.Controllers
             }
             else
             {
+                return BadRequest(ApiResponse.Failed("Bad Request. A server error occured"));
                 return BadRequest(new ApiResponse<string>("Bad Request. A server error occured"));
             }
         }
@@ -113,11 +120,13 @@ namespace Palmfit.Api.Controllers
                 }
                 else
                 {
+                    return BadRequest(ApiResponse.Failed("Oops.Something went wrong"));
                     return BadRequest(new ApiResponse<string>("Oops.Something went wrong"));
                 }
             }
             else
             {
+                return NotFound(ApiResponse.Success("Role does not exist!"));
                 return NotFound(new ApiResponse<string>("Role does not exist!"));
             }
         }
@@ -130,6 +139,7 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
+                return BadRequest(ApiResponse.Failed("Invalid permission name format."));
                 return BadRequest(new ApiResponse<string>("Invalid permission name format."));
             }
 
@@ -137,11 +147,13 @@ namespace Palmfit.Api.Controllers
 
             if (result.Succeeded)
             {
+                return Ok(ApiResponse.Success("Permission created successfully."));
                 return Ok(new ApiResponse<string>("Permission created successfully."));
             }
             else
             {
                 // Handle the case where creating the permission fails
+                return BadRequest(ApiResponse.Failed("Failed to create permission."));
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
             }
         }
@@ -152,38 +164,61 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
+                return BadRequest(ApiResponse.Failed("Invalid OTP, check and try again"));
                 return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
             }
             var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
             if (userOTP == null)
             {
+                return  NotFound(ApiResponse.Failed("Invalid OTP, check and try again"));
                 return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
             }
 
-             await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
+            await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
             return Ok(new ApiResponse<string>("Validation Successfully."));
         }
 
 
 
-            // Endpoint to get all permissions
-            [HttpGet("get-all-permissions")]
-            public async Task<IActionResult> GetAllPermissions()
+        // Endpoint to get all permissions
+        [HttpGet("get-all-permissions")]
+        public async Task<IActionResult> GetAllPermissions()
+        {
+            var permissions = await _authRepo.GetAllPermissionsAsync();
+            return Ok(ApiResponse.Success(permissions));
+        }
+
+        [HttpPost("sendotp")]
+        public async Task<IActionResult> SendOTP([FromBody] EmailDto emailDto)
+        {
+            if (!ModelState.IsValid)
             {
-                var permissions = await _authRepo.GetAllPermissionsAsync();
-                return Ok(ApiResponse.Success(permissions));
+                return BadRequest(new ApiResponse<string>("Invalid email format"));
             }
-
-
-
-
-            // Endpoint to get permissions by role ID
-            [HttpGet("get-permissions-by-role/{roleId}")]
-            public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
+            else
             {
-                var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
-                return Ok(ApiResponse.Success(permissions));
+                var user = await _userManager.FindByEmailAsync(emailDto.Email);
+                if (user == null)
+                {
+                    return NotFound(new ApiResponse<string>("User not Found"));
+                }
+                else
+                {
+                    var feedBack = _authRepo.SendOTPByEmail(emailDto.Email);
+                    return Ok(feedBack);
+                }
+
+
             }
+        }
+
+        // Endpoint to get permissions by role ID
+        [HttpGet("get-permissions-by-role/{roleId}")]
+        public async Task<IActionResult> GetPermissionsByRoleId(string roleId)
+        {
+            var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
+            return Ok(ApiResponse.Success(permissions));
+        }
 
 
        
@@ -194,47 +229,68 @@ namespace Palmfit.Api.Controllers
             await _signInManager.SignOutAsync();
             return Ok(ApiResponse.Success("Sign out successful"));
         }
-    
 
 
 
-            // Endpoint to assign a permission to a role
-            [HttpPost("assign-permission")]
-            public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
+
+        // Endpoint to assign a permission to a role
+        [HttpPost("assign-permission")]
+        public async Task<IActionResult> AssignPermissionToRole(string roleName, string permissionName)
+        {
+            try
             {
-                try
-                {
-                    await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
-                    return Ok(ApiResponse.Success("Permission assigned to role successfully."));
-                }
-                catch (InvalidOperationException ex)
-                {
-                    return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
-                }
+                await _authRepo.AssignPermissionToRoleAsync(roleName, permissionName);
+                return Ok(ApiResponse.Success("Permission assigned to role successfully."));
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "Permission assignment failed.", new List<string> { ex.Message }));
+            }
+        }
+
+
+
+
+        // Endpoint to remove a permission from a role
+        [HttpDelete("remove-permission")]
+        public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
+        {
+
+            var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
+            if (result.Succeeded)
+            {
+                return Ok(ApiResponse.Success("Permission removed from role successfully."));
+            }
+            else
+            {
+                return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
+            }
+        }
+
+
+
+        //api-to-get-email-verification-status
+        [HttpGet("email-verification-status/{userId}")]
+        public async Task<IActionResult> IsEmailVerified(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                ModelState.AddModelError("userId", "User ID is required.");
+                return BadRequest(ApiResponse.Failed(null, "Invalid request."));
             }
 
-
-
-
-            // Endpoint to remove a permission from a role
-            [HttpDelete("remove-permission")]
-            public async Task<IActionResult> RemovePermissionFromRole(string roleId, string permissionId)
+            try
             {
-
-                var result = await _authRepo.RemovePermissionFromRoleAsync(roleId, permissionId);
-                if (result.Succeeded)
-                {
-                    return Ok(ApiResponse.Success("Permission removed from role successfully."));
-                }
-                else
-                {
-                    return BadRequest(ApiResponse.Failed(null, "Permission removal failed."));
-                }
+                var isEmailVerified = await _authRepo.IsEmailVerifiedAsync(userId);
+                return Ok(ApiResponse.Success(isEmailVerified));
             }
-
-
-
-
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse.Failed(null, "An error occurred while checking email verification status.", new List<string> { ex.Message }));
+            }
         }
     }
+}
+
+
 

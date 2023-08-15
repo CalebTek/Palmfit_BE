@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
@@ -14,9 +15,13 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
+using Palmfit.Core.Helpers;
 
 namespace Palmfit.Core.Implementations
 {
@@ -26,17 +31,22 @@ namespace Palmfit.Core.Implementations
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppUserRole> _roleManager;
+        private readonly PalmfitDbContext _palmfitDbContext;
 
+        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
 
         public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
+            // _palmfitDb = palmfitDb;
+            //_userManager = userManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
         }
+
 
         public string GenerateJwtToken(AppUser user)
         {
@@ -66,6 +76,52 @@ namespace Palmfit.Core.Implementations
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+
+        public string SendOTPByEmail(string email)
+        {
+            try
+            {
+                //generating otp
+                var generateRan = new RandomNumberGenerator();
+                var otp = generateRan.GenerateOTP().ToString();
+
+
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress(EmailSettings.SmtpUsername);
+                    mailMessage.To.Add(email);
+                    mailMessage.Subject = "One Time Password(OTP)";
+                    mailMessage.Body = $"Your OTP:{otp}";
+
+                    using (SmtpClient smtpClient = new SmtpClient(EmailSettings.SmtpServer, EmailSettings.SmtpPort))
+                    {
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential(EmailSettings.SmtpUsername, EmailSettings.SmtpPassword);
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+
+                // saving otp
+                var userOTP = new UserOTP
+                {
+                    Email = email,
+                    OTP = otp,
+                    Expiration = DateTime.UtcNow.AddMinutes(10) // set an expiration time for OTP (e.g 5 minutes)
+                };
+                _palmfitDbContext.UserOTPs.Add(userOTP);
+                _palmfitDbContext.SaveChanges();
+
+                return $"OTP sent to {email}";
+            }
+            catch (Exception ex)
+            {
+                return $"Faild To Send OTP to {email}, Error, {ex.Message}";
+            }
+        }
+
 
 
         public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
@@ -118,6 +174,8 @@ namespace Palmfit.Core.Implementations
             return new ApiResponse<string>("Verified successfully.");
         }
 
+
+
         public async Task RemoveAllExpiredOTP()
         {
             var now = DateTime.UtcNow;
@@ -126,9 +184,9 @@ namespace Palmfit.Core.Implementations
             await _palmfitDb.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
-        { 
-            return await _palmfitDb.AppUserPermissions.ToListAsync(); 
+        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync()
+        {
+            return await _palmfitDb.AppUserPermissions.ToListAsync();
         }
 
 
@@ -181,7 +239,7 @@ namespace Palmfit.Core.Implementations
                     }
                 }
             }
-            
+
         }
 
 
@@ -219,6 +277,20 @@ namespace Palmfit.Core.Implementations
                 }
             }
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
+        }
+
+
+        public async Task<string> IsEmailVerifiedAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var isUserVerified = _palmfitDb.Users.Any(u => u.IsVerified == true);
+
+            string message = (user == null)
+                ? "User does not exist"
+                : (isUserVerified)
+                    ? "User is verified"
+                    : "The user has not been verified!";
+            return message;
         }
 
 
