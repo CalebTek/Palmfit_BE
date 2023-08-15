@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
@@ -21,6 +22,21 @@ namespace Palmfit.Core.Implementations
         {
             _palmfitDbContext = palmfitDbContext;
         }
+        public async Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId)
+        {
+            return await Task.FromResult(_palmfitDbContext.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
+        }
+
+        public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId)
+        {
+            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName)
+        {
+            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
+        }
+
 
         public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
         {
@@ -42,9 +58,9 @@ namespace Palmfit.Core.Implementations
 
         public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
         {
-            
-            var subscription =  await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
-            
+
+            var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
+
             if (subscription == null)
                 return await Task.FromResult(false);
 
@@ -89,5 +105,5 @@ namespace Palmfit.Core.Implementations
 
 		 
 	}
-
 }
+

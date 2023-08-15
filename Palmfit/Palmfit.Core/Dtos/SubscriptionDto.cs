@@ -23,5 +23,6 @@ namespace Palmfit.Core.Dtos
 
 		[Required]
 		public string SubscriptionId { get; set; }
+        public string AppUserId { get; set; }
 	}
 }
