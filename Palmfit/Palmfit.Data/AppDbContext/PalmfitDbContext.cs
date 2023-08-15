@@ -26,7 +26,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUser> users { get; set; }
 
-
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }
