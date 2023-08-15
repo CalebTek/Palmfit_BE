@@ -37,7 +37,6 @@ namespace Palmfit.Core.Implementations
             return await _palmfitDbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
         }
 
-
         public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
         {
             var subscription = new Subscription
@@ -50,7 +49,7 @@ namespace Palmfit.Core.Implementations
             };
 
             _palmfitDbContext.Subscriptions.Add(subscription);
-            await _palmfitDbContext;
+            await _palmfitDbContext.SaveChangesAsync();
 
             return subscription;
         }

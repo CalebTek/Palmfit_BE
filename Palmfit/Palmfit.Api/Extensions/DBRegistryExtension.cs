@@ -23,9 +23,6 @@ namespace Palmfit.Api.Extensions
          
             });
 
-
-            // ...
-
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
@@ -40,12 +37,9 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
-
 			// Configure JWT authentication options-------------------------------------------
 			var jwtSettings = configuration.GetSection("JwtSettings");
 
-            // Configure JWT authentication options-------------------------------------------
-            var jwtSettings = configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
                 {
@@ -64,8 +58,6 @@ namespace Palmfit.Api.Extensions
                         ValidateAudience = false
                     };
                 });
-            //jwt configuration ends-------------
-
 
             //Password configuration
             services.Configure<IdentityOptions>(options =>
@@ -75,8 +67,6 @@ namespace Palmfit.Api.Extensions
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
             });
-            //JWT registration ends here----------------------------------------------------
-
 
             // Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
@@ -97,7 +87,6 @@ namespace Palmfit.Api.Extensions
             services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
-
 
             /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
 

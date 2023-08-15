@@ -2730,37 +2730,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\tibel\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
-=======
     "C:\\Users\\HP\\.nuget\\packages\\": {}
->>>>>>> develop
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\tibel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
-=======
       "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
       "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
->>>>>>> develop
       "projectStyle": "PackageReference",
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\tibel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> develop
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2768,24 +2750,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
-        "https://api.nuget.org/v3/index.json": {}
-=======
         "https://api.nuget.org/v3/index.json": {},
         "https://pkgs.dev.azure.com/fusionng/Fusion_Community/_packaging/SterlingFusionSharedLibrary/nuget/v3/index.json": {}
->>>>>>> develop
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\tibel\\OneDrive\\Desktop\\Palmfit\\New\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
-=======
             "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
               "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\PalmFit\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
->>>>>>> develop
             }
           }
         }
@@ -2845,7 +2818,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   },
