@@ -1,6 +1,8 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -31,11 +33,13 @@ namespace Palmfit.Core.Implementations
         private readonly RoleManager<AppUserRole> _roleManager;
         private readonly PalmfitDbContext _palmfitDbContext;
 
-        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
+        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
-           // _palmfitDb = palmfitDb;
+            // _palmfitDb = palmfitDb;
             //_userManager = userManager;
+            _palmfitDb = palmfitDb;
+            _userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;
@@ -178,9 +182,9 @@ namespace Palmfit.Core.Implementations
             await _palmfitDb.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
-        { 
-            return await _palmfitDb.AppUserPermissions.ToListAsync(); 
+        public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync()
+        {
+            return await _palmfitDb.AppUserPermissions.ToListAsync();
         }
 
 
@@ -233,7 +237,7 @@ namespace Palmfit.Core.Implementations
                     }
                 }
             }
-            
+
         }
 
 
@@ -273,7 +277,7 @@ namespace Palmfit.Core.Implementations
             return IdentityResult.Failed(new IdentityError { Description = "Permission not assigned to role." });
         }
 
-       
+
         public async Task<string> IsEmailVerifiedAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
