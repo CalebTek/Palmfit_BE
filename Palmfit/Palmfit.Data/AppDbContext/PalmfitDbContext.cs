@@ -27,7 +27,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<AppUser> users { get; set; }
         public DbSet<FileUploadModel> fileUploadmodels { get; set; }
 
-
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }

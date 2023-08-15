@@ -124,11 +124,11 @@ namespace Palmfit.Core.Implementations
         public async Task<UserInfoDto> GetUserStatus(string id)
         {
             
-            var getData = await _db.Subscriptions.Include(u => u.AppUser).Where(x => x.AppUserId == id).OrderBy(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
-
+            var getData = await _db.Subscriptions.Include(u => u.AppUser).OrderByDescending(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
+            
             if (getData == null) return null;
 
-            UserInfoDto userInfo = new()
+            UserInfoDto userInfo = new UserInfoDto
             {
                 LastOnline = getData.AppUser.LastOnline,
                 IsVerified = getData.AppUser.IsVerified,
