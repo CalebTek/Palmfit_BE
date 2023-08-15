@@ -36,11 +36,6 @@ namespace Palmfit.Api.Extensions
 
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
-<<<<<<< HEAD
-=======
-            // Configure JWT authentication options-------------------------------------------
-            var jwtSettings = configuration.GetSection("JwtSettings");
->>>>>>> develop
 
             // Configure JWT authentication options-------------------------------------------
             var jwtSettings = configuration.GetSection("JwtSettings");

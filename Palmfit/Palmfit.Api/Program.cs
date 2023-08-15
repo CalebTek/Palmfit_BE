@@ -2,14 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Palmfit.Api.Extensions;
-<<<<<<< HEAD
-=======
 using Microsoft.Extensions.DependencyInjection;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 
->>>>>>> develop
+
 using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
