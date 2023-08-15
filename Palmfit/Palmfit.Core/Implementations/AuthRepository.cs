@@ -1,6 +1,8 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +10,8 @@ using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -29,11 +33,13 @@ namespace Palmfit.Core.Implementations
         private readonly RoleManager<AppUserRole> _roleManager;
         private readonly PalmfitDbContext _palmfitDbContext;
 
-        public AuthRepository(IConfiguration configuration, PalmfitDbContext palmfitDb, RoleManager<AppUserRole> roleManager, UserManager<AppUser> userManager)
+        public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
             // _palmfitDb = palmfitDb;
             //_userManager = userManager;
+            _palmfitDb = palmfitDb;
+            _userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
             _userManager = userManager;

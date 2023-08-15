@@ -3,6 +3,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Palmfit.Api.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
 
 using Palmfit.Data.Seeder;
 
