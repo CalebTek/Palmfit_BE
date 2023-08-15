@@ -10,7 +10,7 @@ using Palmfit.Data.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
 using Palmfit.Data.EntityEnums;
-using Palmfit.Core.Services;
+
 
 namespace Palmfit.Api.Controllers
 {
@@ -45,8 +45,8 @@ namespace Palmfit.Api.Controllers
             var result = await _foodRepo.GetAllFoodAsync();
 
             return (Ok(ApiResponse.Success(result)));
-
         }
+
 
         [HttpGet("get-meal-Id")]
         public async Task<IActionResult> GetFoodById(string Id)
@@ -173,10 +173,6 @@ namespace Palmfit.Api.Controllers
 
             return Ok(ApiResponse.Success(result));
         }
-
-
-
-
 
 
         [HttpDelete("{id}/Delete-Food-byId")]
@@ -308,8 +304,21 @@ namespace Palmfit.Api.Controllers
             }
         }
 
+        [HttpPost("create-class-of-food")]
+        public async Task<IActionResult> CreateFoodClass(FoodClassDto foodClassDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var createdFoodClass = await _food.CreateFoodClass(foodClassDto);
+
+            if (createdFoodClass == null)
+            {
+                return NotFound(ApiResponse.Failed(createdFoodClass));
+            }
+            return Ok(ApiResponse.Success(createdFoodClass));
+        }
     }
 }
- 
-	 

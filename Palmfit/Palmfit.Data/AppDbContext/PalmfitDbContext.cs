@@ -28,7 +28,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<MealPlan> MealPlans { get; set; }
         //public DbSet<UserOTP> UserOTPs { get; set; }
 
-
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }
