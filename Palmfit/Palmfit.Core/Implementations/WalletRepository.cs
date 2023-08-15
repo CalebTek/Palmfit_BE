@@ -7,6 +7,7 @@ using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
         }
 
-        public async Task<Wallet> GetWalletByUserId(string userId)
+        public async Task<Wallet> GetWalletByUserIdAsync(string appUserId)
         {
-            return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == userId);
+            return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == appUserId);
         }
 
         public async Task<string> RemoveFundFromWallet(string walletId, decimal amount)
