@@ -3,15 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Data.AppDbContext
 {
-    public class PalmfitDbContext : IdentityDbContext<AppUser>
+    public class PalmfitDbContext : IdentityDbContext<AppUser, AppUserRole, string>
     {
         public DbSet<Health> Healths { get; set; }
         public DbSet<Setting> Settings { get; set; }
@@ -22,10 +18,15 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Invite> Invites { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
+        public DbSet<AppUserPermission> AppUserPermissions { get; set; }
+        public DbSet<AppUserRole> AppUserRoles { get; set; }
+        public DbSet<AppUser> users { get; set; }
         public DbSet<FileUploadModel> fileUploadmodels { get; set; }
+
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
@@ -125,7 +126,15 @@ namespace Palmfit.Data.AppDbContext
             modelBuilder.Entity<Invite>()
                 .HasOne(i => i.AppUser)
                 .WithMany(a => a.Invities)
-                .HasForeignKey(i => i.AppUserId);
+                .HasForeignKey(i => i.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // AppUser and Referral (One-to-Many)
+            modelBuilder.Entity<AppUser>()
+                .HasMany(u => u.Referrals)
+                .WithOne(r => r.InvitedUser)
+                .HasForeignKey(r => r.InvitedUserid)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Configure One FoodClass to Many Relationship
             modelBuilder.Entity<FoodClass>()
@@ -138,6 +147,23 @@ namespace Palmfit.Data.AppDbContext
                 .HasOne(f => f.FoodClass)
                 .WithMany(fc => fc.Foods)
                 .HasForeignKey(f => f.FoodClassId);
+
+            /* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
+            modelBuilder.Entity<Food>()
+                .Property(f => f.Unit)
+                .HasConversion<string>();
+
+            /* <-------End-------- Configure Enum Mapping in DbContext ------- End------>*/
         }
     }
+
+    /* <-------Start-------- Seed Data ------- Start------>*/
+    // Seed FoodClass data
+    public class SeedData
+    {
+        public static void Initialize(PalmfitDbContext context)
+        {
+        }
+    }
+    /* <-------End-------- Seed Data ------- End------>*/
 }

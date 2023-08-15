@@ -11,6 +11,8 @@ using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json.Serialization;
+
 
 namespace Palmfit.Api.Extensions
 {
@@ -22,8 +24,11 @@ namespace Palmfit.Api.Extensions
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                //options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+         
             });
 
+<<<<<<< HEAD
             // Cloudinary registration -------------------------------------
             var cloudinarySettings = new CloudinarySettings();
             configuration.GetSection("Cloudinary").Bind(cloudinarySettings);
@@ -36,30 +41,44 @@ namespace Palmfit.Api.Extensions
             var cloudinary = new Cloudinary(cloudinaryAccount);
             services.AddSingleton(cloudinary);
             // Cloudinary registration ends --------------------------------
+=======
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
+
+            // ...
+>>>>>>> 3155de66307ede536232a2df1dd4ec7fbe1b5e35
 
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
 
-            // Configure JWT authentication options-----------------------
-            var jwtSettings = configuration.GetSection("JwtSettings");
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
+			// Configure JWT authentication options-------------------------------------------
+			var jwtSettings = configuration.GetSection("JwtSettings");
+
             var key = Encoding.ASCII.GetBytes(jwtSettings["Secret"]);
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-            //jwt configuration ends-------------
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
             //Password configuration
             services.Configure<IdentityOptions>(options =>
             {
@@ -69,20 +88,41 @@ namespace Palmfit.Api.Extensions
                 options.Password.RequireUppercase = true;
             });
 
-
-
-            //Repo Registration
+            // Repo Registration
             services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
+<<<<<<< HEAD
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+=======
+            services.AddScoped<IInviteRepository, InviteRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+            services.AddScoped<IWalletRepository, WalletRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+
+            services.AddScoped<IMealPlanRepository, MealPlanRepository>();
+            services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
+            services.AddScoped<IReferralRepository, ReferralRepository>();
+>>>>>>> 3155de66307ede536232a2df1dd4ec7fbe1b5e35
 
 
-            //Identity role registration with Stores and default token provider
-            services.AddIdentity<AppUser, IdentityRole>()
+            // Identity role registration with Stores and default token provider
+            services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
 
+            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
+
+            //services.AddScoped<SeedData>();
+
+            // Call the seed method after the DbContext is created
+            //services.AddScoped<IServiceProvider>(provider =>
+            //{
+
+            //});
+
+            /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
     }
 }
