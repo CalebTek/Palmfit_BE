@@ -18,14 +18,18 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Invite> Invites { get; set; }
-        public DbSet<Referral> Referrals { get; set; }
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
         public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUser> users { get; set; }
+<<<<<<< HEAD
         public DbSet<FileUploadModel> fileUploadmodels { get; set; }
+=======
+        public DbSet<MealPlan> MealPlans { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
+>>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
@@ -125,15 +129,7 @@ namespace Palmfit.Data.AppDbContext
             modelBuilder.Entity<Invite>()
                 .HasOne(i => i.AppUser)
                 .WithMany(a => a.Invities)
-                .HasForeignKey(i => i.AppUserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // AppUser and Referral (One-to-Many)
-            modelBuilder.Entity<AppUser>()
-                .HasMany(u => u.Referrals)
-                .WithOne(r => r.InvitedUser)
-                .HasForeignKey(r => r.InvitedUserid)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(i => i.AppUserId);
 
             //Configure One FoodClass to Many Relationship
             modelBuilder.Entity<FoodClass>()

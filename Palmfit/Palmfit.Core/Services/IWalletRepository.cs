@@ -12,6 +12,7 @@ namespace Palmfit.Core.Services
     public interface IWalletRepository
     {
         Task<Wallet> GetWalletByUserId(string userId);
+        Task<Wallet> GetWalletByUserIdAsync(string appUserId);
         Task<string> RemoveFundFromWallet(string walletId, decimal amount);
         Task<PaginParameter<WalletHistory>> WalletHistories(int page, int pageSize);
         Task FundWalletAsync(FundWalletDto fundWalletDto, string userId);

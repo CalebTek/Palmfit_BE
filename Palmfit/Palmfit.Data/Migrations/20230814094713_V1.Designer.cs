@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Palmfit.Data.AppDbContext;
@@ -11,9 +12,11 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    partial class PalmfitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230814094713_V1")]
+    partial class V1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -289,43 +292,6 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("AppUserRole");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Palmfit.Data.Entities.FileUploadModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CloudinaryPublicId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CloudinaryUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("fileUploadmodels");
-                });
-
-=======
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
                 {
                     b.Property<string>("Id")
@@ -849,11 +815,7 @@ namespace Palmfit.Data.Migrations
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Invities")
                         .HasForeignKey("AppUserId")
-<<<<<<< HEAD
-                        .OnDelete(DeleteBehavior.Restrict)
-=======
                         .OnDelete(DeleteBehavior.Cascade)
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -875,11 +837,7 @@ namespace Palmfit.Data.Migrations
                     b.HasOne("Palmfit.Data.Entities.AppUser", "InvitedUser")
                         .WithMany("Referrals")
                         .HasForeignKey("InvitedUserid")
-<<<<<<< HEAD
-                        .OnDelete(DeleteBehavior.Restrict)
-=======
                         .OnDelete(DeleteBehavior.Cascade)
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
                         .IsRequired();
 
                     b.Navigation("InvitedUser");

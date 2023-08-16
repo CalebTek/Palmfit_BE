@@ -15,20 +15,21 @@ namespace Palmfit.Core.Implementations
 {
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
-
+       
+ 
         private readonly PalmfitDbContext _dbContext;
 
         public FoodInterfaceRepository(PalmfitDbContext dbContext)
         {
-            _dbContext = dbContext;
+           _dbContext = dbContext;
         }
-
-        public async Task<List<Food>> GetAllFoodAsync()
+		
+		public async Task<List<Food>> GetAllFoodAsync() 
         {
             return await _dbContext.Foods.ToListAsync();
         }
 
-
+        
         public async Task<Food> GetFoodById(string id)
         {
             return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
@@ -141,7 +142,7 @@ namespace Palmfit.Core.Implementations
 
             try
             {
-                await _dbContext.SaveChangesAsync();
+				await _dbContext.SaveChangesAsync();
                 return "Food updated successfully.";
             }
             catch (Exception)
@@ -168,7 +169,7 @@ namespace Palmfit.Core.Implementations
         {
 
             var getFoodData = await _dbContext.Foods.Where(x => x.FoodClassId == id).ToListAsync();
-            if (getFoodData.Count() == 0)
+            if (getFoodData.Count() == 0 )
                 return null;
 
             List<FoodDto> result = new();
@@ -194,33 +195,33 @@ namespace Palmfit.Core.Implementations
             return result;
         }
 
-        public async Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId)
-        {
-            var res = new FoodClass();
-            var foodClassInfo = await _dbContext.FoodClasses.FirstOrDefaultAsync(fc => fc.Id == foodClassId);
-            if (foodClassInfo != null)
-            {
-                return res;
-            }
-            return foodClassInfo;
+		public async Task<FoodClass> GetFoodClassesByIdAsync(string foodClassId)
+		{
+			var res = new FoodClass();
+			var foodClassInfo = await _dbContext.FoodClasses.FirstOrDefaultAsync(fc => fc.Id == foodClassId);
+			if (foodClassInfo != null)
+			{
+				return res;
+			}
+			return foodClassInfo;
 
-        }
+		}
 
-        public string DeleteFoodClass(string foodClassId)
-        {
-            var foodClass = _dbContext.FoodClasses.FirstOrDefault(fc => fc.Id == foodClassId);
+		public string DeleteFoodClass(string foodClassId)
+		{
+			var foodClass = _dbContext.FoodClasses.FirstOrDefault(fc => fc.Id == foodClassId);
 
-            if (foodClass != null)
-            {
-                _dbContext.FoodClasses.Remove(foodClass);
-                _dbContext.SaveChanges();
+			if (foodClass != null)
+			{
+				_dbContext.FoodClasses.Remove(foodClass);
+				_dbContext.SaveChanges();
 
-                return "Delete Successful";
-            }
+				return "Delete Successful";
+			}
 
-            return "Food class does not exist";
-        }
-
+			return "Food class does not exist";
+		}
+        
         public async Task<string> DeleteAsync(string id)
         {
             var existingFood = await _dbContext.Foods.FirstOrDefaultAsync(x => x.Id == id);
