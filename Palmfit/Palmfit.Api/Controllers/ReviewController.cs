@@ -70,7 +70,6 @@ namespace Palmfit.Api.Controllers
 			}
 
 			var result = await _reviewRepository.AddReview(review, userId);
-git 
 			if (result == null)
 			{
 				return NotFound(new ApiResponse("User does not exist in the database"));
