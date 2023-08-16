@@ -26,7 +26,6 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<AppUser> users { get; set; }
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<Referral> Referrals { get; set; }
-       
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
