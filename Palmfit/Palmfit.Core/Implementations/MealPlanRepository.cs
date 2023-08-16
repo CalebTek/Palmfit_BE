@@ -3,7 +3,6 @@ using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.EntityEnums;
-using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,9 +22,6 @@ namespace Palmfit.Core.Implementations
 			_palmfitDbContext = palmfitDbContext;
 
 		}
-
-
-
 		public async Task<IEnumerable<MealPlanDto>> GetWeeklyPlan(int week, string appUserId)
 		{
 			try

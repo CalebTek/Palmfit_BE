@@ -50,7 +50,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserOTPs");
+                    b.ToTable("UserOTPs", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -72,7 +72,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -94,7 +94,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -113,7 +113,7 @@ namespace Palmfit.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -124,7 +124,7 @@ namespace Palmfit.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("text");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -143,7 +143,7 @@ namespace Palmfit.Data.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.AppUser", b =>
@@ -251,7 +251,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUser");
+                    b.ToTable("AppUser", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.AppUserPermission", b =>
@@ -266,7 +266,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUserPermissions");
+                    b.ToTable("AppUserPermissions", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.AppUserRole", b =>
@@ -286,46 +286,9 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUserRole");
+                    b.ToTable("AppUserRole", (string)null);
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Palmfit.Data.Entities.FileUploadModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CloudinaryPublicId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CloudinaryUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("fileUploadmodels");
-                });
-
-=======
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
                 {
                     b.Property<string>("Id")
@@ -376,7 +339,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("FoodClassId");
 
-                    b.ToTable("Foods");
+                    b.ToTable("Foods", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.FoodClass", b =>
@@ -408,7 +371,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodClasses");
+                    b.ToTable("FoodClasses", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Health", b =>
@@ -461,7 +424,7 @@ namespace Palmfit.Data.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Healths");
+                    b.ToTable("Healths", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Invite", b =>
@@ -502,7 +465,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Invites");
+                    b.ToTable("Invites", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
@@ -542,7 +505,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Referral", b =>
@@ -572,7 +535,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("InvitedUserid");
 
-                    b.ToTable("Referrals");
+                    b.ToTable("Referrals", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Review", b =>
@@ -612,7 +575,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
@@ -639,7 +602,7 @@ namespace Palmfit.Data.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Subscription", b =>
@@ -677,7 +640,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Subscriptions");
+                    b.ToTable("Subscriptions", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Transaction", b =>
@@ -738,7 +701,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Wallet", b =>
@@ -768,7 +731,7 @@ namespace Palmfit.Data.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Wallets");
+                    b.ToTable("Wallets", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.WalletHistory", b =>
@@ -819,7 +782,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("WalletId");
 
-                    b.ToTable("WalletHistories");
+                    b.ToTable("WalletHistories", (string)null);
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
@@ -849,11 +812,7 @@ namespace Palmfit.Data.Migrations
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
                         .WithMany("Invities")
                         .HasForeignKey("AppUserId")
-<<<<<<< HEAD
-                        .OnDelete(DeleteBehavior.Restrict)
-=======
                         .OnDelete(DeleteBehavior.Cascade)
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -875,11 +834,7 @@ namespace Palmfit.Data.Migrations
                     b.HasOne("Palmfit.Data.Entities.AppUser", "InvitedUser")
                         .WithMany("Referrals")
                         .HasForeignKey("InvitedUserid")
-<<<<<<< HEAD
-                        .OnDelete(DeleteBehavior.Restrict)
-=======
                         .OnDelete(DeleteBehavior.Cascade)
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
                         .IsRequired();
 
                     b.Navigation("InvitedUser");

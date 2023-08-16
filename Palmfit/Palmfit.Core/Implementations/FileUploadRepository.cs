@@ -67,7 +67,7 @@ namespace Palmfit.Core.Implementations
                 CloudinaryUrl = uploadResult.Uri.ToString()
             };
 
-            _palmfitDb.fileUploadmodels.Add(fileUploadModel);
+            _palmfitDb.FileUploadmodels.Add(fileUploadModel);
             _palmfitDb.SaveChanges();
 
             return "File uploaded and saved successfully!";

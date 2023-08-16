@@ -24,12 +24,9 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUser> users { get; set; }
-<<<<<<< HEAD
-        public DbSet<FileUploadModel> fileUploadmodels { get; set; }
-=======
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<Referral> Referrals { get; set; }
->>>>>>> 3f6bf0be9cc72174bd89839ec88af647bc12b2c2
+        public DbSet<FileUploadModel> FileUploadmodels { get; set; }
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
