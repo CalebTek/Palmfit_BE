@@ -18,25 +18,20 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        private readonly IFoodInterfaceRepository _food;
         private readonly PalmfitDbContext _db;
         private readonly IFoodInterfaceRepository _foodRepo;
 
-        public FoodController(IFoodInterfaceRepository foodInterfaceRepository, PalmfitDbContext db)
-        {
-            _food = foodInterfaceRepository;
-            _db = db;
-            _foodRepo = foodInterfaceRepository;
-        }
+		public FoodController(PalmfitDbContext db, IFoodInterfaceRepository foodRepo)
+		{
+			_db = db;
+			_foodRepo = foodRepo;
+		}
 
-
-
-
-        [HttpGet("get-all-meals")]
+		[HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
-            var foods = await _food.GetAllFoodAsync();
+            var foods = await _foodRepo.GetAllFoodAsync();
             if (!foods.Any())
             {
                 return NotFound(ApiResponse.Failed("Food does not exist"));
@@ -53,7 +48,7 @@ namespace Palmfit.Api.Controllers
         {
             
             {
-                var meal = await _food.GetFoodById(Id);
+                var meal = await _foodRepo.GetFoodById(Id);
 
                 if (meal == null)
                 {
@@ -128,7 +123,7 @@ namespace Palmfit.Api.Controllers
                     };
 
                     // Add the new FoodClass to the database
-                    await _food.AddFoodClassAsync(foodClass);
+                    await _foodRepo.AddFoodClassAsync(foodClass);
                 }
 
                 // Convert the FoodDto to the Food entity
@@ -147,7 +142,7 @@ namespace Palmfit.Api.Controllers
                 };
 
                 // Add the new food to the database
-                await _food.AddFoodAsync(food);
+                await _foodRepo.AddFoodAsync(food);
 
                 return ApiResponse<Food>.Success(food, "Food added successfully");
             }
@@ -179,7 +174,7 @@ namespace Palmfit.Api.Controllers
         public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
         {
 
-            var targetedFood = await _food.GetFoodByIdAsync(id);
+            var targetedFood = await _foodRepo.GetFoodByIdAsync(id);
 
             if (targetedFood == null)
             {
@@ -189,7 +184,7 @@ namespace Palmfit.Api.Controllers
 
             else
             {
-                await _food.DeleteAsync(id);
+                await _foodRepo.DeleteAsync(id);
                 return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
             }
         }
@@ -212,6 +207,8 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(updatedfood));
         }
 
+
+	
         [HttpGet("Get-FoodClass-By-Id")]
         public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
         {
@@ -271,7 +268,7 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var createdFoodClass = await _food.CreateFoodClass(foodClassDto);
+            var createdFoodClass = await _foodRepo.CreateFoodClass(foodClassDto);
 
             if (createdFoodClass == null)
             {
