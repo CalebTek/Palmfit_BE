@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -15,14 +16,16 @@ namespace Palmfit.Api.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<AppUserRole> _roleManager;
+        private readonly IEmailServices _emailServices;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo, RoleManager<AppUserRole> roleManager)
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo,  IEmailServices emailServices,RoleManager<AppUserRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _authRepo = authRepo;
             _roleManager = roleManager;
+            _emailServices = emailServices;
         }
 
 
@@ -61,6 +64,8 @@ namespace Palmfit.Api.Controllers
                 }
             }
         }
+
+
 
 
 
@@ -149,6 +154,30 @@ namespace Palmfit.Api.Controllers
                 // Handle the case where creating the permission fails
 
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
+            }
+        }
+
+        //Endpoint to create password reset
+        [HttpPost("password-reset")]
+        public async Task<ActionResult<ApiResponse>> SendPasswordResetEmail(LoginDto loginDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(loginDto.Email);
+                if (user == null)
+                {
+                    return ApiResponse.Failed("Invalid email address.");
+                }
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var passwordResetUrl = "https://your-app.com/reset-password?token=" + token;
+                var emailBody = $"Click the link below to reset your password: {passwordResetUrl}";
+                await _emailServices.SendEmailAsync(loginDto.Email, "password Reset", emailBody);
+                return ApiResponse.Success("password reset email sent successfully.");
+
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse.Failed(null, "An error occurred during password reset.", new List<string> { ex.Message });
             }
         }
 
