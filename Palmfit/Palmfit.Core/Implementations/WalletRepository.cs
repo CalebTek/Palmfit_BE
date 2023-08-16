@@ -24,6 +24,11 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
         }
 
+        public async Task<Wallet> GetWalletByUserId(string userId)
+        {
+            return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == userId);
+        }
+
         public async Task<Wallet> GetWalletByUserIdAsync(string appUserId)
         {
             return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == appUserId);
