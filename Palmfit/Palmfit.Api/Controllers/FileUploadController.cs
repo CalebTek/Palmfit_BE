@@ -26,8 +26,6 @@ namespace Palmfit.Api.Controllers
             {
                 return NotFound(ApiResponse.Failed(uploadedImage));
             }
-            _fileUploadRepository.UploadImageToCloudinaryAndSave(file);
-
             return Ok(ApiResponse.Success(uploadedImage));
         }
     }

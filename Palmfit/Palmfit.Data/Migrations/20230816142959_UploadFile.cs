@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Palmfit.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class fileUpload : Migration
+    public partial class UploadFile : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,21 +30,45 @@ namespace Palmfit.Data.Migrations
                 });
 
             //migrationBuilder.CreateTable(
-            //    name: "UserOTPs",
+            //    name: "MealPlans",
             //    columns: table => new
             //    {
             //        Id = table.Column<string>(type: "text", nullable: false),
-            //        Email = table.Column<string>(type: "text", nullable: false),
-            //        OTP = table.Column<string>(type: "text", nullable: false),
-            //        Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+            //        AppUserId = table.Column<string>(type: "text", nullable: false),
+            //        FoodId = table.Column<string>(type: "text", nullable: false),
+            //        MealOfDay = table.Column<int>(type: "integer", nullable: false),
+            //        DayOfTheWeek = table.Column<int>(type: "integer", nullable: false),
+            //        Week = table.Column<int>(type: "integer", nullable: false),
             //        CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
             //        UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
             //        IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
             //    },
             //    constraints: table =>
             //    {
-            //        table.PrimaryKey("PK_UserOTPs", x => x.Id);
+            //        table.PrimaryKey("PK_MealPlans", x => x.Id);
+            //        table.ForeignKey(
+            //            name: "FK_MealPlans_AppUser_AppUserId",
+            //            column: x => x.AppUserId,
+            //            principalTable: "AppUser",
+            //            principalColumn: "Id",
+            //            onDelete: ReferentialAction.Cascade);
+            //        table.ForeignKey(
+            //            name: "FK_MealPlans_Foods_FoodId",
+            //            column: x => x.FoodId,
+            //            principalTable: "Foods",
+            //            principalColumn: "Id",
+            //            onDelete: ReferentialAction.Cascade);
             //    });
+
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_MealPlans_AppUserId",
+            //    table: "MealPlans",
+            //    column: "AppUserId");
+
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_MealPlans_FoodId",
+            //    table: "MealPlans",
+            //    column: "FoodId");
         }
 
         /// <inheritdoc />
@@ -54,7 +78,7 @@ namespace Palmfit.Data.Migrations
                 name: "FileUploadmodels");
 
             //migrationBuilder.DropTable(
-            //    name: "UserOTPs");
+            //    name: "MealPlans");
         }
     }
 }
