@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "WNifJCFjFCOHdpKcB61gMfeVlMRzczJUoLpDRLilObdNdOdVR9VaI3pU55/3Q8Ws1I3bfB/kct3w5c+wN/t1HA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT2AGAIN\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+=======
+  "dgSpecHash": "yOIAqm96mmdGDKz5EHR1Qzbj1ax2XdgIlbXS1bbK2La6FKLaFxP/SYXzDx7tSGvKZILjjXIfZYW9GwUOoHn8aA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+>>>>>>> develop
   "expectedPackageFiles": [
     "C:\\Users\\Decagon\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

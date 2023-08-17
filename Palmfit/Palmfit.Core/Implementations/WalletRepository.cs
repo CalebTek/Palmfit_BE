@@ -153,5 +153,9 @@ namespace Palmfit.Core.Implementations
 
             return data;
         }
+        public async Task<List<Wallet>> GetAllWalletsAsync()
+        {
+            return await _palmfitDb.Wallets.ToListAsync();
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace Palmfit.Core.Services
         Task FundWalletAsync(FundWalletDto fundWalletDto, string userId);
         Task<ICollection<TransactionDto>> GetUserTransactionHistory(string userId);
         Task<ICollection<WalletHistoryDto>> GetUserWalletHistory(string walletId);
+        Task <List<Wallet>> GetAllWalletsAsync();
     }
 }

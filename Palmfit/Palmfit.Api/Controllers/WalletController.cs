@@ -15,6 +15,7 @@ namespace Palmfit.Api.Controllers
     {
         private readonly IWalletRepository _wallet;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IWalletRepository _walletRepository;
         public WalletController(IWalletRepository wallet, UserManager<AppUser> userManager)
         {
             _wallet = wallet;
@@ -122,6 +123,25 @@ namespace Palmfit.Api.Controllers
             if (result == null) return NotFound(ApiResponse.Failed("No transaction performed"));
 
             return Ok(ApiResponse.Success(result));
+        }
+
+        [HttpGet("get-all-wallets")]
+        public async Task<IActionResult> GetAllWallets()
+        {
+            try
+            {
+                var wallets = await _walletRepository.GetAllWalletsAsync();
+                if (wallets.Any())
+                {
+                   return Ok(ApiResponse.Success(wallets));
+                }
+                  return NotFound(ApiResponse.Success("No wallets found."));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500,ApiResponse.Failed("An error occured while processing the request."));
+            }
         }
     }
 }

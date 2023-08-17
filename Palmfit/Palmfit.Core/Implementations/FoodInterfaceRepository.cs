@@ -15,13 +15,12 @@ namespace Palmfit.Core.Implementations
 {
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
-       
- 
+
         private readonly PalmfitDbContext _dbContext;
 
-        public FoodInterfaceRepository(PalmfitDbContext dbContext)
+        public FoodInterfaceRepository(PalmfitDbContext dbcontext)
         {
-           _dbContext = dbContext;
+            _dbContext = dbcontext;
         }
 		
 		public async Task<List<Food>> GetAllFoodAsync() 
@@ -29,10 +28,20 @@ namespace Palmfit.Core.Implementations
             return await _dbContext.Foods.ToListAsync();
         }
 
-        
         public async Task<Food> GetFoodById(string id)
         {
             return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
+        }
+
+        public async Task<List<Food>> SearchFood(string searchTerms)
+        {
+            var foods = await _dbContext.Foods.ToListAsync();
+            if (searchTerms != null && searchTerms.Length > 0)
+            {
+                foods = foods.Where(x => searchTerms.Any(term => x.Name.Contains(term))).OrderByDescending(x => x.CreatedAt).ToList();
+            }
+            return foods;
+            
         }
 
         public async Task AddFoodAsync(Food food)
@@ -161,8 +170,6 @@ namespace Palmfit.Core.Implementations
             await _dbContext.FoodClasses.AddAsync(foodClass);
             await _dbContext.SaveChangesAsync();
         }
-
-
 
         //get food list by category
         public async Task<ICollection<FoodDto>> GetFoodByCategory(string id)
