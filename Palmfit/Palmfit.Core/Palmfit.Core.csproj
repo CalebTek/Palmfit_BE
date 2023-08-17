@@ -51,6 +51,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Palmfit.Data\Palmfit.Data.csproj" />
+    <ProjectReference Include="..\Palmfit.Infrastructure\Palmfit.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
