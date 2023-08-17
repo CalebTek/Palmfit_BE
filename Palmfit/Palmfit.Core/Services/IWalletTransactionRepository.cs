@@ -10,6 +10,6 @@ namespace Palmfit.Core.Services
 {
     public interface IWalletTransactionRepository
     {
-        Task<PaginParameter<Transaction>> GetWalletTransactionsAsync(int page, int pageSize);
+        Task<PaginParameter<Transaction>> GetAllTransactionsAsync(int page, int pageSize);
     }
 }

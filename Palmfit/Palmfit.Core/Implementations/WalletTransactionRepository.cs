@@ -19,14 +19,15 @@ namespace Palmfit.Core.Implementations
             _palmfitDb = palmfitDb;
         }
 
-        public async Task<PaginParameter<Transaction>> GetWalletTransactionsAsync(int page, int pageSize)
+        public async Task<PaginParameter<Transaction>> GetAllTransactionsAsync(int page, int pageSize)
         {
             var totalCount = await _palmfitDb.Transactions.CountAsync();
 
-            var transactions = await _palmfitDb.Transactions
+            var transactions = await _palmfitDb.Transactions.OrderByDescending(x => x.CreatedAt).ToListAsync();
+
+            transactions = await _palmfitDb.Transactions
                 .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                .Take(pageSize).ToListAsync();
 
             return new PaginParameter<Transaction>
             {

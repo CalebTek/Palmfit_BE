@@ -21,7 +21,7 @@ namespace Palmfit.Api.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<Transaction>>> GetAllWalletTransactionHistory(int page, int pageSize)
         {
-            var transactions = await _transaction.GetWalletTransactionsAsync(page, pageSize);
+            var transactions = await _transaction.GetAllTransactionsAsync(page, pageSize);
             return Ok(ApiResponse.Success(transactions));
         }
     }
