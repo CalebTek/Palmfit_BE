@@ -2280,6 +2280,21 @@
         "runtime": {
           "bin/placeholder/Palmfit.Data.dll": {}
         }
+      },
+      "Palmfit.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.AspNet.Identity.EntityFramework": "2.2.4",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Microsoft.EntityFrameworkCore": "7.0.10"
+        },
+        "compile": {
+          "bin/placeholder/Palmfit.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Palmfit.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -6489,6 +6504,11 @@
       "type": "project",
       "path": "../Palmfit.Data/Palmfit.Data.csproj",
       "msbuildProject": "../Palmfit.Data/Palmfit.Data.csproj"
+    },
+    "Palmfit.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Palmfit.Infrastructure/Palmfit.Infrastructure.csproj",
+      "msbuildProject": "../Palmfit.Infrastructure/Palmfit.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6503,6 +6523,7 @@
       "Microsoft.IdentityModel.Tokens >= 6.32.1",
       "Newtonsoft.Json >= 13.0.3",
       "Palmfit.Data >= 1.0.0",
+      "Palmfit.Infrastructure >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.32.1"
     ]
   },
@@ -6541,6 +6562,9 @@
           "projectReferences": {
             "C:\\Users\\Administrator\\OneDrive\\Desktop\\Live-Project-Palmfit-2\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
               "projectPath": "C:\\Users\\Administrator\\OneDrive\\Desktop\\Live-Project-Palmfit-2\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
+            },
+            "C:\\Users\\Administrator\\OneDrive\\Desktop\\Live-Project-Palmfit-2\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\OneDrive\\Desktop\\Live-Project-Palmfit-2\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj"
             }
           }
         }
@@ -6617,6 +6641,12 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Administrator\\OneDrive\\Desktop\\Live-Project-Palmfit-2\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
