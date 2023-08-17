@@ -3,11 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Palmfit.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Palmfit.Data.EntityEnums;
 
 namespace Palmfit.Data.AppDbContext
 {
@@ -25,9 +21,13 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<FoodClass> FoodClasses { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserOTP> UserOTPs { get; set; }
-        public DbSet<AppUserPermission> AppUserPermissions  { get; set; }
+        public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
-        
+
+        public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<MealPlan> MealPlans { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
@@ -140,6 +140,23 @@ namespace Palmfit.Data.AppDbContext
                 .HasOne(f => f.FoodClass)
                 .WithMany(fc => fc.Foods)
                 .HasForeignKey(f => f.FoodClassId);
+
+            /* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
+            modelBuilder.Entity<Food>()
+                .Property(f => f.Unit)
+                .HasConversion<string>();
+
+            /* <-------End-------- Configure Enum Mapping in DbContext ------- End------>*/
         }
     }
+
+    /* <-------Start-------- Seed Data ------- Start------>*/
+    // Seed FoodClass data
+    public class SeedData
+    {
+        public static void Initialize(PalmfitDbContext context)
+        {
+        }
+    }
+    /* <-------End-------- Seed Data ------- End------>*/
 }

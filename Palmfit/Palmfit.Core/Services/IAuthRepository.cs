@@ -22,5 +22,8 @@ namespace Palmfit.Core.Services
         Task<IEnumerable<AppUserPermission>> GetPermissionsByRoleNameAsync(string roleId);
         Task AssignPermissionToRoleAsync(string roleName, string permissionName);
         Task<IdentityResult> RemovePermissionFromRoleAsync(string roleId, string permissionId);
+       
+        Task<string> IsEmailVerifiedAsync(string userId);
+        string SendOTPByEmail(string email);
     }
 }
