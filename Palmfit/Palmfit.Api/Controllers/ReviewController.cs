@@ -13,7 +13,7 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class ReviewController : ControllerBase
     {
-        
+        private readonly IReviewRepository _reviewRepository;
         private readonly IReviewRepository _reviewRepo; 
         private readonly UserManager<AppUser> _userManager;
 
@@ -41,19 +41,18 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-
         [HttpGet("get-review-by-user/{userId}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<ReviewDto>>> GetReviewsByUserId(string userId)
         {
-                var result = await _reviewRepo.GetReviewsByUserIdAsync(userId);
+                var result = await _reviewRepository.GetReviewsByUserIdAsync(userId);
                 return Ok(ApiResponse.Success(result));
         }
 
         [HttpPut("Update-review/{userId}")]
         public async Task<IActionResult> UpdateReview(string userId, [FromBody] ReviewDto reviewDto)
         {
-            var result = await _reviewRepo.UpdateReviewAsync(userId, reviewDto);
+            var result = await _reviewRepository.UpdateReviewAsync(userId, reviewDto);
             if (!result.Any()) return BadRequest(ApiResponse.Failed("Failed to update"));
 
 
@@ -61,28 +60,23 @@ namespace Palmfit.Api.Controllers
 
         }
 
+		[HttpPost("add-review/{userId}")]
+		public async Task<IActionResult> AddReview([FromBody] ReviewDto review, string userId)
+		{
+			//var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			if (userId == null)
+			{
+				return BadRequest(new ApiResponse<string>("User Id is invalid!"));
+			}
 
+			var result = await _reviewRepository.AddReview(review, userId);
+			if (result == null)
+			{
+				return NotFound(new ApiResponse("User does not exist in the database"));
+			}
 
-        [HttpGet("get-all-reviews")]
-        public async Task<IActionResult> GetAllReviews()
-        {
-            try
-            {
-                var reviews = await _reviewRepo.GetAllReviewsAsync();
-                if (!reviews.Any())
-                {
-                    return NotFound(ApiResponse.Failed("Review not found."));
-                }
-                return Ok(ApiResponse.Success(reviews));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ApiResponse.Failed(null, "An error occurred while fetching reviews.", errors: new List<string> { ex.Message }));
-            }
-        }
-
-
-
-    }
+			return Ok(ApiResponse.Success(result));
+		}
+	}
 }
 
