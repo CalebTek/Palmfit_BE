@@ -2,11 +2,11 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 85
+#EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /Palmfit
+WORKDIR "/Palmfit"
 COPY ["Palmfit.Api/Palmfit.Api.csproj", "Palmfit.Api/"]
 COPY ["Palmfit.Core/Palmfit.Core.csproj", "Palmfit.Core/"]
 COPY ["Palmfit.Data/Palmfit.Data.csproj", "Palmfit.Data/"]
@@ -20,6 +20,7 @@ FROM build AS publish
 RUN dotnet publish "Palmfit.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-WORKDIR /app
+WORKDIR "/Palmfit/Palmfit.Api"
 COPY --from=publish /app/publish .
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet Palmfit.Api.dll
 ENTRYPOINT ["dotnet", "Palmfit.Api.dll"]

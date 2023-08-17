@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Palmfit.Api/Palmfit.Api.csproj",
+                "${workspaceFolder}/Palmfit.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Palmfit.Api/Palmfit.Api.csproj",
+                "${workspaceFolder}/Palmfit.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Palmfit.Api/Palmfit.Api.csproj"
+                "${workspaceFolder}/Palmfit.sln"
             ],
             "problemMatcher": "$msCompile"
         }
