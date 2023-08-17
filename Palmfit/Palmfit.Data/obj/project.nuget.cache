@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "M0wHEYOUUV8vI8+7f8IKdwu31KhJmoH4qRhqqHQ9b4v+4RrI92gNJ4axjS1DFJ584ISnwUV0HfTAb09E7qS+6g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT2AGAIN\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
-=======
-  "dgSpecHash": "mJ97SEAXEPc+L8cVohYb0Z136sG0PxNHjymnXlPT1wh7CLfVoDwVT2fxvKioFtLtJS6MNCjkTP1BXlosG4Kw6w==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj",
->>>>>>> develop
   "expectedPackageFiles": [
     "C:\\Users\\Decagon\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

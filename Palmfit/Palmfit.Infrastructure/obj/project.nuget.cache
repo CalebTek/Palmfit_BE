@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "UCb8EUne83RVps/6/hSKyZJy6YPObpyX1IyL4eitmgjKgX2mO7rDzbb4Q1ku+gxt1GR/SnPMXUfptRRGMRxPbA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT2AGAIN\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-=======
-  "dgSpecHash": "ZskJHLCSSG6iu0qevjs71FgKQHMUwLwKNDZu8zI3F2emYySgvBpLOy9N4y3+tNGqysueJVMZRp/LHxXMwkq4kw==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Decagon\\Desktop\\PALMFIT\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
->>>>>>> develop
   "expectedPackageFiles": [
     "C:\\Users\\Decagon\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.4\\microsoft.aspnet.identity.core.2.2.4.nupkg.sha512",
