@@ -313,8 +313,6 @@ namespace Palmfit.Api.Controllers
         }
     }
 }
-        }
-    }
 
 
 
