@@ -13,35 +13,29 @@ namespace Palmfit.Core.Implementations
 {
     public class FoodInterfaceRepository : IFoodInterfaceRepository
     {
-        private readonly PalmfitDbContext _db;
+        private readonly PalmfitDbContext _dbcontext;
 
-        public FoodInterfaceRepository(PalmfitDbContext db)
+        public FoodInterfaceRepository(PalmfitDbContext dbcontext)
         {
-           _db = db;
+           _dbcontext = dbcontext;
         }
 
         public async Task<List<Food>> GetAllFoodAsync() 
         {
-            return await _db.Foods.ToListAsync();
+            return await _dbcontext.Foods.ToListAsync();
         }
 
-        public async Task<IEnumerable<Food>> SearchFood(params string[] searchTerms)
+        public async Task<List<Food>> SearchFood(string searchTerms)
         {
-            IQueryable<Food> query = _db.Foods;
+            var foods = await _dbcontext.Foods.ToListAsync();
             if (searchTerms != null && searchTerms.Length > 0)
             {
-                foreach (string term in searchTerms)
-                {
-                    if (!string.IsNullOrEmpty(term))
-                    {
-                        query = query.Where(x => searchTerms.Any(term => x.Name.Contains(term)));
-                        
-                    }
-                }
+                foods = foods.Where(x => searchTerms.Any(term => x.Name.Contains(term))).OrderByDescending(x => x.CreatedAt).ToList();
             }
-            return await query.ToListAsync();
+            return foods;
         }
 
-        
+
+
     }
 }

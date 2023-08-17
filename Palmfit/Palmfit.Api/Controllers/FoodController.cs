@@ -46,7 +46,7 @@ namespace Palmfit.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<Food>>> SearchFood([FromQuery] params string[] searchTerms)
+        public async Task<IActionResult> SearchFood([FromQuery] string searchTerms)
         {
             try
             {
