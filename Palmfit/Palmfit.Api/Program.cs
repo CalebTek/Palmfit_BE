@@ -43,7 +43,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Palmfit.Api",
         Version = "v1",
-        Description = "Backend APIs to manage Learners, Educators, Institution and Control",
+        Description = "Palmfit Backend APIs",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Palmfit",
