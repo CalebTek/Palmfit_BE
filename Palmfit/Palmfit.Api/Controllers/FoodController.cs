@@ -18,25 +18,20 @@ namespace Palmfit.Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        private readonly IFoodInterfaceRepository _food;
         private readonly PalmfitDbContext _db;
         private readonly IFoodInterfaceRepository _foodRepo;
 
-        public FoodController(IFoodInterfaceRepository foodInterfaceRepository, PalmfitDbContext db)
-        {
-            _food = foodInterfaceRepository;
-            _db = db;
-            _foodRepo = foodInterfaceRepository;
-        }
+		public FoodController(PalmfitDbContext db, IFoodInterfaceRepository foodRepo)
+		{
+			_db = db;
+			_foodRepo = foodRepo;
+		}
 
-
-
-
-        [HttpGet("get-all-meals")]
+		[HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
         {
             //Getting all food from database
-            var foods = await _food.GetAllFoodAsync();
+            var foods = await _foodRepo.GetAllFoodAsync();
             if (!foods.Any())
             {
                 return NotFound(ApiResponse.Failed("Food does not exist"));
@@ -53,7 +48,7 @@ namespace Palmfit.Api.Controllers
         {
             
             {
-                var meal = await _food.GetFoodById(Id);
+                var meal = await _foodRepo.GetFoodById(Id);
 
                 if (meal == null)
                 {
@@ -128,7 +123,7 @@ namespace Palmfit.Api.Controllers
                     };
 
                     // Add the new FoodClass to the database
-                    await _food.AddFoodClassAsync(foodClass);
+                    await _foodRepo.AddFoodClassAsync(foodClass);
                 }
 
                 // Convert the FoodDto to the Food entity
@@ -147,7 +142,7 @@ namespace Palmfit.Api.Controllers
                 };
 
                 // Add the new food to the database
-                await _food.AddFoodAsync(food);
+                await _foodRepo.AddFoodAsync(food);
 
                 return ApiResponse<Food>.Success(food, "Food added successfully");
             }
@@ -179,23 +174,16 @@ namespace Palmfit.Api.Controllers
         public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
         {
 
-            var targetedFood = await _food.GetFoodByIdAsync(id);
+            var targetedFood = await _foodRepo.GetFoodByIdAsync(id);
 
             if (targetedFood == null)
             {
            
                 return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
-            }
-
-            else
-            {
-                await _food.DeleteAsync(id);
-                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
-            }
+            } 
+            await _foodRepo.DeleteAsync(id);
+            return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion 
         }
-
-
-
 
         //api-to-updatefood
         [HttpPut("update-food")]
@@ -212,6 +200,8 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(updatedfood));
         }
 
+
+	
         [HttpGet("Get-FoodClass-By-Id")]
         public async Task<ActionResult<ApiResponse<FoodClass>>> GetFoodClassById(string foodClassId)
         {
@@ -271,13 +261,39 @@ namespace Palmfit.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var createdFoodClass = await _food.CreateFoodClass(foodClassDto);
+            var createdFoodClass = await _foodRepo.CreateFoodClass(foodClassDto);
 
             if (createdFoodClass == null)
             {
                 return NotFound(ApiResponse.Failed(createdFoodClass));
             }
             return Ok(ApiResponse.Success(createdFoodClass));
+
+        }
+        [HttpGet("{SearchFood}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> SearchFood([FromQuery] string searchTerms)
+        {
+            try
+            {
+                var result = await _foodRepo.SearchFood(searchTerms);
+                if (result.Any())
+                {
+                    return Ok(ApiResponse.Success(result));
+                }
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Food not found."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
+        
+    
+
+
+        
