@@ -180,17 +180,10 @@ namespace Palmfit.Api.Controllers
             {
            
                 return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
-            }
-
-            else
-            {
-                await _foodRepo.DeleteAsync(id);
-                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
-            }
+            } 
+            await _foodRepo.DeleteAsync(id);
+            return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion 
         }
-
-
-
 
         //api-to-updatefood
         [HttpPut("update-food")]
@@ -275,6 +268,32 @@ namespace Palmfit.Api.Controllers
                 return NotFound(ApiResponse.Failed(createdFoodClass));
             }
             return Ok(ApiResponse.Success(createdFoodClass));
+
+        }
+        [HttpGet("{SearchFood}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> SearchFood([FromQuery] string searchTerms)
+        {
+            try
+            {
+                var result = await _foodRepo.SearchFood(searchTerms);
+                if (result.Any())
+                {
+                    return Ok(ApiResponse.Success(result));
+                }
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Food not found."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
+        
+    
+
+
+        
