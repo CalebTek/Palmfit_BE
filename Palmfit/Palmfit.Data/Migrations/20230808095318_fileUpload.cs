@@ -29,22 +29,22 @@ namespace Palmfit.Data.Migrations
                     table.PrimaryKey("PK_FileUploadmodels", x => x.Id);
                 });
 
-            //migrationBuilder.CreateTable(
-            //    name: "UserOTPs",
-            //    columns: table => new
-            //    {
-            //        Id = table.Column<string>(type: "text", nullable: false),
-            //        Email = table.Column<string>(type: "text", nullable: false),
-            //        OTP = table.Column<string>(type: "text", nullable: false),
-            //        Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-            //        CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-            //        UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-            //        IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_UserOTPs", x => x.Id);
-            //    });
+            migrationBuilder.CreateTable(
+                name: "UserOTPs",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    OTP = table.Column<string>(type: "text", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOTPs", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -53,8 +53,8 @@ namespace Palmfit.Data.Migrations
             migrationBuilder.DropTable(
                 name: "FileUploadmodels");
 
-            //migrationBuilder.DropTable(
-            //    name: "UserOTPs");
+            migrationBuilder.DropTable(
+                name: "UserOTPs");
         }
     }
 }
