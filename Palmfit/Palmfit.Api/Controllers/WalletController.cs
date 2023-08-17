@@ -131,11 +131,11 @@ namespace Palmfit.Api.Controllers
             try
             {
                 var wallets = await _walletRepository.GetAllWalletsAsync();
-                if (wallets ==  null || wallets.Count == 0)
+                if (wallets.Any())
                 {
-                    return NotFound(ApiResponse.Success("No wallets found."));
+                   return Ok(ApiResponse.Success(wallets));
                 }
-                return Ok(ApiResponse.Success(wallets));
+                  return NotFound(ApiResponse.Success("No wallets found."));
 
             }
             catch (Exception ex)
