@@ -5,7 +5,7 @@ namespace Palmfit.Core.Services
 {
     public interface IAppUserRepository
     {
-        Task<string> CreateUser(SignUpDto userRequest);
+        Task<ApiResponse> CreateUser(SignUpDto userRequest);
         Task<AppUser> GetUserById(string userId);
     }
 }
