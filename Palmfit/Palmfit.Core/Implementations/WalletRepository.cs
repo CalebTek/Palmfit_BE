@@ -29,7 +29,12 @@ namespace Palmfit.Core.Implementations
 
         public async Task<Wallet> GetWalletByUserIdAsync(string appUserId)
         {
-            return await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == appUserId);
+            var userWallet = await _palmfitDb.Wallets.FirstOrDefaultAsync(w => w.AppUserId == appUserId);
+            if (userWallet == null)
+            {
+                return null;
+            }
+            return userWallet;
         }
 
         public async Task<string> RemoveFundFromWallet(string walletId, decimal amount)
@@ -147,6 +152,10 @@ namespace Palmfit.Core.Implementations
             }
 
             return data;
+        }
+        public async Task<List<Wallet>> GetAllWalletsAsync()
+        {
+            return await _palmfitDb.Wallets.ToListAsync();
         }
     }
 }
