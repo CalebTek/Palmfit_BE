@@ -177,21 +177,13 @@ namespace Palmfit.Api.Controllers
             var targetedFood = await _foodRepo.GetFoodByIdAsync(id);
 
             if (targetedFood == null)
-            if (foods.Count() <= 0)
             {
            
                 return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
-            }
-
-            else
-            {
-                await _foodRepo.DeleteAsync(id);
-                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
-            }
+            } 
+            await _foodRepo.DeleteAsync(id);
+            return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion 
         }
-
-
-
 
         //api-to-updatefood
         [HttpPut("update-food")]
@@ -278,8 +270,6 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(createdFoodClass));
 
         }
-    }
-}
         [HttpGet("{SearchFood}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -288,7 +278,7 @@ namespace Palmfit.Api.Controllers
         {
             try
             {
-                var result = await _food.SearchFood(searchTerms);
+                var result = await _foodRepo.SearchFood(searchTerms);
                 if (result.Any())
                 {
                     return Ok(ApiResponse.Success(result));
@@ -302,5 +292,8 @@ namespace Palmfit.Api.Controllers
         }
     }
 }
+        
+    
+
 
         

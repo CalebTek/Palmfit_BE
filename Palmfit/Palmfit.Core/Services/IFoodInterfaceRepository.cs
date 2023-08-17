@@ -17,11 +17,7 @@ namespace Palmfit.Core.Services
     { 
    
         Task<List<Food>> GetAllFoodAsync();
-<<<<<<< HEAD
         Task<List<Food>> SearchFood(string searchTerms);
-
-=======
-
         Task<Food> GetFoodById(string id);
         /* < Start----- required methods to Calculate Calorie -----Start > */
         Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
@@ -40,6 +36,6 @@ namespace Palmfit.Core.Services
         Task<Food> GetFoodByIdAsync(string id);
         Task<string> DeleteAsync(string id);
         Task<string> CreateFoodClass(FoodClassDto foodClassDto);
->>>>>>> develop
+
     }
 }
