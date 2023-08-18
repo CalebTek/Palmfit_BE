@@ -19,31 +19,71 @@ namespace Palmfit.Core.Implementations
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
 
-        public ReviewRepository(PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
-        {
-            _palmfitDb = palmfitDb;
-            _userManager = userManager;
-        }
+		public ReviewRepository(PalmfitDbContext dbContext, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)
+		{
+			_dbContext = dbContext;
+			_palmfitDb = palmfitDb;
+			_userManager = userManager;
+		}
 
-        public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
-        {
-            var reviewsDto = new ReviewDto();
-            var reviews = new Review
-            {
-                Date = reviewsDto.Date,
-                Comment = reviewsDto.Comment,
-                Rating = reviewsDto.Rating,
-                Verdict = reviewsDto.Verdict,
-                AppUserId = reviewsDto.AppUserId
-            };
-            var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
-            if (!ReviewResult.Any())
-            {
-                return new List<Review>();
-            }
-            return ReviewResult;
+		public async Task<string> AddReview(ReviewDto reviewDTO, string userId)
+		{
+			try
+			{
+				var validateUser = await _userManager.FindByIdAsync(userId);
 
-        }
+				if (validateUser == null)
+				{
+					return null;
+				}
+
+				Review review = new Review()
+				{
+					Date = DateTime.Now.Date,
+					Comment = reviewDTO.Comment,
+					Rating = reviewDTO.Rating,
+					Verdict = reviewDTO.Verdict,
+					AppUserId = userId,
+					Id = Guid.NewGuid().ToString(),
+					CreatedAt = DateTime.Now,
+					UpdatedAt = DateTime.Now,
+					IsDeleted = false
+				};
+
+				_dbContext.Reviews.Add(review);
+				_dbContext.SaveChanges();
+
+				return "Review Updated Sucessfully!";
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+			
+		}
+
+
+		public async Task<List<Review>> GetReviewsByUserIdAsync(string userId)
+		{
+			var reviewsDto = new ReviewDto();
+			var reviews = new Review
+			{
+				Date = reviewsDto.Date,
+				Comment = reviewsDto.Comment,
+				Rating = reviewsDto.Rating,
+				Verdict = reviewsDto.Verdict,
+				AppUserId = reviewsDto.AppUserId
+			};
+
+			var ReviewResult = await _dbContext.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+			if (!ReviewResult.Any())
+			{
+				return new List<Review>();
+			}
+			return ReviewResult;
+
+		}
+
 
         public async Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId)
         {
@@ -96,17 +136,11 @@ namespace Palmfit.Core.Implementations
             existingReview.Verdict = reviewDto.Verdict;
 
             // Mark the entity as modified
-            _palmfitDb.Entry(existingReview).State = EntityState.Modified;
+            _dbContext.Entry(existingReview).State = EntityState.Modified;
 
 
             await _dbContext.SaveChangesAsync();
             return "Review updated successfully";
         }
-
-        public async Task<List<Review>> GetAllReviewsAsync()
-        {
-            return await _palmfitDb.Reviews.Where(review => review.IsDeleted == false).ToListAsync();
-        }
-
     }
 }

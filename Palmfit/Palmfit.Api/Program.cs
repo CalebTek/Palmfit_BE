@@ -2,6 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Palmfit.Api.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Palmfit.Core.Implementations;
+using Palmfit.Core.Services;
+using Palmfit.Data.AppDbContext;
+
+
 using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,12 +43,12 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Palmfit.Api",
         Version = "v1",
-        Description = "Backend APIs to manage Learners, Educators, Institution and Control",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
-        {
-            Name = "Palmfit",
-            Email = "example@gmail.com" //TODO:Use an actual email
-        }
+        Description = "Palmfit Backend APIs",
+        //Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        //{
+        //    Name = "Palmfit",
+        //    Email = "example@gmail.com" //TODO:Use an actual email
+        //}
     });
     // To Enable authorization using Swagger (JWT)
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()

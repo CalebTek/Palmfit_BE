@@ -21,9 +21,12 @@ namespace Palmfit.Api.Controllers
         {
             var res = await _userRepository.CreateUser(userRequest);
             if (res.Succeeded)
+            if (res != null)
             {
                 return Ok(res);
+                return Ok(ApiResponse.Success(res));
             }
+            return BadRequest(ApiResponse.Failed(res));
 
             return BadRequest(res);
         }
