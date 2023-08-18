@@ -64,20 +64,6 @@ namespace Palmfit.Core.Implementations
             return subscription;
         }
 
-        public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
-        {
-
-            var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
-
-            if (subscription == null)
-                return await Task.FromResult(false);
-
-            _palmfitDbContext.Remove(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
-
-            return await Task.FromResult(true);
-        }
-
 
 		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
 		{
@@ -101,12 +87,6 @@ namespace Palmfit.Core.Implementations
 			}
 			return message;
 		}
-
-		public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
-		{
-			{
-				return await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
-			}
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
             {
@@ -116,7 +96,4 @@ namespace Palmfit.Core.Implementations
 		}
 
 	}
-}
-
-    }
 }
