@@ -30,17 +30,17 @@ namespace Palmfit.Core.Implementations
         }
         public async Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId)
         {
-            return await Task.FromResult(_palmfitDbContext.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
+            return await Task.FromResult(_db.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId)
         {
-            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
+            return await _db.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName)
         {
-            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
+            return await _db.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
         }
 
 
@@ -64,11 +64,11 @@ namespace Palmfit.Core.Implementations
             return subscription;
         }
 
-
-		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
+       
+        public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
 		{
 			string message = "";
-			var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
+			var subscription = await _db.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
 			if (subscription == null)
 			{
 				message = "Subscription not found.";
@@ -82,11 +82,12 @@ namespace Palmfit.Core.Implementations
 				subscription.IsExpired = subscriptionDto.IsExpired;
 				subscription.UpdatedAt = DateTime.Now;
 
-				await _palmfitDbContext.SaveChangesAsync();
+				await _db.SaveChangesAsync();
 				message = "Subscription updated successfully!";
 			}
 			return message;
 		}
+
         public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
         {
             {
@@ -94,6 +95,5 @@ namespace Palmfit.Core.Implementations
             }
 
 		}
-
 	}
 }

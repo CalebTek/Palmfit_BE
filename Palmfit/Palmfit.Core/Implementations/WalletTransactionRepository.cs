@@ -1,7 +1,7 @@
-﻿using Palmfit.Core.Services;
+﻿using Core.Helpers;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using Palmfit.Infrastructure.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
