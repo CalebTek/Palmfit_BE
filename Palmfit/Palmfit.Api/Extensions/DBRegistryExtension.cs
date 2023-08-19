@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CloudinaryDotNet;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
+using Palmfit.Core.Dtos;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
+using System.Security.Principal;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -15,6 +18,7 @@ namespace Palmfit.Api.Extensions
     {
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
+
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
@@ -27,6 +31,17 @@ namespace Palmfit.Api.Extensions
                 {
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 });
+
+            var cloudinarySettings = configuration.GetSection("Cloudinary");
+
+            var account = new Account(
+                cloudinarySettings["CloudName"],
+                cloudinarySettings["ApiKey"],
+                cloudinarySettings["ApiSecret"]);
+
+            var cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
 
             // ...
 
@@ -80,6 +95,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IMealPlanRepository, MealPlanRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
 
 
             // Identity role registration with Stores and default token provider

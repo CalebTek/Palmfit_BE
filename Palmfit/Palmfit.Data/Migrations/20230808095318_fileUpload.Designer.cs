@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Palmfit.Data.AppDbContext;
@@ -11,13 +12,15 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    partial class PalmfitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230808095318_fileUpload")]
+    partial class fileUpload
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -25,7 +28,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Data.Entities.UserOTP", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
@@ -51,6 +53,25 @@ namespace Palmfit.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserOTPs");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -251,48 +272,12 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUser");
-                });
-
-            modelBuilder.Entity("Palmfit.Data.Entities.AppUserPermission", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppUserPermissions");
-                });
-
-            modelBuilder.Entity("Palmfit.Data.Entities.AppUserRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppUserRole");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.FileUploadModel", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("CloudinaryPublicId")
@@ -320,13 +305,12 @@ namespace Palmfit.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileUploadmodels");
+                    b.ToTable("fileUploadmodels");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Calorie")
@@ -379,7 +363,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.FoodClass", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
@@ -411,7 +394,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Health", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -464,7 +446,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Invite", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -502,51 +483,9 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("Invites");
                 });
 
-            modelBuilder.Entity("Palmfit.Data.Entities.MealPlan", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("DayOfTheWeek")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("FoodId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("MealOfDay")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Week")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("FoodId");
-
-                    b.ToTable("MealPlans");
-                });
-
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -583,40 +522,9 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Palmfit.Data.Entities.Referral", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("InvitedUserid")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("ReferralCode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvitedUserid");
-
-                    b.ToTable("Referrals");
-                });
-
             modelBuilder.Entity("Palmfit.Data.Entities.Review", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -656,7 +564,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -683,7 +590,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Subscription", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
@@ -721,7 +627,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Transaction", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Amount")
@@ -782,15 +687,11 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.Wallet", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("numeric");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -812,7 +713,6 @@ namespace Palmfit.Data.Migrations
             modelBuilder.Entity("Palmfit.Data.Entities.WalletHistory", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Amount")
@@ -893,25 +793,6 @@ namespace Palmfit.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Palmfit.Data.Entities.MealPlan", b =>
-                {
-                    b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Palmfit.Data.Entities.Food", "Food")
-                        .WithMany()
-                        .HasForeignKey("FoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Food");
-                });
-
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
@@ -921,17 +802,6 @@ namespace Palmfit.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("Palmfit.Data.Entities.Referral", b =>
-                {
-                    b.HasOne("Palmfit.Data.Entities.AppUser", "InvitedUser")
-                        .WithMany("Referrals")
-                        .HasForeignKey("InvitedUserid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InvitedUser");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Review", b =>
@@ -1009,8 +879,6 @@ namespace Palmfit.Data.Migrations
                     b.Navigation("Invities");
 
                     b.Navigation("Notifications");
-
-                    b.Navigation("Referrals");
 
                     b.Navigation("Reviews");
 
