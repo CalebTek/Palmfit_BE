@@ -99,7 +99,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
-Seeder.SeedData(app).Wait();
+Seeder.SeedData(app).Wait(); 
+
 
 app.UseCors("AllowedHosts");
 
