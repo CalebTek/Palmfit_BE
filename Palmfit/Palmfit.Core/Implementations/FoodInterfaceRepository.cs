@@ -53,7 +53,33 @@ namespace Palmfit.Core.Implementations
             await _dbContext.Foods.AddAsync(food);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<String> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto)
+        {
+            try
+            {
+                var foodClassEntity = await _dbContext.FoodClasses.FindAsync(foodClassId);
+                if (foodClassEntity == null)
+                {
+                    return "Food with ID does not exist";
+                }
+                foodClassEntity.Name = updatedFoodClassDto.Name;
+                foodClassEntity.Description = updatedFoodClassDto.Description;
+                foodClassEntity.Details = updatedFoodClassDto.Details;
 
+                await _dbContext.SaveChangesAsync();
+                var updatedFoodClassDtoResponse = new FoodClassDto
+                {
+                    Name = foodClassEntity.Name,
+                    Description = foodClassEntity.Description,
+                    Details = foodClassEntity.Details,
+                };
+                return "Food class updated successfully.";
+            }
+            catch (Exception ex)
+            {
+                return "Failed to update food class.";
+            }
+        }
 
         /* < Start----- required methods to Calculate Calorie -----Start > */
 
