@@ -159,11 +159,11 @@ namespace Palmfit.Api.Controllers
 
         //Endpoint to create password reset
         [HttpPost("password-reset")]
-        public async Task<ActionResult<ApiResponse>> SendPasswordResetEmail(LoginDto loginDto)
+        public async Task<ActionResult<ApiResponse>> SendPasswordResetEmail(EmailDto EmailDto)
         {
             try
             {
-                var user = await _userManager.FindByEmailAsync(loginDto.Email);
+                var user = await _userManager.FindByEmailAsync(EmailDto.Email);
                 if (user == null)
                 {
                     return ApiResponse.Failed("Invalid email address.");
@@ -171,7 +171,7 @@ namespace Palmfit.Api.Controllers
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var passwordResetUrl = "https://your-app.com/reset-password?token=" + token;
                 var emailBody = $"Click the link below to reset your password: {passwordResetUrl}";
-                await _emailServices.SendEmailAsync(loginDto.Email, "password Reset", emailBody);
+                await _emailServices.SendEmailAsync(EmailDto.Email, "password Reset", emailBody);
                 return ApiResponse.Success("password reset email sent successfully.");
 
             }
