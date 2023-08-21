@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using Palmfit.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Palmfit.Core.Services
 {
@@ -14,9 +15,11 @@ namespace Palmfit.Core.Services
         Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId);
         Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId);
         Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName);
-        Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser);
         Task<bool> DeleteSubscriptionAsync(string subscriptionId);
-        Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto);
+        Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser);
         Task<Subscription> GetUserSubscriptionStatusAsync(string userId);
-	}
+        //Task<IActionResult> UpdateSubscription([FromBody] SubscriptionDto subscriptionDto);
+        Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto);
+
+    }
 }

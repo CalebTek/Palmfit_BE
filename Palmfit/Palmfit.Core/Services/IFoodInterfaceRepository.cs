@@ -1,4 +1,5 @@
 ﻿using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
 using Palmfit.Core.Dtos;
@@ -17,6 +18,8 @@ namespace Palmfit.Core.Services
     { 
    
         Task<List<Food>> GetAllFoodAsync();
+        Task<List<Food>> SearchFood(string searchTerms);
+        Task<String> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto);
 
         Task<Food> GetFoodById(string id);
         /* < Start----- required methods to Calculate Calorie -----Start > */
@@ -36,5 +39,6 @@ namespace Palmfit.Core.Services
         Task<Food> GetFoodByIdAsync(string id);
         Task<string> DeleteAsync(string id);
         Task<string> CreateFoodClass(FoodClassDto foodClassDto);
+
     }
 }

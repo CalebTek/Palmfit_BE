@@ -43,6 +43,17 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [HttpPut("{foodClassId}/update-foodclass")]
+        public async Task<ActionResult<ApiResponse<FoodClassDto>>> UpdateFoodClass(string foodClassId, [FromBody] FoodClassDto updatedFoodClassDto)
+        {
+            var response = await _foodRepo.UpdateFoodClass(foodClassId, updatedFoodClassDto);
+            if (response == null)
+            {
+                return BadRequest(ApiResponse.Failed(response));
+            }
+            return Ok(ApiResponse.Success(response));
+        }
+
         [HttpGet("get-meal-Id")]
         public async Task<IActionResult> GetFoodById(string Id)
         {
@@ -73,6 +84,7 @@ namespace Palmfit.Api.Controllers
         /* < Start----- required methods to Calculate Calorie -----Start > */
 
         [HttpGet("calculate-calorie-by-name")]
+
         public async Task<ActionResult<ApiResponse<decimal>>> CalculateCalorieForFoodByName(string foodName, UnitType unit, decimal amount)
         {
             try
@@ -180,17 +192,10 @@ namespace Palmfit.Api.Controllers
             {
            
                 return NotFound(ApiResponse.Failed("Food not found"));   // Provide a response indicating Failed deletion if food does not exist
-            }
-
-            else
-            {
-                await _foodRepo.DeleteAsync(id);
-                return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion
-            }
+            } 
+            await _foodRepo.DeleteAsync(id);
+            return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion 
         }
-
-
-
 
         //api-to-updatefood
         [HttpPut("update-food")]
@@ -275,6 +280,33 @@ namespace Palmfit.Api.Controllers
                 return NotFound(ApiResponse.Failed(createdFoodClass));
             }
             return Ok(ApiResponse.Success(createdFoodClass));
+
+        }
+
+        [HttpGet("{SearchFood}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> SearchFood([FromQuery] string searchTerms)
+        {
+            try
+            {
+                var result = await _foodRepo.SearchFood(searchTerms);
+                if (result.Any())
+                {
+                    return Ok(ApiResponse.Success(result));
+                }
+                return NotFound(ApiResponse.Failed(new List<Food>(), "Food not found."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
+        
+    
+
+
+        
