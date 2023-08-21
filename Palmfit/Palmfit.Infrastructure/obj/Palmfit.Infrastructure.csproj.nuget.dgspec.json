@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
+    "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
+    "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
         "projectName": "Palmfit.Infrastructure",
-        "projectPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\JOSEPH\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\Palmfit.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\kehin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\JOSEPH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kehin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

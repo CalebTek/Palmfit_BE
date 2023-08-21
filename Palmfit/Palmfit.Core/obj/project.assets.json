@@ -6423,23 +6423,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JOSEPH\\.nuget\\packages\\": {},
+    "C:\\Users\\kehin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "projectUniqueName": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
       "projectName": "Palmfit.Core",
-      "projectPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
-      "packagesPath": "C:\\Users\\JOSEPH\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
+      "projectPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\Palmfit.Core.csproj",
+      "packagesPath": "C:\\Users\\kehin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\JOSEPH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kehin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6455,8 +6455,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
-              "projectPath": "C:\\Users\\JOSEPH\\Desktop\\Live-Project\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
+            "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj": {
+              "projectPath": "C:\\Users\\kehin\\source\\repos\\live-project-sq015-net-palmfit\\Palmfit\\Palmfit.Data\\Palmfit.Data.csproj"
             }
           }
         }
