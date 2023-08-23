@@ -6,86 +6,59 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Data.EntityEnums
 {
-    public enum Gender
-    {
-        Male,
-        Female
-    }
+	public enum Gender
+	{
+		Male,
+		Female
+	}
 
-    public enum HeightUnit
-    {
-        cm,
-        inches,
-        ft,
-    }
+	public enum HeightUnit
+	{
+		cm,
+		inches,
+		ft,
+	}
 
-    public enum WeightUnit
-    {
-        Kg,
-        Lbs
-    }
+	public enum WeightUnit
+	{
+		Kg,
+		Lbs
+	}
 
-    public enum GenoType
-    {
-        AA,
-        AS,
-        SS,
-        SC
-    }
+	public enum GenoType
+	{
+		AA,
+		AS,
+		SS,
+		SC
+	}
 
-    public enum BloodGroup
-    {
-        A,
-        B,
-        AB,
-        O
-    }
+	public enum BloodGroup
+	{
+		A,
+		B,
+		AB,
+		O
+	}
 
-    public enum SubscriptionType
-    {
-        Basic,
-        Standard,
-        Premium
-    }
+	public enum SubscriptionType
+	{
+		Basic,
+		Standard,
+		Premium
+	}
 
-    public enum TransactionType
-    {
-    }
+	public enum TransactionType
+	{
+	}
 
-    public enum TransactionChannel
-    {
-    }
+	public enum TransactionChannel
+	{
+	}
 
-    public enum WalletType
-    {
-    }
-
-    public enum DaysOfWeek
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday,
-    }
-    public enum MealOfDay
-    {
-        Breakfast,
-        Lunch,
-        Dinner
-    }
-
-    public enum UnitType
-    {
-        Tablespoon,
-        Ounce,
-        Cup,
-        Pound,
-        // Add other unit types as needed
-    }
-
+	public enum WalletType
+	{
+	}
 
 	public enum DaysOfWeek
 	{
@@ -97,11 +70,22 @@ namespace Palmfit.Data.EntityEnums
 		Saturday,
 		Sunday,
 	}
-
 	public enum MealOfDay
 	{
 		Breakfast,
 		Lunch,
 		Dinner
 	}
+
+	public enum UnitType
+	{
+		Tablespoon,
+		Ounce,
+		Cup,
+		Pound,
+		// Add other unit types as needed
+	}
+
+
+
 }
