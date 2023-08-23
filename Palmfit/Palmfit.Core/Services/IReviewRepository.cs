@@ -12,6 +12,9 @@ namespace Palmfit.Core.Services
     public interface IReviewRepository 
     {
         Task<List<Review>> GetReviewsByUserIdAsync(string userId);
+
+		Task<string> AddReview(ReviewDto reviewDTO, string userId);
         Task<string> DeleteReviewAsync(ClaimsPrincipal loggedInUser, string reviewId);
+        Task<string> UpdateReviewAsync(string userId, ReviewDto review);
     }
 }

@@ -49,6 +49,34 @@ namespace Palmfit.Api.Controllers
                 return Ok(ApiResponse.Success(result));
         }
 
-    }
+        [HttpPut("Update-review/{userId}")]
+        public async Task<IActionResult> UpdateReview(string userId, [FromBody] ReviewDto reviewDto)
+        {
+            var result = await _reviewRepository.UpdateReviewAsync(userId, reviewDto);
+            if (!result.Any()) return BadRequest(ApiResponse.Failed("Failed to update"));
+
+
+            return Ok(ApiResponse.Success(result));
+
+        }
+
+		[HttpPost("add-review/{userId}")]
+		public async Task<IActionResult> AddReview([FromBody] ReviewDto review, string userId)
+		{
+			//var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			if (userId == null)
+			{
+				return BadRequest(new ApiResponse<string>("User Id is invalid!"));
+			}
+
+			var result = await _reviewRepository.AddReview(review, userId);
+			if (result == null)
+			{
+				return NotFound(new ApiResponse("User does not exist in the database"));
+			}
+
+			return Ok(ApiResponse.Success(result));
+		}
+	}
 }
 
