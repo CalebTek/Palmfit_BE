@@ -93,16 +93,42 @@ namespace Palmfit.Core.Implementations
                 Country = user.Country
             };
         }
+        public async Task<bool> DeleteUserAsync(string userId)
+        {
+            try
+            {
+                var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+                if (user != null)
+                {
+                    _db.Users.Remove(user); 
+                    await _db.SaveChangesAsync(); 
+
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"User not found with ID: {userId}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while deleting the user: {ex.Message}");
+                return false;
+            }
+        }
+
 
         //get user status
         public async Task<UserInfoDto> GetUserStatus(string id)
         {
             
-            var getData = await _db.Subscriptions.Include(u => u.AppUser).Where(x => x.AppUserId == id).OrderBy(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
-
+            var getData = await _db.Subscriptions.Include(u => u.AppUser).OrderByDescending(o => o.EndDate).FirstOrDefaultAsync(x => x.Id == id);
+            
             if (getData == null) return null;
 
-            UserInfoDto userInfo = new()
+            UserInfoDto userInfo = new UserInfoDto
             {
                 LastOnline = getData.AppUser.LastOnline,
                 IsVerified = getData.AppUser.IsVerified,
@@ -117,6 +143,7 @@ namespace Palmfit.Core.Implementations
             return userInfo;
 
         }
+     
 
     }
 }

@@ -389,3 +389,8 @@ Palmfit/**/*.csproj.nuget.g.props
 Palmfit/**/*.project.assets.json
 Palmfit/**/*.project.nuget.cache
 
+/Palmfit/Palmfit.Core/obj/Debug/net7.0/Palmfit.Core.assets.cache
+/Palmfit/Palmfit.Data/obj/Debug/net7.0/Palmfit.Data.assets.cache
+/Palmfit/Palmfit.Infrastructure/obj/Debug/net7.0/Palmfit.Infrastructure.assets.cache
+/Palmfit/.vscode/launch.json
+/.gitignore

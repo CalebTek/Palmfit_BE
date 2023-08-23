@@ -23,8 +23,12 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<UserOTP> UserOTPs { get; set; }
         public DbSet<AppUserPermission> AppUserPermissions { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
-        public DbSet<AppUser> users { get; set; }
 
+        public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<MealPlan> MealPlans { get; set; }
+        public DbSet<Referral> Referrals { get; set; }
+        public DbSet<FileUploadModel> FileUploadmodels { get; set; }
 
         public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
