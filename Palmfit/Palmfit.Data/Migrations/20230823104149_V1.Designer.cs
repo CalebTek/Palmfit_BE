@@ -12,7 +12,7 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230814094713_V1")]
+    [Migration("20230823104149_V1")]
     partial class V1
     {
         /// <inheritdoc />
@@ -292,6 +292,40 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("AppUserRole");
                 });
 
+            modelBuilder.Entity("Palmfit.Data.Entities.FileUploadModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CloudinaryPublicId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CloudinaryUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileUploadmodels");
+                });
+
             modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
                 {
                     b.Property<string>("Id")
@@ -469,6 +503,47 @@ namespace Palmfit.Data.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Invites");
+                });
+
+            modelBuilder.Entity("Palmfit.Data.Entities.MealPlan", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DayOfTheWeek")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("FoodId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("MealOfDay")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Week")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("MealPlans");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
@@ -819,6 +894,25 @@ namespace Palmfit.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Palmfit.Data.Entities.MealPlan", b =>
+                {
+                    b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Palmfit.Data.Entities.Food", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Food");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Notification", b =>
