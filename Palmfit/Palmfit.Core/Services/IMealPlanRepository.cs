@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Core.Services
 {
-    public interface IMealPlanRepository
-    {
-        Task<string> AddMealPlan(PostMealDto postMealDto, string foodId);
-    }
+	public interface IMealPlanRepository
+	{
+		Task<IEnumerable<MealPlanDto>> GetWeeklyPlan(int week, string appUserId);
+		Task<IEnumerable<MealPlanDto>> GetDailyPlan(int day, string appUserId);
+		Task<string> AddMealPlan(PostMealDto postMealDto, string foodId);
+	}
 }

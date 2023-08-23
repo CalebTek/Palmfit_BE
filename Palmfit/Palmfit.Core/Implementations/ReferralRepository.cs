@@ -20,7 +20,8 @@ namespace Palmfit.Core.Implementations
 
         public async Task<Referral> GetReferralByUserId(string userId)
         {
-            return await _dbContext.Referrals.FirstOrDefaultAsync(r => r.InvitedUserid == userId);
+            var referal = await _dbContext.Referrals.FirstOrDefaultAsync(r => r.InvitedUserid == userId);
+            return referal ?? throw new Exception("Referral does not exist");
         }
 
         public async Task AddReferral(Referral referral)

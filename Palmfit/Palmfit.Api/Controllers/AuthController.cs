@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Palmfit.Core.Dtos;
+using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
@@ -15,14 +16,16 @@ namespace Palmfit.Api.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<AppUserRole> _roleManager;
+        private readonly IEmailServices _emailServices;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo, RoleManager<AppUserRole> roleManager)
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration, IAuthRepository authRepo,  IEmailServices emailServices,RoleManager<AppUserRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _authRepo = authRepo;
             _roleManager = roleManager;
+            _emailServices = emailServices;
         }
 
 
@@ -31,6 +34,7 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 return BadRequest(new ApiResponse<string>("Invalid request. Please provide a valid email and password."));
             }
             else
@@ -60,6 +64,8 @@ namespace Palmfit.Api.Controllers
                 }
             }
         }
+
+
 
 
 
@@ -113,11 +119,13 @@ namespace Palmfit.Api.Controllers
                 }
                 else
                 {
+
                     return BadRequest(new ApiResponse<string>("Oops.Something went wrong"));
                 }
             }
             else
             {
+
                 return NotFound(new ApiResponse<string>("Role does not exist!"));
             }
         }
@@ -130,6 +138,7 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 return BadRequest(new ApiResponse<string>("Invalid permission name format."));
             }
 
@@ -137,12 +146,38 @@ namespace Palmfit.Api.Controllers
 
             if (result.Succeeded)
             {
+
                 return Ok(new ApiResponse<string>("Permission created successfully."));
             }
             else
             {
                 // Handle the case where creating the permission fails
+
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
+            }
+        }
+
+        //Endpoint to create password reset
+        [HttpPost("password-reset")]
+        public async Task<ActionResult<ApiResponse>> SendPasswordResetEmail(LoginDto loginDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(loginDto.Email);
+                if (user == null)
+                {
+                    return ApiResponse.Failed("Invalid email address.");
+                }
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var passwordResetUrl = "https://your-app.com/reset-password?token=" + token;
+                var emailBody = $"Click the link below to reset your password: {passwordResetUrl}";
+                await _emailServices.SendEmailAsync(loginDto.Email, "password Reset", emailBody);
+                return ApiResponse.Success("password reset email sent successfully.");
+
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse.Failed(null, "An error occurred during password reset.", new List<string> { ex.Message });
             }
         }
 
@@ -157,6 +192,7 @@ namespace Palmfit.Api.Controllers
             var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
             if (userOTP == null)
             {
+
                 return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
             }
 
@@ -194,6 +230,7 @@ namespace Palmfit.Api.Controllers
                     return Ok(feedBack);
                 }
 
+
             }
         }
 
@@ -204,6 +241,9 @@ namespace Palmfit.Api.Controllers
             var permissions = await _authRepo.GetPermissionsByRoleNameAsync(roleId);
             return Ok(ApiResponse.Success(permissions));
         }
+
+
+       
 
         [HttpPost("Sign-Out")]
         public async Task<IActionResult> SignOut()
