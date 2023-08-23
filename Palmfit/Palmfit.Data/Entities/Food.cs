@@ -9,6 +9,7 @@ namespace Palmfit.Data.Entities
 {
     public class Food : BaseEntity
     {
+         
         public string Name { get; set; }
         public string Description { get; set; }
         public string Details { get; set; }
