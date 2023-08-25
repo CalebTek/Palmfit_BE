@@ -36,11 +36,13 @@ namespace Palmfit.Api.Controllers
             {
                 return NotFound(ApiResponse.Failed("Food does not exist"));
             }
+			else
+			{
+				var result = await _foodRepo.GetAllFoodAsync();
 
-            var result = await _foodRepo.GetAllFoodAsync();
-
-            return (Ok(ApiResponse.Success(result)));
-        }
+				return (Ok(ApiResponse.Success(result)));
+			}
+		}
 
 
         [HttpPut("{foodClassId}/update-foodclass")]
