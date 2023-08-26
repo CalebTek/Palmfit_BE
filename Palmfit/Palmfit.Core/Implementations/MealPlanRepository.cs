@@ -115,8 +115,8 @@ namespace Palmfit.Core.Implementations
                 MealOfDay = (MealOfDay)postMealDto.MealOfDay,
                 DayOfTheWeek = postMealDto.DaysOfWeek,
                 FoodId = foodId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                UpdatedAt = DateTime.Now.ToUniversalTime(),
                 IsDeleted = false,
             };
             await _palmfitDbContext.AddAsync(MealToAdd);
