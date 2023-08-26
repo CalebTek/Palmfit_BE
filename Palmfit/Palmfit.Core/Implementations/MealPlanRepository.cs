@@ -63,11 +63,11 @@ namespace Palmfit.Core.Implementations
 		}
 
 
-		public async Task<IEnumerable<MealPlanDto>> GetDailyPlan(int day, string appUserId)
+		public async Task<IEnumerable<MealPlanDto>> GetDailyPlan(int day, string appUserId, int week)
 		{
 			try
 			{
-				var data = await _palmfitDbContext.MealPlans.Where(x => (int)x.DayOfTheWeek == day && x.AppUserId == appUserId).Include(prop => prop.Food).ToListAsync();
+				var data = await _palmfitDbContext.MealPlans.Where(x => (int)x.DayOfTheWeek == day && x.AppUserId == appUserId && week == x.Week).Include(prop => prop.Food).ToListAsync();
 
 				if (data.Count() == 0)
 					return null;
@@ -115,8 +115,8 @@ namespace Palmfit.Core.Implementations
                 MealOfDay = (MealOfDay)postMealDto.MealOfDay,
                 DayOfTheWeek = postMealDto.DaysOfWeek,
                 FoodId = foodId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                UpdatedAt = DateTime.Now.ToUniversalTime(),
                 IsDeleted = false,
             };
             await _palmfitDbContext.AddAsync(MealToAdd);

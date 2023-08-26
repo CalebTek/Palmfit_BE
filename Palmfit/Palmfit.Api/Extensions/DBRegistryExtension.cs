@@ -19,6 +19,8 @@ namespace Palmfit.Api.Extensions
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
 
+            
+
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
@@ -96,7 +98,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
-
+            //services.AddScoped<IEmailServices, EmailServices>();
 
             // Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, AppUserRole>()
