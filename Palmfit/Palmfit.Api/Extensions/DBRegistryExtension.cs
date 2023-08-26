@@ -98,7 +98,18 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+
             //services.AddScoped<IEmailServices, EmailServices>();
+
+            services.AddScoped<IEmailServices>(provider =>
+            {
+                var smtpHost = "smtp.gmail.com";
+                var smtpPort = 587;
+                var smtpUsername = "Palmfitsquad15@gmail.com";
+                var smtpPassword = "kwatusdniiwfygmr";
+
+                return new EmailServices(smtpHost, smtpPort, smtpUsername, smtpPassword);
+            });
 
             // Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, AppUserRole>()

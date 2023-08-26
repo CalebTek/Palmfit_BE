@@ -187,17 +187,16 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+                return BadRequest(ApiResponse<string>.Success(null, "Invalid OTP, check and try again"));
             }
             var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
             if (userOTP == null)
             {
-
-                return BadRequest(new ApiResponse<string>("Invalid OTP, check and try again"));
+                return BadRequest(ApiResponse<string>.Success(null, "Invalid OTP, check and try again"));
             }
 
-            await _authRepo.UpdateVerifiedStatus(otpFromUser.Email);
-            return Ok(new ApiResponse<string>("Validation Successfully."));
+            await _authRepo.UpdateVerifiedStatus(userOTP.Email);
+            return Ok(ApiResponse<string>.Success(null, "Validation Successfully."));
         }
 
 
