@@ -77,12 +77,30 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
+
+
+
+
+//var provider = builder.Services.BuildServiceProvider()
+//    .GetRequiredService<IConfiguration>();
+
+
+/**************************************************
+ *  Connecting Frontend URL
+ ***************************************************/
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+
 builder.Services.AddCors(options =>
 {
+    //var frontendURL = provider.GetValue<string>("frontendURL");
+
     options.AddPolicy("AllowedHosts",
         builder =>
         {
-            builder.AllowAnyOrigin()
+            builder.WithOrigins().AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
