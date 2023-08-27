@@ -130,7 +130,7 @@ namespace Palmfit.Core.Implementations
 
         public async Task<CalorieDto> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
         {
-            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name.Equals(foodName, StringComparison.OrdinalIgnoreCase));
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name.ToUpper() == foodName.ToUpper());
             if (food == null)
                 throw new ArgumentException("Food not found with the specified name.", nameof(foodName));
 
