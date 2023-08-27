@@ -11,6 +11,7 @@ using Palmfit.Data.Entities;
 using System.Security.Principal;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Palmfit.Api.Extensions
 {
@@ -18,8 +19,6 @@ namespace Palmfit.Api.Extensions
     {
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-
-            
 
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
