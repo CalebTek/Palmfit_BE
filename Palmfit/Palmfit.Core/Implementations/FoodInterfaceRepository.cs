@@ -120,9 +120,9 @@ namespace Palmfit.Core.Implementations
                 case UnitType.Ounce:
                     return amount * 28.4m;
                 case UnitType.Cup:
-                    return amount * 340m;
-                case UnitType.Pound:
-                    return amount * 453.592m;
+                    return amount * 240m;
+                case UnitType.Piece:
+                    return amount * 1m;
                 default:
                     throw new ArgumentException("Invalid unit type.", nameof(unit));
             }
@@ -130,12 +130,17 @@ namespace Palmfit.Core.Implementations
 
         public async Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
         {
-            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name == foodName);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name.Equals(foodName, StringComparison.OrdinalIgnoreCase));
             if (food == null)
                 throw new ArgumentException("Food not found with the specified name.", nameof(foodName));
 
             decimal convertedAmount = ConvertToGrams(amount, unit);
-            return food.Calorie * convertedAmount;
+
+            decimal calorieFromFats = (food.Fats / 100m) * convertedAmount * 9m; // Fats provide 9 calories per gram
+            decimal calorieFromCarbs = (food.Carbs / 100m) * convertedAmount * 4m; // Carbs provide 4 calories per gram
+            decimal calorieFromProteins = (food.Proteins / 100m) * convertedAmount * 4m; // Proteins provide 4 calories per gram
+
+            return calorieFromFats + calorieFromCarbs + calorieFromProteins;
         }
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
