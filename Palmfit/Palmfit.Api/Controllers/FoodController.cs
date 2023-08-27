@@ -12,6 +12,7 @@ using System;
 using Palmfit.Data.EntityEnums;
 
 
+
 namespace Palmfit.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -129,9 +130,9 @@ namespace Palmfit.Api.Controllers
                 {
                     foodClass = new FoodClass
                     {
-                        Name = foodDto.FoodClass.Name,
-                        Description = foodDto.FoodClass.Description,
-                        Details = foodDto.FoodClass.Details
+                        Name = foodDto.Name,
+                        Description = foodDto.Description,
+                        Details = foodDto.Details
                     };
 
                     // Add the new FoodClass to the database
@@ -283,7 +284,7 @@ namespace Palmfit.Api.Controllers
 
         }
 
-        [HttpGet("{SearchFood}")]
+        [HttpGet("search-food")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
