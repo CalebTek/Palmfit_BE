@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
-
-
 using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,10 +74,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-
-
-
 
 
 //var provider = builder.Services.BuildServiceProvider()
