@@ -68,4 +68,24 @@ namespace Palmfit.Data.EntityEnums
         Pound,
         // Add other unit types as needed
     }
+
+
+	public enum DaysOfWeek
+	{
+        Sunday,
+		Monday,
+		Tuesday,
+		Wednesday,
+		Thursday,
+		Friday,
+		Saturday
+		
+	}
+
+	public enum MealOfDay
+	{
+		Breakfast,
+		Lunch,
+		Dinner
+	}
 }
