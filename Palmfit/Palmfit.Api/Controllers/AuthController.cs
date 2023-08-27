@@ -146,13 +146,11 @@ namespace Palmfit.Api.Controllers
 
             if (result.Succeeded)
             {
-
                 return Ok(new ApiResponse<string>("Permission created successfully."));
             }
             else
             {
                 // Handle the case where creating the permission fails
-
                 return BadRequest(new ApiResponse<string>("Failed to create permission."));
             }
         }
@@ -187,12 +185,12 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ApiResponse<string>.Success(null, "Invalid OTP, check and try again"));
+                return BadRequest(ApiResponse<string>.Failed(null, "Invalid OTP, check and try again"));
             }
             var userOTP = await _authRepo.FindMatchingValidOTP(otpFromUser.Otp);
             if (userOTP == null)
             {
-                return BadRequest(ApiResponse<string>.Success(null, "Invalid OTP, check and try again"));
+                return BadRequest(ApiResponse<string>.Failed(null, "Invalid OTP, check and try again"));
             }
 
             await _authRepo.UpdateVerifiedStatus(userOTP.Email);
@@ -214,22 +212,20 @@ namespace Palmfit.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ApiResponse<string>("Invalid email format"));
+                return BadRequest(ApiResponse<string>.Failed(null, "Invalid email format"));
             }
             else
             {
                 var user = await _userManager.FindByEmailAsync(emailDto.Email);
                 if (user == null)
                 {
-                    return NotFound(new ApiResponse<string>("User not Found"));
+                    return NotFound(ApiResponse<string>.Failed(null, "User not Found"));
                 }
                 else
                 {
                     var feedBack = _authRepo.SendOTPByEmail(emailDto.Email);
-                    return Ok(feedBack);
+                    return Ok(ApiResponse<string>.Success(feedBack));
                 }
-
-
             }
         }
 
