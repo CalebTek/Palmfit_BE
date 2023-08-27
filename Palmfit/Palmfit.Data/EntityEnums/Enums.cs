@@ -21,9 +21,9 @@ namespace Palmfit.Data.EntityEnums
 
     public enum TDEELevel
     {
-        Inactive, // little to no exercise + work a desk job
-        SomewhatActive, // light exercise 2-4 days / week
-        Active // moderate exercise 5 days + / week
+        Inactive, 
+        SomewhatActive, 
+        Active 
     }
 
     public enum WeightGoal
