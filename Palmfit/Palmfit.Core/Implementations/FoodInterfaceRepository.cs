@@ -165,6 +165,7 @@ namespace Palmfit.Core.Implementations
             return totalCalorie;
         }
 
+        /* < End----- required methods to Calculate Calorie -----End > */
         public async Task<IEnumerable<Food>> GetFoodsByNameAsync(string foodName)
         {
             return await _dbContext.Foods.Where(f => f.Name == foodName).ToListAsync();
@@ -175,7 +176,7 @@ namespace Palmfit.Core.Implementations
             return await _dbContext.Foods.Where(f => f.Id == foodId).ToListAsync();
         }
 
-        /* < End----- required methods to Calculate Calorie -----End > */
+        
 
         public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
