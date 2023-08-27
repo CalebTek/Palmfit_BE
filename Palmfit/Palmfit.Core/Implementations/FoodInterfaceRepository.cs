@@ -128,7 +128,7 @@ namespace Palmfit.Core.Implementations
             }
         }
 
-        public async Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
+        public async Task<CalorieDto> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
         {
             var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name.Equals(foodName, StringComparison.OrdinalIgnoreCase));
             if (food == null)
@@ -136,12 +136,25 @@ namespace Palmfit.Core.Implementations
 
             decimal convertedAmount = ConvertToGrams(amount, unit);
 
-            decimal calorieFromFats = (food.Fats / 100m) * convertedAmount * 9m; // Fats provide 9 calories per gram
-            decimal calorieFromCarbs = (food.Carbs / 100m) * convertedAmount * 4m; // Carbs provide 4 calories per gram
-            decimal calorieFromProteins = (food.Proteins / 100m) * convertedAmount * 4m; // Proteins provide 4 calories per gram
+            decimal calorieFromFats = convertedAmount * food.Fats;
+            decimal calorieFromCarbs = convertedAmount * food.Carbs;
+            decimal calorieFromProteins = convertedAmount * food.Proteins;
 
-            return calorieFromFats + calorieFromCarbs + calorieFromProteins;
+            decimal totalCalories = calorieFromFats + calorieFromCarbs + calorieFromProteins;
+
+            var calorieDto = new CalorieDto
+            {
+                Calorie = totalCalories,
+                Fats = amount* food.Fats,
+                Carbs = amount* food.Carbs,
+                Proteins = amount* food.Proteins
+            };
+
+            return calorieDto;
         }
+
+
+
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
         {
