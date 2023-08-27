@@ -65,7 +65,7 @@ namespace Palmfit.Data.EntityEnums
         Tablespoon,
         Ounce,
         Cup,
-        Pound,
+        Piece,
         // Add other unit types as needed
     }
 
