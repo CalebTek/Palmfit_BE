@@ -12,8 +12,8 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230816142959_UploadFile")]
-    partial class UploadFile
+    [Migration("20230821204919_mealPlan_entity")]
+    partial class mealPlan_entity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

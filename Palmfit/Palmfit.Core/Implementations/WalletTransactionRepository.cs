@@ -1,13 +1,8 @@
-﻿using Palmfit.Core.Services;
+﻿using Core.Helpers;
+using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using Palmfit.Infrastructure.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {

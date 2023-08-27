@@ -12,6 +12,7 @@ using System;
 using Palmfit.Data.EntityEnums;
 
 
+
 namespace Palmfit.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -43,6 +44,17 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [HttpPut("{foodClassId}/update-foodclass")]
+        public async Task<ActionResult<ApiResponse<FoodClassDto>>> UpdateFoodClass(string foodClassId, [FromBody] FoodClassDto updatedFoodClassDto)
+        {
+            var response = await _foodRepo.UpdateFoodClass(foodClassId, updatedFoodClassDto);
+            if (response == null)
+            {
+                return BadRequest(ApiResponse.Failed(response));
+            }
+            return Ok(ApiResponse.Success(response));
+        }
+
         [HttpGet("get-meal-Id")]
         public async Task<IActionResult> GetFoodById(string Id)
         {
@@ -73,6 +85,7 @@ namespace Palmfit.Api.Controllers
         /* < Start----- required methods to Calculate Calorie -----Start > */
 
         [HttpGet("calculate-calorie-by-name")]
+
         public async Task<ActionResult<ApiResponse<decimal>>> CalculateCalorieForFoodByName(string foodName, UnitType unit, decimal amount)
         {
             try
@@ -117,9 +130,9 @@ namespace Palmfit.Api.Controllers
                 {
                     foodClass = new FoodClass
                     {
-                        Name = foodDto.FoodClass.Name,
-                        Description = foodDto.FoodClass.Description,
-                        Details = foodDto.FoodClass.Details
+                        Name = foodDto.Name,
+                        Description = foodDto.Description,
+                        Details = foodDto.Details
                     };
 
                     // Add the new FoodClass to the database
@@ -270,7 +283,8 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(createdFoodClass));
 
         }
-        [HttpGet("{SearchFood}")]
+
+        [HttpGet("search-food")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

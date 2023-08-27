@@ -1,42 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
-using Palmfit.Data.EntityEnums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Palmfit.Core.Implementations
 {
     public class SubscriptionRepository : ISubscriptionRepository
     {
         private readonly PalmfitDbContext _palmfitDb;
+        private readonly PalmfitDbContext _db;
 
-        private readonly PalmfitDbContext _palmfitDbContext;
-        public SubscriptionRepository(PalmfitDbContext palmfitDbContext)
+        public SubscriptionRepository(PalmfitDbContext db)
         {
-            _palmfitDbContext = palmfitDbContext;
+            _db = db;
+        }
+
+        public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
+        {
+            var subscription = _db.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId);
+
+            if (subscription == null)
+                return await Task.FromResult(false);
+
+            _db.Remove(subscription);
+
+            return await Task.FromResult(true);
         }
         public async Task<Subscription> GetSubscriptionByIdAsync(string subscriptionId)
         {
-            return await Task.FromResult(_palmfitDbContext.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
+            return await Task.FromResult(_db.Subscriptions.FirstOrDefault(s => s.Id == subscriptionId));
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserIdAsync(string userId)
         {
-            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
+            return await _db.Subscriptions.Where(s => s.AppUserId == userId).ToListAsync();
         }
 
         public async Task<IEnumerable<Subscription>> GetSubscriptionsByUserNameAsync(string userName)
         {
-            return await _palmfitDbContext.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
+            return await _db.Subscriptions.Where(s => s.AppUser.UserName == userName).ToListAsync();
         }
+
+
 
         public async Task<Subscription> CreateSubscriptionAsync(CreateSubscriptionDto subscriptionDto, ClaimsPrincipal loggedInUser)
         {
@@ -51,29 +58,17 @@ namespace Palmfit.Core.Implementations
 
             _palmfitDb.Subscriptions.Add(subscription);
             await _palmfitDb.SaveChangesAsync();
+            _db.Subscriptions.Add(subscription);
+            await _db.SaveChangesAsync();
 
             return subscription;
         }
 
-        public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
-        {
-
-            var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionId);
-
-            if (subscription == null)
-                return await Task.FromResult(false);
-
-            _palmfitDbContext.Remove(subscription);
-            await _palmfitDbContext.SaveChangesAsync();
-
-            return await Task.FromResult(true);
-        }
-
-
-		public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
+       
+        public async Task<string> UpdateSubscriptionAsync(SubscriptionDto subscriptionDto)
 		{
 			string message = "";
-			var subscription = await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
+			var subscription = await _db.Subscriptions.FirstOrDefaultAsync(s => s.Id == subscriptionDto.SubscriptionId);
 			if (subscription == null)
 			{
 				message = "Subscription not found.";
@@ -87,20 +82,18 @@ namespace Palmfit.Core.Implementations
 				subscription.IsExpired = subscriptionDto.IsExpired;
 				subscription.UpdatedAt = DateTime.Now;
 
-				await _palmfitDbContext.SaveChangesAsync();
+				await _db.SaveChangesAsync();
 				message = "Subscription updated successfully!";
 			}
 			return message;
 		}
 
-		public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
-		{
-			{
-				return await _palmfitDbContext.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
-			}
+        public async Task<Subscription> GetUserSubscriptionStatusAsync(string userId)
+        {
+            {
+                return await _db.Subscriptions.FirstOrDefaultAsync(sub => sub.AppUserId == userId);
+            }
 
 		}
-
 	}
 }
-

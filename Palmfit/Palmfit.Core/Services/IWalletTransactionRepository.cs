@@ -1,5 +1,5 @@
-﻿using Palmfit.Data.Entities;
-using Palmfit.Infrastructure.Helpers;
+﻿using Core.Helpers;
+using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
