@@ -19,6 +19,20 @@ namespace Palmfit.Data.EntityEnums
         ft,
     }
 
+    public enum TDEELevel
+    {
+        Inactive, // little to no exercise + work a desk job
+        SomewhatActive, // light exercise 2-4 days / week
+        Active // moderate exercise 5 days + / week
+    }
+
+    public enum WeightGoal
+    {
+        Lose,
+        Maintain,
+        Gain
+    }
+
     public enum WeightUnit
     {
         Kg,
