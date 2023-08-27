@@ -102,14 +102,14 @@ namespace Palmfit.Core.Implementations
 		}
 
 		public async Task<string> AddMealPlan(PostMealDto postMealDto, string foodId)
-        {
-            var result = await _palmfitDbContext.Foods.FirstOrDefaultAsync(row => row.Id == foodId);
+		{
+			var result = await _palmfitDbContext.Foods.FirstOrDefaultAsync(row => row.Id == foodId);
 
 
 			if (result == null)
 				return "not found";
-
-			var MealToAdd = new MealPlan
+		   
+			var MealToAdd = new MealPlan 
 			{
 				Id = Guid.NewGuid().ToString(),
 				MealOfDay = (MealOfDay)postMealDto.MealOfDay,
@@ -124,6 +124,6 @@ namespace Palmfit.Core.Implementations
 
 			return "Food successfully added to Meal Plan!";
 
-        }
+		}
 	}
 }
