@@ -106,23 +106,23 @@ namespace Palmfit.Core.Implementations
             var result = await _palmfitDbContext.Foods.FirstOrDefaultAsync(row => row.Id == foodId);
 
 
-            if (result == null)
-                return "not found";
-           
-            var MealToAdd = new MealPlan
-            {
-                Id = Guid.NewGuid().ToString(),
-                MealOfDay = (MealOfDay)postMealDto.MealOfDay,
-                DayOfTheWeek = postMealDto.DaysOfWeek,
-                FoodId = foodId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                IsDeleted = false,
-            };
-            await _palmfitDbContext.AddAsync(MealToAdd);
-            _palmfitDbContext.SaveChanges();
+			if (result == null)
+				return "not found";
 
-            return "Food successfully added to Meal Plan!";
+			var MealToAdd = new MealPlan
+			{
+				Id = Guid.NewGuid().ToString(),
+				MealOfDay = (MealOfDay)postMealDto.MealOfDay,
+				DayOfTheWeek = postMealDto.DaysOfWeek,
+				FoodId = foodId,
+				CreatedAt = DateTime.Now.ToUniversalTime(),
+				UpdatedAt = DateTime.Now.ToUniversalTime(),
+				IsDeleted = false,
+			};
+			await _palmfitDbContext.AddAsync(MealToAdd);
+			_palmfitDbContext.SaveChanges(); 
+
+			return "Food successfully added to Meal Plan!";
 
         }
 	}
