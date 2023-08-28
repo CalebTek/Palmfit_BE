@@ -20,6 +20,12 @@ namespace Palmfit.Infrastructure.Policies
                 .Build();
         }
 
-
+        public static AuthorizationPolicy SuperAdminPolicy()
+        {
+            return new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .RequireRole(SuperAdmin)
+                .Build();
+        }
     }
 }
