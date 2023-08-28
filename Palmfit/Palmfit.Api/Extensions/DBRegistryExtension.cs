@@ -97,6 +97,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+            services.AddScoped<ICalorieRepository, CalorieRepository>();
 
             //services.AddScoped<IEmailServices, EmailServices>();
 
@@ -115,17 +116,6 @@ namespace Palmfit.Api.Extensions
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
 
-            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
-
-            //services.AddScoped<SeedData>();
-
-            // Call the seed method after the DbContext is created
-            //services.AddScoped<IServiceProvider>(provider =>
-            //{
-
-            //});
-
-            /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
     }
 }
