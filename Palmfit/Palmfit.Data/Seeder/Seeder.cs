@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using Palmfit.Data.EntityEnums;
+using Palmfit.Infrastructure.Policies;
 
 namespace Palmfit.Data.Seeder
 {
@@ -155,6 +157,97 @@ namespace Palmfit.Data.Seeder
                 context.Foods.AddRange(foods);
                 await context.SaveChangesAsync();
             }
+        }
+
+        public static async Task SeedRole(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            await RunSeed(
+                serviceScope.ServiceProvider.GetService<UserManager<AppUser>>(),
+                serviceScope.ServiceProvider.GetService<PalmfitDbContext>(),
+                serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>());
+        }
+
+        private static async Task RunSeed(UserManager<AppUser> userManager, PalmfitDbContext palmfitDb, RoleManager<IdentityRole> roleManager)
+        {
+            try
+            {
+                if(palmfitDb != null && userManager != null && roleManager != null)
+                {
+                    await palmfitDb.Database.EnsureCreatedAsync();
+
+                    await roleManager.CreateAsync(new IdentityRole { Name = Policies.Admin });
+                    await roleManager.CreateAsync(new IdentityRole { Name = Policies.SuperAdmin });
+
+                    if ((await palmfitDb.Database.GetPendingMigrationsAsync()).Any())
+                    {
+                        await palmfitDb.Database.MigrateAsync();
+                    }
+                    var existingUser = await userManager.FindByNameAsync("Olawale");
+                    if (existingUser == null)
+                    {
+                        var user = new AppUser
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            FirstName = "Olawale",
+                            UserName = "CalebTek",
+                            Email = "calebinfotek@gmail.com",
+                            Title = "Mr.",
+                            MiddleName = "SuperAdmin",
+                            LastName = "Odeyemi",
+                            Image = "super-admin.jpg",
+                            Address = "123 Main Street",
+                            Area = "City Center",
+                            State = "Lagos",
+                            Gender = Gender.Male,
+                            DateOfBirth = new DateTime(2023, 1, 15),
+                            Country = "Nigeria",
+                            IsLockedOut = false,
+                            LastOnline = DateTime.UtcNow,
+                            IsVerified = true,
+                            IsArchived = false,
+                            Active = true,
+                            ReferralCode = "ABCD123",
+                            InviteCode = "WXYZ987",
+                            PhoneNumber = "+2348160851363"
+                        };
+
+                        var password = "P@ssw0rd"; 
+                        await userManager.CreateAsync(user, password);
+                        await userManager.AddToRoleAsync(user, Policies.SuperAdmin);
+
+                        // Create associated entities
+                        var health = new Health
+                        {
+                            AppUserId = user.Id,
+                            Height = 175,
+                            HeightUnit = HeightUnit.cm,
+                            Weight = 70,
+                            WeightUnit = WeightUnit.Kg,
+                            BloodGroup = BloodGroup.A,
+                            GenoType = GenoType.AA,
+                            Balance = "1000",
+                            Reference = "HealthRef123",
+                        };
+                        palmfitDb.Healths.Add(health);
+
+                        var setting = new Setting
+                        {
+                            AppUserId = user.Id,
+                        };
+                        palmfitDb.Settings.Add(setting);
+
+                        var wallet = new Wallet
+                        {
+                            AppUserId = user.Id,
+                            Balance = 100000000.00m,
+                        };
+                        palmfitDb.Wallets.Add(wallet);
+
+                        await palmfitDb.SaveChangesAsync();
+                    }
+                }
+            } catch (Exception ex) { Console.WriteLine(ex); }
         }
     }
 }

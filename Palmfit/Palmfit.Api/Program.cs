@@ -112,6 +112,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 
 Seeder.SeedData(app).Wait();
+Seeder.SeedRole(app).Wait();
 
 app.UseCors("AllowedHosts");
 

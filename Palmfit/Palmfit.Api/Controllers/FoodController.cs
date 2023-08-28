@@ -185,6 +185,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [Authorize(Policy = Policies.SuperAdmin)]
         [HttpDelete("{id}/Delete-Food-byId")]
         public async Task<ActionResult<ApiResponse>> DeleteAsync([FromRoute] string id)
         {
@@ -200,6 +201,8 @@ namespace Palmfit.Api.Controllers
             return ApiResponse.Success("Food deleted Successfully");     // Provide a response indicating successful deletion 
         }
 
+
+        [Authorize(Policy = Policies.Admin)]
         //api-to-updatefood
         [HttpPut("update-food")]
         public async Task<IActionResult> UpdateFood(string id, UpdateFoodDto foodDto)
@@ -242,7 +245,7 @@ namespace Palmfit.Api.Controllers
 
 
 
-
+        [Authorize(Policy = Policies.SuperAdmin)]
         [HttpDelete("delete-foodclass")]
         public async Task<ActionResult<ApiResponse<string>>> DeleteFoodClass(string foodClassId)
         {
