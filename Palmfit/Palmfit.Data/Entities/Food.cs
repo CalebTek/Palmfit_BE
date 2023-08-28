@@ -9,14 +9,16 @@ namespace Palmfit.Data.Entities
 {
     public class Food : BaseEntity
     {
-         
         public string Name { get; set; }
         public string Description { get; set; }
         public string Details { get; set; }
         public string Origin { get; set; }
         public string Image { get; set; }
         public decimal Calorie { get; set; }
-        public UnitType Unit { get; set; } // Use the UnitType enum
+        public decimal Carbs { get; set; } 
+        public decimal Proteins { get; set; } 
+        public decimal Fats { get; set; } 
+        public UnitType Unit { get; set; } 
         public string FoodClassId { get; set; }
         public FoodClass FoodClass { get; set; }
     }
