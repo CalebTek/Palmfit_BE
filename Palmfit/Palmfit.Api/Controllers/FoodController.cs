@@ -87,16 +87,16 @@ namespace Palmfit.Api.Controllers
 
         [HttpGet("calculate-calorie-by-name")]
 
-        public async Task<ActionResult<ApiResponse<decimal>>> CalculateCalorieForFoodByName(string foodName, UnitType unit, decimal amount)
+        public async Task<ActionResult<ApiResponse<CalorieDto>>> CalculateCalorieForFoodByName(string foodName, UnitType unit, decimal amount)
         {
             try
             {
-                decimal calorie = await _foodRepo.GetCalorieByNameAsync(foodName, unit, amount);
-                return ApiResponse<decimal>.Success(calorie, "Calorie calculation successful");
+                var calorie = await _foodRepo.GetCalorieByNameAsync(foodName, unit, amount);
+                return ApiResponse<CalorieDto>.Success(calorie, "Calorie calculation successful");
             }
             catch (ArgumentException ex)
             {
-                return ApiResponse<decimal>.Failed(0, ex.Message);
+                return ApiResponse<CalorieDto>.Failed(null, ex.Message);
             }
         }
 

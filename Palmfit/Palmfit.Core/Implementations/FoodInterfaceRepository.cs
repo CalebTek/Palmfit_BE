@@ -120,23 +120,41 @@ namespace Palmfit.Core.Implementations
                 case UnitType.Ounce:
                     return amount * 28.4m;
                 case UnitType.Cup:
-                    return amount * 340m;
-                case UnitType.Pound:
-                    return amount * 453.592m;
+                    return amount * 240m;
+                case UnitType.Piece:
+                    return amount * 1m;
                 default:
                     throw new ArgumentException("Invalid unit type.", nameof(unit));
             }
         }
 
-        public async Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
+        public async Task<CalorieDto> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount)
         {
-            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name == foodName);
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Name.ToUpper() == foodName.ToUpper());
             if (food == null)
                 throw new ArgumentException("Food not found with the specified name.", nameof(foodName));
 
             decimal convertedAmount = ConvertToGrams(amount, unit);
-            return food.Calorie * convertedAmount;
+
+            decimal calorieFromFats = convertedAmount * food.Fats;
+            decimal calorieFromCarbs = convertedAmount * food.Carbs;
+            decimal calorieFromProteins = convertedAmount * food.Proteins;
+
+            decimal totalCalories = calorieFromFats + calorieFromCarbs + calorieFromProteins;
+
+            var calorieDto = new CalorieDto
+            {
+                Calorie = Math.Round(totalCalories),
+                Fats = Math.Round(amount* food.Fats,2),
+                Carbs = Math.Round(amount* food.Carbs,2),
+                Proteins = Math.Round(amount * food.Proteins, 2)
+            };
+
+            return calorieDto;
         }
+
+
+
 
         public async Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount)
         {
@@ -165,6 +183,7 @@ namespace Palmfit.Core.Implementations
             return totalCalorie;
         }
 
+        /* < End----- required methods to Calculate Calorie -----End > */
         public async Task<IEnumerable<Food>> GetFoodsByNameAsync(string foodName)
         {
             return await _dbContext.Foods.Where(f => f.Name == foodName).ToListAsync();
@@ -175,7 +194,7 @@ namespace Palmfit.Core.Implementations
             return await _dbContext.Foods.Where(f => f.Id == foodId).ToListAsync();
         }
 
-        /* < End----- required methods to Calculate Calorie -----End > */
+        
 
         public async Task<string> UpdateFoodAsync(string id, UpdateFoodDto foodDto)
         {
