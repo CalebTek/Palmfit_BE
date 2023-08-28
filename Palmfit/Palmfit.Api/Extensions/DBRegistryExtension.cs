@@ -97,6 +97,7 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+            services.AddScoped<ICalorieRepository, CalorieRepository>();
 
             //services.AddScoped<IEmailServices, EmailServices>();
 

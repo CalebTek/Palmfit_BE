@@ -32,10 +32,10 @@ namespace Palmfit.Core.Implementations
                     tdeeMultiplier = 1.2m;
                     break;
                 case TDEELevel.SomewhatActive:
-                    tdeeMultiplier = 1.4625m;
+                    tdeeMultiplier = 1.55m;
                     break;
                 case TDEELevel.Active:
-                    tdeeMultiplier = 1.9m;
+                    tdeeMultiplier = 2.2m;
                     break;
                 default:
                     tdeeMultiplier = 1.2m; // Default to Inactive
@@ -60,10 +60,16 @@ namespace Palmfit.Core.Implementations
             }
         }
 
+        // Helper method to round a value to the nearest multiple
+        public decimal RoundToNearest(decimal value, int multiple)
+        {
+            return Math.Round(value / multiple) * multiple;
+        }
         public decimal AdjustCaloriesForTDEELevel(decimal bmr, TDEELevel tdeeLevel, WeightGoal weightGoal)
         {
             decimal tdee = CalculateTDEE(bmr, tdeeLevel);
-            return AdjustCaloriesForWeightGoal(tdee, weightGoal);
+            decimal adjustedCalorie = AdjustCaloriesForWeightGoal(tdee, weightGoal);
+            return RoundToNearest(adjustedCalorie,100);
         }
         public CalorieEstimateDto CalculateAdjustedCalories(Gender gender, int age, decimal weightKg, decimal heightCm, WeightGoal weightGoal)
         {
