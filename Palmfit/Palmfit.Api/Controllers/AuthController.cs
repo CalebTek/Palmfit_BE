@@ -156,7 +156,7 @@ namespace Palmfit.Api.Controllers
         }
 
         //Endpoint to create password reset
-        [HttpPost("password-reset")]
+        [HttpPost("forget-password-reset")]
         public async Task<ActionResult<ApiResponse>> SendPasswordResetEmail(LoginDto loginDto)
         {
             try
@@ -177,6 +177,18 @@ namespace Palmfit.Api.Controllers
             {
                 return ApiResponse.Failed(null, "An error occurred during password reset.", new List<string> { ex.Message });
             }
+        }
+
+
+        [HttpPost("password-reset")]
+        public async Task<IActionResult> ResetPasswordAsync(ResetPassDTO reset)
+        {
+            var update = await _authRepo.UpdatePasswordAsync(reset.Email, reset.OldPassword, reset.NewPassword);
+            if (!update)
+            {
+                return BadRequest(ApiResponse<string>.Failed("Incorrect Credentials, try again"));
+            }
+            return Ok(ApiResponse<string>.Success(null, "Password Reset Successful"));
         }
 
 

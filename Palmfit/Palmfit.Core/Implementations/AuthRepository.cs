@@ -41,6 +41,22 @@ namespace Palmfit.Core.Implementations
         }
 
 
+        public async Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+                var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public string GenerateJwtToken(AppUser user)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
@@ -69,7 +85,6 @@ namespace Palmfit.Core.Implementations
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
 
 
         public string SendOTPByEmail(string email)
