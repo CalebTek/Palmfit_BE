@@ -15,10 +15,10 @@ namespace Palmfit.Data.Entities
         public string Origin { get; set; }
         public string Image { get; set; }
         public decimal Calorie { get; set; }
-        public decimal Carbs { get; set; } // Carbohydrates in grams
-        public decimal Proteins { get; set; } // Proteins in grams
-        public decimal Fats { get; set; } // Fats in grams
-        public UnitType Unit { get; set; } // Use the UnitType enum
+        public decimal Carbs { get; set; } 
+        public decimal Proteins { get; set; } 
+        public decimal Fats { get; set; } 
+        public UnitType Unit { get; set; } 
         public string FoodClassId { get; set; }
         public FoodClass FoodClass { get; set; }
     }

@@ -145,9 +145,9 @@ namespace Palmfit.Core.Implementations
             var calorieDto = new CalorieDto
             {
                 Calorie = Math.Round(totalCalories),
-                Fats = Math.Round(amount* food.Fats),
-                Carbs = Math.Round(amount* food.Carbs),
-                Proteins = Math.Round(amount * food.Proteins)
+                Fats = Math.Round(amount* food.Fats,2),
+                Carbs = Math.Round(amount* food.Carbs,2),
+                Proteins = Math.Round(amount * food.Proteins, 2)
             };
 
             return calorieDto;
