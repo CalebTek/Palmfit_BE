@@ -183,7 +183,7 @@ namespace Palmfit.Data.Seeder
                     {
                         await palmfitDb.Database.MigrateAsync();
                     }
-                    var existingUser = await userManager.FindByNameAsync("Olawale");
+                    var existingUser = await userManager.FindByNameAsync("CalebTek");
                     if (existingUser == null)
                     {
                         var user = new AppUser
