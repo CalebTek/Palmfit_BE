@@ -10,8 +10,8 @@ using Palmfit.Data.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
 using Palmfit.Data.EntityEnums;
-
-
+using Microsoft.AspNetCore.Authorization;
+using Palmfit.Infrastructure.Policies;
 
 namespace Palmfit.Api.Controllers
 {
@@ -27,6 +27,7 @@ namespace Palmfit.Api.Controllers
 			_db = db;
 			_foodRepo = foodRepo;
 		}
+
 
 		[HttpGet("get-all-meals")]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetAllFoods()
@@ -119,6 +120,7 @@ namespace Palmfit.Api.Controllers
         }
 
 
+        [Authorize(Policy = Policies.Admin)]
         [HttpPost("add-food")]
         public async Task<ActionResult<ApiResponse<Food>>> AddFood(FoodDto foodDto)
         {
