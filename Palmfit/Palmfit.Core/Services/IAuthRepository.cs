@@ -12,6 +12,8 @@ namespace Palmfit.Core.Services
 {
     public interface IAuthRepository
     {
+        Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword);
+
         string GenerateJwtToken(AppUser user);
         Task<UserOTP?> FindMatchingValidOTP(string otpFromUser);
         Task<ApiResponse<string>> UpdateVerifiedStatus(string email);
