@@ -20,13 +20,7 @@ namespace Palmfit.Api.Controllers
         public async Task<IActionResult> CreateUser([FromBody] SignUpDto userRequest)
         {
             var res = await _userRepository.CreateUser(userRequest);
-            if (res.Succeeded)
-            if (res != null)
-            {
-                return Ok(res);
-                return Ok(ApiResponse.Success(res));
-            }
-            return BadRequest(ApiResponse.Failed(res));
+            if (res.Succeeded) return Ok(res);
 
             return BadRequest(res);
         }
