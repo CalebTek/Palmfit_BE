@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Palmfit.Core.Dtos;
+﻿using Palmfit.Core.Dtos;
 using Palmfit.Data.Entities;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.EntityEnums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Palmfit.Core.Implementations
 {
@@ -30,17 +24,51 @@ namespace Palmfit.Core.Implementations
 
         public async Task<Food> GetFoodById(string id)
         {
-            return await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
+
+            var food = await _dbContext.Foods.FirstOrDefaultAsync(f => f.Id == id);
+
+            if (food == null)
+            {
+                return null;
+            }
+
+            return food;
         }
 
-        public async Task<List<Food>> SearchFood(string searchTerms)
+        public async Task<List<FoodDto>> SearchFood(string searchTerms)
         {
-            var foods = await _dbContext.Foods.ToListAsync();
-            if (searchTerms != null && searchTerms.Length > 0)
+            try
             {
-                foods = foods.Where(x => searchTerms.Any(term => x.Name.Contains(term))).OrderByDescending(x => x.CreatedAt).ToList();
+                var foodgs = new List<FoodDto>();
+                if (searchTerms != null)
+                {
+                    var foods = await _dbContext.Foods.Include(x => x.FoodClass).OrderByDescending(x => x.CreatedAt).ToListAsync();
+                    foods = foods.Where(x => x.Name.ToLower().Contains(searchTerms.ToLower().Trim())
+                    || x.FoodClass.Name.ToLower().Contains(searchTerms.ToLower().Trim())).ToList();
+
+                    var results = foods.Select(x => new FoodDto
+                    {
+                        Description = x.Description,
+                        Details = x.Details,
+                        Name = x.Name,
+                        Calorie = x.Calorie,
+                        Image = x.Image,
+                        Origin = x.Origin,
+                        Unit = x.Unit,
+                        FoodClass = x.FoodClass.Name,
+                    }).ToList();
+
+                    return results;
+                }
+                return foodgs;
+
             }
-            return foods;
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
             
         }
 

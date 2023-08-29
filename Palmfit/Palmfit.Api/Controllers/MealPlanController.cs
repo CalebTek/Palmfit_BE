@@ -39,12 +39,12 @@ namespace Palmfit.Api.Controllers
 		[ProducesResponseType(statusCode: StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public async Task<IActionResult> GetDailyMealPlan(int day, string appUserId)
+		public async Task<IActionResult> GetDailyMealPlan(int day, string appUserId, int week)
 		{
 			if (day < 0 && day > 6 || appUserId == null)
 				return BadRequest("wrong parameter entry!");
 
-			var result = await _repository.GetDailyPlan(day, appUserId);
+			var result = await _repository.GetDailyPlan(day, appUserId, week);
 
 			if (result == null)
 			{

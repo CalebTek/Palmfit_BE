@@ -7,6 +7,7 @@ using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.Entities;
 
+
 namespace Palmfit.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -105,7 +106,7 @@ namespace Palmfit.Api.Controllers
             }
         }
 
-        [HttpPost("Get-User-Transaction-History")]
+        [HttpGet("Get-User-Transaction-History")]
         public async Task<IActionResult> UserTransaction(string UserId)
         {
             var result = await _wallet.GetUserTransactionHistory(UserId);
@@ -115,7 +116,7 @@ namespace Palmfit.Api.Controllers
             return Ok(ApiResponse.Success(result));
         }
 
-        [HttpPost("Get-User-Wallet-History")]
+        [HttpGet("Get-User-Wallet-History")]
         public async Task<IActionResult> UserWallet(string walletId)
         {
             var result = await _wallet.GetUserWalletHistory(walletId);
