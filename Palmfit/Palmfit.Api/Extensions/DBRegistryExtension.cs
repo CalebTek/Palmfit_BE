@@ -11,6 +11,7 @@ using Palmfit.Data.Entities;
 using System.Security.Principal;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Palmfit.Api.Extensions
 {
@@ -18,8 +19,6 @@ namespace Palmfit.Api.Extensions
     {
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-
-            
 
             services.AddDbContextPool<PalmfitDbContext>(options =>
             {
@@ -47,7 +46,7 @@ namespace Palmfit.Api.Extensions
 
             // ...
 
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            //services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
 
@@ -85,7 +84,7 @@ namespace Palmfit.Api.Extensions
             });
 
             // Repo Registration
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+           // services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IInviteRepository, InviteRepository>();
@@ -98,24 +97,39 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+            services.AddScoped<ICalorieRepository, CalorieRepository>();
+
             //services.AddScoped<IEmailServices, EmailServices>();
+
+            services.AddScoped<IEmailServices>(provider =>
+            {
+                var smtpHost = "smtp.gmail.com";
+                var smtpPort = 587;
+                var smtpUsername = "Palmfitsquad15@gmail.com";
+                var smtpPassword = "kwatusdniiwfygmr";
+
+                return new EmailServices(smtpHost, smtpPort, smtpUsername, smtpPassword);
+            });
 
             // Identity role registration with Stores and default token provider
             services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
 
-            /* <-------Start-------- Seed the database using DbContext ------- Start------>*/
 
-            //services.AddScoped<SeedData>();
 
-            // Call the seed method after the DbContext is created
-            //services.AddScoped<IServiceProvider>(provider =>
-            //{
+            //configuring Cross-Origin Resource Sharing (CORS) settings 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("*") // Replace with your React app's URL
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .WithExposedHeaders("Authorization"); // This adds the custom authorization header to response
+                });
+            });
 
-            //});
-
-            /* <-------End-------- Seed the database using DbContext ------- End------>*/
         }
     }
 }

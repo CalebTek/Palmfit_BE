@@ -18,12 +18,12 @@ namespace Palmfit.Core.Services
     { 
    
         Task<List<Food>> GetAllFoodAsync();
-        Task<List<Food>> SearchFood(string searchTerms);
+        Task<List<FoodDto>> SearchFood(string searchTerms);
         Task<String> UpdateFoodClass(string foodClassId, FoodClassDto updatedFoodClassDto);
 
         Task<Food> GetFoodById(string id);
         /* < Start----- required methods to Calculate Calorie -----Start > */
-        Task<decimal> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
+        Task<CalorieDto> GetCalorieByNameAsync(string foodName, UnitType unit, decimal amount);
         Task<decimal> GetCalorieByIdAsync(string foodId, UnitType unit, decimal amount);
         Task<decimal> CalculateTotalCalorieAsync(Dictionary<string, (UnitType unit, decimal amount)> foodNameAmountMap);
         Task<IEnumerable<Food>> GetFoodsByNameAsync(string foodName);

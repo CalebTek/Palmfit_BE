@@ -137,12 +137,6 @@ namespace Palmfit.Data.AppDbContext
 				.WithOne(mp => mp.FoodClass)
 				.HasForeignKey(mp => mp.FoodClassId);
 
-			// Configure One to Many Foods Relationship
-			modelBuilder.Entity<Food>()
-				.HasMany(f => f.MealPlan) // Use the 'MealPlan' property of Food
-				.WithOne(mp => mp.Food)
-				.HasForeignKey(mp => mp.FoodId);
-
 			/* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
 			modelBuilder.Entity<Food>()
                 .Property(f => f.Unit)

@@ -19,6 +19,20 @@ namespace Palmfit.Data.EntityEnums
         ft,
     }
 
+    public enum TDEELevel
+    {
+        Inactive, 
+        SomewhatActive, 
+        Active 
+    }
+
+    public enum WeightGoal
+    {
+        Lose,
+        Maintain,
+        Gain
+    }
+
     public enum WeightUnit
     {
         Kg,
@@ -65,7 +79,7 @@ namespace Palmfit.Data.EntityEnums
         Tablespoon,
         Ounce,
         Cup,
-        Pound,
+        Piece,
         // Add other unit types as needed
     }
 
@@ -89,13 +103,6 @@ namespace Palmfit.Data.EntityEnums
 		Dinner
 	}
 
-
-    public enum WeightGoal
-    {
-        Lose,
-        Maintain,
-        Gain
-    }
 
     public enum ActivityLevel
     {

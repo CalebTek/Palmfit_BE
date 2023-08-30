@@ -31,20 +31,31 @@ namespace Palmfit.Core.Implementations
         private readonly PalmfitDbContext _palmfitDb;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppUserRole> _roleManager;
-        private readonly PalmfitDbContext _palmfitDbContext;
 
         public AuthRepository(IConfiguration configuration, RoleManager<AppUserRole> roleManager, PalmfitDbContext palmfitDb, UserManager<AppUser> userManager)  
         {
             _configuration = configuration;
-           // _palmfitDb = palmfitDb;
-            //_userManager = userManager;
-            _palmfitDb = palmfitDb;
             _userManager = userManager;
             _roleManager = roleManager;
             _palmfitDb = palmfitDb;
-            _userManager = userManager;
         }
 
+
+        public async Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+                var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public string GenerateJwtToken(AppUser user)
         {
@@ -74,7 +85,6 @@ namespace Palmfit.Core.Implementations
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
 
 
         public string SendOTPByEmail(string email)
@@ -109,8 +119,8 @@ namespace Palmfit.Core.Implementations
                     OTP = otp,
                     Expiration = DateTime.UtcNow.AddMinutes(10) // set an expiration time for OTP (e.g 5 minutes)
                 };
-                _palmfitDbContext.UserOTPs.Add(userOTP);
-                _palmfitDbContext.SaveChanges();
+                _palmfitDb.UserOTPs.Add(userOTP);
+                _palmfitDb.SaveChanges();
 
                 return $"OTP sent to {email}";
             }
@@ -121,18 +131,15 @@ namespace Palmfit.Core.Implementations
         }
 
 
-
         public async Task<UserOTP?> FindMatchingValidOTP(string otpFromUser)
         {
-            await RemoveAllExpiredOTP(); // Call the RemoveExpiredOTP method before validation
+            var currentTime = DateTime.UtcNow;
+            var expirationTime = TimeSpan.FromMinutes(5);
 
-            var now = DateTime.UtcNow;
-            return await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && otp.Expiration > now);
+            var result = await _palmfitDb.UserOTPs.FirstOrDefaultAsync(otp => otp.OTP == otpFromUser && (currentTime - otp.Expiration) <= expirationTime);
+
+            return result;
         }
-
-
-
-
 
 
         public async Task<IdentityResult> CreatePermissionAsync(string name)
@@ -172,15 +179,6 @@ namespace Palmfit.Core.Implementations
             return new ApiResponse<string>("Verified successfully.");
         }
 
-
-
-        public async Task RemoveAllExpiredOTP()
-        {
-            var now = DateTime.UtcNow;
-            var expiredOTPs = await _palmfitDb.UserOTPs.Where(otp => otp.Expiration <= now).ToListAsync();
-            _palmfitDb.UserOTPs.RemoveRange(expiredOTPs);
-            await _palmfitDb.SaveChangesAsync();
-        }
 
         public async Task<IEnumerable<AppUserPermission>> GetAllPermissionsAsync() 
         { 
