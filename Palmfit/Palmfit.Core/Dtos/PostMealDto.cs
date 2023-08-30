@@ -10,6 +10,6 @@ namespace Palmfit.Core.Dtos
     public class PostMealDto
     {
         public MealOfDay MealOfDay { get; set; }
-        public DaysOfWeek DaysOfWeek { get; set; }
-    }
+		public int Day { get; set; }
+	}
 }

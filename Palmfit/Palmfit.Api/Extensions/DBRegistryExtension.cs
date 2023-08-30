@@ -46,7 +46,7 @@ namespace Palmfit.Api.Extensions
 
             // ...
 
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            //services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
 
@@ -84,7 +84,7 @@ namespace Palmfit.Api.Extensions
             });
 
             // Repo Registration
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+           // services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IInviteRepository, InviteRepository>();
