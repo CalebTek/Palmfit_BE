@@ -10,14 +10,19 @@ namespace Palmfit.Data.Entities
 {
 	public class MealPlan : BaseEntity
 	{
-		public string AppUserId { get; set; }
-		public AppUser AppUser { get; set; }
-		public string FoodId { get; set; }
-		public Food Food { get; set; }
-		public MealOfDay MealOfDay { get; set; }
-		public DaysOfWeek DayOfTheWeek { get; set; }
+        
+        public FoodClass FoodClass { get; set; }
+        public string FoodClassId { get; set; }
+        public Food Food { get; set; }
+        public string FoodId { get; set; }
+        public int Day { get; set; }
+        public MealOfDay MealOfDay { get; set; }
 
-		[Required]
-		public int Week { get; set; }
-	}
+    }
 }
+
+
+//public string FoodId { get; set; }
+//public Food Food { get; set; }
+//public string foodClassId { get; set; }
+//public FoodClass foodClass { get; set; }

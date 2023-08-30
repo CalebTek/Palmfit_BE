@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
-using Palmfit.Data.Seeder;
+//using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.WebHost.UseUrls("http://0.0.0.0:80");
@@ -111,7 +111,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
-Seeder.SeedData(app).Wait();
+//Seeder.SeedData(app).Wait();
 
 app.UseCors("AllowedHosts");
 

@@ -102,4 +102,12 @@ namespace Palmfit.Data.EntityEnums
 		Lunch,
 		Dinner
 	}
+
+
+    public enum ActivityLevel
+    {
+        Inactive,
+        SomewhatActive,
+        Active
+    }
 }
