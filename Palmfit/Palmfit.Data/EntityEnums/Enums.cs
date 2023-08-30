@@ -88,4 +88,19 @@ namespace Palmfit.Data.EntityEnums
 		Lunch,
 		Dinner
 	}
+
+
+    public enum WeightGoal
+    {
+        Lose,
+        Maintain,
+        Gain
+    }
+
+    public enum ActivityLevel
+    {
+        Inactive,
+        SomewhatActive,
+        Active
+    }
 }

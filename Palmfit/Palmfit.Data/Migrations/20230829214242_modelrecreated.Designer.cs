@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Palmfit.Data.AppDbContext;
@@ -11,9 +12,11 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    partial class PalmfitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230829214242_modelrecreated")]
+    partial class modelrecreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,14 +160,7 @@ namespace Palmfit.Data.Migrations
                     b.Property<bool?>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ActiveWeightGoal")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Address")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Age")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Area")
@@ -191,10 +187,6 @@ namespace Palmfit.Data.Migrations
 
                     b.Property<int?>("Gender")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Height")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Image")
                         .HasColumnType("text");
@@ -259,13 +251,6 @@ namespace Palmfit.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasColumnType("text");
-
-                    b.Property<string>("Weight")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("WeightGoal")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -671,12 +656,12 @@ namespace Palmfit.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("FoodClassId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("MealPlanId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -685,7 +670,7 @@ namespace Palmfit.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("FoodClassId");
+                    b.HasIndex("MealPlanId");
 
                     b.ToTable("SelectedPlans");
                 });
@@ -979,15 +964,15 @@ namespace Palmfit.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Palmfit.Data.Entities.FoodClass", "FoodClass")
+                    b.HasOne("Palmfit.Data.Entities.MealPlan", "MealPlan")
                         .WithMany()
-                        .HasForeignKey("FoodClassId")
+                        .HasForeignKey("MealPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
 
-                    b.Navigation("FoodClass");
+                    b.Navigation("MealPlan");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
