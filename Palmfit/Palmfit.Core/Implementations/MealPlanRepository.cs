@@ -49,8 +49,13 @@ namespace Palmfit.Core.Implementations
 						Details = item.Food.Details,
 						Origin = item.Food.Origin,
 						Image = item.Food.Image,
+						Carbs = item.Food.Carbs,
+						Proteins = item.Food.Proteins,
+						Fats = item.Food.Fats,
 						Calorie = item.Food.Calorie,
-						Unit = Convert.ToString(item.Food.Unit)
+						Unit = Convert.ToString(item.Food.Unit),
+						
+						
 
 					};
 
@@ -137,9 +142,11 @@ namespace Palmfit.Core.Implementations
 
 
 
+
+
+
 		public async Task<IEnumerable<MealPlanDto>> GetSelectedPlan(string appUserId)
 		{
-
 			var getFoodId = await _palmfitDbContext.SelectedPlans.FirstOrDefaultAsync(x => x.AppUserId == appUserId);
 
 			var mealPlan = await GetWeeklyPlan(getFoodId.FoodClassId);
@@ -147,12 +154,16 @@ namespace Palmfit.Core.Implementations
 			var selectedDate = getFoodId.CreatedAt.ToUniversalTime();
 			var presentDay = (int)(DateTime.UtcNow - selectedDate).TotalDays;
 
-			var nextSeven = mealPlan.Where(x => x.Day >= presentDay && x.Day <= presentDay + 7);
+			var nextSeven = mealPlan.OrderBy(col =>  col.Day).Where(x => x.Day >= presentDay && x.Day <= presentDay + 7);
 
 			List<MealPlanDto> result = new List<MealPlanDto>();
+			var dayOfWeek = DateTime.UtcNow.AddDays(-1).DayOfWeek; // Get the current day of the week
+			var daysInWeek = Enum.GetValues(typeof(DayOfWeek)).Length;
 
 			foreach (var item in nextSeven)
 			{
+				dayOfWeek = (DayOfWeek)(((int)dayOfWeek + 1) % daysInWeek); // Increment dayOfWeek cyclically
+
 				var meal = new MealPlanDto
 				{
 					Day = item.Day,
@@ -163,14 +174,65 @@ namespace Palmfit.Core.Implementations
 					Origin = item.Origin,
 					Image = item.Image,
 					Calorie = item.Calorie,
-					Unit = item.Unit
+					Unit = item.Unit,
+					DayOfWeek = dayOfWeek.ToString(), // Assign the calculated day of the week
+					Carbs = item.Carbs,
+					Proteins = item.Proteins,
+					Fats = item.Fats,
 				};
 
-				result.Add(meal);	
+				result.Add(meal);
 			}
 
 			return result;
 		}
+
+
+
+
+
+
+		//public async Task<IEnumerable<MealPlanDto>> GetSelectedPlan(string appUserId)
+		//{
+
+		//	var getFoodId = await _palmfitDbContext.SelectedPlans.FirstOrDefaultAsync(x => x.AppUserId == appUserId);
+
+		//	var mealPlan = await GetWeeklyPlan(getFoodId.FoodClassId);
+
+		//	var selectedDate = getFoodId.CreatedAt.ToUniversalTime();
+		//	var presentDay = (int)(DateTime.UtcNow - selectedDate).TotalDays;
+
+		//	var nextSeven = mealPlan.Where(x => x.Day >= presentDay && x.Day <= presentDay + 7);
+
+		//	List<MealPlanDto> result = new List<MealPlanDto>();
+		//	var prevDay = DateTime.UtcNow.AddDays(-1).DayOfWeek;
+
+		//	foreach (var item in nextSeven)
+		//	{
+		//		prevDay += 1;
+		//		var meal = new MealPlanDto
+		//		{
+		//			Day = item.Day,
+		//			MealOfDay = item.MealOfDay,
+		//			Name = item.Name,
+		//			Description = item.Description,
+		//			Details = item.Details,
+		//			Origin = item.Origin,
+		//			Image = item.Image,
+		//			Calorie = item.Calorie,
+		//			Unit = item.Unit,
+		//			DayOfWeek = dayOfWeek.ToString(),
+		//			Carbs = item.Carbs,
+		//			Proteins = item.Proteins,
+		//			Fats = item.Fats,
+
+		//		};
+
+		//		result.Add(meal);	
+		//	}
+
+		//	return result;
+		//}
 
 
 		public async Task<bool> DeleteSelectedPlanAsync(string selectedplanId)

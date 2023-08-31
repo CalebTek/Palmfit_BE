@@ -49,5 +49,37 @@ namespace Palmfit.Core.Implementations
         }
 
 
-    }
+
+
+        public async Task UpdateUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId)
+
+		{
+
+			var domainUserCalorieData = await _dbContext.userCaloriesData.SingleOrDefaultAsync(user => user.AppUserId == userId);
+
+			if (domainUserCalorieData != null)
+
+			{
+
+				domainUserCalorieData.WeightGoal = userCalorieDataDto.WeightGoal;
+
+				domainUserCalorieData.ActivityLevel = userCalorieDataDto.ActivityLevel;
+
+				domainUserCalorieData.Age = userCalorieDataDto.Age;
+
+				domainUserCalorieData.Height = userCalorieDataDto.Height;
+
+				domainUserCalorieData.Weight = userCalorieDataDto.Weight;
+
+				domainUserCalorieData.Gender = userCalorieDataDto.Gender;
+
+				domainUserCalorieData.UpdatedAt = DateTime.UtcNow;
+
+			}
+
+			await _dbContext.SaveChangesAsync();
+
+		}
+
+	}
 }

@@ -16,11 +16,6 @@ namespace Palmfit.Data.Entities
         public string? Area { get; set; }
         public string? State { get; set; }
         public Gender? Gender { get; set; }
-        public string Age { get; set; }
-        public string Height { get; set; }
-        public string Weight { get; set; }
-        public WeightGoal? WeightGoal { get; set; }
-        public ActivityLevel ActiveWeightGoal { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string? Country { get; set; }
         public bool? IsLockedOut { get; set; }

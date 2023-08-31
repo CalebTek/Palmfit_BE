@@ -22,7 +22,3 @@ namespace Palmfit.Data.Entities
 }
 
 
-//public string FoodId { get; set; }
-//public Food Food { get; set; }
-//public string foodClassId { get; set; }
-//public FoodClass foodClass { get; set; }
