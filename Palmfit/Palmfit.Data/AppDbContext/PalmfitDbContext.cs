@@ -29,9 +29,10 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<Referral> Referrals { get; set; }
         public DbSet<FileUploadModel> FileUploadmodels { get; set; }
-        public DbSet<SelectedPlans> SelectedPlans { get; set; } 
+        public DbSet<SelectedPlans> SelectedPlans { get; set; }
+		public DbSet<UserCalorieData> userCaloriesData { get; set; }
 
-        public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
+		public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }
 
