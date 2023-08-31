@@ -79,5 +79,35 @@ namespace Palmfit.Api.Controllers
 		}
 
 
+
+		[HttpPatch("update-user-calorie-data")]
+		public async Task<IActionResult> UpdateUserCalorieData([FromBody] UserCalorieDataDto userCalorieDataDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ApiResponse.Failed(ModelState));
+			}
+			try
+			{
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+				var userExist = await _userManager.FindByIdAsync(userId);
+				if (userExist == null)
+				{
+					return NotFound(ApiResponse.Failed("User not found"));
+				}
+				var calorie = await _userCalorieDataRepo.GetUserCalorieDataByIdAsync(userId);
+				if (calorie == null)
+				{
+					return NotFound(ApiResponse.Failed("No Calorie data has been added for this user"));
+				}
+				await _userCalorieDataRepo.UpdateUserCalorieDataAsync(userCalorieDataDto, userId);
+				return Ok(ApiResponse.Success("User calorie data updated successfully"));
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ApiResponse.Failed("Calorie data failed to update."));
+			}
+		}
+
 	}
 }
