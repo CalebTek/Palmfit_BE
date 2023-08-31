@@ -35,7 +35,7 @@ namespace Palmfit.Api.Controllers
             if (!ModelState.IsValid)
             {
 
-                return BadRequest(new ApiResponse<string>("Invalid request. Please provide a valid email and password."));
+                return BadRequest(ApiResponse.Failed("Invalid request. Please provide a valid email and password."));
             }
             else
             {
@@ -43,14 +43,14 @@ namespace Palmfit.Api.Controllers
 
                 if (user == null)
                 {
-                    return NotFound(new ApiResponse<string>("User not found. Please check your email and try again."));
+                    return NotFound(ApiResponse.Failed("User not found. Please check your email and try again."));
                 }
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, login.Password, lockoutOnFailure: false);
 
                 if (!result.Succeeded)
                 {
-                    return Unauthorized(new ApiResponse<string>("Invalid credentials. Please check your email or password and try again."));
+                    return Unauthorized(ApiResponse.Failed("Invalid credentials. Please check your email or password and try again."));
                 }
                 else
                 {
@@ -59,7 +59,7 @@ namespace Palmfit.Api.Controllers
                     // Returning the token in the response headers
                     Response.Headers.Add("Authorization", "Bearer " + token);
 
-                    return Ok(new ApiResponse<string>("Login successful."));
+                    return Ok(ApiResponse.Success("Login successful."));
 
                 }
             }
@@ -186,7 +186,7 @@ namespace Palmfit.Api.Controllers
             var update = await _authRepo.UpdatePasswordAsync(reset.Email, reset.OldPassword, reset.NewPassword);
             if (!update)
             {
-                return BadRequest(ApiResponse<string>.Failed("Incorrect Credentials, try again"));
+                return BadRequest(ApiResponse<string>.Failed(null, "Incorrect Credentials, try again"));
             }
             return Ok(ApiResponse<string>.Success(null, "Password Reset Successful"));
         }

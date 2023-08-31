@@ -99,7 +99,16 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
-
+builder.Services.AddCors(options =>
+{
+	options.AddDefaultPolicy(builder =>
+	{
+		builder.AllowAnyOrigin()
+			   .AllowAnyMethod()
+			   .AllowAnyHeader()
+			   .WithExposedHeaders("Authorization"); // Expose the Authorization header
+	});
+});
 
 var app = builder.Build();
 app.UseHttpsRedirection();
@@ -112,7 +121,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 
 //Seeder.SeedData(app).Wait();
-
+app.UseCors();
 app.UseCors("AllowedHosts");
 
 app.UseHttpsRedirection();

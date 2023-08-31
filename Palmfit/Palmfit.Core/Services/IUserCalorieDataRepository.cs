@@ -12,5 +12,6 @@ namespace Palmfit.Core.Services
 	{
 		Task AddUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId);
 		Task<UserCalorieData> GetUserCalorieDataByIdAsync(string id);
+		Task UpdateUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId);
 	}
 }

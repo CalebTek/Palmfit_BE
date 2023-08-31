@@ -12,8 +12,8 @@ using Palmfit.Data.AppDbContext;
 namespace Palmfit.Data.Migrations
 {
     [DbContext(typeof(PalmfitDbContext))]
-    [Migration("20230830153258_updatedAppUserModel")]
-    partial class updatedAppUserModel
+    [Migration("20230831123313_appuser")]
+    partial class appuser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,14 +160,7 @@ namespace Palmfit.Data.Migrations
                     b.Property<bool?>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ActiveWeightGoal")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Address")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Age")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Area")
@@ -194,10 +187,6 @@ namespace Palmfit.Data.Migrations
 
                     b.Property<int?>("Gender")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Height")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Image")
                         .HasColumnType("text");
@@ -262,13 +251,6 @@ namespace Palmfit.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasColumnType("text");
-
-                    b.Property<string>("Weight")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("WeightGoal")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -353,6 +335,9 @@ namespace Palmfit.Data.Migrations
                     b.Property<decimal>("Calorie")
                         .HasColumnType("numeric");
 
+                    b.Property<decimal>("Carbs")
+                        .HasColumnType("numeric");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -361,6 +346,13 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Fats")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("FoodClassId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -379,6 +371,9 @@ namespace Palmfit.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<decimal>("Proteins")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("Unit")
                         .IsRequired()
                         .HasColumnType("text");
@@ -387,6 +382,8 @@ namespace Palmfit.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FoodClassId");
 
                     b.ToTable("Foods");
                 });
@@ -900,6 +897,17 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("WalletHistories");
                 });
 
+            modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
+                {
+                    b.HasOne("Palmfit.Data.Entities.FoodClass", "FoodClass")
+                        .WithMany()
+                        .HasForeignKey("FoodClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FoodClass");
+                });
+
             modelBuilder.Entity("Palmfit.Data.Entities.Health", b =>
                 {
                     b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
@@ -931,7 +939,7 @@ namespace Palmfit.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Palmfit.Data.Entities.Food", "Food")
-                        .WithMany("MealPlan")
+                        .WithMany()
                         .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1069,11 +1077,6 @@ namespace Palmfit.Data.Migrations
                     b.Navigation("Transactions");
 
                     b.Navigation("Wallet");
-                });
-
-            modelBuilder.Entity("Palmfit.Data.Entities.Food", b =>
-                {
-                    b.Navigation("MealPlan");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.FoodClass", b =>
