@@ -29,8 +29,10 @@ namespace Palmfit.Data.AppDbContext
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<Referral> Referrals { get; set; }
         public DbSet<FileUploadModel> FileUploadmodels { get; set; }
+        public DbSet<SelectedPlans> SelectedPlans { get; set; }
+		public DbSet<UserCalorieData> userCaloriesData { get; set; }
 
-        public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
+		public PalmfitDbContext(DbContextOptions<PalmfitDbContext> options) : base(options)
         {
         }
 
@@ -130,20 +132,14 @@ namespace Palmfit.Data.AppDbContext
                 .WithMany(a => a.Invities)
                 .HasForeignKey(i => i.AppUserId);
 
-            //Configure One FoodClass to Many Relationship
-            modelBuilder.Entity<FoodClass>()
-                .HasMany(fc => fc.Foods)
-                .WithOne(f => f.FoodClass)
-                .HasForeignKey(f => f.FoodClassId);
+			// Configure One FoodClass to Many Relationship
+			modelBuilder.Entity<FoodClass>()
+				.HasMany(fc => fc.MealPlan) // Use the 'MealPlan' property of FoodClass
+				.WithOne(mp => mp.FoodClass)
+				.HasForeignKey(mp => mp.FoodClassId);
 
-            // Configure One to Many Foods Relationship
-            modelBuilder.Entity<Food>()
-                .HasOne(f => f.FoodClass)
-                .WithMany(fc => fc.Foods)
-                .HasForeignKey(f => f.FoodClassId);
-
-            /* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
-            modelBuilder.Entity<Food>()
+			/* <-------Start-------- Configure Enum Mapping in DbContext ------- Start------>*/
+			modelBuilder.Entity<Food>()
                 .Property(f => f.Unit)
                 .HasConversion<string>();
 

@@ -46,7 +46,7 @@ namespace Palmfit.Api.Extensions
 
             // ...
 
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+            //services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IUserInterfaceRepository, UserInterfaceRepository>();
             services.AddScoped<IReferralRepository, ReferralRepository>();
 
@@ -84,7 +84,7 @@ namespace Palmfit.Api.Extensions
             });
 
             // Repo Registration
-            services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
+           // services.AddScoped<IFoodInterfaceRepository, FoodInterfaceRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IInviteRepository, InviteRepository>();
@@ -98,10 +98,10 @@ namespace Palmfit.Api.Extensions
             services.AddScoped<IReferralRepository, ReferralRepository>();
             services.AddScoped<IFileUploadRepository, FileUploadRepository>();
             services.AddScoped<ICalorieRepository, CalorieRepository>();
+			services.AddScoped<IUserCalorieDataRepository, UserCalorieDataRepository>();
+			//services.AddScoped<IEmailServices, EmailServices>();
 
-            //services.AddScoped<IEmailServices, EmailServices>();
-
-            services.AddScoped<IEmailServices>(provider =>
+			services.AddScoped<IEmailServices>(provider =>
             {
                 var smtpHost = "smtp.gmail.com";
                 var smtpPort = 587;
@@ -115,6 +115,20 @@ namespace Palmfit.Api.Extensions
             services.AddIdentity<AppUser, AppUserRole>()
                 .AddEntityFrameworkStores<PalmfitDbContext>()
                 .AddDefaultTokenProviders();
+
+
+
+            //configuring Cross-Origin Resource Sharing (CORS) settings 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("*") // Replace with your React app's URL
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .WithExposedHeaders("Authorization"); // This adds the custom authorization header to response
+                });
+            });
 
         }
     }

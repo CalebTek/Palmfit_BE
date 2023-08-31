@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Palmfit.Core.Implementations;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
-using Palmfit.Data.Seeder;
+//using Palmfit.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.WebHost.UseUrls("http://0.0.0.0:80");
@@ -99,7 +99,16 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
-
+builder.Services.AddCors(options =>
+{
+	options.AddDefaultPolicy(builder =>
+	{
+		builder.AllowAnyOrigin()
+			   .AllowAnyMethod()
+			   .AllowAnyHeader()
+			   .WithExposedHeaders("Authorization"); // Expose the Authorization header
+	});
+});
 
 var app = builder.Build();
 app.UseHttpsRedirection();
@@ -111,8 +120,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
-Seeder.SeedData(app).Wait();
-
+//Seeder.SeedData(app).Wait();
+app.UseCors();
 app.UseCors("AllowedHosts");
 
 app.UseHttpsRedirection();

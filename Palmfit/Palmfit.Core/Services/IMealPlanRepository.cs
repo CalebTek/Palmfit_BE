@@ -1,4 +1,6 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using Palmfit.Core.Dtos;
+using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,12 @@ namespace Palmfit.Core.Services
 {
 	public interface IMealPlanRepository
 	{
-		Task<IEnumerable<MealPlanDto>> GetWeeklyPlan(int week, string appUserId);
-		Task<IEnumerable<MealPlanDto>> GetDailyPlan(int day, string appUserId, int week);
-		Task<string> AddMealPlan(PostMealDto postMealDto, string foodId);
+		Task<IEnumerable<MealPlanDto>> GetWeeklyPlan(string foodClassId);
+		Task<string> AddMealPlan([FromBody] PostMealDto postMealDto, string foodId, string foodClassId);
+		Task AddSelectedMealPlan(string appUserId, string mealPlanId);
+		Task<string> UpdateSelectedMealPlan(string extistingfoodclassId, string newFoodClassId, string appUserId);
+		Task<bool> DeleteSelectedPlanAsync(string selectedplanId);
+
+		Task<IEnumerable<MealPlanDto>> GetSelectedPlan(string appUserId);
 	}
 }
