@@ -3,7 +3,7 @@
     public class FoodClass : BaseEntity
     {
         public string Name { get; set; }
-        public string Discription { get; set; }
+        public string Description { get; set; }
         public ICollection<MealPlan> MealPlan { get; set; }
 
     }
