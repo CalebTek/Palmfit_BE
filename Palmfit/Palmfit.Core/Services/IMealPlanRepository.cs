@@ -18,5 +18,7 @@ namespace Palmfit.Core.Services
 		Task<bool> DeleteSelectedPlanAsync(string selectedplanId);
 
 		Task<IEnumerable<MealPlanDto>> GetSelectedPlan(string appUserId);
+
+		Task<IEnumerable<IEnumerable<MealPlanDto>>> GetPaginatedWeeklyPlans(string foodClassId, int pageNumber);
 	}
 }

@@ -137,5 +137,19 @@ namespace Palmfit.Api.Controllers
 
 		}
 
+		[HttpGet("/get-weekly-meal-plan-paginated")]
+		public async Task<ActionResult<IEnumerable<IEnumerable<MealPlanDto>>>> GetPaginatedWeeklyPlans(string foodClassId, int pageNumber)
+		{
+
+			if(foodClassId == null || pageNumber == null)
+			{
+				return BadRequest(ApiResponse.Failed("failed"));
+			}
+
+			var result = await _repository.GetPaginatedWeeklyPlans(foodClassId, pageNumber);
+
+			return Ok(ApiResponse.Success(result));
+		}
+
 	}
 }
