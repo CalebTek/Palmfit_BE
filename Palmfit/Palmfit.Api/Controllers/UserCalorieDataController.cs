@@ -52,7 +52,7 @@ namespace Palmfit.Api.Controllers
 
 
 
-		[HttpGet("get-user-data-by-id")]
+		[HttpGet("get-user-data-by-id/{userId}")]
 		public async Task<IActionResult> GetUserCalorieDataById(string userId)
 		{
 			try
