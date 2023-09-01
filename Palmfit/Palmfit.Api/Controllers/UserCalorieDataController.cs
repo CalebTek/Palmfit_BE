@@ -33,13 +33,14 @@ namespace Palmfit.Api.Controllers
 				return BadRequest(ApiResponse.Failed(ModelState));
 			}
 			try
-			{ 
-				var userExist = await _userManager.FindByIdAsync(userId);
+			{
+				 
+				var userExist = await _userManager.FindByIdAsync(userCalorieDataDto.AppUserId);
 				if (userExist == null)
 				{
 					return NotFound(ApiResponse.Failed("User not found"));
 				}
-				await _userCalorieDataRepo.AddUserCalorieDataAsync(userCalorieDataDto ,userId);
+				await _userCalorieDataRepo.AddUserCalorieDataAsync(userCalorieDataDto);
 				return Ok(ApiResponse.Success("Calorie data added successfully"));
 
 			}
@@ -52,11 +53,11 @@ namespace Palmfit.Api.Controllers
 
 
 		[HttpGet("get-user-data-by-id")]
-		public async Task<IActionResult> GetUserCalorieDataById()
+		public async Task<IActionResult> GetUserCalorieDataById(string userId)
 		{
 			try
 			{
-				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+				 
 				var userExist = await _userManager.FindByIdAsync(userId);
 
 				if (userExist == null)
@@ -69,7 +70,8 @@ namespace Palmfit.Api.Controllers
 				{
 					return NotFound(ApiResponse.Failed("No Calorie data has been added for this user"));
 				}
-				return Ok(ApiResponse.Success(calorie));
+				var calories = new {calorie.ActivityLevel,calorie.Gender,calorie.Age,calorie.Height,calorie.Weight,calorie.WeightGoal };
+				return Ok(ApiResponse.Success(calories));
 			}
 			catch (Exception ex)
 			{
