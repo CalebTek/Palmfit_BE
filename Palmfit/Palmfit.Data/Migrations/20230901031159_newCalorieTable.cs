@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Palmfit.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class userCalorie : Migration
+    public partial class newCalorieTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "userCaloriesData",
+                name: "AllCalorieInfos",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
@@ -29,9 +29,9 @@ namespace Palmfit.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_userCaloriesData", x => x.Id);
+                    table.PrimaryKey("PK_AllCalorieInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_userCaloriesData_AppUser_AppUserId",
+                        name: "FK_AllCalorieInfos_AppUser_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AppUser",
                         principalColumn: "Id",
@@ -39,8 +39,8 @@ namespace Palmfit.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_userCaloriesData_AppUserId",
-                table: "userCaloriesData",
+                name: "IX_AllCalorieInfos_AppUserId",
+                table: "AllCalorieInfos",
                 column: "AppUserId");
         }
 
@@ -48,7 +48,7 @@ namespace Palmfit.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "userCaloriesData");
+                name: "AllCalorieInfos");
         }
     }
 }
