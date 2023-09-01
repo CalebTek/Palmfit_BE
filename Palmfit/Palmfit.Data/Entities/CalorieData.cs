@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Palmfit.Data.Entities
 {
-	public class UserCalorieData : BaseEntity
+	public class CalorieData : BaseEntity 
 	{
 		public WeightGoal WeightGoal { get; set; }
 		public ActivityLevel ActivityLevel { get; set; }

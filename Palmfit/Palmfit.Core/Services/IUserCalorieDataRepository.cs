@@ -10,8 +10,8 @@ namespace Palmfit.Core.Services
 {
 	public interface IUserCalorieDataRepository
 	{
-		Task AddUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId);
-		Task<UserCalorieData> GetUserCalorieDataByIdAsync(string id);
+		Task AddUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto);
+		Task<AllCalorieData> GetUserCalorieDataByIdAsync(string id);
 		Task UpdateUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId);
 	}
 }

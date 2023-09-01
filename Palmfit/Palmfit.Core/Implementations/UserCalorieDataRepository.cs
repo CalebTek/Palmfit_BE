@@ -1,10 +1,10 @@
-﻿using Palmfit.Core.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Palmfit.Core.Dtos;
 using Palmfit.Core.Services;
 using Palmfit.Data.AppDbContext;
 using Palmfit.Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,32 +20,33 @@ namespace Palmfit.Core.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task AddUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto, string userId)
+        public async Task AddUserCalorieDataAsync(UserCalorieDataDto userCalorieDataDto) 
         {
-            var data = new UserCalorieData()
+            var data = new AllCalorieData() 
             {
-                Id = Guid.NewGuid().ToString(),
+                
                 WeightGoal = userCalorieDataDto.WeightGoal,
                 ActivityLevel = userCalorieDataDto.ActivityLevel,
                 Age = userCalorieDataDto.Age,
                 Height = userCalorieDataDto.Height,
                 Weight = userCalorieDataDto.Weight,
                 Gender = userCalorieDataDto.Gender,
-                AppUserId = userId,
+                AppUserId = userCalorieDataDto.AppUserId,
                 IsDeleted = false,
-                CreatedAt = DateTime.Now,   
-                UpdatedAt = DateTime.Now
+                CreatedAt = DateTime.UtcNow,   
+                UpdatedAt = DateTime.UtcNow,
+                Id = Guid.NewGuid().ToString(),
                 
             };
-            await _dbContext.userCaloriesData.AddAsync(data);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.AllCalorieInfos.AddAsync(data);
+            _dbContext.SaveChanges();
         }
 
 
 
-        public async Task<UserCalorieData> GetUserCalorieDataByIdAsync(string id)
+        public async Task<AllCalorieData> GetUserCalorieDataByIdAsync(string id)
         {
-            return await _dbContext.userCaloriesData.SingleOrDefaultAsync(user => user.AppUserId == id);
+            return await _dbContext.AllCalorieInfos.FirstOrDefaultAsync(user => user.AppUserId == id);
         }
 
 
@@ -55,7 +56,7 @@ namespace Palmfit.Core.Implementations
 
 		{
 
-			var domainUserCalorieData = await _dbContext.userCaloriesData.SingleOrDefaultAsync(user => user.AppUserId == userId);
+			var domainUserCalorieData = await _dbContext.userCalorieTable.SingleOrDefaultAsync(user => user.AppUserId == userId);
 
 			if (domainUserCalorieData != null)
 
