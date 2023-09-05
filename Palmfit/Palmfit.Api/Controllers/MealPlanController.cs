@@ -74,5 +74,24 @@ namespace Palmfit.Api.Controllers
 
 			return Ok(ApiResponse.Success(result));
 		}
-	}
+
+
+        [HttpDelete("{selectedplanId}")]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteSelectedPlan(string selectedplanId)
+        {
+            try
+            {
+                var result = await _repository.DeleteSelectedPlanAsync(selectedplanId);
+
+                if (!result)
+                    return ApiResponse<bool>.Failed(false, "Selected Plan not deleted");
+
+                return ApiResponse<bool>.Success(true, "Selected plan deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<bool>.Failed(false, ex.Message);
+            }
+        }
+    }
 }

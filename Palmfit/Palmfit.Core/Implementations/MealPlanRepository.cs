@@ -125,5 +125,17 @@ namespace Palmfit.Core.Implementations
             return "Food successfully added to Meal Plan!";
 
         }
+
+		public async Task<bool> DeleteSelectedPlanAsync(string selectedplanId)
+		{
+			var selectedPlan = _palmfitDbContext.SelectedMealPlans.FirstOrDefault(s => s.Id == selectedplanId);
+
+			if (selectedPlan == null)
+				return await Task.FromResult(false);
+
+			_palmfitDbContext.Remove(selectedPlan);
+
+			return await Task.FromResult(true);
+		}
 	}
 }

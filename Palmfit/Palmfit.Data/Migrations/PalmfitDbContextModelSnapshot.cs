@@ -662,6 +662,44 @@ namespace Palmfit.Data.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("Palmfit.Data.Entities.SelectedPlan", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FoodClassIdId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("MealPlanId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("FoodClassIdId");
+
+                    b.HasIndex("MealPlanId");
+
+                    b.ToTable("SelectedPlans");
+                });
+
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
                 {
                     b.Property<string>("Id")
@@ -952,6 +990,33 @@ namespace Palmfit.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Palmfit.Data.Entities.SelectedPlan", b =>
+                {
+                    b.HasOne("Palmfit.Data.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Palmfit.Data.Entities.FoodClass", "FoodClassId")
+                        .WithMany()
+                        .HasForeignKey("FoodClassIdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Palmfit.Data.Entities.MealPlan", "MealPlan")
+                        .WithMany()
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("FoodClassId");
+
+                    b.Navigation("MealPlan");
                 });
 
             modelBuilder.Entity("Palmfit.Data.Entities.Setting", b =>
